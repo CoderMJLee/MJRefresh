@@ -41,7 +41,7 @@
     _lastUpdateTime = lastUpdateTime;
     
     // 1.归档
-    [[NSUserDefaults standardUserDefaults] setObject:_lastUpdateTime forKey:MJRefreshHeaderTimeKey];
+    [[NSUserDefaults standardUserDefaults] setObject:lastUpdateTime forKey:MJRefreshHeaderTimeKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     // 2.更新时间
@@ -51,7 +51,7 @@
 #pragma mark 更新时间字符串
 - (void)updateTimeLabel
 {
-    if (!_lastUpdateTime) return;
+    if (!self.lastUpdateTime) return;
     
     // 1.获得年月日
     NSCalendar *calendar = [NSCalendar currentCalendar];
@@ -68,20 +68,20 @@
     } else {
         formatter.dateFormat = @"yyyy-MM-dd HH:mm";
     }
-    NSString *time = [formatter stringFromDate:_lastUpdateTime];
+    NSString *time = [formatter stringFromDate:self.lastUpdateTime];
     
     // 3.显示日期
-    _lastUpdateTimeLabel.text = [NSString stringWithFormat:@"最后更新：%@", time];
+    self.lastUpdateTimeLabel.text = [NSString stringWithFormat:@"最后更新：%@", time];
 }
 
 #pragma mark 设置状态
 - (void)setState:(MJRefreshState)state
 {
     // 1.一样的就直接返回
-    if (_state == state) return;
+    if (self.state == state) return;
     
     // 2.保存旧状态
-    MJRefreshState oldState = _state;
+    MJRefreshState oldState = self.state;
     
     // 3.调用父类方法
     [super setState:state];
@@ -91,13 +91,13 @@
 		case MJRefreshStatePulling: // 松开可立即刷新
         {
             // 设置文字
-            _statusLabel.text = MJRefreshHeaderReleaseToRefresh;
+            self.statusLabel.text = MJRefreshHeaderReleaseToRefresh;
             // 执行动画
             [UIView animateWithDuration:MJRefreshAnimationDuration animations:^{
-                _arrowImage.transform = CGAffineTransformMakeRotation(M_PI);
-                UIEdgeInsets inset = _scrollView.contentInset;
-                inset.top = _scrollViewInitInset.top;
-                _scrollView.contentInset = inset;
+                self.arrowImage.transform = CGAffineTransformMakeRotation(M_PI);
+                UIEdgeInsets inset = self.scrollView.contentInset;
+                inset.top = self.scrollViewInitInset.top;
+                self.scrollView.contentInset = inset;
             }];
 			break;
         }
@@ -105,13 +105,13 @@
 		case MJRefreshStateNormal: // 下拉可以刷新
         {
             // 设置文字
-			_statusLabel.text = MJRefreshHeaderPullToRefresh;
+			self.statusLabel.text = MJRefreshHeaderPullToRefresh;
             // 执行动画
             [UIView animateWithDuration:MJRefreshAnimationDuration animations:^{
-                _arrowImage.transform = CGAffineTransformIdentity;
-                UIEdgeInsets inset = _scrollView.contentInset;
-                inset.top = _scrollViewInitInset.top;
-                _scrollView.contentInset = inset;
+                self.arrowImage.transform = CGAffineTransformIdentity;
+                UIEdgeInsets inset = self.scrollView.contentInset;
+                inset.top = self.scrollViewInitInset.top;
+                self.scrollView.contentInset = inset;
             }];
             
             // 刷新完毕
@@ -125,16 +125,16 @@
 		case MJRefreshStateRefreshing: // 正在刷新中
         {
             // 设置文字
-            _statusLabel.text = MJRefreshHeaderRefreshing;
+            self.statusLabel.text = MJRefreshHeaderRefreshing;
             // 执行动画
             [UIView animateWithDuration:MJRefreshAnimationDuration animations:^{
-                _arrowImage.transform = CGAffineTransformIdentity;
+                self.arrowImage.transform = CGAffineTransformIdentity;
                 // 1.增加65的滚动区域
-                UIEdgeInsets inset = _scrollView.contentInset;
-                inset.top = _scrollViewInitInset.top + MJRefreshViewHeight;
-                _scrollView.contentInset = inset;
+                UIEdgeInsets inset = self.scrollView.contentInset;
+                inset.top = self.scrollViewInitInset.top + MJRefreshViewHeight;
+                self.scrollView.contentInset = inset;
                 // 2.设置滚动位置
-                _scrollView.contentOffset = CGPointMake(0, - _scrollViewInitInset.top - MJRefreshViewHeight);
+                self.scrollView.contentOffset = CGPointMake(0, - self.scrollViewInitInset.top - MJRefreshViewHeight);
             }];
 			break;
         }
@@ -148,7 +148,7 @@
 // 合理的Y值(刚好看到下拉刷新控件时的contentOffset.y，取相反数)
 - (CGFloat)validY
 {
-    return _scrollViewInitInset.top;
+    return self.scrollViewInitInset.top;
 }
 
 // view的类型

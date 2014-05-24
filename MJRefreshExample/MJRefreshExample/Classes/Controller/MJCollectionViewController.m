@@ -10,21 +10,51 @@
  */
 NSString *const MJCollectionViewCellIdentifier = @"Cell";
 
+/**
+ *  随机颜色
+ */
+#define MJRandomColor [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1]
+
 #import "MJCollectionViewController.h"
 #import "MJRefresh.h"
 
 @interface MJCollectionViewController () <MJRefreshBaseViewDelegate>
-{
-    NSMutableArray *_fakeColor;
-    MJRefreshHeaderView *_header;
-    MJRefreshFooterView *_footer;
-}
+/**
+ *  刷新控件
+ */
+@property (weak, nonatomic) MJRefreshFooterView *footer;
+@property (weak, nonatomic) MJRefreshHeaderView *header;
+/**
+ *  存放假数据
+ */
+@property (strong, nonatomic) NSMutableArray *fakeColors;
 @end
 
 @implementation MJCollectionViewController
 
+#pragma mark - 初始化
+/**
+ *  数据的懒加载
+ */
+- (NSMutableArray *)fakeColors
+{
+    if (_fakeColors == nil) {
+        self.fakeColors = [NSMutableArray array];
+        
+        for (int i = 0; i<5; i++) {
+            // 添加随机色
+            [self.fakeColors addObject:MJRandomColor];
+        }
+    }
+    return _fakeColors;
+}
+
+/**
+ *  初始化
+ */
 - (id)init
 {
+    // UICollectionViewFlowLayout的初始化（与刷新控件无关）
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.itemSize = CGSizeMake(80, 80);
     layout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
@@ -37,41 +67,51 @@ NSString *const MJCollectionViewCellIdentifier = @"Cell";
 {
     [super viewDidLoad];
     
-    // 1.注册
-    self.collectionView.backgroundColor = [UIColor whiteColor];
-    self.collectionView.alwaysBounceVertical = YES;
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:MJCollectionViewCellIdentifier];
+    // 1.初始化collectionView
+    [self setupCollectionView];
     
-    // 2.假数据
-    _fakeColor = [NSMutableArray array];
-    for (int i = 0; i<5; i++) {
-        // 添加随机色
-        [_fakeColor addObject:[UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1]];
-    }
-    
-    // 3.集成刷新控件
-    // 3.1.下拉刷新
+    // 2.集成刷新控件
+    [self setupRefresh];
+}
+
+/**
+ *  集成刷新控件
+ */
+- (void)setupRefresh
+{
+    // 1.下拉刷新
     MJRefreshHeaderView *header = [MJRefreshHeaderView header];
     header.scrollView = self.collectionView;
     header.delegate = self;
-    // 自动刷新
+#warning 自动刷新(一进入程序就下拉刷新)
     [header beginRefreshing];
-    _header = header;
+    self.header = header;
     
-    // 3.2.上拉加载更多
+    // 2.上拉加载更多
     MJRefreshFooterView *footer = [MJRefreshFooterView footer];
     footer.scrollView = self.collectionView;
     footer.delegate = self;
-    _footer = footer;
+    self.footer = footer;
 }
 
-- (void)doneWithView:(MJRefreshBaseView *)refreshView
+/**
+ *  初始化collectionView
+ */
+- (void)setupCollectionView
 {
-    // 刷新表格
-    [self.collectionView reloadData];
-    
-    // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
-    [refreshView endRefreshing];
+    self.collectionView.backgroundColor = [UIColor whiteColor];
+    self.collectionView.alwaysBounceVertical = YES;
+    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:MJCollectionViewCellIdentifier];
+}
+
+/**
+ 为了保证内部不泄露，在dealloc中释放占用的内存
+ */
+- (void)dealloc
+{
+    NSLog(@"MJCollectionViewController--dealloc---");
+    [self.header free];
+    [self.footer free];
 }
 
 #pragma mark - 刷新控件的代理方法
@@ -82,12 +122,10 @@ NSString *const MJCollectionViewCellIdentifier = @"Cell";
     
     // 1.添加假数据
     for (int i = 0; i<5; i++) {
-        UIColor *color = [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1];
-        
-        if ([refreshView isKindOfClass:[MJRefreshHeaderView class]]) {
-            [_fakeColor insertObject:color atIndex:0];
-        } else {
-            [_fakeColor addObject:color];
+        if ([refreshView isKindOfClass:[MJRefreshHeaderView class]]) { // 下拉刷新
+            [self.fakeColors insertObject:MJRandomColor atIndex:0];
+        } else { // 上拉加载更多
+            [self.fakeColors addObject:MJRandomColor];
         }
     }
     
@@ -99,6 +137,15 @@ NSString *const MJCollectionViewCellIdentifier = @"Cell";
 - (void)refreshViewEndRefreshing:(MJRefreshBaseView *)refreshView
 {
     NSLog(@"%@----刷新完毕", refreshView.class);
+}
+
+- (void)doneWithView:(MJRefreshBaseView *)refreshView
+{
+    // 刷新表格
+    [self.collectionView reloadData];
+    
+    // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
+    [refreshView endRefreshing];
 }
 
 #pragma mark 监听刷新状态的改变
@@ -124,23 +171,13 @@ NSString *const MJCollectionViewCellIdentifier = @"Cell";
 #pragma mark - collection数据源代理
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return _fakeColor.count;
+    return self.fakeColors.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:MJCollectionViewCellIdentifier forIndexPath:indexPath];
-    cell.backgroundColor = _fakeColor[indexPath.row];
+    cell.backgroundColor = self.fakeColors[indexPath.row];
     return cell;
-}
-
-/**
- 为了保证内部不泄露，在dealloc中释放占用的内存
- */
-- (void)dealloc
-{
-    NSLog(@"MJCollectionViewController--dealloc---");
-    [_header free];
-    [_footer free];
 }
 @end

@@ -19,7 +19,7 @@ extern const CGFloat MJRefreshViewHeight;
 extern const CGFloat MJRefreshAnimationDuration;
 
 extern NSString *const MJRefreshBundleName;
-#define kSrcName(file) [MJRefreshBundleName stringByAppendingPathComponent:file]
+#define MJRefreshSrcName(file) [MJRefreshBundleName stringByAppendingPathComponent:file]
 
 extern NSString *const MJRefreshFooterPullToRefresh;
 extern NSString *const MJRefreshFooterReleaseToRefresh;

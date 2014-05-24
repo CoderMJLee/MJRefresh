@@ -13,49 +13,76 @@
 
 NSString *const MJTableViewCellIdentifier = @"Cell";
 
+/**
+ *  随机数据
+ */
+#define MJRandomData [NSString stringWithFormat:@"随机数据---%d", arc4random_uniform(1000000)]
+
 @interface MJTableViewController ()
-{
-    NSMutableArray *_fakeData; // 假数据(只存放字符串)
-    
-    MJRefreshHeaderView *_header;
-    MJRefreshFooterView *_footer;
-}
+/**
+ *  刷新控件
+ */
+@property (weak, nonatomic) MJRefreshFooterView *footer;
+@property (weak, nonatomic) MJRefreshHeaderView *header;
+/**
+ *  存放假数据
+ */
+@property (strong, nonatomic) NSMutableArray *fakeData;
 @end
 
 @implementation MJTableViewController
+#pragma mark - 初始化
+/**
+ *  数据的懒加载
+ */
+- (NSMutableArray *)fakeData
+{
+    if (_fakeData == nil) {
+        self.fakeData = [NSMutableArray array];
+        
+        for (int i = 0; i<12; i++) {
+            [self.fakeData addObject:MJRandomData];
+        }
+    }
+    return _fakeData;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    // 1.注册
+    // 1.注册cell
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:MJTableViewCellIdentifier];
     
-    // 2.初始化假数据
-    _fakeData = [NSMutableArray array];
-    for (int i = 0; i<12; i++) {
-        int random = arc4random_uniform(1000000);
-        [_fakeData addObject:[NSString stringWithFormat:@"随机数据---%d", random]];
-    }
-    
-    // 3.集成刷新控件
-    // 3.1.下拉刷新
+    // 2.集成刷新控件
+    // 2.1.下拉刷新
     [self addHeader];
     
-    // 3.2.上拉加载更多
+    // 2.2.上拉加载更多
     [self addFooter];
+}
+
+/**
+ 为了保证内部不泄露，在dealloc中释放占用的内存
+ */
+- (void)dealloc
+{
+    NSLog(@"MJTableViewController--dealloc---");
+    [self.header free];
+    [self.footer free];
 }
 
 - (void)addFooter
 {
-    __unsafe_unretained MJTableViewController *vc = self;
     MJRefreshFooterView *footer = [MJRefreshFooterView footer];
     footer.scrollView = self.tableView;
+    
+    __unsafe_unretained MJTableViewController *vc = self;
+    // 进入刷新状态就会调用beginRefreshingBlock
     footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
         // 增加5条假数据
         for (int i = 0; i<5; i++) {
-            int random = arc4random_uniform(1000000);
-            [vc->_fakeData addObject:[NSString stringWithFormat:@"随机数据---%d", random]];
+            [vc.fakeData addObject:MJRandomData];
         }
         
         // 模拟延迟加载数据，因此2秒后才调用）
@@ -64,22 +91,21 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
         
         NSLog(@"%@----开始进入刷新状态", refreshView.class);
     };
-    _footer = footer;
+    self.footer = footer;
 }
 
 - (void)addHeader
 {
-    __unsafe_unretained MJTableViewController *vc = self;
-    
     MJRefreshHeaderView *header = [MJRefreshHeaderView header];
     header.scrollView = self.tableView;
+    
+    __unsafe_unretained MJTableViewController *vc = self;
     header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
         // 进入刷新状态就会回调这个Block
         
         // 增加5条假数据
         for (int i = 0; i<5; i++) {
-            int random = arc4random_uniform(1000000);
-            [vc->_fakeData insertObject:[NSString stringWithFormat:@"随机数据---%d", random] atIndex:0];
+            [vc.fakeData insertObject:MJRandomData atIndex:0];
         }
         
         // 模拟延迟加载数据，因此2秒后才调用）
@@ -110,8 +136,9 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
                 break;
         }
     };
+#warning 自动刷新(一进入程序就下拉刷新)
     [header beginRefreshing];
-    _header = header;
+    self.header = header;
 }
 
 - (void)doneWithView:(MJRefreshBaseView *)refreshView
@@ -125,25 +152,15 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _fakeData.count;
+    return self.fakeData.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MJTableViewCellIdentifier forIndexPath:indexPath];
     
-    cell.textLabel.text = _fakeData[indexPath.row];
+    cell.textLabel.text = self.fakeData[indexPath.row];
     return cell;
-}
-
-/**
- 为了保证内部不泄露，在dealloc中释放占用的内存
- */
-- (void)dealloc
-{
-    NSLog(@"MJTableViewController--dealloc---");
-    [_header free];
-    [_footer free];
 }
 
 @end

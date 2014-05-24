@@ -462,6 +462,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MJRefreshExample/MJRefreshExample-Prefix.pch";
 				INFOPLIST_FILE = "MJRefreshExample/MJRefreshExample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -475,6 +476,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MJRefreshExample/MJRefreshExample-Prefix.pch";
 				INFOPLIST_FILE = "MJRefreshExample/MJRefreshExample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -539,6 +541,7 @@
 				2D9CAF9B192FAD750011F500 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2D9CAF9C192FAD750011F500 /* Build configuration list for PBXNativeTarget "MJRefreshExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -547,6 +550,7 @@
 				2D9CAF9E192FAD750011F500 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
