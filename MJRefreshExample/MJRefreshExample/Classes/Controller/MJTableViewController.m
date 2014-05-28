@@ -9,6 +9,7 @@
  具体用法：查看MJRefresh.h
  */
 #import "MJTableViewController.h"
+#import "MJTestViewController.h"
 #import "MJRefresh.h"
 
 NSString *const MJTableViewCellIdentifier = @"Cell";
@@ -126,4 +127,9 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MJTestViewController *test = [[MJTestViewController alloc] init];
+    [self.navigationController pushViewController:test animated:YES];
+}
 @end

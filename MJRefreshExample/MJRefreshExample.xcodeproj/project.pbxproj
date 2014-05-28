@@ -10,6 +10,8 @@
 		2D1D8FB21935C0CD0019D689 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1D8FB11935C0CD0019D689 /* UIScrollView+MJRefresh.m */; };
 		2D1D8FB51935EABD0019D689 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1D8FB41935EABD0019D689 /* UIView+Extension.m */; };
 		2D1D8FB81935EACA0019D689 /* UIScrollView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1D8FB71935EACA0019D689 /* UIScrollView+Extension.m */; };
+		2D1D8FBC19360E040019D689 /* MJTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1D8FBA19360E040019D689 /* MJTestViewController.m */; };
+		2D1D8FBD19360E040019D689 /* MJTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D1D8FBB19360E040019D689 /* MJTestViewController.xib */; };
 		2D9CAF6B192FAD750011F500 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D9CAF6A192FAD750011F500 /* Foundation.framework */; };
 		2D9CAF6D192FAD750011F500 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D9CAF6C192FAD750011F500 /* CoreGraphics.framework */; };
 		2D9CAF6F192FAD750011F500 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D9CAF6E192FAD750011F500 /* UIKit.framework */; };
@@ -51,6 +53,9 @@
 		2D1D8FB41935EABD0019D689 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		2D1D8FB61935EACA0019D689 /* UIScrollView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+Extension.h"; sourceTree = "<group>"; };
 		2D1D8FB71935EACA0019D689 /* UIScrollView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+Extension.m"; sourceTree = "<group>"; };
+		2D1D8FB919360E040019D689 /* MJTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJTestViewController.h; sourceTree = "<group>"; };
+		2D1D8FBA19360E040019D689 /* MJTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJTestViewController.m; sourceTree = "<group>"; };
+		2D1D8FBB19360E040019D689 /* MJTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MJTestViewController.xib; sourceTree = "<group>"; };
 		2D9CAF67192FAD750011F500 /* MJRefreshExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MJRefreshExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D9CAF6A192FAD750011F500 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2D9CAF6C192FAD750011F500 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -203,6 +208,9 @@
 				2D9CAFA6192FAD9F0011F500 /* MJSampleIndexViewController.m */,
 				2D9CAFA7192FAD9F0011F500 /* MJTableViewController.h */,
 				2D9CAFA8192FAD9F0011F500 /* MJTableViewController.m */,
+				2D1D8FB919360E040019D689 /* MJTestViewController.h */,
+				2D1D8FBA19360E040019D689 /* MJTestViewController.m */,
+				2D1D8FBB19360E040019D689 /* MJTestViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -329,6 +337,7 @@
 				2D9CAF83192FAD750011F500 /* Images.xcassets in Resources */,
 				2D9CAF75192FAD750011F500 /* InfoPlist.strings in Resources */,
 				2D9CAFC2192FAD9F0011F500 /* MJRefresh.bundle in Resources */,
+				2D1D8FBD19360E040019D689 /* MJTestViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +366,7 @@
 				2D9CAFC6192FAD9F0011F500 /* MJRefreshHeaderView.m in Sources */,
 				2D9CAFBB192FAD9F0011F500 /* MJCollectionViewController.m in Sources */,
 				2D9CAFC1192FAD9F0011F500 /* MJAppDelegate.m in Sources */,
+				2D1D8FBC19360E040019D689 /* MJTestViewController.m in Sources */,
 				2D1D8FB21935C0CD0019D689 /* UIScrollView+MJRefresh.m in Sources */,
 				2D9CAFC3192FAD9F0011F500 /* MJRefreshBaseView.m in Sources */,
 				2D9CAFC0192FAD9F0011F500 /* main.m in Sources */,

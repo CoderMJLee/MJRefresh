@@ -16,6 +16,7 @@ NSString *const MJCollectionViewCellIdentifier = @"Cell";
 #define MJRandomColor [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1]
 
 #import "MJCollectionViewController.h"
+#import "MJTestViewController.h"
 #import "MJRefresh.h"
 
 @interface MJCollectionViewController ()
@@ -144,5 +145,11 @@ NSString *const MJCollectionViewCellIdentifier = @"Cell";
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:MJCollectionViewCellIdentifier forIndexPath:indexPath];
     cell.backgroundColor = self.fakeColors[indexPath.row];
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    MJTestViewController *test = [[MJTestViewController alloc] init];
+    [self.navigationController pushViewController:test animated:YES];
 }
 @end

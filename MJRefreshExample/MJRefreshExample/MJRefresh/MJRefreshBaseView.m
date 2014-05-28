@@ -18,13 +18,6 @@
     __weak UIImageView *_arrowImage;
     __weak UIActivityIndicatorView *_activityView;
 }
-/**
- 交给子类去实现
- */
-// 合理的Y值
-- (CGFloat)validY;
-// view的类型
-- (MJRefreshViewType)viewType;
 @end
 
 @implementation MJRefreshBaseView
@@ -156,45 +149,11 @@
     });
 }
 
-#pragma mark - 监听UIScrollView的contentOffset属性
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    // 不是contentOffset就直接返回
-    if (![MJRefreshContentOffset isEqualToString:keyPath]) return;
-    
-    // 不能跟用户交互就直接返回
-    if (!self.userInteractionEnabled || self.alpha <= 0.01 || self.hidden) return;
-    
-    // 如果正在刷新，直接返回
-    if (self.state == MJRefreshStateRefreshing) return;
-    
-    // scrollView所滚动的Y值 * 控件的类型（头部控件是-1，尾部控件是1）
-    CGFloat offsetY = self.scrollView.contentOffsetY * self.viewType;
-    CGFloat validY = self.validY;
-    if (offsetY <= validY) return;
-    
-    if (self.scrollView.isDragging) {
-        CGFloat validOffsetY = validY + self.frame.size.height;
-        if (self.state == MJRefreshStatePulling && offsetY <= validOffsetY) {
-            // 转为普通状态
-            self.state = MJRefreshStateNormal;
-        } else if (self.state == MJRefreshStateNormal && offsetY > validOffsetY) {
-            // 转为即将刷新状态
-            self.state = MJRefreshStatePulling;
-        }
-    } else { // 即将刷新 && 手松开
-        if (self.state == MJRefreshStatePulling) {
-            // 开始刷新
-            self.state = MJRefreshStateRefreshing;
-        }
-    }
-}
-
 #pragma mark - 设置状态
 - (void)setState:(MJRefreshState)state
 {
+    // 0.存储当前的contentInset
     if (self.state != MJRefreshStateRefreshing) {
-        // 存储当前的contentInset
         _scrollViewOriginalInset = self.scrollView.contentInset;
     }
     
@@ -207,6 +166,7 @@
         {
             // 显示箭头
             self.arrowImage.hidden = NO;
+            
             // 停止转圈圈
             [self.activityView stopAnimating];
 			break;
@@ -216,11 +176,11 @@
             break;
             
 		case MJRefreshStateRefreshing:
+        {
             // 开始转圈圈
 			[self.activityView startAnimating];
             // 隐藏箭头
 			self.arrowImage.hidden = YES;
-            self.arrowImage.transform = CGAffineTransformIdentity;
             
             // 回调
             if ([self.beginRefreshingTaget respondsToSelector:self.beginRefreshingAction]) {
@@ -231,6 +191,7 @@
                 self.beginRefreshingCallback();
             }
 			break;
+        }
         default:
             break;
 	}
@@ -238,8 +199,4 @@
     // 3.存储状态
     _state = state;
 }
-
-#pragma mark - 随便实现
-- (CGFloat)validY { return 0;}
-- (MJRefreshViewType)viewType {return MJRefreshViewTypeHeader;}
 @end
