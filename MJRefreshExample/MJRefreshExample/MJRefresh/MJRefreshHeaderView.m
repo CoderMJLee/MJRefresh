@@ -136,6 +136,16 @@
                 // 2.设置滚动位置
                 self.scrollView.contentOffset = CGPointMake(0, - self.scrollViewInitInset.top - MJRefreshViewHeight);
             }];
+            
+            // 通知代理
+            if ([self.delegate respondsToSelector:@selector(refreshHeaderViewBeginRefreshing:)]) {
+                [self.delegate refreshHeaderViewBeginRefreshing:self];
+            }
+            
+            // 回调
+            if (self.beginRefreshingCallback) {
+                self.beginRefreshingCallback(self);
+            }
 			break;
         }
             

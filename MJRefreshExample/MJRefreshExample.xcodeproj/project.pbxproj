@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D1D8FB21935C0CD0019D689 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1D8FB11935C0CD0019D689 /* UIScrollView+MJRefresh.m */; };
 		2D9CAF6B192FAD750011F500 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D9CAF6A192FAD750011F500 /* Foundation.framework */; };
 		2D9CAF6D192FAD750011F500 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D9CAF6C192FAD750011F500 /* CoreGraphics.framework */; };
 		2D9CAF6F192FAD750011F500 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D9CAF6E192FAD750011F500 /* UIKit.framework */; };
@@ -42,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D1D8FB01935C0CD0019D689 /* UIScrollView+MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+MJRefresh.h"; sourceTree = "<group>"; };
+		2D1D8FB11935C0CD0019D689 /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		2D9CAF67192FAD750011F500 /* MJRefreshExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MJRefreshExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D9CAF6A192FAD750011F500 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2D9CAF6C192FAD750011F500 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -230,6 +233,8 @@
 				2D9CAFB8192FAD9F0011F500 /* MJRefreshFooterView.m */,
 				2D9CAFB9192FAD9F0011F500 /* MJRefreshHeaderView.h */,
 				2D9CAFBA192FAD9F0011F500 /* MJRefreshHeaderView.m */,
+				2D1D8FB01935C0CD0019D689 /* UIScrollView+MJRefresh.h */,
+				2D1D8FB11935C0CD0019D689 /* UIScrollView+MJRefresh.m */,
 			);
 			path = MJRefresh;
 			sourceTree = "<group>";
@@ -340,6 +345,7 @@
 				2D9CAFC6192FAD9F0011F500 /* MJRefreshHeaderView.m in Sources */,
 				2D9CAFBB192FAD9F0011F500 /* MJCollectionViewController.m in Sources */,
 				2D9CAFC1192FAD9F0011F500 /* MJAppDelegate.m in Sources */,
+				2D1D8FB21935C0CD0019D689 /* UIScrollView+MJRefresh.m in Sources */,
 				2D9CAFC3192FAD9F0011F500 /* MJRefreshBaseView.m in Sources */,
 				2D9CAFC0192FAD9F0011F500 /* main.m in Sources */,
 				2D9CAFBC192FAD9F0011F500 /* MJNavigationController.m in Sources */,

@@ -18,12 +18,7 @@ NSString *const MJCollectionViewCellIdentifier = @"Cell";
 #import "MJCollectionViewController.h"
 #import "MJRefresh.h"
 
-@interface MJCollectionViewController () <MJRefreshBaseViewDelegate>
-/**
- *  刷新控件
- */
-@property (weak, nonatomic) MJRefreshFooterView *footer;
-@property (weak, nonatomic) MJRefreshHeaderView *header;
+@interface MJCollectionViewController ()
 /**
  *  存放假数据
  */
@@ -71,27 +66,8 @@ NSString *const MJCollectionViewCellIdentifier = @"Cell";
     [self setupCollectionView];
     
     // 2.集成刷新控件
-    [self setupRefresh];
-}
-
-/**
- *  集成刷新控件
- */
-- (void)setupRefresh
-{
-    // 1.下拉刷新
-    MJRefreshHeaderView *header = [MJRefreshHeaderView header];
-    header.scrollView = self.collectionView;
-    header.delegate = self;
-#warning 自动刷新(一进入程序就下拉刷新)
-    [header beginRefreshing];
-    self.header = header;
-    
-    // 2.上拉加载更多
-    MJRefreshFooterView *footer = [MJRefreshFooterView footer];
-    footer.scrollView = self.collectionView;
-    footer.delegate = self;
-    self.footer = footer;
+    [self addHeader];
+    [self addFooter];
 }
 
 /**
@@ -104,68 +80,57 @@ NSString *const MJCollectionViewCellIdentifier = @"Cell";
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:MJCollectionViewCellIdentifier];
 }
 
+- (void)addHeader
+{
+    __unsafe_unretained typeof(self) vc = self;
+    // 添加下拉刷新头部控件
+    [self.collectionView addHeaderWithCallback:^{
+        // 进入刷新状态就会回调这个Block
+        
+        // 增加5条假数据
+        for (int i = 0; i<5; i++) {
+            [vc.fakeColors insertObject:MJRandomColor atIndex:0];
+        }
+        
+        // 模拟延迟加载数据，因此2秒后才调用）
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [vc.collectionView reloadData];
+            // 结束刷新
+            [vc.collectionView headerEndRefreshing];
+        });
+    }];
+    
+#warning 自动刷新(一进入程序就下拉刷新)
+    [self.collectionView headerBeginRefreshing];
+}
+
+- (void)addFooter
+{
+    __unsafe_unretained typeof(self) vc = self;
+    // 添加上拉刷新尾部控件
+    [self.collectionView addFooterWithCallback:^{
+        // 进入刷新状态就会回调这个Block
+        
+        // 增加5条假数据
+        for (int i = 0; i<5; i++) {
+            [vc.fakeColors addObject:MJRandomColor];
+        }
+        
+        // 模拟延迟加载数据，因此2秒后才调用）
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [vc.collectionView reloadData];
+            // 结束刷新
+            [vc.collectionView footerEndRefreshing];
+        });
+    }];
+}
+
 /**
  为了保证内部不泄露，在dealloc中释放占用的内存
  */
 - (void)dealloc
 {
     NSLog(@"MJCollectionViewController--dealloc---");
-    [self.header free];
-    [self.footer free];
-}
-
-#pragma mark - 刷新控件的代理方法
-#pragma mark 开始进入刷新状态
-- (void)refreshViewBeginRefreshing:(MJRefreshBaseView *)refreshView
-{
-    NSLog(@"%@----开始进入刷新状态", refreshView.class);
-    
-    // 1.添加假数据
-    for (int i = 0; i<5; i++) {
-        if ([refreshView isKindOfClass:[MJRefreshHeaderView class]]) { // 下拉刷新
-            [self.fakeColors insertObject:MJRandomColor atIndex:0];
-        } else { // 上拉加载更多
-            [self.fakeColors addObject:MJRandomColor];
-        }
-    }
-    
-    // 2.2秒后刷新表格UI
-    [self performSelector:@selector(doneWithView:) withObject:refreshView afterDelay:2.0];
-}
-
-#pragma mark 刷新完毕
-- (void)refreshViewEndRefreshing:(MJRefreshBaseView *)refreshView
-{
-    NSLog(@"%@----刷新完毕", refreshView.class);
-}
-
-- (void)doneWithView:(MJRefreshBaseView *)refreshView
-{
-    // 刷新表格
-    [self.collectionView reloadData];
-    
-    // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
-    [refreshView endRefreshing];
-}
-
-#pragma mark 监听刷新状态的改变
-- (void)refreshView:(MJRefreshBaseView *)refreshView stateChange:(MJRefreshState)state
-{
-    switch (state) {
-        case MJRefreshStateNormal:
-            NSLog(@"%@----切换到：普通状态", refreshView.class);
-            break;
-            
-        case MJRefreshStatePulling:
-            NSLog(@"%@----切换到：松开即可刷新的状态", refreshView.class);
-            break;
-            
-        case MJRefreshStateRefreshing:
-            NSLog(@"%@----切换到：正在刷新状态", refreshView.class);
-            break;
-        default:
-            break;
-    }
 }
 
 #pragma mark - collection数据源代理

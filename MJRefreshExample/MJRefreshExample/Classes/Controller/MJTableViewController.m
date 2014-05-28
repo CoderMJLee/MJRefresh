@@ -20,11 +20,6 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
 
 @interface MJTableViewController ()
 /**
- *  刷新控件
- */
-@property (weak, nonatomic) MJRefreshFooterView *footer;
-@property (weak, nonatomic) MJRefreshHeaderView *header;
-/**
  *  存放假数据
  */
 @property (strong, nonatomic) NSMutableArray *fakeData;
@@ -55,11 +50,7 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:MJTableViewCellIdentifier];
     
     // 2.集成刷新控件
-    // 2.1.下拉刷新
-    [self addHeader];
-    
-    // 2.2.上拉加载更多
-    [self addFooter];
+    [self setupRefresh];
 }
 
 /**
@@ -68,85 +59,57 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
 - (void)dealloc
 {
     NSLog(@"MJTableViewController--dealloc---");
-    [self.header free];
-    [self.footer free];
 }
 
-- (void)addFooter
-{
-    MJRefreshFooterView *footer = [MJRefreshFooterView footer];
-    footer.scrollView = self.tableView;
-    
-    __unsafe_unretained MJTableViewController *vc = self;
-    // 进入刷新状态就会调用beginRefreshingBlock
-    footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
-        // 增加5条假数据
-        for (int i = 0; i<5; i++) {
-            [vc.fakeData addObject:MJRandomData];
-        }
-        
-        // 模拟延迟加载数据，因此2秒后才调用）
-        // 这里的refreshView其实就是footer
-        [vc performSelector:@selector(doneWithView:) withObject:refreshView afterDelay:2.0];
-        
-        NSLog(@"%@----开始进入刷新状态", refreshView.class);
-    };
-    self.footer = footer;
-}
 
-- (void)addHeader
+
+/**
+ *  集成刷新控件
+ */
+- (void)setupRefresh
 {
-    MJRefreshHeaderView *header = [MJRefreshHeaderView header];
-    header.scrollView = self.tableView;
-    
-    __unsafe_unretained MJTableViewController *vc = self;
-    header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
-        // 进入刷新状态就会回调这个Block
-        
-        // 增加5条假数据
-        for (int i = 0; i<5; i++) {
-            [vc.fakeData insertObject:MJRandomData atIndex:0];
-        }
-        
-        // 模拟延迟加载数据，因此2秒后才调用）
-        // 这里的refreshView其实就是header
-        [vc performSelector:@selector(doneWithView:) withObject:refreshView afterDelay:2.0];
-        
-        NSLog(@"%@----开始进入刷新状态", refreshView.class);
-    };
-    header.endStateChangeBlock = ^(MJRefreshBaseView *refreshView) {
-        // 刷新完毕就会回调这个Block
-        NSLog(@"%@----刷新完毕", refreshView.class);
-    };
-    header.refreshStateChangeBlock = ^(MJRefreshBaseView *refreshView, MJRefreshState state) {
-        // 控件的刷新状态切换了就会调用这个block
-        switch (state) {
-            case MJRefreshStateNormal:
-                NSLog(@"%@----切换到：普通状态", refreshView.class);
-                break;
-                
-            case MJRefreshStatePulling:
-                NSLog(@"%@----切换到：松开即可刷新的状态", refreshView.class);
-                break;
-                
-            case MJRefreshStateRefreshing:
-                NSLog(@"%@----切换到：正在刷新状态", refreshView.class);
-                break;
-            default:
-                break;
-        }
-    };
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
 #warning 自动刷新(一进入程序就下拉刷新)
-    [header beginRefreshing];
-    self.header = header;
+    [self.tableView headerBeginRefreshing];
+    
+    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
 }
 
-- (void)doneWithView:(MJRefreshBaseView *)refreshView
+#pragma mark 开始进入刷新状态
+- (void)headerRereshing
 {
-    // 刷新表格
-    [self.tableView reloadData];
-    // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
-    [refreshView endRefreshing];
+    // 1.添加假数据
+    for (int i = 0; i<5; i++) {
+        [self.fakeData insertObject:MJRandomData atIndex:0];
+    }
+    
+    // 2.2秒后刷新表格UI
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        // 刷新表格
+        [self.tableView reloadData];
+        
+        // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
+        [self.tableView headerEndRefreshing];
+    });
+}
+
+- (void)footerRereshing
+{
+    // 1.添加假数据
+    for (int i = 0; i<5; i++) {
+        [self.fakeData addObject:MJRandomData];
+    }
+    
+    // 2.2秒后刷新表格UI
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        // 刷新表格
+        [self.tableView reloadData];
+        
+        // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
+        [self.tableView footerEndRefreshing];
+    });
 }
 
 #pragma mark - Table view data source

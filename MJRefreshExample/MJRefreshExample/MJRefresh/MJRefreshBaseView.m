@@ -8,6 +8,7 @@
 
 #import "MJRefreshBaseView.h"
 #import "MJRefreshConst.h"
+#import <objc/message.h>
 
 @interface  MJRefreshBaseView()
 @property (assign, nonatomic) BOOL hasInitInset;
@@ -140,14 +141,9 @@
 */
 - (void)setScrollView:(UIScrollView *)scrollView
 {
-    // 移除之前的监听器
-    [self.scrollView removeObserver:self forKeyPath:MJRefreshContentOffset context:nil];
-    // 监听contentOffset
-    [scrollView addObserver:self forKeyPath:MJRefreshContentOffset options:NSKeyValueObservingOptionNew context:nil];
-    
+    [scrollView addSubview:self];
     // 设置scrollView
     _scrollView = scrollView;
-    [scrollView addSubview:self];
 }
 
 #pragma mark 监听UIScrollView的contentOffset属性
@@ -168,34 +164,15 @@
         if (self.state == MJRefreshStatePulling && offsetY <= validOffsetY) {
             // 转为普通状态
             self.state = MJRefreshStateNormal;
-            [self notifyStateChange];
         } else if (self.state == MJRefreshStateNormal && offsetY > validOffsetY) {
             // 转为即将刷新状态
             self.state = MJRefreshStatePulling;
-            [self notifyStateChange];
         }
     } else { // 即将刷新 && 手松开
         if (self.state == MJRefreshStatePulling) {
             // 开始刷新
             self.state = MJRefreshStateRefreshing;
-            [self notifyStateChange];
         }
-    }
-}
-
-/**
- *  通知状态改变
- */
-- (void)notifyStateChange
-{
-    // 通知代理
-    if ([self.delegate respondsToSelector:@selector(refreshView:stateChange:)]) {
-        [self.delegate refreshView:self stateChange:self.state];
-    }
-    
-    // 回调
-    if (self.refreshStateChangeBlock) {
-        self.refreshStateChangeBlock(self, self.state);
     }
 }
 
@@ -220,15 +197,7 @@
             
             // 说明是刚刷新完毕 回到 普通状态的
             if (MJRefreshStateRefreshing == self.state) {
-                // 通知代理
-                if ([self.delegate respondsToSelector:@selector(refreshViewEndRefreshing:)]) {
-                    [self.delegate refreshViewEndRefreshing:self];
-                }
                 
-                // 回调
-                if (self.endStateChangeBlock) {
-                    self.endStateChangeBlock(self);
-                }
             }
             
 			break;
@@ -243,14 +212,8 @@
 			self.arrowImage.hidden = YES;
             self.arrowImage.transform = CGAffineTransformIdentity;
             
-            // 通知代理
-            if ([self.delegate respondsToSelector:@selector(refreshViewBeginRefreshing:)]) {
-                [self.delegate refreshViewBeginRefreshing:self];
-            }
-            
-            // 回调
-            if (self.beginRefreshingBlock) {
-                self.beginRefreshingBlock(self);
+            if ([self.beginRefreshingTaget respondsToSelector:self.beginRefreshingAction]) {
+                objc_msgSend(self.beginRefreshingTaget, self.beginRefreshingAction, self);
             }
 			break;
         default:
@@ -289,16 +252,16 @@
 #pragma mark - 随便实现
 - (CGFloat)validY { return 0;}
 - (MJRefreshViewType)viewType {return MJRefreshViewTypeHeader;}
-- (void)free
+
+- (void)willMoveToSuperview:(UIView *)newSuperview
 {
-    [self.scrollView removeObserver:self forKeyPath:MJRefreshContentOffset];
-}
-- (void)removeFromSuperview
-{
-    MJLog(@"removeFromSuperview");
-//    [self free];
-    self.scrollView = nil;
-    [super removeFromSuperview];
+    if (self.superview) { // 旧的父控件
+        [self.superview removeObserver:self forKeyPath:MJRefreshContentOffset context:nil];
+    }
+    
+    if (newSuperview) { // 新的父控件
+        [newSuperview addObserver:self forKeyPath:MJRefreshContentOffset options:NSKeyValueObservingOptionNew context:nil];
+    }
 }
 
 - (int)totalDataCountInScrollView

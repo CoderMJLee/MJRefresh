@@ -40,19 +40,27 @@
     }
 }
 
+- (void)willMoveToSuperview:(UIView *)newSuperview
+{
+    [super willMoveToSuperview:newSuperview];
+    
+    if (self.superview) { // 旧的父控件
+        [self.superview removeObserver:self forKeyPath:MJRefreshContentSize context:nil];
+    }
+    
+    if (newSuperview) { // 新的父控件
+        [newSuperview addObserver:self forKeyPath:MJRefreshContentSize options:NSKeyValueObservingOptionNew context:nil];
+    }
+}
+
 #pragma mark - UIScrollView相关
 #pragma mark 重写设置ScrollView
 - (void)setScrollView:(UIScrollView *)scrollView
 {
-    // 1.移除以前的监听器
-    [self.scrollView removeObserver:self forKeyPath:MJRefreshContentSize context:nil];
-    // 2.监听contentSize
-    [scrollView addObserver:self forKeyPath:MJRefreshContentSize options:NSKeyValueObservingOptionNew context:nil];
-    
-    // 3.父类的方法
+    // 父类的方法
     [super setScrollView:scrollView];
     
-    // 4.重新调整frame
+    // 重新调整frame
     [self adjustFrame];
 }
 
@@ -149,6 +157,16 @@
                 inset.bottom = bottom;
                 self.scrollView.contentInset = inset;
             }];
+            
+            // 通知代理
+            if ([self.delegate respondsToSelector:@selector(refreshFooterViewBeginRefreshing:)]) {
+                [self.delegate refreshFooterViewBeginRefreshing:self];
+            }
+            
+            // 回调
+            if (self.beginRefreshingCallback) {
+                self.beginRefreshingCallback(self);
+            }
 			break;
         }
             
@@ -156,13 +174,6 @@
             break;
 	}
 }
-
-//- (void)endRefreshingWithoutIdle
-//{
-//    _withoutIdle = YES;
-//    [self endRefreshing];
-//    _withoutIdle = NO;
-//}
 
 #pragma mark 获得scrollView的内容 超出 view 的高度
 - (CGFloat)contentBreakView
@@ -187,11 +198,5 @@
 - (int)viewType
 {
     return MJRefreshViewTypeFooter;
-}
-
-- (void)free
-{
-    [super free];
-    [self.scrollView removeObserver:self forKeyPath:MJRefreshContentSize];
 }
 @end
