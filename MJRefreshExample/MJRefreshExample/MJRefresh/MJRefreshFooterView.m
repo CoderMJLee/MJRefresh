@@ -62,11 +62,17 @@
 {
     [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     
+    // 不是contentSize，直接返回
+    if (![MJRefreshContentSize isEqualToString:keyPath]) return;
+    
+    // 不能跟用户交互，直接返回
     if (!self.userInteractionEnabled || self.alpha <= 0.01 || self.hidden) return;
     
-    if ([MJRefreshContentSize isEqualToString:keyPath]) {
-        [self adjustFrame];
-    }
+    // 如果正在刷新，直接返回
+    if (self.state == MJRefreshStateRefreshing) return;
+    
+    // 调整frame
+    [self adjustFrame];
 }
 
 #pragma mark - 状态相关
@@ -147,6 +153,26 @@
         default:
             break;
 	}
+}
+
+
+- (int)totalDataCountInScrollView
+{
+    int totalCount = 0;
+    if ([self.scrollView isKindOfClass:[UITableView class]]) {
+        UITableView *tableView = (UITableView *)self.scrollView;
+        
+        for (int section = 0; section<tableView.numberOfSections; section++) {
+            totalCount += [tableView numberOfRowsInSection:section];
+        }
+    } else if ([self.scrollView isKindOfClass:[UICollectionView class]]) {
+        UICollectionView *collectionView = (UICollectionView *)self.scrollView;
+        
+        for (int section = 0; section<collectionView.numberOfSections; section++) {
+            totalCount += [collectionView numberOfItemsInSection:section];
+        }
+    }
+    return totalCount;
 }
 
 #pragma mark 获得scrollView的内容 超出 view 的高度

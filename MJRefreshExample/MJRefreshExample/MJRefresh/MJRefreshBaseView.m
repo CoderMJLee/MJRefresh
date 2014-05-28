@@ -99,6 +99,27 @@
     self.activityView.center = self.arrowImage.center;
 }
 
+- (void)willMoveToSuperview:(UIView *)newSuperview
+{
+    [super willMoveToSuperview:newSuperview];
+    
+    if (self.superview) { // 旧的父控件
+        [self.superview removeObserver:self forKeyPath:MJRefreshContentOffset context:nil];
+    }
+    
+    if (newSuperview) { // 新的父控件
+        [newSuperview addObserver:self forKeyPath:MJRefreshContentOffset options:NSKeyValueObservingOptionNew context:nil];
+        
+        // 设置宽度
+        self.width = newSuperview.width;
+        
+        // 记录UIScrollView
+        _scrollView = (UIScrollView *)newSuperview;
+        // 记录UIScrollView最开始的contentInset
+        _scrollViewOriginalInset = _scrollView.contentInset;
+    }
+}
+
 #pragma mark - 显示到屏幕上
 - (void)drawRect:(CGRect)rect
 {
@@ -137,14 +158,18 @@
 
 #pragma mark - 监听UIScrollView的contentOffset属性
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{    
+{
+    // 不是contentOffset就直接返回
     if (![MJRefreshContentOffset isEqualToString:keyPath]) return;
     
-    if (!self.userInteractionEnabled || self.alpha <= 0.01 || self.hidden
-        || self.state == MJRefreshStateRefreshing) return;
+    // 不能跟用户交互就直接返回
+    if (!self.userInteractionEnabled || self.alpha <= 0.01 || self.hidden) return;
+    
+    // 如果正在刷新，直接返回
+    if (self.state == MJRefreshStateRefreshing) return;
     
     // scrollView所滚动的Y值 * 控件的类型（头部控件是-1，尾部控件是1）
-    CGFloat offsetY = self.scrollView.contentOffset.y * self.viewType;
+    CGFloat offsetY = self.scrollView.contentOffsetY * self.viewType;
     CGFloat validY = self.validY;
     if (offsetY <= validY) return;
     
@@ -217,44 +242,4 @@
 #pragma mark - 随便实现
 - (CGFloat)validY { return 0;}
 - (MJRefreshViewType)viewType {return MJRefreshViewTypeHeader;}
-
-- (void)willMoveToSuperview:(UIView *)newSuperview
-{
-    [super willMoveToSuperview:newSuperview];
-    
-    if (self.superview) { // 旧的父控件
-        [self.superview removeObserver:self forKeyPath:MJRefreshContentOffset context:nil];
-    }
-    
-    if (newSuperview) { // 新的父控件
-        [newSuperview addObserver:self forKeyPath:MJRefreshContentOffset options:NSKeyValueObservingOptionNew context:nil];
-        
-        // 设置宽度
-        self.width = newSuperview.width;
-        
-        // 记录UIScrollView
-        _scrollView = (UIScrollView *)newSuperview;
-        // 记录UIScrollView最开始的contentInset
-        _scrollViewOriginalInset = _scrollView.contentInset;
-    }
-}
-
-- (int)totalDataCountInScrollView
-{
-    int totalCount = 0;
-    if ([self.scrollView isKindOfClass:[UITableView class]]) {
-        UITableView *tableView = (UITableView *)self.scrollView;
-        
-        for (int section = 0; section<tableView.numberOfSections; section++) {
-            totalCount += [tableView numberOfRowsInSection:section];
-        }
-    } else if ([self.scrollView isKindOfClass:[UICollectionView class]]) {
-        UICollectionView *collectionView = (UICollectionView *)self.scrollView;
-        
-        for (int section = 0; section<collectionView.numberOfSections; section++) {
-            totalCount += [collectionView numberOfItemsInSection:section];
-        }
-    }
-    return totalCount;
-}
 @end
