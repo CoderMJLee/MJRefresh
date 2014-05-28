@@ -32,7 +32,7 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
  */
 - (NSMutableArray *)fakeData
 {
-    if (_fakeData == nil) {
+    if (!_fakeData) {
         self.fakeData = [NSMutableArray array];
         
         for (int i = 0; i<12; i++) {

@@ -33,7 +33,7 @@ NSString *const MJCollectionViewCellIdentifier = @"Cell";
  */
 - (NSMutableArray *)fakeColors
 {
-    if (_fakeColors == nil) {
+    if (!_fakeColors) {
         self.fakeColors = [NSMutableArray array];
         
         for (int i = 0; i<5; i++) {

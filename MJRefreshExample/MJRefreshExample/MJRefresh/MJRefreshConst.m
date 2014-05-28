@@ -7,7 +7,8 @@
 //
 
 const CGFloat MJRefreshViewHeight = 64.0;
-const CGFloat MJRefreshAnimationDuration = 0.25;
+const CGFloat MJRefreshFastAnimationDuration = 0.25;
+const CGFloat MJRefreshSlowAnimationDuration = 0.4;
 
 NSString *const MJRefreshBundleName = @"MJRefresh.bundle";
 

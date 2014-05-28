@@ -58,16 +58,12 @@ static char MJRefreshFooterViewKey;
     // 1.创建新的header
     if (!self.header) {
         MJRefreshHeaderView *header = [MJRefreshHeaderView header];
-        header.scrollView = self;
+        [self addSubview:header];
         self.header = header;
     }
     
     // 2.设置block回调
-    self.header.beginRefreshingCallback = ^(MJRefreshHeaderView *refreshHeaderView){
-        if (callback) {
-            callback();
-        }
-    };
+    self.header.beginRefreshingCallback = callback;
 }
 
 /**
@@ -81,7 +77,7 @@ static char MJRefreshFooterViewKey;
     // 1.创建新的header
     if (!self.header) {
         MJRefreshHeaderView *header = [MJRefreshHeaderView header];
-        header.scrollView = self;
+        [self addSubview:header];
         self.header = header;
     }
     
@@ -139,16 +135,12 @@ static char MJRefreshFooterViewKey;
     // 1.创建新的footer
     if (!self.footer) {
         MJRefreshFooterView *footer = [MJRefreshFooterView footer];
-        footer.scrollView = self;
+        [self addSubview:footer];
         self.footer = footer;
     }
     
     // 2.设置block回调
-    self.footer.beginRefreshingCallback = ^(MJRefreshFooterView *refreshFooterView){
-        if (callback) {
-            callback();
-        }
-    };
+    self.footer.beginRefreshingCallback = callback;
 }
 
 /**
@@ -162,7 +154,7 @@ static char MJRefreshFooterViewKey;
     // 1.创建新的footer
     if (!self.footer) {
         MJRefreshFooterView *footer = [MJRefreshFooterView footer];
-        footer.scrollView = self;
+        [self addSubview:footer];
         self.footer = footer;
     }
     

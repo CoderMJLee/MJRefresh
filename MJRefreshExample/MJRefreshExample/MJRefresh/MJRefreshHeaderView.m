@@ -8,30 +8,68 @@
 
 #import "MJRefreshConst.h"
 #import "MJRefreshHeaderView.h"
+#import "UIView+Extension.h"
+#import "UIScrollView+Extension.h"
 
 @interface MJRefreshHeaderView()
 // 最后的更新时间
 @property (nonatomic, strong) NSDate *lastUpdateTime;
+@property (nonatomic, weak) UILabel *lastUpdateTimeLabel;
 @end
 
 @implementation MJRefreshHeaderView
+#pragma mark - 控件初始化
+/**
+ *  时间标签
+ */
+- (UILabel *)lastUpdateTimeLabel
+{
+    if (!_lastUpdateTimeLabel) {
+        // 1.创建控件
+        UILabel *lastUpdateTimeLabel = [[UILabel alloc] init];
+        lastUpdateTimeLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        lastUpdateTimeLabel.font = [UIFont boldSystemFontOfSize:12];
+        lastUpdateTimeLabel.textColor = MJRefreshLabelTextColor;
+        lastUpdateTimeLabel.backgroundColor = [UIColor clearColor];
+        lastUpdateTimeLabel.textAlignment = NSTextAlignmentCenter;
+        [self addSubview:_lastUpdateTimeLabel = lastUpdateTimeLabel];
+        
+        // 2.加载时间
+        self.lastUpdateTime = [[NSUserDefaults standardUserDefaults] objectForKey:MJRefreshHeaderTimeKey];
+    }
+    return _lastUpdateTimeLabel;
+}
 
 + (instancetype)header
 {
     return [[MJRefreshHeaderView alloc] init];
 }
 
-#pragma mark - UIScrollView相关
-#pragma mark 重写设置ScrollView
-- (void)setScrollView:(UIScrollView *)scrollView
+- (void)layoutSubviews
 {
-    [super setScrollView:scrollView];
+    [super layoutSubviews];
     
-    // 1.设置边框
-    self.frame = CGRectMake(0, - MJRefreshViewHeight, scrollView.frame.size.width, MJRefreshViewHeight);
+    CGFloat statusX = 0;
+    CGFloat statusY = 0;
+    CGFloat statusHeight = self.height * 0.5;
+    CGFloat statusWidth = self.width;
+    // 1.状态标签
+    self.statusLabel.frame = CGRectMake(statusX, statusY, statusWidth, statusHeight);
     
-    // 2.加载时间
-    self.lastUpdateTime = [[NSUserDefaults standardUserDefaults] objectForKey:MJRefreshHeaderTimeKey];
+    // 2.时间标签
+    CGFloat lastUpdateY = statusHeight;
+    CGFloat lastUpdateX = 0;
+    CGFloat lastUpdateHeight = statusHeight;
+    CGFloat lastUpdateWidth = statusWidth;
+    self.lastUpdateTimeLabel.frame = CGRectMake(lastUpdateX, lastUpdateY, lastUpdateWidth, lastUpdateHeight);
+}
+
+- (void)willMoveToSuperview:(UIView *)newSuperview
+{
+    [super willMoveToSuperview:newSuperview];
+    
+    // 设置自己的位置和尺寸
+    self.y = - self.height;
 }
 
 #pragma mark - 状态相关
@@ -93,10 +131,10 @@
             // 设置文字
             self.statusLabel.text = MJRefreshHeaderReleaseToRefresh;
             // 执行动画
-            [UIView animateWithDuration:MJRefreshAnimationDuration animations:^{
+            [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
                 self.arrowImage.transform = CGAffineTransformMakeRotation(M_PI);
                 UIEdgeInsets inset = self.scrollView.contentInset;
-                inset.top = self.scrollViewInitInset.top;
+                inset.top = self.scrollViewOriginalInset.top;
                 self.scrollView.contentInset = inset;
             }];
 			break;
@@ -107,10 +145,13 @@
             // 设置文字
 			self.statusLabel.text = MJRefreshHeaderPullToRefresh;
             // 执行动画
-            [UIView animateWithDuration:MJRefreshAnimationDuration animations:^{
+            [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
                 self.arrowImage.transform = CGAffineTransformIdentity;
+            }];
+            
+            [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
                 UIEdgeInsets inset = self.scrollView.contentInset;
-                inset.top = self.scrollViewInitInset.top;
+                inset.top = self.scrollViewOriginalInset.top;
                 self.scrollView.contentInset = inset;
             }];
             
@@ -127,25 +168,15 @@
             // 设置文字
             self.statusLabel.text = MJRefreshHeaderRefreshing;
             // 执行动画
-            [UIView animateWithDuration:MJRefreshAnimationDuration animations:^{
+            [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
                 self.arrowImage.transform = CGAffineTransformIdentity;
                 // 1.增加65的滚动区域
                 UIEdgeInsets inset = self.scrollView.contentInset;
-                inset.top = self.scrollViewInitInset.top + MJRefreshViewHeight;
+                inset.top = self.scrollViewOriginalInset.top + MJRefreshViewHeight;
                 self.scrollView.contentInset = inset;
                 // 2.设置滚动位置
-                self.scrollView.contentOffset = CGPointMake(0, - self.scrollViewInitInset.top - MJRefreshViewHeight);
+                self.scrollView.contentOffset = CGPointMake(0, - self.scrollViewOriginalInset.top - MJRefreshViewHeight);
             }];
-            
-            // 通知代理
-            if ([self.delegate respondsToSelector:@selector(refreshHeaderViewBeginRefreshing:)]) {
-                [self.delegate refreshHeaderViewBeginRefreshing:self];
-            }
-            
-            // 回调
-            if (self.beginRefreshingCallback) {
-                self.beginRefreshingCallback(self);
-            }
 			break;
         }
             
@@ -158,7 +189,7 @@
 // 合理的Y值(刚好看到下拉刷新控件时的contentOffset.y，取相反数)
 - (CGFloat)validY
 {
-    return self.scrollViewInitInset.top;
+    return self.scrollViewOriginalInset.top;
 }
 
 // view的类型

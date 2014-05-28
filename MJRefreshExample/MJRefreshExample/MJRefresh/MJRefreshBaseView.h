@@ -27,26 +27,28 @@ typedef enum {
  类的声明
  */
 @interface MJRefreshBaseView : UIView
-/**
- *  构造方法
- */
-- (instancetype)initWithScrollView:(UIScrollView *)scrollView;
-
-/**
- *  设置要显示的父控件
- */
-@property (nonatomic, weak) UIScrollView *scrollView;
+#pragma mark - 父控件
+@property (nonatomic, weak, readonly) UIScrollView *scrollView;
+@property (nonatomic, assign, readonly) UIEdgeInsets scrollViewOriginalInset;
 
 #pragma mark - 内部的控件
-@property (nonatomic, weak, readonly) UILabel *lastUpdateTimeLabel;
 @property (nonatomic, weak, readonly) UILabel *statusLabel;
 @property (nonatomic, weak, readonly) UIImageView *arrowImage;
 @property (nonatomic, weak, readonly) UIActivityIndicatorView *activityView;
-@property (nonatomic, assign, readonly) UIEdgeInsets scrollViewInitInset;
 
 #pragma mark - 回调
+/**
+ *  开始进入刷新状态的监听器
+ */
 @property (weak, nonatomic) id beginRefreshingTaget;
+/**
+ *  开始进入刷新状态的监听方法
+ */
 @property (assign, nonatomic) SEL beginRefreshingAction;
+/**
+ *  开始进入刷新状态就会调用
+ */
+@property (nonatomic, copy) void (^beginRefreshingCallback)();
 
 #pragma mark - 刷新相关
 /**
