@@ -105,6 +105,8 @@
         
         // 设置宽度
         self.width = newSuperview.width;
+        // 设置位置
+        self.x = 0;
         
         // 记录UIScrollView
         _scrollView = (UIScrollView *)newSuperview;

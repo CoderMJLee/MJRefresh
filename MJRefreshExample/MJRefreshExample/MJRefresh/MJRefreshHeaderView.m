@@ -210,7 +210,7 @@
             
             // 执行动画
             [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
-                // 1.增加65的滚动区域
+                // 1.增加滚动区域
                 CGFloat top = self.scrollViewOriginalInset.top + self.height;
                 self.scrollView.contentInsetTop = top;
                 
