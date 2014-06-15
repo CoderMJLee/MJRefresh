@@ -111,6 +111,7 @@
     // 3.显示日期
     self.lastUpdateTimeLabel.text = [NSString stringWithFormat:@"最后更新：%@", time];
 }
+
 #pragma mark - 监听UIScrollView的contentOffset属性
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {

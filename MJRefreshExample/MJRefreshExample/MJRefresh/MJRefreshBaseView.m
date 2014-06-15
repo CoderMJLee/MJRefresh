@@ -96,9 +96,8 @@
 {
     [super willMoveToSuperview:newSuperview];
     
-    if (self.superview) { // 旧的父控件
-        [self.superview removeObserver:self forKeyPath:MJRefreshContentOffset context:nil];
-    }
+    // 旧的父控件
+    [self.superview removeObserver:self forKeyPath:MJRefreshContentOffset context:nil];
     
     if (newSuperview) { // 新的父控件
         [newSuperview addObserver:self forKeyPath:MJRefreshContentOffset options:NSKeyValueObservingOptionNew context:nil];
@@ -138,6 +137,7 @@
     } else {
 #warning 不能调用set方法
         _state = MJRefreshStateWillRefreshing;
+        [super setNeedsDisplay];
     }
 }
 

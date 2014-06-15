@@ -33,9 +33,8 @@
 {
     [super willMoveToSuperview:newSuperview];
     
-    if (self.superview) { // 旧的父控件
-        [self.superview removeObserver:self forKeyPath:MJRefreshContentSize context:nil];
-    }
+    // 旧的父控件
+    [self.superview removeObserver:self forKeyPath:MJRefreshContentSize context:nil];
     
     if (newSuperview) { // 新的父控件
         // 监听
