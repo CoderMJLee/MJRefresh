@@ -152,6 +152,41 @@
 }
 
 #pragma mark - 设置状态
+- (void)setPullToRefreshText:(NSString *)pullToRefreshText
+{
+    _pullToRefreshText = [pullToRefreshText copy];
+    [self settingLabelText];
+}
+- (void)setReleaseToRefreshText:(NSString *)releaseToRefreshText
+{
+    _releaseToRefreshText = [releaseToRefreshText copy];
+    [self settingLabelText];
+}
+- (void)setRefreshingText:(NSString *)refreshingText
+{
+    _refreshingText = [refreshingText copy];
+    [self settingLabelText];
+}
+- (void)settingLabelText
+{
+	switch (self.state) {
+		case MJRefreshStateNormal:
+            // 设置文字
+            self.statusLabel.text = self.pullToRefreshText;
+			break;
+		case MJRefreshStatePulling:
+            // 设置文字
+            self.statusLabel.text = self.releaseToRefreshText;
+			break;
+        case MJRefreshStateRefreshing:
+            // 设置文字
+            self.statusLabel.text = self.refreshingText;
+			break;
+        default:
+            break;
+	}
+}
+
 - (void)setState:(MJRefreshState)state
 {
     // 0.存储当前的contentInset
@@ -200,5 +235,8 @@
     
     // 3.存储状态
     _state = state;
+    
+    // 4.设置文字
+    [self settingLabelText];
 }
 @end

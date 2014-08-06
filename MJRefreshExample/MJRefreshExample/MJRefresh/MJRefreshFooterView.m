@@ -133,9 +133,6 @@
     {
 		case MJRefreshStateNormal:
         {
-            // 设置文字
-            self.statusLabel.text = self.pullToRefreshText;
-            
             // 刷新完毕
             if (MJRefreshStateRefreshing == oldState) {
                 self.arrowImage.transform = CGAffineTransformMakeRotation(M_PI);
@@ -160,9 +157,6 @@
             
 		case MJRefreshStatePulling:
         {
-            // 设置文字
-            self.statusLabel.text = self.releaseToRefreshText;
-            
             [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
                 self.arrowImage.transform = CGAffineTransformIdentity;
             }];
@@ -171,9 +165,6 @@
             
         case MJRefreshStateRefreshing:
         {
-            // 设置文字
-            self.statusLabel.text = self.refreshingText;
-            
             // 记录刷新前的数量
             self.lastRefreshCount = [self totalDataCountInScrollView];
             

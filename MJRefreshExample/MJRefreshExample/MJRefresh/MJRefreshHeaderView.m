@@ -182,9 +182,6 @@
 	switch (state) {
 		case MJRefreshStateNormal: // 下拉可以刷新
         {
-            // 设置文字
-			self.statusLabel.text = self.pullToRefreshText;
-            
             // 刷新完毕
             if (MJRefreshStateRefreshing == oldState) {
                 self.arrowImage.transform = CGAffineTransformIdentity;
@@ -205,8 +202,6 @@
             
 		case MJRefreshStatePulling: // 松开可立即刷新
         {
-            // 设置文字
-            self.statusLabel.text = self.releaseToRefreshText;
             // 执行动画
             [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
                 self.arrowImage.transform = CGAffineTransformMakeRotation(M_PI);
@@ -216,9 +211,6 @@
             
 		case MJRefreshStateRefreshing: // 正在刷新中
         {
-            // 设置文字
-            self.statusLabel.text = self.refreshingText;
-            
             // 执行动画
             [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
                 // 1.增加滚动区域
