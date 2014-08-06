@@ -22,6 +22,16 @@
     return [[MJRefreshFooterView alloc] init];
 }
 
+- (id)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        self.pullToRefreshText = MJRefreshFooterPullToRefresh;
+        self.releaseToRefreshText = MJRefreshFooterReleaseToRefresh;
+        self.refreshingText = MJRefreshFooterRefreshing;
+    }
+    return self;
+}
+
 - (void)layoutSubviews
 {
     [super layoutSubviews];
@@ -124,7 +134,7 @@
 		case MJRefreshStateNormal:
         {
             // 设置文字
-            self.statusLabel.text = MJRefreshFooterPullToRefresh;
+            self.statusLabel.text = self.pullToRefreshText;
             
             // 刷新完毕
             if (MJRefreshStateRefreshing == oldState) {
@@ -151,7 +161,7 @@
 		case MJRefreshStatePulling:
         {
             // 设置文字
-            self.statusLabel.text = MJRefreshFooterReleaseToRefresh;
+            self.statusLabel.text = self.releaseToRefreshText;
             
             [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
                 self.arrowImage.transform = CGAffineTransformIdentity;
@@ -162,7 +172,7 @@
         case MJRefreshStateRefreshing:
         {
             // 设置文字
-            self.statusLabel.text = MJRefreshFooterRefreshing;
+            self.statusLabel.text = self.refreshingText;
             
             // 记录刷新前的数量
             self.lastRefreshCount = [self totalDataCountInScrollView];

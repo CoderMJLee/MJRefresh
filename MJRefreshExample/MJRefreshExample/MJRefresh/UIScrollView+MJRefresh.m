@@ -200,4 +200,67 @@ static char MJRefreshFooterViewKey;
 {
     return self.footer.isHidden;
 }
+
+/**
+ *  文字
+ */
+- (void)setFooterPullToRefreshText:(NSString *)footerPullToRefreshText
+{
+    self.footer.pullToRefreshText = footerPullToRefreshText;
+}
+
+- (NSString *)footerPullToRefreshText
+{
+    return self.footer.pullToRefreshText;
+}
+
+- (void)setFooterReleaseToRefreshText:(NSString *)footerReleaseToRefreshText
+{
+    self.footer.releaseToRefreshText = footerReleaseToRefreshText;
+}
+
+- (NSString *)footerReleaseToRefreshText
+{
+    return self.footer.releaseToRefreshText;
+}
+
+- (void)setFooterRefreshingText:(NSString *)footerRefreshingText
+{
+    self.footer.refreshingText = footerRefreshingText;
+}
+
+- (NSString *)footerRefreshingText
+{
+    return self.footer.refreshingText;
+}
+
+- (void)setHeaderPullToRefreshText:(NSString *)headerPullToRefreshText
+{
+    self.header.pullToRefreshText = headerPullToRefreshText;
+}
+
+- (NSString *)headerPullToRefreshText
+{
+    return self.header.pullToRefreshText;
+}
+
+- (void)setHeaderReleaseToRefreshText:(NSString *)headerReleaseToRefreshText
+{
+    self.header.releaseToRefreshText = headerReleaseToRefreshText;
+}
+
+- (NSString *)headerReleaseToRefreshText
+{
+    return self.header.releaseToRefreshText;
+}
+
+- (void)setHeaderRefreshingText:(NSString *)headerRefreshingText
+{
+    self.header.refreshingText = headerRefreshingText;
+}
+
+- (NSString *)headerRefreshingText
+{
+    return self.header.refreshingText;
+}
 @end

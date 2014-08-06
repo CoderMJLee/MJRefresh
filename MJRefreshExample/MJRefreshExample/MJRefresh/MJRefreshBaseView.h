@@ -66,4 +66,11 @@ typedef enum {
 
 #pragma mark - 交给子类去实现 和 调用
 @property (assign, nonatomic) MJRefreshState state;
+
+/**
+ *  文字
+ */
+@property (copy, nonatomic) NSString *pullToRefreshText;
+@property (copy, nonatomic) NSString *releaseToRefreshText;
+@property (copy, nonatomic) NSString *refreshingText;
 @end

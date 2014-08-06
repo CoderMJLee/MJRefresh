@@ -45,6 +45,16 @@
     return [[MJRefreshHeaderView alloc] init];
 }
 
+- (id)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        self.pullToRefreshText = MJRefreshHeaderPullToRefresh;
+        self.releaseToRefreshText = MJRefreshHeaderReleaseToRefresh;
+        self.refreshingText = MJRefreshHeaderRefreshing;
+    }
+    return self;
+}
+
 - (void)layoutSubviews
 {
     [super layoutSubviews];
@@ -173,7 +183,7 @@
 		case MJRefreshStateNormal: // 下拉可以刷新
         {
             // 设置文字
-			self.statusLabel.text = MJRefreshHeaderPullToRefresh;
+			self.statusLabel.text = self.pullToRefreshText;
             
             // 刷新完毕
             if (MJRefreshStateRefreshing == oldState) {
@@ -196,7 +206,7 @@
 		case MJRefreshStatePulling: // 松开可立即刷新
         {
             // 设置文字
-            self.statusLabel.text = MJRefreshHeaderReleaseToRefresh;
+            self.statusLabel.text = self.releaseToRefreshText;
             // 执行动画
             [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
                 self.arrowImage.transform = CGAffineTransformMakeRotation(M_PI);
@@ -207,7 +217,7 @@
 		case MJRefreshStateRefreshing: // 正在刷新中
         {
             // 设置文字
-            self.statusLabel.text = MJRefreshHeaderRefreshing;
+            self.statusLabel.text = self.refreshingText;
             
             // 执行动画
             [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
