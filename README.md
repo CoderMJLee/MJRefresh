@@ -3,6 +3,11 @@ MJRefresh
 
 The easiest way to use pull-to-refresh
 
+![(UICollectionView-header)](https://github.com/CoderMJLee/MJRefresh/blob/master/MJRefreshScreenshots/UICollectionView-header.gif)
+![(UICollectionView-footer)](https://github.com/CoderMJLee/MJRefresh/blob/master/MJRefreshScreenshots/UICollectionView-footer.gif)
+![(UITableView-header)](https://github.com/CoderMJLee/MJRefresh/blob/master/MJRefreshScreenshots/UITableView-header.gif)
+![(UITableView-footer)](https://github.com/CoderMJLee/MJRefresh/blob/master/MJRefreshScreenshots/UITableView-footer.gif)
+
 MJ友情提示
 -----------
 ### 1.添加头部控件的方法
