@@ -1,3 +1,4 @@
+[id]: http://code4app.qiniudn.com/photo/52326ce26803fabc46000000_15.gif "Refresh"
 MJRefresh
 =========
 
