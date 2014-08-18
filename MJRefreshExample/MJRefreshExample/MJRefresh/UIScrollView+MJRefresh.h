@@ -45,6 +45,11 @@
  */
 @property (nonatomic, assign, getter = isHeaderHidden) BOOL headerHidden;
 
+/**
+ *  是否正在下拉刷新
+ */
+@property (nonatomic, assign, readonly, getter = isHeaderRefreshing) BOOL headerRefreshing;
+
 #pragma mark - 上拉刷新
 /**
  *  添加一个上拉刷新尾部控件
@@ -77,9 +82,14 @@
 - (void)footerEndRefreshing;
 
 /**
- *  下拉刷新头部控件的可见性
+ *  上拉刷新头部控件的可见性
  */
 @property (nonatomic, assign, getter = isFooterHidden) BOOL footerHidden;
+
+/**
+ *  是否正在上拉刷新
+ */
+@property (nonatomic, assign, readonly, getter = isFooterRefreshing) BOOL footerRefreshing;
 
 /**
  *  设置尾部控件的文字

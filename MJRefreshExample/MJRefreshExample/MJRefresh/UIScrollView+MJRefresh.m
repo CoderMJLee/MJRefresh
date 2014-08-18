@@ -124,6 +124,11 @@ static char MJRefreshFooterViewKey;
     return self.header.isHidden;
 }
 
+- (BOOL)isHeaderRefreshing
+{
+    return self.header.state == MJRefreshStateRefreshing;
+}
+
 #pragma mark - 上拉刷新
 /**
  *  添加一个上拉刷新尾部控件
@@ -199,6 +204,11 @@ static char MJRefreshFooterViewKey;
 - (BOOL)isFooterHidden
 {
     return self.footer.isHidden;
+}
+
+- (BOOL)isFooterRefreshing
+{
+    return self.footer.state == MJRefreshStateRefreshing;
 }
 
 /**

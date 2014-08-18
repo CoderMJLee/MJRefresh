@@ -194,8 +194,8 @@
         _scrollViewOriginalInset = self.scrollView.contentInset;
     }
     
-    // 1.一样的就直接返回
-    if (self.state == state) return;
+    // 1.一样的就直接返回(暂时不返回)
+//    if (self.state == state) return;
     
     // 2.根据状态执行不同的操作
     switch (state) {
