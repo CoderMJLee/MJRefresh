@@ -132,12 +132,23 @@
 #pragma mark 开始刷新
 - (void)beginRefreshing
 {
-    if (self.window) {
-        self.state = MJRefreshStateRefreshing;
+    if (self.state == MJRefreshStateRefreshing) {
+        // 回调
+        if ([self.beginRefreshingTaget respondsToSelector:self.beginRefreshingAction]) {
+            objc_msgSend(self.beginRefreshingTaget, self.beginRefreshingAction, self);
+        }
+        
+        if (self.beginRefreshingCallback) {
+            self.beginRefreshingCallback();
+        }
     } else {
-#warning 不能调用set方法
-        _state = MJRefreshStateWillRefreshing;
-        [super setNeedsDisplay];
+        if (self.window) {
+            self.state = MJRefreshStateRefreshing;
+        } else {
+    #warning 不能调用set方法
+            _state = MJRefreshStateWillRefreshing;
+            [super setNeedsDisplay];
+        }
     }
 }
 
