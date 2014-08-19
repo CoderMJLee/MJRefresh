@@ -8,8 +8,8 @@
 
 #import "MJRefreshBaseView.h"
 #import "MJRefreshConst.h"
-#import "UIView+Extension.h"
-#import "UIScrollView+Extension.h"
+#import "UIView+MJExtension.h"
+#import "UIScrollView+MJExtension.h"
 #import <objc/message.h>
 
 @interface  MJRefreshBaseView()
@@ -85,8 +85,8 @@
     [super layoutSubviews];
     
     // 1.箭头
-    CGFloat arrowX = self.width * 0.5 - 100;
-    self.arrowImage.center = CGPointMake(arrowX, self.height * 0.5);
+    CGFloat arrowX = self.mj_width * 0.5 - 100;
+    self.arrowImage.center = CGPointMake(arrowX, self.mj_height * 0.5);
     
     // 2.指示器
     self.activityView.center = self.arrowImage.center;
@@ -103,9 +103,9 @@
         [newSuperview addObserver:self forKeyPath:MJRefreshContentOffset options:NSKeyValueObservingOptionNew context:nil];
         
         // 设置宽度
-        self.width = newSuperview.width;
+        self.mj_width = newSuperview.mj_width;
         // 设置位置
-        self.x = 0;
+        self.mj_x = 0;
         
         // 记录UIScrollView
         _scrollView = (UIScrollView *)newSuperview;

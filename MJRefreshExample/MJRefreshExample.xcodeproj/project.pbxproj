@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2D1D8FB21935C0CD0019D689 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1D8FB11935C0CD0019D689 /* UIScrollView+MJRefresh.m */; };
-		2D1D8FB51935EABD0019D689 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1D8FB41935EABD0019D689 /* UIView+Extension.m */; };
-		2D1D8FB81935EACA0019D689 /* UIScrollView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1D8FB71935EACA0019D689 /* UIScrollView+Extension.m */; };
+		2D1D8FB51935EABD0019D689 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1D8FB41935EABD0019D689 /* UIView+MJExtension.m */; };
+		2D1D8FB81935EACA0019D689 /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1D8FB71935EACA0019D689 /* UIScrollView+MJExtension.m */; };
 		2D1D8FBC19360E040019D689 /* MJTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1D8FBA19360E040019D689 /* MJTestViewController.m */; };
 		2D1D8FBD19360E040019D689 /* MJTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D1D8FBB19360E040019D689 /* MJTestViewController.xib */; };
 		2D9CAF6B192FAD750011F500 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D9CAF6A192FAD750011F500 /* Foundation.framework */; };
@@ -49,10 +49,10 @@
 /* Begin PBXFileReference section */
 		2D1D8FB01935C0CD0019D689 /* UIScrollView+MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+MJRefresh.h"; sourceTree = "<group>"; };
 		2D1D8FB11935C0CD0019D689 /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
-		2D1D8FB31935EABD0019D689 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
-		2D1D8FB41935EABD0019D689 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
-		2D1D8FB61935EACA0019D689 /* UIScrollView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+Extension.h"; sourceTree = "<group>"; };
-		2D1D8FB71935EACA0019D689 /* UIScrollView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+Extension.m"; sourceTree = "<group>"; };
+		2D1D8FB31935EABD0019D689 /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
+		2D1D8FB41935EABD0019D689 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
+		2D1D8FB61935EACA0019D689 /* UIScrollView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+MJExtension.h"; sourceTree = "<group>"; };
+		2D1D8FB71935EACA0019D689 /* UIScrollView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJExtension.m"; sourceTree = "<group>"; };
 		2D1D8FB919360E040019D689 /* MJTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJTestViewController.h; sourceTree = "<group>"; };
 		2D1D8FBA19360E040019D689 /* MJTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJTestViewController.m; sourceTree = "<group>"; };
 		2D1D8FBB19360E040019D689 /* MJTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MJTestViewController.xib; sourceTree = "<group>"; };
@@ -249,10 +249,10 @@
 				2D9CAFBA192FAD9F0011F500 /* MJRefreshHeaderView.m */,
 				2D1D8FB01935C0CD0019D689 /* UIScrollView+MJRefresh.h */,
 				2D1D8FB11935C0CD0019D689 /* UIScrollView+MJRefresh.m */,
-				2D1D8FB31935EABD0019D689 /* UIView+Extension.h */,
-				2D1D8FB41935EABD0019D689 /* UIView+Extension.m */,
-				2D1D8FB61935EACA0019D689 /* UIScrollView+Extension.h */,
-				2D1D8FB71935EACA0019D689 /* UIScrollView+Extension.m */,
+				2D1D8FB31935EABD0019D689 /* UIView+MJExtension.h */,
+				2D1D8FB41935EABD0019D689 /* UIView+MJExtension.m */,
+				2D1D8FB61935EACA0019D689 /* UIScrollView+MJExtension.h */,
+				2D1D8FB71935EACA0019D689 /* UIScrollView+MJExtension.m */,
 			);
 			path = MJRefresh;
 			sourceTree = "<group>";
@@ -357,9 +357,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D9CAFC5192FAD9F0011F500 /* MJRefreshFooterView.m in Sources */,
-				2D1D8FB81935EACA0019D689 /* UIScrollView+Extension.m in Sources */,
+				2D1D8FB81935EACA0019D689 /* UIScrollView+MJExtension.m in Sources */,
 				2D9CAFBE192FAD9F0011F500 /* MJTableViewController.m in Sources */,
-				2D1D8FB51935EABD0019D689 /* UIView+Extension.m in Sources */,
+				2D1D8FB51935EABD0019D689 /* UIView+MJExtension.m in Sources */,
 				2D9CAFBD192FAD9F0011F500 /* MJSampleIndexViewController.m in Sources */,
 				2D9CAFBF192FAD9F0011F500 /* MJSampleIndex.m in Sources */,
 				2D9CAFC4192FAD9F0011F500 /* MJRefreshConst.m in Sources */,
