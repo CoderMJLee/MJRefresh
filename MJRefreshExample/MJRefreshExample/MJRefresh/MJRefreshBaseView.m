@@ -212,11 +212,27 @@
     switch (state) {
 		case MJRefreshStateNormal: // 普通状态
         {
-            // 显示箭头
-            self.arrowImage.hidden = NO;
-            
-            // 停止转圈圈
-            [self.activityView stopAnimating];
+            if (self.state == MJRefreshStateRefreshing) {
+                [UIView animateWithDuration:MJRefreshSlowAnimationDuration * 0.4 animations:^{
+                    self.activityView.alpha = 0.0;
+                } completion:^(BOOL finished) {
+                    // 停止转圈圈
+                    [self.activityView stopAnimating];
+                    
+                    // alpha
+                    self.activityView.alpha = 1.0;
+                }];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJRefreshSlowAnimationDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    // 显示箭头
+                    self.arrowImage.hidden = NO;
+                });
+            } else {
+                // 显示箭头
+                self.arrowImage.hidden = NO;
+                
+                // 停止转圈圈
+                [self.activityView stopAnimating];
+            }
 			break;
         }
             
