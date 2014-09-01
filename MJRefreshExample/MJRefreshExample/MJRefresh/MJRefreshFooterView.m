@@ -137,9 +137,7 @@
             if (MJRefreshStateRefreshing == oldState) {
                 self.arrowImage.transform = CGAffineTransformMakeRotation(M_PI);
                 [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
-//                    self.scrollView.mj_contentInsetBottom = self.scrollViewOriginalInset.bottom;
-#warning 这句代码修复了，bottom值不断累加的bug
-                    self.scrollView.mj_contentInsetBottom -= self.mj_height;
+                    self.scrollView.mj_contentInsetBottom = self.scrollViewOriginalInset.bottom;
                 }];
             } else {
                 // 执行动画
