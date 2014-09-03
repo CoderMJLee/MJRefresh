@@ -130,12 +130,13 @@
 }
 
 #pragma mark 开始刷新
+typedef void (*send_type)(void *, SEL, UIView *);
 - (void)beginRefreshing
 {
     if (self.state == MJRefreshStateRefreshing) {
         // 回调
         if ([self.beginRefreshingTaget respondsToSelector:self.beginRefreshingAction]) {
-            objc_msgSend(self.beginRefreshingTaget, self.beginRefreshingAction, self);
+            msgSend((__bridge void *)(self.beginRefreshingTaget), self.beginRefreshingAction, self);
         }
         
         if (self.beginRefreshingCallback) {
