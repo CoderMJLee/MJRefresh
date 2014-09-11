@@ -3,10 +3,7 @@ MJRefresh
 
 The easiest way to use pull-to-refresh
 
-![(UICollectionView-header)](https://github.com/CoderMJLee/MJRefresh/blob/master/MJRefreshScreenshots/UICollectionView-header.gif)
-![(UICollectionView-footer)](https://github.com/CoderMJLee/MJRefresh/blob/master/MJRefreshScreenshots/UICollectionView-footer.gif)
-![(UITableView-header)](https://github.com/CoderMJLee/MJRefresh/blob/master/MJRefreshScreenshots/UITableView-header.gif)
-![(UITableView-footer)](https://github.com/CoderMJLee/MJRefresh/blob/master/MJRefreshScreenshots/UITableView-footer.gif)
+![(52326ce26803fabc46000000_18)](http://code4app.qiniudn.com/photo/52326ce26803fabc46000000_18.gif)
 
 MJ友情提示
 -----------
