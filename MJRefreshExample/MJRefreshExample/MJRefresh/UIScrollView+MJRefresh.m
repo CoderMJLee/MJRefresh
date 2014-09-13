@@ -126,7 +126,7 @@ static char MJRefreshFooterViewKey;
 
 - (BOOL)isHeaderRefreshing
 {
-    return self.header.state == MJRefreshStateRefreshing;
+    return self.header.isRefreshing;
 }
 
 #pragma mark - 上拉刷新
@@ -208,7 +208,7 @@ static char MJRefreshFooterViewKey;
 
 - (BOOL)isFooterRefreshing
 {
-    return self.footer.state == MJRefreshStateRefreshing;
+    return self.footer.isRefreshing;
 }
 
 /**

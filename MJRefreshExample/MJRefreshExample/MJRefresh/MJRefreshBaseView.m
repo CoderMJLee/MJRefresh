@@ -130,7 +130,6 @@
 }
 
 #pragma mark 开始刷新
-typedef void (*send_type)(void *, SEL, UIView *);
 - (void)beginRefreshing
 {
     if (self.state == MJRefreshStateRefreshing) {
@@ -148,7 +147,6 @@ typedef void (*send_type)(void *, SEL, UIView *);
         } else {
     #warning 不能调用set方法
             _state = MJRefreshStateWillRefreshing;
-            [super setNeedsDisplay];
         }
     }
 }

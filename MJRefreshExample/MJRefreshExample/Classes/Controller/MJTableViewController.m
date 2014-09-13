@@ -36,7 +36,7 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     if (!_fakeData) {
         self.fakeData = [NSMutableArray array];
         
-        for (int i = 0; i<12; i++) {
+        for (int i = 0; i<5; i++) {
             [self.fakeData addObject:MJRandomData];
         }
     }
@@ -95,7 +95,7 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
         [self.fakeData insertObject:MJRandomData atIndex:0];
     }
     
-    // 2.2秒后刷新表格UI
+    // 2.模拟2秒后刷新表格UI（真实开发中，可以移除这段gcd代码）
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // 刷新表格
         [self.tableView reloadData];
@@ -112,7 +112,7 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
         [self.fakeData addObject:MJRandomData];
     }
     
-    // 2.2秒后刷新表格UI
+    // 2.模拟2秒后刷新表格UI（真实开发中，可以移除这段gcd代码）
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // 刷新表格
         [self.tableView reloadData];
@@ -123,6 +123,11 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
 }
 
 #pragma mark - Table view data source
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+//{
+//    return 5;
+//}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.fakeData.count;
@@ -141,4 +146,9 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     MJTestViewController *test = [[MJTestViewController alloc] init];
     [self.navigationController pushViewController:test animated:YES];
 }
+
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{
+//    return @"test";
+//}
 @end
