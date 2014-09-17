@@ -135,7 +135,7 @@
     if (self.state == MJRefreshStateRefreshing) {
         // 回调
         if ([self.beginRefreshingTaget respondsToSelector:self.beginRefreshingAction]) {
-            msgSend((__bridge void *)(self.beginRefreshingTaget), self.beginRefreshingAction, self);
+            msgSend(msgTarget(self.beginRefreshingTaget), self.beginRefreshingAction, self);
         }
         
         if (self.beginRefreshingCallback) {
@@ -250,7 +250,7 @@
             
             // 回调
             if ([self.beginRefreshingTaget respondsToSelector:self.beginRefreshingAction]) {
-                objc_msgSend(self.beginRefreshingTaget, self.beginRefreshingAction, self);
+                msgSend(msgTarget(self.beginRefreshingTaget), self.beginRefreshingAction, self);
             }
             
             if (self.beginRefreshingCallback) {

@@ -103,7 +103,7 @@
     
     // 1.获得年月日
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSUInteger unitFlags = NSYearCalendarUnit| NSMonthCalendarUnit | NSDayCalendarUnit |NSHourCalendarUnit |NSMinuteCalendarUnit;
+    NSUInteger unitFlags = NSCalendarUnitYear| NSCalendarUnitMonth | NSCalendarUnitDay |NSCalendarUnitHour |NSCalendarUnitMinute;
     NSDateComponents *cmp1 = [calendar components:unitFlags fromDate:_lastUpdateTime];
     NSDateComponents *cmp2 = [calendar components:unitFlags fromDate:[NSDate date]];
     
