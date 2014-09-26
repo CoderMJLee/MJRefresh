@@ -66,6 +66,12 @@ static char MJRefreshFooterViewKey;
     self.header.beginRefreshingCallback = callback;
 }
 
+- (void)addHeaderWithCallback:(void (^)())callback dateKey:(NSString*)dateKey
+{
+    [self addHeaderWithCallback:callback];
+    self.header.dateKey = dateKey;
+}
+
 /**
  *  添加一个下拉刷新头部控件
  *
@@ -84,6 +90,12 @@ static char MJRefreshFooterViewKey;
     // 2.设置目标和回调方法
     self.header.beginRefreshingTaget = target;
     self.header.beginRefreshingAction = action;
+}
+
+- (void)addHeaderWithTarget:(id)target action:(SEL)action dateKey:(NSString*)dateKey
+{
+    [self addHeaderWithTarget:target action:action];
+    self.header.dateKey = dateKey;
 }
 
 /**

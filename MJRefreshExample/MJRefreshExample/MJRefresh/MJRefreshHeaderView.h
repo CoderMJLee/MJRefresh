@@ -9,5 +9,8 @@
 #import "MJRefreshBaseView.h"
 
 @interface MJRefreshHeaderView : MJRefreshBaseView
+
+@property NSString *dateKey;
 + (instancetype)header;
+
 @end
