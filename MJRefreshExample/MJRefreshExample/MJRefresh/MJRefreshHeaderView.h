@@ -10,7 +10,7 @@
 
 @interface MJRefreshHeaderView : MJRefreshBaseView
 
-@property NSString *dateKey;
+@property (nonatomic, copy) NSString *dateKey;
 + (instancetype)header;
 
 @end

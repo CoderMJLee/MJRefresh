@@ -70,7 +70,9 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
 - (void)setupRefresh
 {
     // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
-    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
+//    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
+    // dateKey用于存储刷新时间，可以保证不同界面拥有不同的刷新时间
+    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing) dateKey:@"table"];
 #warning 自动刷新(一进入程序就下拉刷新)
     [self.tableView headerBeginRefreshing];
     

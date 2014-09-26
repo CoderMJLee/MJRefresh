@@ -99,7 +99,8 @@ NSString *const MJCollectionViewCellIdentifier = @"Cell";
             // 结束刷新
             [vc.collectionView headerEndRefreshing];
         });
-    }];
+    } dateKey:@"collection"];
+    // dateKey用于存储刷新时间，也可以不传值，可以保证不同界面拥有不同的刷新时间
     
 #warning 自动刷新(一进入程序就下拉刷新)
     [self.collectionView headerBeginRefreshing];

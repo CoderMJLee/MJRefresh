@@ -35,10 +35,10 @@
         [self addSubview:_lastUpdateTimeLabel = lastUpdateTimeLabel];
         
         // 2.加载时间
-        if(!self.dateKey){
-            self.lastUpdateTime = [[NSUserDefaults standardUserDefaults] objectForKey:MJRefreshHeaderTimeKey];
-        }else{
+        if(self.dateKey){
             self.lastUpdateTime = [[NSUserDefaults standardUserDefaults] objectForKey:self.dateKey];
+        } else {
+            self.lastUpdateTime = [[NSUserDefaults standardUserDefaults] objectForKey:MJRefreshHeaderTimeKey];
         }
     }
     return _lastUpdateTimeLabel;
@@ -93,11 +93,12 @@
     _lastUpdateTime = lastUpdateTime;
     
     // 1.归档
-    if(!self.dateKey){
-        [[NSUserDefaults standardUserDefaults] setObject:lastUpdateTime forKey:MJRefreshHeaderTimeKey];
-    }else{
+    if(self.dateKey){
         [[NSUserDefaults standardUserDefaults] setObject:lastUpdateTime forKey:self.dateKey];
+    }   else{
+        [[NSUserDefaults standardUserDefaults] setObject:lastUpdateTime forKey:MJRefreshHeaderTimeKey];
     }
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     // 2.更新时间
     [self updateTimeLabel];
