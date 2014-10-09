@@ -8,6 +8,7 @@ Pod::Spec.new do |s|
   s.authors      = { 'CoderMJLee' => '199109106@qq.com'}
   s.platform     = :ios, "6.0"
   s.source       = { :git => "https://github.com/CoderMJLee/MJRefresh.git", :branch => "master" }
-  s.source_files  = "MJRefreshExample/MJRefreshExample/MJRefresh/*.{h,m,bundle}"
+  s.source_files = "MJRefreshExample/MJRefreshExample/MJRefresh/*.{h,m}"
+  s.resource     = "MJRefreshExample/MJRefreshExample/MJRefresh/MJRefresh.bundle"
   s.requires_arc = true
 end
