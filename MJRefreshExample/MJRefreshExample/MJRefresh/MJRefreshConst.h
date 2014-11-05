@@ -21,12 +21,12 @@
 // 文字颜色
 #define MJRefreshLabelTextColor MJColor(150, 150, 150)
 
+// 图片路径
+#define MJRefreshSrcName(file) [@"MJRefresh.bundle" stringByAppendingPathComponent:file]
+
 extern const CGFloat MJRefreshViewHeight;
 extern const CGFloat MJRefreshFastAnimationDuration;
 extern const CGFloat MJRefreshSlowAnimationDuration;
-
-extern NSString *const MJRefreshBundleName;
-#define MJRefreshSrcName(file) [MJRefreshBundleName stringByAppendingPathComponent:file]
 
 extern NSString *const MJRefreshFooterPullToRefresh;
 extern NSString *const MJRefreshFooterReleaseToRefresh;
