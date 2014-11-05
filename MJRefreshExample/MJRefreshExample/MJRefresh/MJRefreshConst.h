@@ -24,18 +24,18 @@
 // 图片路径
 #define MJRefreshSrcName(file) [@"MJRefresh.bundle" stringByAppendingPathComponent:file]
 
-extern const CGFloat MJRefreshViewHeight;
-extern const CGFloat MJRefreshFastAnimationDuration;
-extern const CGFloat MJRefreshSlowAnimationDuration;
+UIKIT_EXTERN const CGFloat MJRefreshViewHeight;
+UIKIT_EXTERN const CGFloat MJRefreshFastAnimationDuration;
+UIKIT_EXTERN const CGFloat MJRefreshSlowAnimationDuration;
 
-extern NSString *const MJRefreshFooterPullToRefresh;
-extern NSString *const MJRefreshFooterReleaseToRefresh;
-extern NSString *const MJRefreshFooterRefreshing;
+UIKIT_EXTERN NSString *const MJRefreshFooterPullToRefresh;
+UIKIT_EXTERN NSString *const MJRefreshFooterReleaseToRefresh;
+UIKIT_EXTERN NSString *const MJRefreshFooterRefreshing;
 
-extern NSString *const MJRefreshHeaderPullToRefresh;
-extern NSString *const MJRefreshHeaderReleaseToRefresh;
-extern NSString *const MJRefreshHeaderRefreshing;
-extern NSString *const MJRefreshHeaderTimeKey;
+UIKIT_EXTERN NSString *const MJRefreshHeaderPullToRefresh;
+UIKIT_EXTERN NSString *const MJRefreshHeaderReleaseToRefresh;
+UIKIT_EXTERN NSString *const MJRefreshHeaderRefreshing;
+UIKIT_EXTERN NSString *const MJRefreshHeaderTimeKey;
 
-extern NSString *const MJRefreshContentOffset;
+UIKIT_EXTERN NSString *const MJRefreshContentOffset;
 extern NSString *const MJRefreshContentSize;

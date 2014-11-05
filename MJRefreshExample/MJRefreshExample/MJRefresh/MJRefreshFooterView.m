@@ -184,19 +184,19 @@
 	}
 }
 
-- (int)totalDataCountInScrollView
+- (NSInteger)totalDataCountInScrollView
 {
-    int totalCount = 0;
+    NSInteger totalCount = 0;
     if ([self.scrollView isKindOfClass:[UITableView class]]) {
         UITableView *tableView = (UITableView *)self.scrollView;
         
-        for (int section = 0; section<tableView.numberOfSections; section++) {
+        for (NSInteger section = 0; section<tableView.numberOfSections; section++) {
             totalCount += [tableView numberOfRowsInSection:section];
         }
     } else if ([self.scrollView isKindOfClass:[UICollectionView class]]) {
         UICollectionView *collectionView = (UICollectionView *)self.scrollView;
         
-        for (int section = 0; section<collectionView.numberOfSections; section++) {
+        for (NSInteger section = 0; section<collectionView.numberOfSections; section++) {
             totalCount += [collectionView numberOfItemsInSection:section];
         }
     }
