@@ -12,7 +12,7 @@
 #import "UIScrollView+MJExtension.h"
 
 @interface MJRefreshFooterView()
-@property (assign, nonatomic) int lastRefreshCount;
+@property (assign, nonatomic) NSInteger lastRefreshCount;
 @end
 
 @implementation MJRefreshFooterView
@@ -147,7 +147,7 @@
             }
             
             CGFloat deltaH = [self heightForContentBreakView];
-            int currentCount = [self totalDataCountInScrollView];
+            NSInteger currentCount = [self totalDataCountInScrollView];
             // 刚刷新完毕
             if (MJRefreshStateRefreshing == oldState && deltaH > 0 && currentCount != self.lastRefreshCount) {
                 self.scrollView.mj_contentOffsetY = self.scrollView.mj_contentOffsetY;

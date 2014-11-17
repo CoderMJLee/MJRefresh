@@ -14,7 +14,7 @@
 		<string>https://github.com/CoderMJLee/MJRefresh.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>MJRefreshExample/MJRefreshExample.xcodeproj/project.xcworkspace</string>
+	<string>MJRefreshExample/MJRefreshExample.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>2A8CC76D0984F5186F869B6CBF35034B58A5ACD9</key>
