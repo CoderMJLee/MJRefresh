@@ -78,7 +78,7 @@
     } else if ([MJRefreshContentOffset isEqualToString:keyPath]) {
 #warning 这个返回一定要放这个位置
         // 如果正在刷新，直接返回
-        if (self.state == MJRefreshStateRefreshing) return;
+        if (self.state == MJRefreshStateRefreshing || self.endingRefresh) return;
         
         // 调整状态
         [self adjustStateWithContentOffset];

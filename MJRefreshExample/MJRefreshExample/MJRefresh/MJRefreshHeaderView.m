@@ -137,7 +137,7 @@
     if (!self.userInteractionEnabled || self.alpha <= 0.01 || self.hidden) return;
 
     // 如果正在刷新，直接返回
-    if (self.state == MJRefreshStateRefreshing) return;
+    if (self.state == MJRefreshStateRefreshing || self.endingRefresh) return;
 
     if ([MJRefreshContentOffset isEqualToString:keyPath]) {
         [self adjustStateWithContentOffset];

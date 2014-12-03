@@ -66,6 +66,8 @@ typedef enum {
 
 #pragma mark - 交给子类去实现 和 调用
 @property (assign, nonatomic) MJRefreshState state;
+/** 处于刷新结束的状态 */
+@property (readonly, getter=isEndingRefresh) BOOL endingRefresh;
 
 /**
  *  文字

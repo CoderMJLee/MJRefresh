@@ -17,6 +17,7 @@
     __weak UILabel *_statusLabel;
     __weak UIImageView *_arrowImage;
     __weak UIActivityIndicatorView *_activityView;
+    BOOL _endingRefresh;
 }
 @end
 
@@ -223,6 +224,9 @@
 		case MJRefreshStateNormal: // 普通状态
         {
             if (oldState == MJRefreshStateRefreshing) {
+                // 正在结束刷新
+                _endingRefresh = YES;
+                
                 [UIView animateWithDuration:MJRefreshSlowAnimationDuration * 0.6 animations:^{
                     self.activityView.alpha = 0.0;
                 } completion:^(BOOL finished) {
@@ -233,9 +237,6 @@
                     self.activityView.alpha = 1.0;
                 }];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJRefreshSlowAnimationDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{ // 等头部回去
-                    // 再次设置回normal
-//                    _state = MJRefreshStatePulling;
-//                    self.state = MJRefreshStateNormal;
                     // 显示箭头
                     self.arrowImage.hidden = NO;
                     
@@ -244,6 +245,9 @@
                     
                     // 设置文字
                     [self settingLabelText];
+                    
+                    // 结束刷新完毕
+                    _endingRefresh = NO;
                 });
                 // 直接返回
                 return;
