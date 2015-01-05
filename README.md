@@ -19,7 +19,7 @@ MJ友情提示
  
 ### 3.可以在MJRefreshConst.h和MJRefreshConst.m文件中自定义显示的文字内容和文字颜色
  
-### 4.本框架兼容iOS6\iOS7，iPhone\iPad横竖屏
+### 4.本框架兼容iOS6\iOS7\iOS8，iPhone\iPad横竖屏
  
 ### 5.自动进入刷新状态
     [self.tableView headerBeginRefreshing];
