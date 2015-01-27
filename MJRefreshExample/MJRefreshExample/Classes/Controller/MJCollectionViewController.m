@@ -151,6 +151,11 @@ NSString *const MJCollectionViewCellIdentifier = @"Cell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     MJTestViewController *test = [[MJTestViewController alloc] init];
-    [self.navigationController pushViewController:test animated:YES];
+    if (indexPath.row % 2) {
+        [self.navigationController pushViewController:test animated:YES];
+    } else {
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:test];
+        [self presentViewController:nav animated:YES completion:nil];
+    }
 }
 @end

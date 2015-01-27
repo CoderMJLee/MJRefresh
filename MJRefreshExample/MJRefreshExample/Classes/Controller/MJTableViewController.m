@@ -62,8 +62,6 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     NSLog(@"MJTableViewController--dealloc---");
 }
 
-
-
 /**
  *  集成刷新控件
  */
@@ -146,7 +144,12 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MJTestViewController *test = [[MJTestViewController alloc] init];
-    [self.navigationController pushViewController:test animated:YES];
+    if (indexPath.row % 2) {
+        [self.navigationController pushViewController:test animated:YES];
+    } else {
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:test];
+        [self presentViewController:nav animated:YES completion:nil];
+    }
 }
 
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
