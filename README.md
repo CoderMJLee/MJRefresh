@@ -33,6 +33,6 @@ The easiest way to use pull-to-refresh
 [self.tableView footerEndRefreshing];
 ```
 
-### 可以在MJRefreshConst.h和MJRefreshConst.m文件中自定义显示的文字内容和文字颜色
- 
-### 本框架兼容的系统>=iOS6.0，iPhone\iPad横竖屏
+### 其他
+* 可以在MJRefreshConst.h和MJRefreshConst.m文件中自定义显示的文字内容和文字颜色
+* 本框架兼容的系统>=iOS6.0，iPhone\iPad横竖屏
