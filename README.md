@@ -6,7 +6,7 @@ The easiest way to use pull-to-refresh
 ### 如何使用MJExtension
 * cocoapods导入：`pod 'MJRefresh'`
 * 手动导入：
-    * 将`MJRefreshExample/MJRefreshExample/MJRefresh文件夹`中的所有文件拽入项目中
+    * 将`MJRefreshExample/MJRefreshExample/MJRefresh`文件夹中的所有文件拽入项目中
     * 导入主头文件：`#import "MJRefresh.h"`
 ```objc
 MJRefresh.bundle
@@ -20,7 +20,7 @@ UIScrollView+MJRefresh.h    UIScrollView+MJRefresh.m
 UIView+MJExtension.h        UIView+MJExtension.m
 ```
 
-### 添加头部控件
+## 添加头部控件
 ```objc
 [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
 ```
@@ -29,7 +29,7 @@ UIView+MJExtension.h        UIView+MJExtension.m
 [self.tableView addHeaderWithCallback:^{ }];
 ```
  
-### 添加尾部控件
+## 添加尾部控件
 ```objc
 [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
 ```
@@ -38,21 +38,21 @@ UIView+MJExtension.h        UIView+MJExtension.m
 [self.tableView addFooterWithCallback:^{ }];
 ```
 
-### 自动进入刷新状态
+## 自动进入刷新状态
 ```objc
 [self.tableView headerBeginRefreshing];
 [self.tableView footerBeginRefreshing];
 ```
  
-### 结束刷新
+## 结束刷新
 ```objc
 [self.tableView headerEndRefreshing];
 [self.tableView footerEndRefreshing];
 ```
 
-### 可以在MJRefreshConst.h和MJRefreshConst.m文件中自定义显示的文字内容和文字颜色
+## 可以在MJRefreshConst.h和MJRefreshConst.m文件中自定义显示的文字内容和文字颜色
  
-### 本框架兼容的系统>=iOS6.0，iPhone\iPad横竖屏
+## 本框架兼容的系统>=iOS6.0，iPhone\iPad横竖屏
 
 ## 期待
 * 如果在使用过程中遇到BUG，希望你能Issues我，谢谢
