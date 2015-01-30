@@ -3,6 +3,23 @@ The easiest way to use pull-to-refresh
 
 ![(52326ce26803fabc46000000_18)](http://code4app.qiniudn.com/photo/52326ce26803fabc46000000_18.gif)
 
+### 如何使用MJExtension
+* cocoapods导入：`pod 'MJRefresh'`
+* 手动导入：
+    * 将`MJRefreshExample/MJRefreshExample/MJRefresh文件夹`中的所有文件拽入项目中
+    * 导入主头文件：`#import "MJRefresh.h"`
+```objc
+MJRefresh.bundle
+MJRefresh.h
+MJRefreshBaseView.h         MJRefreshBaseView.m
+MJRefreshConst.h            MJRefreshConst.m
+MJRefreshFooterView.h       MJRefreshFooterView.m
+MJRefreshHeaderView.h       MJRefreshHeaderView.m
+UIScrollView+MJExtension.h  UIScrollView+MJExtension.m
+UIScrollView+MJRefresh.h    UIScrollView+MJRefresh.m
+UIView+MJExtension.h        UIView+MJExtension.m
+```
+
 ### 添加头部控件
 ```objc
 [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing)];
