@@ -12,7 +12,7 @@
 #import "MJSampleIndex.h"
 #import "MJTableViewController.h"
 #import "MJCollectionViewController.h"
-
+#import "MJYiViewController.h"
 NSString *const MJSampleIndexCellIdentifier = @"Cell";
 
 @interface MJSampleIndexViewController ()
@@ -36,7 +36,8 @@ NSString *const MJSampleIndexCellIdentifier = @"Cell";
     // 2.初始化数据
     MJSampleIndex *si1 = [MJSampleIndex sampleIndexWithTitle:@"tableView刷新演示" controllerClass:[MJTableViewController class]];
     MJSampleIndex *si2 = [MJSampleIndex sampleIndexWithTitle:@"collectionView刷新演示" controllerClass:[MJCollectionViewController class]];
-    _sampleIndexs = @[si1, si2];
+    MJSampleIndex *si3 = [MJSampleIndex sampleIndexWithTitle:@"tableView分页刷新演示" controllerClass:[MJYiViewController class]];
+    _sampleIndexs = @[si1, si2,si3];
 }
 
 #pragma mark - Table view data source
