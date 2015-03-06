@@ -81,3 +81,4 @@ UIView+MJExtension.h        UIView+MJExtension.m
 * 如果在使用过程中遇到BUG，希望你能Issues我，谢谢（或者尝试下载最新的框架代码看看BUG修复没有）
 * 如果在使用过程中发现功能不够用，希望你能Issues我，我非常想为这个框架增加更多好用的功能，谢谢
 * 如果你想为MJRefresh输出代码，请拼命Pull Requests我
+* 一起携手打造天朝乃至世界最好用的刷新框架，做天朝程序员的骄傲
