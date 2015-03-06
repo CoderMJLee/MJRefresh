@@ -61,6 +61,9 @@
 #pragma mark - 初始化方法
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        // 默认底部控件100%出现时才会自动刷新
+        self.appearencePercentTriggerAutoRefresh = 1.0;
+        
         // 设置为默认状态
         self.automaticallyRefresh = YES;
         self.state = MJRefreshFooterStateIdle;
@@ -112,11 +115,11 @@
     // 根据contentOffset调整state
     if ([keyPath isEqualToString:MJRefreshPanState]) {
         if (_scrollView.panGestureRecognizer.state == UIGestureRecognizerStateEnded) {// 手松开
-            if (_scrollView.mj_insetT + _scrollView.mj_insetB + _scrollView.mj_contentSizeH <= _scrollView.mj_h) {  // 不够一个屏幕
+            if (_scrollView.mj_insetT + _scrollView.mj_contentSizeH <= _scrollView.mj_h) {  // 不够一个屏幕
                 if (_scrollView.mj_offsetY > - _scrollView.mj_insetT) { // 向上拽
                     self.state = MJRefreshFooterStateRefreshing;
                 }
-            } else {
+            } else { // 超出一个屏幕
                 if (_scrollView.mj_offsetY > self.mj_y + _scrollView.mj_insetB - _scrollView.mj_h) {
                     self.state = MJRefreshFooterStateRefreshing;
                 }
@@ -136,10 +139,9 @@
 {
     if (self.mj_y == 0) return;
     
-    if (_scrollView.mj_insetT + _scrollView.mj_insetB + _scrollView.mj_contentSizeH >
-        _scrollView.mj_h) { // 内容超过一个屏幕
-        CGPoint point = [self convertPoint:self.bounds.origin toView:nil];
-        if (CGRectContainsPoint(self.window.bounds, point)) {
+    if (_scrollView.mj_insetT + _scrollView.mj_contentSizeH > _scrollView.mj_h) { // 内容超过一个屏幕
+        if (_scrollView.mj_offsetY > self.mj_y - _scrollView.mj_h + self.mj_h * self.appearencePercentTriggerAutoRefresh) {
+            // 当底部刷新控件完全出现时，才刷新
             self.state = MJRefreshFooterStateRefreshing;
         }
     }

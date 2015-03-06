@@ -281,6 +281,9 @@ static const CGFloat MJDuration = 2.0;
     // 添加动画图片的上拉刷新
     [self.tableView addGifFooter];
     
+    // 当上拉刷新控件出现50%时（出现一半），就会自动刷新。这个值默认是1.0（也就是上拉刷新100%出现时，才会自动刷新）
+//    self.tableView.footer.appearencePercentTriggerAutoRefresh = 0.5;
+    
     // 隐藏状态
     self.tableView.footer.stateHidden = YES;
     
