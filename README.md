@@ -24,7 +24,8 @@ UIView+MJExtension.h        UIView+MJExtension.m
 
 ## 具体用法
 ```objc
-由于这个框架的功能较多，就不写具体文字描述其用法，大家可以直接参考示例中的JTableViewController和MJCollectionViewController，更为直观快速
+* 由于这个框架的功能较多，就不写具体文字描述其用法
+* 大家可以直接参考示例中的JTableViewController和MJCollectionViewController，更为直观快速
 ```
  
 ## 下拉刷新01-传统
