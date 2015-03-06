@@ -1,8 +1,6 @@
 ## MJRefresh
 The easiest way to use pull-to-refresh
 
-![(52326ce26803fabc46000000_18)](http://code4app.qiniudn.com/photo/52326ce26803fabc46000000_18.gif)
-
 ## 如何使用MJRefresh
 * cocoapods导入：`pod 'MJRefresh'`
 * 手动导入：
