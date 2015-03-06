@@ -9,14 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @interface UIScrollView (MJExtension)
-@property (assign, nonatomic) CGFloat mj_contentInsetTop;
-@property (assign, nonatomic) CGFloat mj_contentInsetBottom;
-@property (assign, nonatomic) CGFloat mj_contentInsetLeft;
-@property (assign, nonatomic) CGFloat mj_contentInsetRight;
+@property (assign, nonatomic) CGFloat mj_insetT;
+@property (assign, nonatomic) CGFloat mj_insetB;
+@property (assign, nonatomic) CGFloat mj_insetL;
+@property (assign, nonatomic) CGFloat mj_insetR;
 
-@property (assign, nonatomic) CGFloat mj_contentOffsetX;
-@property (assign, nonatomic) CGFloat mj_contentOffsetY;
+@property (assign, nonatomic) CGFloat mj_offsetX;
+@property (assign, nonatomic) CGFloat mj_offsetY;
 
-@property (assign, nonatomic) CGFloat mj_contentSizeWidth;
-@property (assign, nonatomic) CGFloat mj_contentSizeHeight;
+@property (assign, nonatomic) CGFloat mj_contentSizeW;
+@property (assign, nonatomic) CGFloat mj_contentSizeH;
 @end

@@ -33,26 +33,26 @@
     return self.frame.origin.y;
 }
 
-- (void)setMj_width:(CGFloat)mj_width
+- (void)setMj_w:(CGFloat)mj_w
 {
     CGRect frame = self.frame;
-    frame.size.width = mj_width;
+    frame.size.width = mj_w;
     self.frame = frame;
 }
 
-- (CGFloat)mj_width
+- (CGFloat)mj_w
 {
     return self.frame.size.width;
 }
 
-- (void)setMj_height:(CGFloat)mj_height
+- (void)setMj_h:(CGFloat)mj_h
 {
     CGRect frame = self.frame;
-    frame.size.height = mj_height;
+    frame.size.height = mj_h;
     self.frame = frame;
 }
 
-- (CGFloat)mj_height
+- (CGFloat)mj_h
 {
     return self.frame.size.height;
 }

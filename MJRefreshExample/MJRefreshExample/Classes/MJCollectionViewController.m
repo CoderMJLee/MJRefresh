@@ -1,0 +1,137 @@
+//
+//  MJCollectionViewController.m
+//  MJRefreshExample
+//
+//  Created by MJ Lee on 15/3/6.
+//  Copyright (c) 2015年 itcast. All rights reserved.
+//
+
+#import "MJCollectionViewController.h"
+#import "MJTestViewController.h"
+#import "MJRefresh.h"
+
+static const CGFloat MJDuration = 2.0;
+/**
+ * 随机色
+ */
+#define MJRandomColor [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1]
+
+@interface MJCollectionViewController()
+/** 存放假数据 */
+@property (strong, nonatomic) NSMutableArray *colors;
+@end
+
+@implementation MJCollectionViewController
+#pragma mark - 示例
+/**
+ * UICollectionView 上下拉刷新
+ */
+- (void)example21
+{
+    __weak typeof(self) weakSelf = self;
+    
+    // 下拉刷新
+    [self.collectionView addLegendHeader];
+    self.collectionView.header.refreshingBlock = ^{
+        // 增加5条假数据
+        for (int i = 0; i<5; i++) {
+            [weakSelf.colors insertObject:MJRandomColor atIndex:0];
+        }
+        
+        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf.collectionView reloadData];
+            
+            // 结束刷新
+            [weakSelf.collectionView.header endRefreshing];
+        });
+    };
+    [self.collectionView.header beginRefreshing];
+    
+    // 上拉刷新
+    [self.collectionView addLegendFooter];
+    self.collectionView.footer.refreshingBlock = ^{
+        // 增加5条假数据
+        for (int i = 0; i<5; i++) {
+            [weakSelf.colors addObject:MJRandomColor];
+        }
+        
+        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf.collectionView reloadData];
+            
+            // 结束刷新
+            [weakSelf.collectionView.footer endRefreshing];
+        });
+    };
+}
+
+#pragma mark - 数据相关
+- (NSMutableArray *)colors
+{
+    if (!_colors) {
+        self.colors = [NSMutableArray array];
+        
+        for (int i = 0; i<5; i++) {
+            // 添加随机色
+            [self.colors addObject:MJRandomColor];
+        }
+    }
+    return _colors;
+}
+
+#pragma mark - 其他
+- (void)dealloc
+{
+    MJLog(@"%@销毁了", [self class]);
+}
+
+/**
+ *  初始化
+ */
+- (id)init
+{
+    // UICollectionViewFlowLayout的初始化（与刷新控件无关）
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    layout.itemSize = CGSizeMake(80, 80);
+    layout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
+    layout.minimumInteritemSpacing = 20;
+    layout.minimumLineSpacing = 20;
+    return [self initWithCollectionViewLayout:layout];
+}
+
+static NSString *const MJCollectionViewCellIdentifier = @"color";
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.collectionView.backgroundColor = [UIColor whiteColor];
+    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:MJCollectionViewCellIdentifier];
+    
+    [self performSelector:NSSelectorFromString(self.method) withObject:nil];
+}
+
+#pragma mark - collection数据源代理
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return self.colors.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:MJCollectionViewCellIdentifier forIndexPath:indexPath];
+    cell.backgroundColor = self.colors[indexPath.row];
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    MJTestViewController *test = [[MJTestViewController alloc] init];
+    if (indexPath.row % 2) {
+        [self.navigationController pushViewController:test animated:YES];
+    } else {
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:test];
+        [self presentViewController:nav animated:YES completion:nil];
+    }
+}
+@end

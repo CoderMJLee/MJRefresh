@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0510"
+   LastUpgradeVersion = "0610"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2D9CAF66192FAD750011F500"
+               BlueprintIdentifier = "2DA7F9241AA6B4C4005627AB"
                BuildableName = "MJRefreshExample.app"
                BlueprintName = "MJRefreshExample"
+               ReferencedContainer = "container:MJRefreshExample.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2DA7F93D1AA6B4C4005627AB"
+               BuildableName = "MJRefreshExampleTests.xctest"
+               BlueprintName = "MJRefreshExampleTests"
                ReferencedContainer = "container:MJRefreshExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,7 +46,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2D9CAF87192FAD750011F500"
+               BlueprintIdentifier = "2DA7F93D1AA6B4C4005627AB"
                BuildableName = "MJRefreshExampleTests.xctest"
                BlueprintName = "MJRefreshExampleTests"
                ReferencedContainer = "container:MJRefreshExample.xcodeproj">
@@ -42,7 +56,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2D9CAF66192FAD750011F500"
+            BlueprintIdentifier = "2DA7F9241AA6B4C4005627AB"
             BuildableName = "MJRefreshExample.app"
             BlueprintName = "MJRefreshExample"
             ReferencedContainer = "container:MJRefreshExample.xcodeproj">
@@ -61,7 +75,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2D9CAF66192FAD750011F500"
+            BlueprintIdentifier = "2DA7F9241AA6B4C4005627AB"
             BuildableName = "MJRefreshExample.app"
             BlueprintName = "MJRefreshExample"
             ReferencedContainer = "container:MJRefreshExample.xcodeproj">
@@ -79,7 +93,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2D9CAF66192FAD750011F500"
+            BlueprintIdentifier = "2DA7F9241AA6B4C4005627AB"
             BuildableName = "MJRefreshExample.app"
             BlueprintName = "MJRefreshExample"
             ReferencedContainer = "container:MJRefreshExample.xcodeproj">
