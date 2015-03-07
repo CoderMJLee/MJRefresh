@@ -141,7 +141,7 @@
     if (self.mj_y == 0) return;
     
     if (_scrollView.mj_insetT + _scrollView.mj_contentSizeH > _scrollView.mj_h) { // 内容超过一个屏幕
-        if (_scrollView.mj_offsetY > self.mj_y - _scrollView.mj_h + self.mj_h * self.appearencePercentTriggerAutoRefresh) {
+        if (_scrollView.mj_offsetY > self.mj_y - _scrollView.mj_h + self.mj_h * self.appearencePercentTriggerAutoRefresh + _scrollView.mj_insetB - self.mj_h) {
             // 当底部刷新控件完全出现时，才刷新
             self.state = MJRefreshFooterStateRefreshing;
         }
