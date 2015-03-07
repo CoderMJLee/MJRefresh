@@ -1,4 +1,5 @@
-//
+//  代码地址: https://github.com/CoderMJLee/MJRefresh
+//  代码地址: http://code4app.com/ios/%E5%BF%AB%E9%80%9F%E9%9B%86%E6%88%90%E4%B8%8B%E6%8B%89%E4%B8%8A%E6%8B%89%E5%88%B7%E6%96%B0/52326ce26803fabc46000000
 //  UIScrollView+MJRefresh.h
 //  MJRefreshExample
 //
@@ -32,6 +33,9 @@
 - (void)addGifHeader;
 
 #pragma mark - 移除下拉刷新控件
+/**
+ * 移除下拉刷新控件
+ */
 - (void)removeHeader;
 
 #pragma mark - 访问上拉刷新控件
@@ -53,6 +57,9 @@
 - (void)addGifFooter;
 
 #pragma mark - 移除上拉刷新控件
+/**
+ * 移除上拉刷新控件
+ */
 - (void)removeFooter;
 @end
 
@@ -94,22 +101,22 @@
 /**
  *  主动让下拉刷新头部控件进入刷新状态
  */
-- (void)headerBeginRefreshing MJDeprecated("建议直接使用[self.header beginRefreshing]");
+- (void)headerBeginRefreshing MJDeprecated("建议直接使用[self.tableView.header beginRefreshing]");
 
 /**
  *  让下拉刷新头部控件停止刷新状态
  */
-- (void)headerEndRefreshing MJDeprecated("建议直接使用[self.header endRefreshing]");
+- (void)headerEndRefreshing MJDeprecated("建议直接使用[self.tableView.header endRefreshing]");
 
 /**
  *  下拉刷新头部控件的可见性
  */
-@property (nonatomic, assign, getter = isHeaderHidden) BOOL headerHidden MJDeprecated("建议直接使用self.header.hidden");
+@property (nonatomic, assign, getter = isHeaderHidden) BOOL headerHidden MJDeprecated("建议直接使用self.tableView.header.hidden");
 
 /**
  *  是否正在下拉刷新
  */
-@property (nonatomic, assign, readonly, getter = isHeaderRefreshing) BOOL headerRefreshing MJDeprecated("建议直接使用self.header.isRefreshing");
+@property (nonatomic, assign, readonly, getter = isHeaderRefreshing) BOOL headerRefreshing MJDeprecated("建议直接使用self.tableView.header.isRefreshing");
 
 #pragma mark - 上拉刷新
 /**
@@ -130,20 +137,20 @@
 /**
  *  主动让上拉刷新尾部控件进入刷新状态
  */
-- (void)footerBeginRefreshing MJDeprecated("建议直接使用[self.footer beginRefreshing]");
+- (void)footerBeginRefreshing MJDeprecated("建议直接使用[self.tableView.footer beginRefreshing]");
 
 /**
  *  让上拉刷新尾部控件停止刷新状态
  */
-- (void)footerEndRefreshing MJDeprecated("建议直接使用[self.footer endRefreshing]");
+- (void)footerEndRefreshing MJDeprecated("建议直接使用[self.tableView.footer endRefreshing]");
 
 /**
  *  上拉刷新头部控件的可见性
  */
-@property (nonatomic, assign, getter = isFooterHidden) BOOL footerHidden MJDeprecated("建议直接使用self.footer.hidden");
+@property (nonatomic, assign, getter = isFooterHidden) BOOL footerHidden MJDeprecated("建议直接使用self.tableView.footer.hidden");
 
 /**
  *  是否正在上拉刷新
  */
-@property (nonatomic, assign, readonly, getter = isFooterRefreshing) BOOL footerRefreshing MJDeprecated("建议直接使用self.footer.isRefreshing");
+@property (nonatomic, assign, readonly, getter = isFooterRefreshing) BOOL footerRefreshing MJDeprecated("建议直接使用self.tableView.footer.isRefreshing");
 @end
