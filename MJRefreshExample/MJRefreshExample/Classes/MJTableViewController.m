@@ -180,17 +180,13 @@ static const CGFloat MJDuration = 2.0;
     }
     [self.tableView.gifHeader setImages:idleImages forState:MJRefreshHeaderStateIdle];
     
-    // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
+    // 设置正在刷新状态的动画图片
     NSMutableArray *refreshingImages = [NSMutableArray array];
     for (NSUInteger i = 1; i<=3; i++) {
         UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"dropdown_loading_0%zd", i]];
         [refreshingImages addObject:image];
     }
-    [self.tableView.gifHeader setImages:refreshingImages forState:MJRefreshHeaderStatePulling];
-    
-    // 设置正在刷新状态的动画图片
     [self.tableView.gifHeader setImages:refreshingImages forState:MJRefreshHeaderStateRefreshing];
-    // 在这个例子中，即将刷新 和 正在刷新 用的是一样的动画图片
     
     // 马上进入刷新状态
     [self.tableView.header beginRefreshing];
