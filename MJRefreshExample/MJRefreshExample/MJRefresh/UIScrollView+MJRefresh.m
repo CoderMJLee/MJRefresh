@@ -16,19 +16,31 @@
 
 @implementation UIScrollView (MJRefresh)
 #pragma mark - 下拉刷新
-- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action
+- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingBlock:(void (^)())block dateKey:(NSString *)dateKey
+{
+    MJRefreshLegendHeader *header = [self addLegendHeader];
+    header.refreshingBlock = block;
+    header.dateKey = dateKey;
+    return header;
+}
+
+- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action dateKey:(NSString *)dateKey
 {
     MJRefreshLegendHeader *header = [self addLegendHeader];
     header.refreshingTarget = target;
     header.refreshingAction = action;
+    header.dateKey = dateKey;
     return header;
+}
+
+- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action
+{
+    return [self addLegendHeaderWithRefreshingTarget:target refreshingAction:action dateKey:nil];
 }
 
 - (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingBlock:(void (^)())block
 {
-    MJRefreshLegendHeader *header = [self addLegendHeader];
-    header.refreshingBlock = block;
-    return header;
+    return [self addLegendHeaderWithRefreshingBlock:block dateKey:nil];
 }
 
 - (MJRefreshLegendHeader *)addLegendHeader
@@ -42,19 +54,31 @@
     return header;
 }
 
-- (MJRefreshGifHeader *)addGifHeaderWithRefreshingBlock:(void (^)())block
+- (MJRefreshGifHeader *)addGifHeaderWithRefreshingBlock:(void (^)())block dateKey:(NSString *)dateKey
 {
     MJRefreshGifHeader *header = [self addGifHeader];
     header.refreshingBlock = block;
+    header.dateKey = dateKey;
     return header;
 }
 
-- (MJRefreshGifHeader *)addGifHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action
+- (MJRefreshGifHeader *)addGifHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action dateKey:(NSString *)dateKey
 {
     MJRefreshGifHeader *header = [self addGifHeader];
     header.refreshingTarget = target;
     header.refreshingAction = action;
+    header.dateKey = dateKey;
     return header;
+}
+
+- (MJRefreshGifHeader *)addGifHeaderWithRefreshingBlock:(void (^)())block
+{
+    return [self addGifHeaderWithRefreshingBlock:block dateKey:nil];
+}
+
+- (MJRefreshGifHeader *)addGifHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action
+{
+    return [self addGifHeaderWithRefreshingTarget:target refreshingAction:action dateKey:nil];
 }
 
 - (MJRefreshGifHeader *)addGifHeader
