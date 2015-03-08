@@ -44,7 +44,7 @@ UIView+MJExtension.h        UIView+MJExtension.m
 ![(下拉刷新05-隐藏状态和时间02)](http://images.cnitblog.com/blog2015/497279/201503/061059030865069.gif)
  
 ## 下拉刷新06-自定义文字
-![(下拉刷新06-自定义文字)](http://images.cnitblog.com/blog2015/497279/201503/061059084149730.gif)
+![(下拉刷新06-自定义文字)](http://images.cnitblog.com/blog2015/497279/201503/081014254613179.gif)
  
 ## 上拉刷新01-传统
 ![(上拉刷新01-传统)](http://images.cnitblog.com/blog2015/497279/201503/061101472745361.gif)
@@ -65,7 +65,7 @@ UIView+MJExtension.h        UIView+MJExtension.m
 ![(上拉刷新06-禁止自动加载)](http://images.cnitblog.com/blog2015/497279/201503/061058237119539.gif)
  
 ## 上拉刷新07-自定义文字
-![(上拉刷新07-自定义文字)](http://images.cnitblog.com/blog2015/497279/201503/061058299618115.gif)
+![(上拉刷新07-自定义文字)](http://images.cnitblog.com/blog2015/497279/201503/081014395552618.gif)
  
 ## 上拉刷新08-加载后隐藏
 ![(上拉刷新08-加载后隐藏)](http://images.cnitblog.com/blog2015/497279/201503/061058360395406.gif)
