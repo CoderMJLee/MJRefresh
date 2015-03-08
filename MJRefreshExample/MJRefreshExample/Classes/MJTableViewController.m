@@ -203,9 +203,9 @@ static const CGFloat MJDuration = 2.0;
     [self.tableView addLegendHeader];
     
     // 设置文字
-    [self.tableView.header setTitle:@"下拉can刷新噻" forState:MJRefreshHeaderStateIdle];
-    [self.tableView.header setTitle:@"一放手马上刷新咯" forState:MJRefreshHeaderStatePulling];
-    [self.tableView.header setTitle:@"MJ哥正在帮你刷新..." forState:MJRefreshHeaderStateRefreshing];
+    [self.tableView.header setTitle:@"Pull down to refresh" forState:MJRefreshHeaderStateIdle];
+    [self.tableView.header setTitle:@"Release to refresh" forState:MJRefreshHeaderStatePulling];
+    [self.tableView.header setTitle:@"Loading ..." forState:MJRefreshHeaderStateRefreshing];
     
     // 设置字体
     self.tableView.header.font = [UIFont systemFontOfSize:15];
@@ -377,9 +377,9 @@ static const CGFloat MJDuration = 2.0;
     [self.tableView addLegendFooter];
     
     // 设置文字
-    [self.tableView.footer setTitle:@"轻点或者轻拽可加载更多" forState:MJRefreshFooterStateIdle];
-    [self.tableView.footer setTitle:@"MJ哥正在帮你加载..." forState:MJRefreshFooterStateRefreshing];
-    [self.tableView.footer setTitle:@"没有再多的数据了" forState:MJRefreshFooterStateNoMoreData];
+    [self.tableView.footer setTitle:@"Click or drag up to refresh" forState:MJRefreshFooterStateIdle];
+    [self.tableView.footer setTitle:@"Loading more ..." forState:MJRefreshFooterStateRefreshing];
+    [self.tableView.footer setTitle:@"No more data" forState:MJRefreshFooterStateNoMoreData];
     
     // 设置字体
     self.tableView.footer.font = [UIFont systemFontOfSize:17];
