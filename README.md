@@ -30,49 +30,150 @@ UIView+MJExtension.h        UIView+MJExtension.m
  
 ## 下拉刷新01-传统
 ![(下拉刷新01-传统)](http://images.cnitblog.com/blog2015/497279/201503/061058415392353.gif)
+```objc
+// 添加传统的下拉刷新
+[self.tableView addLegendHeaderWithRefreshingBlock:^{
+   // 进入刷新状态后会自动调用这个block
+}];
+或
+// 添加传统的下拉刷新
+// 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
+[self.tableView addLegendHeaderWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+
+// 马上进入刷新状态
+[self.tableView.header beginRefreshing];
+```
  
 ## 下拉刷新02-动画图片
 ![(下拉刷新02-动画图片)](http://images.cnitblog.com/blog2015/497279/201503/061058471802342.gif)
+```objc
+// 添加动画图片的下拉刷新
+// 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
+[self.tableView addGifHeaderWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+// 设置普通状态的动画图片
+[self.tableView.gifHeader setImages:idleImages forState:MJRefreshHeaderStateIdle];
+// 设置即将刷新状态的动画图片（一松开就会刷新的状态）
+[self.tableView.gifHeader setImages:pullingImages forState:MJRefreshHeaderStatePulling];
+// 设置正在刷新状态的动画图片
+[self.tableView.gifHeader setImages:refreshingImages forState:MJRefreshHeaderStateRefreshing];
+```
  
 ## 下拉刷新03-隐藏时间
 ![(下拉刷新03-隐藏时间)](http://images.cnitblog.com/blog2015/497279/201503/061058524778760.gif)
+```objc
+// 隐藏时间
+self.tableView.header.updatedTimeHidden = YES;
+```
  
 ## 下拉刷新04-隐藏状态和时间01
 ![(下拉刷新04-隐藏状态和时间01)](http://images.cnitblog.com/blog2015/497279/201503/061058576024893.gif)
+```objc
+// 隐藏时间
+self.tableView.header.updatedTimeHidden = YES;
+// 隐藏状态
+self.tableView.header.stateHidden = YES;
+```
  
 ## 下拉刷新05-隐藏状态和时间02
 ![(下拉刷新05-隐藏状态和时间02)](http://images.cnitblog.com/blog2015/497279/201503/061059030865069.gif)
  
 ## 下拉刷新06-自定义文字
 ![(下拉刷新06-自定义文字)](http://images.cnitblog.com/blog2015/497279/201503/081014254613179.gif)
+```objc
+// 设置文字
+[self.tableView.header setTitle:@"Pull down to refresh" forState:MJRefreshHeaderStateIdle];
+[self.tableView.header setTitle:@"Release to refresh" forState:MJRefreshHeaderStatePulling];
+[self.tableView.header setTitle:@"Loading ..." forState:MJRefreshHeaderStateRefreshing];
+
+// 设置字体
+self.tableView.header.font = [UIFont systemFontOfSize:15];
+
+// 设置颜色
+self.tableView.header.textColor = [UIColor redColor];
+```
  
 ## 上拉刷新01-传统
 ![(上拉刷新01-传统)](http://images.cnitblog.com/blog2015/497279/201503/061101472745361.gif)
+```objc
+// 添加传统的上拉刷新
+[self.tableView addLegendFooterWithRefreshingBlock:^{
+   // 进入刷新状态后会自动调用这个block
+}];
+或
+// 添加传统的上拉刷新
+// 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
+[self.tableView addLegendFooterWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+```
  
 ## 上拉刷新02-动画图片
 ![(上拉刷新02-动画图片)](http://images.cnitblog.com/blog2015/497279/201503/061056372743988.gif)
+```objc
+// 添加动画图片的上拉刷新
+// 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
+[self.tableView addGifFooterWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+
+// 设置正在刷新状态的动画图片
+self.tableView.gifFooter.refreshingImages = refreshingImages;
+```
  
 ## 上拉刷新03-隐藏状态01
 ![(上拉刷新03-隐藏状态01)](http://images.cnitblog.com/blog2015/497279/201503/061102028365517.gif)
+```objc
+// 隐藏状态
+self.tableView.footer.stateHidden = YES;
+```
  
 ## 上拉刷新04-隐藏状态02
 ![(上拉刷新04-隐藏状态02)](http://images.cnitblog.com/blog2015/497279/201503/061058093525085.gif)
  
 ## 上拉刷新05-全部加载完毕
 ![(上拉刷新05-全部加载完毕)](http://images.cnitblog.com/blog2015/497279/201503/061058172117420.gif)
- 
+```objc
+// 变为没有更多数据的状态
+[self.tableView.footer noticeNoMoreData];
+```
+
 ## 上拉刷新06-禁止自动加载
 ![(上拉刷新06-禁止自动加载)](http://images.cnitblog.com/blog2015/497279/201503/061058237119539.gif)
+```objc
+// 禁止自动加载
+self.tableView.footer.automaticallyRefresh = NO;
+```
  
 ## 上拉刷新07-自定义文字
 ![(上拉刷新07-自定义文字)](http://images.cnitblog.com/blog2015/497279/201503/081014395552618.gif)
+```objc
+// 设置文字
+[self.tableView.footer setTitle:@"Click or drag up to refresh" forState:MJRefreshFooterStateIdle];
+[self.tableView.footer setTitle:@"Loading more ..." forState:MJRefreshFooterStateRefreshing];
+[self.tableView.footer setTitle:@"No more data" forState:MJRefreshFooterStateNoMoreData];
+
+// 设置字体
+self.tableView.footer.font = [UIFont systemFontOfSize:17];
+
+// 设置颜色
+self.tableView.footer.textColor = [UIColor blueColor];
+```
  
 ## 上拉刷新08-加载后隐藏
 ![(上拉刷新08-加载后隐藏)](http://images.cnitblog.com/blog2015/497279/201503/061058360395406.gif)
+```objc
+// 隐藏当前的上拉刷新控件
+self.tableView.footer.hidden = YES;
+```
  
 ## UICollectionView01-上下拉刷新
 ![(UICollectionView01-上下拉刷新)](http://images.cnitblog.com/blog2015/497279/201503/061103282897223.gif)
-
+```objc
+// 添加传统的下拉刷新
+[self.collectionView addLegendHeaderWithRefreshingBlock:^{
+   // 进入刷新状态后会自动调用这个block
+}];
+// 添加传统的上拉刷新
+[self.collectionView addLegendFooterWithRefreshingBlock:^{
+   // 进入刷新状态后会自动调用这个block
+}];
+```
 
 ## 提醒
 * 本框架兼容的系统>=iOS6.0，iPhone\iPad横竖屏
