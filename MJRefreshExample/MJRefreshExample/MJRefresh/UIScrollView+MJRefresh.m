@@ -16,22 +16,56 @@
 
 @implementation UIScrollView (MJRefresh)
 #pragma mark - 下拉刷新
-- (void)addLegendHeader
+- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action
+{
+    MJRefreshLegendHeader *header = [self addLegendHeader];
+    header.refreshingTarget = target;
+    header.refreshingAction = action;
+    return header;
+}
+
+- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingBlock:(void (^)())block
+{
+    MJRefreshLegendHeader *header = [self addLegendHeader];
+    header.refreshingBlock = block;
+    return header;
+}
+
+- (MJRefreshLegendHeader *)addLegendHeader
 {
     [self removeHeader];
     
     MJRefreshLegendHeader *header = [[MJRefreshLegendHeader alloc] init];
     [self addSubview:header];
     self.legendHeader = header;
+    
+    return header;
 }
 
-- (void)addGifHeader
+- (MJRefreshGifHeader *)addGifHeaderWithRefreshingBlock:(void (^)())block
+{
+    MJRefreshGifHeader *header = [self addGifHeader];
+    header.refreshingBlock = block;
+    return header;
+}
+
+- (MJRefreshGifHeader *)addGifHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action
+{
+    MJRefreshGifHeader *header = [self addGifHeader];
+    header.refreshingTarget = target;
+    header.refreshingAction = action;
+    return header;
+}
+
+- (MJRefreshGifHeader *)addGifHeader
 {
     [self removeHeader];
     
     MJRefreshGifHeader *header = [[MJRefreshGifHeader alloc] init];
     [self addSubview:header];
     self.gifHeader = header;
+    
+    return header;
 }
 
 - (void)removeHeader
@@ -80,22 +114,56 @@ static char MJRefreshLegendHeaderKey;
 }
 
 #pragma mark - 上拉刷新
-- (void)addLegendFooter
+- (MJRefreshLegendFooter *)addLegendFooterWithRefreshingBlock:(void (^)())block
+{
+    MJRefreshLegendFooter *footer = [self addLegendFooter];
+    footer.refreshingBlock = block;
+    return footer;
+}
+
+- (MJRefreshLegendFooter *)addLegendFooterWithRefreshingTarget:(id)target refreshingAction:(SEL)action
+{
+    MJRefreshLegendFooter *footer = [self addLegendFooter];
+    footer.refreshingTarget = target;
+    footer.refreshingAction = action;
+    return footer;
+}
+
+- (MJRefreshLegendFooter *)addLegendFooter
 {
     [self removeFooter];
     
     MJRefreshLegendFooter *footer = [[MJRefreshLegendFooter alloc] init];
     [self addSubview:footer];
     self.legendFooter = footer;
+    
+    return footer;
 }
 
-- (void)addGifFooter
+- (MJRefreshGifFooter *)addGifFooterWithRefreshingBlock:(void (^)())block
+{
+    MJRefreshGifFooter *footer = [self addGifFooter];
+    footer.refreshingBlock = block;
+    return footer;
+}
+
+- (MJRefreshGifFooter *)addGifFooterWithRefreshingTarget:(id)target refreshingAction:(SEL)action
+{
+    MJRefreshGifFooter *footer = [self addGifFooter];
+    footer.refreshingTarget = target;
+    footer.refreshingAction = action;
+    return footer;
+}
+
+- (MJRefreshGifFooter *)addGifFooter
 {
     [self removeFooter];
     
     MJRefreshGifFooter *footer = [[MJRefreshGifFooter alloc] init];
     [self addSubview:footer];
     self.gifFooter = footer;
+    
+    return footer;
 }
 
 - (void)removeFooter

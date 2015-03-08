@@ -26,11 +26,37 @@
 /**
  * 添加一个传统的下拉刷新控件
  */
-- (void)addLegendHeader;
+- (MJRefreshLegendHeader *)addLegendHeader;
+/**
+ * 添加一个传统的下拉刷新控件
+ *
+ * @param block 进入刷新状态就会自动调用这个block
+ */
+- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingBlock:(void (^)())block;
+/**
+ * 添加一个传统的下拉刷新控件
+ *
+ * @param target 进入刷新状态就会自动调用target对象的action方法
+ * @param action 进入刷新状态就会自动调用target对象的action方法
+ */
+- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
 /**
  * 添加一个gif图片的下拉刷新控件
  */
-- (void)addGifHeader;
+- (MJRefreshGifHeader *)addGifHeader;
+/**
+ * 添加一个gif图片的下拉刷新控件
+ *
+ * @param block 进入刷新状态就会自动调用这个block
+ */
+- (MJRefreshGifHeader *)addGifHeaderWithRefreshingBlock:(void (^)())block;
+/**
+ * 添加一个gif图片的下拉刷新控件
+ *
+ * @param target 进入刷新状态就会自动调用target对象的action方法
+ * @param action 进入刷新状态就会自动调用target对象的action方法
+ */
+- (MJRefreshGifHeader *)addGifHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
 
 #pragma mark - 移除下拉刷新控件
 /**
@@ -50,11 +76,37 @@
 /**
  * 添加一个传统的上拉刷新控件
  */
-- (void)addLegendFooter;
+- (MJRefreshLegendFooter *)addLegendFooter;
+/**
+ * 添加一个传统的上拉刷新控件
+ *
+ * @param block 进入刷新状态就会自动调用这个block
+ */
+- (MJRefreshLegendFooter *)addLegendFooterWithRefreshingBlock:(void (^)())block;
+/**
+ * 添加一个传统的上拉刷新控件
+ *
+ * @param target 进入刷新状态就会自动调用target对象的action方法
+ * @param action 进入刷新状态就会自动调用target对象的action方法
+ */
+- (MJRefreshLegendFooter *)addLegendFooterWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
 /**
  * 添加一个gif图片的上拉刷新控件
  */
-- (void)addGifFooter;
+- (MJRefreshGifFooter *)addGifFooter;
+/**
+ * 添加一个gif图片的上拉刷新控件
+ *
+ * @param block 进入刷新状态就会自动调用这个block
+ */
+- (MJRefreshGifFooter *)addGifFooterWithRefreshingBlock:(void (^)())block;
+/**
+ * 添加一个gif图片的上拉刷新控件
+ *
+ * @param target 进入刷新状态就会自动调用target对象的action方法
+ * @param action 进入刷新状态就会自动调用target对象的action方法
+ */
+- (MJRefreshGifFooter *)addGifFooterWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
 
 #pragma mark - 移除上拉刷新控件
 /**
