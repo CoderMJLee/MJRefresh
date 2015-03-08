@@ -22,10 +22,20 @@
 @property (weak, nonatomic) UIButton *loadMoreButton;
 /** 没有更多的数据 */
 @property (weak, nonatomic) UILabel *noMoreLabel;
+/** 即将要执行的代码 */
+@property (strong, nonatomic) NSMutableArray *willExecuteBlocks;
 @end
 
 @implementation MJRefreshFooter
 #pragma mark - 懒加载
+- (NSMutableArray *)willExecuteBlocks
+{
+    if (!_willExecuteBlocks) {
+        self.willExecuteBlocks = [NSMutableArray array];
+    }
+    return _willExecuteBlocks;
+}
+
 - (UIButton *)loadMoreButton
 {
     if (!_loadMoreButton) {
@@ -118,11 +128,11 @@
         if (_scrollView.panGestureRecognizer.state == UIGestureRecognizerStateEnded) {// 手松开
             if (_scrollView.mj_insetT + _scrollView.mj_contentSizeH <= _scrollView.mj_h) {  // 不够一个屏幕
                 if (_scrollView.mj_offsetY > - _scrollView.mj_insetT) { // 向上拽
-                    self.state = MJRefreshFooterStateRefreshing;
+                    [self beginRefreshing];
                 }
             } else { // 超出一个屏幕
                 if (_scrollView.mj_offsetY > self.mj_y + _scrollView.mj_insetB - _scrollView.mj_h) {
-                    self.state = MJRefreshFooterStateRefreshing;
+                    [self beginRefreshing];
                 }
             }
         }
@@ -143,7 +153,7 @@
     if (_scrollView.mj_insetT + _scrollView.mj_contentSizeH > _scrollView.mj_h) { // 内容超过一个屏幕
         if (_scrollView.mj_offsetY > self.mj_y - _scrollView.mj_h + self.mj_h * self.appearencePercentTriggerAutoRefresh + _scrollView.mj_insetB - self.mj_h) {
             // 当底部刷新控件完全出现时，才刷新
-            self.state = MJRefreshFooterStateRefreshing;
+            [self beginRefreshing];
         }
     }
 }
@@ -156,22 +166,38 @@
 
 - (void)buttonClick
 {
-    self.state = MJRefreshFooterStateRefreshing;
+    [self beginRefreshing];
 }
 
 #pragma mark - 公共方法
 - (void)setHidden:(BOOL)hidden
 {
-    if (!self.isHidden && hidden) {
-        self.state = MJRefreshFooterStateIdle;
-        _scrollView.mj_insetB -= self.mj_h;
-    } else if (self.isHidden && !hidden) {
-        _scrollView.mj_insetB += self.mj_h;
-        
-        [self adjustFrameWithContentSize];
-    }
+    __weak typeof(self) weakSelf = self;
+    BOOL lastHidden = weakSelf.isHidden;
+    CGFloat h = weakSelf.mj_h;
+    [weakSelf.willExecuteBlocks addObject:^{
+        if (!lastHidden && hidden) {
+            weakSelf.state = MJRefreshFooterStateIdle;
+            _scrollView.mj_insetB -= h;
+        } else if (lastHidden && !hidden) {
+            _scrollView.mj_insetB += h;
+            
+            [weakSelf adjustFrameWithContentSize];
+        }
+    }];
+    [weakSelf setNeedsDisplay]; // 放到drawRect是为了延迟执行，防止因为修改了inset，导致循环调用数据源方法
     
     [super setHidden:hidden];
+}
+
+- (void)drawRect:(CGRect)rect
+{
+    [super drawRect:rect];
+    
+    for (void (^block)() in self.willExecuteBlocks) {
+        block();
+    }
+    [self.willExecuteBlocks removeAllObjects];
 }
 
 - (void)beginRefreshing
