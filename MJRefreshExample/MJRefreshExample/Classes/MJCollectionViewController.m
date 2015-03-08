@@ -35,7 +35,7 @@ static const CGFloat MJDuration = 2.0;
     [self.collectionView addLegendHeader];
     self.collectionView.header.refreshingBlock = ^{
         // 增加5条假数据
-        for (int i = 0; i<5; i++) {
+        for (int i = 0; i<10; i++) {
             [weakSelf.colors insertObject:MJRandomColor atIndex:0];
         }
         
