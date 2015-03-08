@@ -115,24 +115,34 @@
 }
 
 #pragma mark - 私有方法
+- (void)setDateKey:(NSString *)dateKey
+{
+    _dateKey = dateKey ? [dateKey copy] : MJRefreshHeaderUpdatedTimeKey;
+}
+
 #pragma mark 设置最后的更新时间
 - (void)setUpdatedTime:(NSDate *)updatedTime
 {
     _updatedTime = updatedTime;
     
     if (updatedTime) {
-        // 1.归档
         [[NSUserDefaults standardUserDefaults] setObject:updatedTime forKey:self.dateKey];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        
-        // 2.更新时间
-        // 2.1.获得年月日
+    }
+    
+    if (self.updatedTimeTitle) {
+        self.updatedTimeLabel.text = self.updatedTimeTitle(updatedTime);
+        return;
+    }
+    
+    if (updatedTime) {
+        // 1.获得年月日
         NSCalendar *calendar = [NSCalendar currentCalendar];
         NSUInteger unitFlags = NSCalendarUnitYear| NSCalendarUnitMonth | NSCalendarUnitDay |NSCalendarUnitHour |NSCalendarUnitMinute;
         NSDateComponents *cmp1 = [calendar components:unitFlags fromDate:updatedTime];
         NSDateComponents *cmp2 = [calendar components:unitFlags fromDate:[NSDate date]];
         
-        // 2.2.格式化日期
+        // 2.格式化日期
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         if ([cmp1 day] == [cmp2 day]) { // 今天
             formatter.dateFormat = @"今天 HH:mm";
@@ -143,7 +153,7 @@
         }
         NSString *time = [formatter stringFromDate:updatedTime];
         
-        // 2.3.显示日期
+        // 3.显示日期
         self.updatedTimeLabel.text = [NSString stringWithFormat:@"最后更新：%@", time];
     } else {
         self.updatedTimeLabel.text = @"最后更新：无记录";
