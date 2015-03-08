@@ -23,6 +23,9 @@ typedef enum {
 /** 利用这个key来保存上次的刷新时间（不同界面的刷新控件应该用不同的dateKey，以区分不同界面的刷新时间） */
 @property (copy, nonatomic) NSString *dateKey;
 
+/** 利用这个block来决定显示的更新时间 */
+@property (copy, nonatomic) NSString *(^updatedTimeTitle)(NSDate *updatedTime);
+
 /**
  * 设置state状态下的状态文字内容title(别直接拿stateLabel修改文字)
  */
