@@ -65,6 +65,8 @@ static const CGFloat MJDuration = 2.0;
             [weakSelf.collectionView.footer endRefreshing];
         });
     };
+    // 默认先隐藏footer
+    self.collectionView.footer.hidden = YES;
 }
 
 #pragma mark - 数据相关
@@ -72,11 +74,6 @@ static const CGFloat MJDuration = 2.0;
 {
     if (!_colors) {
         self.colors = [NSMutableArray array];
-        
-        for (int i = 0; i<5; i++) {
-            // 添加随机色
-            [self.colors addObject:MJRandomColor];
-        }
     }
     return _colors;
 }
@@ -106,15 +103,17 @@ static NSString *const MJCollectionViewCellIdentifier = @"color";
 {
     [super viewDidLoad];
     
+    [self performSelector:NSSelectorFromString(self.method) withObject:nil];
+    
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:MJCollectionViewCellIdentifier];
-    
-    [self performSelector:NSSelectorFromString(self.method) withObject:nil];
 }
 
 #pragma mark - collection数据源代理
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
+    // 设置尾部控件的显示和隐藏
+    self.collectionView.footer.hidden = self.colors.count == 0;
     return self.colors.count;
 }
 
