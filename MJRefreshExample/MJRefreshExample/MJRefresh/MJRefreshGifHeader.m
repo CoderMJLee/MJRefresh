@@ -60,35 +60,37 @@
     
     // 旧状态
     MJRefreshHeaderState oldState = self.state;
-    [super setState:state];
     
     NSArray *images = self.stateImages[@(state)];
-    if (images.count == 0) return;
-    
-    switch (state) {
-        case MJRefreshHeaderStateIdle: {
-            if (oldState == MJRefreshHeaderStateRefreshing) {
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJRefreshSlowAnimationDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    self.pullingPercent = 0.0;
-                });
-            } else {
-                self.pullingPercent = self.pullingPercent;
+    if (images.count != 0) {
+        switch (state) {
+            case MJRefreshHeaderStateIdle: {
+                if (oldState == MJRefreshHeaderStateRefreshing) {
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJRefreshSlowAnimationDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        self.pullingPercent = 0.0;
+                    });
+                } else {
+                    self.pullingPercent = self.pullingPercent;
+                }
+                break;
             }
-            break;
+                
+            case MJRefreshHeaderStatePulling:
+            case MJRefreshHeaderStateRefreshing: {
+                [self.gifView stopAnimating];
+                self.gifView.animationImages = images;
+                self.gifView.animationDuration = images.count * 0.1;
+                [self.gifView startAnimating];
+                break;
+            }
+                
+            default:
+                break;
         }
-            
-        case MJRefreshHeaderStatePulling:
-        case MJRefreshHeaderStateRefreshing: {
-            [self.gifView stopAnimating];
-            self.gifView.animationImages = images;
-            self.gifView.animationDuration = images.count * 0.1;
-            [self.gifView startAnimating];
-            break;
-        }
-            
-        default:
-            break;
     }
+    
+    // super里面有回调，应该在最后面调用
+    [super setState:state];
 }
 
 - (void)setPullingPercent:(CGFloat)pullingPercent

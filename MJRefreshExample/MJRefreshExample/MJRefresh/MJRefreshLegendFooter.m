@@ -45,8 +45,6 @@
 {
     if (self.state == state) return;
     
-    [super setState:state];
-    
     switch (state) {
         case MJRefreshFooterStateIdle:
             [self.activityView stopAnimating];
@@ -63,5 +61,8 @@
         default:
             break;
     }
+    
+    // super里面有回调，应该在最后面调用
+    [super setState:state];
 }
 @end

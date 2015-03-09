@@ -48,8 +48,6 @@
 {
     if (self.state == state) return;
     
-    [super setState:state];
-    
     switch (state) {
         case MJRefreshFooterStateIdle:
             self.gifView.hidden = YES;
@@ -69,6 +67,9 @@
         default:
             break;
     }
+    
+    // super里面有回调，应该在最后面调用
+    [super setState:state];
 }
 
 - (void)setRefreshingImages:(NSArray *)refreshingImages

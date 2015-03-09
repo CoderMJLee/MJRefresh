@@ -58,7 +58,6 @@
     
     // 旧状态
     MJRefreshHeaderState oldState = self.state;
-    [super setState:state];
     
     switch (state) {
         case MJRefreshHeaderStateIdle: {
@@ -96,6 +95,9 @@
         default:
             break;
     }
+    
+    // super里面有回调，应该在最后面调用
+    [super setState:state];
 }
 
 @end
