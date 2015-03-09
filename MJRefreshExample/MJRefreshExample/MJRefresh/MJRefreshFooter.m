@@ -121,26 +121,32 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     // 遇到这些情况就直接返回
-    if (!self.userInteractionEnabled || self.alpha <= 0.01 || self.hidden || self.state == MJRefreshFooterStateNoMoreData) return;
+    if (!self.userInteractionEnabled || self.alpha <= 0.01 || self.hidden) return;
     
-    // 根据contentOffset调整state
-    if ([keyPath isEqualToString:MJRefreshPanState]) {
-        if (_scrollView.panGestureRecognizer.state == UIGestureRecognizerStateEnded) {// 手松开
-            if (_scrollView.mj_insetT + _scrollView.mj_contentSizeH <= _scrollView.mj_h) {  // 不够一个屏幕
-                if (_scrollView.mj_offsetY > - _scrollView.mj_insetT) { // 向上拽
-                    [self beginRefreshing];
-                }
-            } else { // 超出一个屏幕
-                if (_scrollView.mj_offsetY > _scrollView.mj_contentSizeH + _scrollView.mj_insetB - _scrollView.mj_h) {
-                    [self beginRefreshing];
+    if (self.state == MJRefreshFooterStateIdle) {
+        // 当是Idle状态时，才需要检测是否要进入刷新状态
+        if ([keyPath isEqualToString:MJRefreshPanState]) {
+            if (_scrollView.panGestureRecognizer.state == UIGestureRecognizerStateEnded) {// 手松开
+                if (_scrollView.mj_insetT + _scrollView.mj_contentSizeH <= _scrollView.mj_h) {  // 不够一个屏幕
+                    if (_scrollView.mj_offsetY > - _scrollView.mj_insetT) { // 向上拽
+                        [self beginRefreshing];
+                    }
+                } else { // 超出一个屏幕
+                    if (_scrollView.mj_offsetY > _scrollView.mj_contentSizeH + _scrollView.mj_insetB - _scrollView.mj_h) {
+                        [self beginRefreshing];
+                    }
                 }
             }
+        } else if ([keyPath isEqualToString:MJRefreshContentOffset]) {
+            if (self.state != MJRefreshFooterStateRefreshing && self.automaticallyRefresh) {
+                // 根据contentOffset调整state
+                [self adjustStateWithContentOffset];
+            }
         }
-    } else if ([keyPath isEqualToString:MJRefreshContentOffset]) {
-        if (self.state != MJRefreshFooterStateRefreshing && self.automaticallyRefresh) {
-            [self adjustStateWithContentOffset];
-        }
-    } else if ([keyPath isEqualToString:MJRefreshContentSize]) {
+    }
+    
+    // 不管是什么状态，都要调整位置
+    if ([keyPath isEqualToString:MJRefreshContentSize]) {
         [self adjustFrameWithContentSize];
     }
 }
