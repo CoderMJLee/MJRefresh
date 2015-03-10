@@ -49,7 +49,7 @@
     
     MJRefreshLegendHeader *header = [[MJRefreshLegendHeader alloc] init];
     [self addSubview:header];
-    self.legendHeader = header;
+    self.header = header;
     
     return header;
 }
@@ -87,54 +87,51 @@
     
     MJRefreshGifHeader *header = [[MJRefreshGifHeader alloc] init];
     [self addSubview:header];
-    self.gifHeader = header;
+    self.header = header;
     
     return header;
 }
 
 - (void)removeHeader
 {
-    [self.legendHeader removeFromSuperview];
-    self.legendHeader = nil;
-    
-    [self.gifHeader removeFromSuperview];
-    self.gifHeader = nil;
+    [self.header removeFromSuperview];
+    self.header = nil;
 }
 
-static char MJRefreshGifHeaderKey;
-- (void)setGifHeader:(MJRefreshGifHeader *)gifHeader
-{
-    [self willChangeValueForKey:@"gifHeader"];
-    objc_setAssociatedObject(self, &MJRefreshGifHeaderKey,
-                             gifHeader,
-                             OBJC_ASSOCIATION_ASSIGN);
-    [self didChangeValueForKey:@"gifHeader"];
-}
-
+#pragma mark - Property Methods
+#pragma mark gifHeader
 - (MJRefreshGifHeader *)gifHeader
 {
-    return objc_getAssociatedObject(self, &MJRefreshGifHeaderKey);
+    if ([self.header isKindOfClass:[MJRefreshGifHeader class]]) {
+        return (MJRefreshGifHeader *)self.header;
+    }
+    
+    return nil;
 }
 
-static char MJRefreshLegendHeaderKey;
-- (void)setLegendHeader:(MJRefreshLegendHeader *)legendHeader
-{
-    [self willChangeValueForKey:@"legendHeader"];
-    objc_setAssociatedObject(self, &MJRefreshLegendHeaderKey,
-                             legendHeader,
-                             OBJC_ASSOCIATION_ASSIGN);
-    [self didChangeValueForKey:@"legendHeader"];
-}
-
+#pragma mark legendHeader
 - (MJRefreshLegendHeader *)legendHeader
 {
-    return objc_getAssociatedObject(self, &MJRefreshLegendHeaderKey);
+    if ([self.header isKindOfClass:[MJRefreshLegendHeader class]]) {
+        return (MJRefreshLegendHeader *)self.header;
+    }
+    
+    return nil;
 }
+
+#pragma mark header
+static char MJRefreshHeaderKey;
+- (void)setHeader:(MJRefreshHeader *)header
+{
+    [self willChangeValueForKey:@"header"];
+    objc_setAssociatedObject(self, &MJRefreshHeaderKey,
+                             header,
+                             OBJC_ASSOCIATION_ASSIGN);
+    [self didChangeValueForKey:@"header"];}
 
 - (MJRefreshHeader *)header
 {
-    MJRefreshHeader *header = self.legendHeader;
-    return header ? header : self.gifHeader;
+    return objc_getAssociatedObject(self, &MJRefreshHeaderKey);
 }
 
 #pragma mark - 上拉刷新
