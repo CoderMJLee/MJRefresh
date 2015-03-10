@@ -18,15 +18,11 @@
 /** 下拉刷新控件 */
 @property (weak, nonatomic, readonly) MJRefreshHeader *header;
 /** gif功能的下拉刷新控件 */
-@property (weak, nonatomic, readonly) MJRefreshGifHeader *gifHeader;
+@property (nonatomic, readonly) MJRefreshGifHeader *gifHeader;
 /** 传统的下拉刷新控件 */
-@property (weak, nonatomic, readonly) MJRefreshLegendHeader *legendHeader;
+@property (nonatomic, readonly) MJRefreshLegendHeader *legendHeader;
 
 #pragma mark - 添加下拉刷新控件
-/**
- * 添加一个传统的下拉刷新控件
- */
-- (MJRefreshLegendHeader *)addLegendHeader;
 /**
  * 添加一个传统的下拉刷新控件
  *
@@ -55,10 +51,6 @@
  * @param dateKey   用来记录刷新时间的key
  */
 - (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action dateKey:(NSString *)dateKey;
-/**
- * 添加一个gif图片的下拉刷新控件
- */
-- (MJRefreshGifHeader *)addGifHeader;
 /**
  * 添加一个gif图片的下拉刷新控件
  *
@@ -98,15 +90,11 @@
 /** 上拉刷新控件 */
 @property (weak, nonatomic, readonly) MJRefreshFooter *footer;
 /** gif功能的上拉刷新控件 */
-@property (weak, nonatomic, readonly) MJRefreshGifFooter *gifFooter;
+@property (nonatomic, readonly) MJRefreshGifFooter *gifFooter;
 /** 传统的上拉刷新控件 */
-@property (weak, nonatomic, readonly) MJRefreshLegendFooter *legendFooter;
+@property (nonatomic, readonly) MJRefreshLegendFooter *legendFooter;
 
 #pragma mark - 添加上拉刷新控件
-/**
- * 添加一个传统的上拉刷新控件
- */
-- (MJRefreshLegendFooter *)addLegendFooter;
 /**
  * 添加一个传统的上拉刷新控件
  *
@@ -120,10 +108,6 @@
  * @param action 进入刷新状态就会自动调用target对象的action方法
  */
 - (MJRefreshLegendFooter *)addLegendFooterWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
-/**
- * 添加一个gif图片的上拉刷新控件
- */
-- (MJRefreshGifFooter *)addGifFooter;
 /**
  * 添加一个gif图片的上拉刷新控件
  *

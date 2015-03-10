@@ -32,8 +32,7 @@ static const CGFloat MJDuration = 2.0;
     __weak typeof(self) weakSelf = self;
     
     // 下拉刷新
-    [self.collectionView addLegendHeader];
-    self.collectionView.header.refreshingBlock = ^{
+    [self.collectionView addLegendHeaderWithRefreshingBlock:^{
         // 增加5条假数据
         for (int i = 0; i<10; i++) {
             [weakSelf.colors insertObject:MJRandomColor atIndex:0];
@@ -46,12 +45,11 @@ static const CGFloat MJDuration = 2.0;
             // 结束刷新
             [weakSelf.collectionView.header endRefreshing];
         });
-    };
+    }];
     [self.collectionView.header beginRefreshing];
     
     // 上拉刷新
-    [self.collectionView addLegendFooter];
-    self.collectionView.footer.refreshingBlock = ^{
+     [self.collectionView addLegendFooterWithRefreshingBlock:^{
         // 增加5条假数据
         for (int i = 0; i<5; i++) {
             [weakSelf.colors addObject:MJRandomColor];
@@ -64,7 +62,7 @@ static const CGFloat MJDuration = 2.0;
             // 结束刷新
             [weakSelf.collectionView.footer endRefreshing];
         });
-    };
+    }];
     // 默认先隐藏footer
     self.collectionView.footer.hidden = YES;
 }
