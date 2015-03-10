@@ -184,7 +184,7 @@ self.tableView.footer.hidden = YES;
 * 如果你想为MJRefresh输出代码，请拼命Pull Requests我
 * 一起携手打造天朝乃至世界最好用的刷新框架，做天朝程序员的骄傲
 * 如果你开发的应用中用到了MJRefresh，希望你能到[CocoaControls](https://www.cocoacontrols.com/controls/mjrefresh)添加你应用的iTunes路径，我将会安装使用你的应用，并且根据众多应用的使用情况，对MJRefresh进行一个更好的设计和完善，提供更多好用的功能，谢谢
-   * 步骤01
+   * 步骤01（微信是举个例子，百度“你的应用名称 itunes”）
 ![(step01)](http://ww4.sinaimg.cn/mw1024/800cdf9ctw1eq0viiv5rsj20sm0ea41t.jpg)
    * 步骤02
 ![(step02)](http://ww2.sinaimg.cn/mw1024/800cdf9ctw1eq0vilejxlj20tu0me7a0.jpg)
