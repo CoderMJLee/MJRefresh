@@ -45,8 +45,6 @@
 
 - (MJRefreshLegendHeader *)addLegendHeader
 {
-    [self removeHeader];
-    
     MJRefreshLegendHeader *header = [[MJRefreshLegendHeader alloc] init];
     [self addSubview:header];
     self.header = header;
@@ -83,8 +81,6 @@
 
 - (MJRefreshGifHeader *)addGifHeader
 {
-    [self removeHeader];
-    
     MJRefreshGifHeader *header = [[MJRefreshGifHeader alloc] init];
     [self addSubview:header];
     self.header = header;
@@ -94,7 +90,6 @@
 
 - (void)removeHeader
 {
-    [self.header removeFromSuperview];
     self.header = nil;
 }
 
@@ -123,11 +118,16 @@
 static char MJRefreshHeaderKey;
 - (void)setHeader:(MJRefreshHeader *)header
 {
-    [self willChangeValueForKey:@"header"];
-    objc_setAssociatedObject(self, &MJRefreshHeaderKey,
-                             header,
-                             OBJC_ASSOCIATION_ASSIGN);
-    [self didChangeValueForKey:@"header"];}
+    if (header != self.header) {
+        [self.header removeFromSuperview];
+        
+        [self willChangeValueForKey:@"header"];
+        objc_setAssociatedObject(self, &MJRefreshHeaderKey,
+                                 header,
+                                 OBJC_ASSOCIATION_ASSIGN);
+        [self didChangeValueForKey:@"header"];
+    }
+}
 
 - (MJRefreshHeader *)header
 {
@@ -152,11 +152,9 @@ static char MJRefreshHeaderKey;
 
 - (MJRefreshLegendFooter *)addLegendFooter
 {
-    [self removeFooter];
-    
     MJRefreshLegendFooter *footer = [[MJRefreshLegendFooter alloc] init];
     [self addSubview:footer];
-    self.legendFooter = footer;
+    self.footer = footer;
     
     return footer;
 }
@@ -178,59 +176,52 @@ static char MJRefreshHeaderKey;
 
 - (MJRefreshGifFooter *)addGifFooter
 {
-    [self removeFooter];
-    
     MJRefreshGifFooter *footer = [[MJRefreshGifFooter alloc] init];
     [self addSubview:footer];
-    self.gifFooter = footer;
+    self.footer = footer;
     
     return footer;
 }
 
 - (void)removeFooter
 {
-    [self.legendFooter removeFromSuperview];
-    self.legendFooter = nil;
-    
-    [self.gifFooter removeFromSuperview];
-    self.gifFooter = nil;
+    self.footer = nil;
 }
 
-static char MJRefreshGifFooterKey;
-- (void)setGifFooter:(MJRefreshGifFooter *)gifFooter
+static char MJRefreshFooterKey;
+- (void)setFooter:(MJRefreshFooter *)footer
 {
-    [self willChangeValueForKey:@"gifFooter"];
-    objc_setAssociatedObject(self, &MJRefreshGifFooterKey,
-                             gifFooter,
-                             OBJC_ASSOCIATION_ASSIGN);
-    [self didChangeValueForKey:@"gifFooter"];
+    if (footer != self.footer) {
+        [self.footer removeFromSuperview];
+        
+        [self willChangeValueForKey:@"footer"];
+        objc_setAssociatedObject(self, &MJRefreshFooterKey,
+                                 footer,
+                                 OBJC_ASSOCIATION_ASSIGN);
+        [self didChangeValueForKey:@"footer"];
+    }
 }
 
 - (MJRefreshGifFooter *)gifFooter
 {
-    return objc_getAssociatedObject(self, &MJRefreshGifFooterKey);
-}
-
-static char MJRefreshLegendFooterKey;
-- (void)setLegendFooter:(MJRefreshLegendFooter *)legendFooter
-{
-    [self willChangeValueForKey:@"legendFooter"];
-    objc_setAssociatedObject(self, &MJRefreshLegendFooterKey,
-                             legendFooter,
-                             OBJC_ASSOCIATION_ASSIGN);
-    [self didChangeValueForKey:@"legendFooter"];
+    if ([self.footer isKindOfClass:[MJRefreshGifFooter class]]) {
+        return (MJRefreshGifFooter *)self.footer;
+    }
+    return nil;
 }
 
 - (MJRefreshLegendFooter *)legendFooter
 {
-    return objc_getAssociatedObject(self, &MJRefreshLegendFooterKey);
+    if ([self.footer isKindOfClass:[MJRefreshLegendFooter class]]) {
+        return (MJRefreshLegendFooter *)self.footer;
+    }
+    return nil;
 }
 
 
 - (MJRefreshFooter *)footer
 {
-    MJRefreshFooter *footer = self.legendFooter;
-    return footer ? footer : self.gifFooter;
+    return objc_getAssociatedObject(self, &MJRefreshFooterKey);
 }
 
 #pragma mark - swizzle

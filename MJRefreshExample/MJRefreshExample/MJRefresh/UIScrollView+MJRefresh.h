@@ -18,9 +18,9 @@
 /** 下拉刷新控件 */
 @property (weak, nonatomic, readonly) MJRefreshHeader *header;
 /** gif功能的下拉刷新控件 */
-@property (nonatomic, readonly) MJRefreshGifHeader *gifHeader;
+@property (weak, nonatomic, readonly) MJRefreshGifHeader *gifHeader;
 /** 传统的下拉刷新控件 */
-@property (nonatomic, readonly) MJRefreshLegendHeader *legendHeader;
+@property (weak, nonatomic, readonly) MJRefreshLegendHeader *legendHeader;
 
 #pragma mark - 添加下拉刷新控件
 /**
