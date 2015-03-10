@@ -176,10 +176,19 @@ self.tableView.footer.hidden = YES;
 ```
 
 ## 提醒
-* 本框架兼容的系统>=iOS6.0，iPhone\iPad横竖屏
+* 本框架纯ARC，兼容的系统>=iOS6.0、iPhone\iPad横竖屏
 
 ## 期待
 * 如果在使用过程中遇到BUG，希望你能Issues我，谢谢（或者尝试下载最新的框架代码看看BUG修复没有）
 * 如果在使用过程中发现功能不够用，希望你能Issues我，我非常想为这个框架增加更多好用的功能，谢谢
 * 如果你想为MJRefresh输出代码，请拼命Pull Requests我
 * 一起携手打造天朝乃至世界最好用的刷新框架，做天朝程序员的骄傲
+* 如果你开发的应用中用到了MJRefresh，希望你能到[CocoaControls](https://www.cocoacontrols.com/controls/mjrefresh)添加你应用的iTunes路径，我将会安装使用你的应用，并且根据众多应用的使用情况，对MJRefresh进行一个更好的设计和完善，提供更多好用的功能，谢谢
+   * 步骤01
+![(step01)](http://ww4.sinaimg.cn/mw1024/800cdf9ctw1eq0viiv5rsj20sm0ea41t.jpg)
+   * 步骤02
+![(step02)](http://ww2.sinaimg.cn/mw1024/800cdf9ctw1eq0vilejxlj20tu0me7a0.jpg)
+   * 步骤03
+![(step03)](http://ww1.sinaimg.cn/mw1024/800cdf9ctw1eq0viocpo5j20wc0dc0un.jpg)
+   * 步骤04
+![(step04)](http://ww3.sinaimg.cn/mw1024/800cdf9ctw1eq0vir137xj20si0gewgu.jpg)
