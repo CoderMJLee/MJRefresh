@@ -153,7 +153,6 @@ static char MJRefreshHeaderKey;
 - (MJRefreshLegendFooter *)addLegendFooter
 {
     MJRefreshLegendFooter *footer = [[MJRefreshLegendFooter alloc] init];
-    [self addSubview:footer];
     self.footer = footer;
     
     return footer;
@@ -177,7 +176,6 @@ static char MJRefreshHeaderKey;
 - (MJRefreshGifFooter *)addGifFooter
 {
     MJRefreshGifFooter *footer = [[MJRefreshGifFooter alloc] init];
-    [self addSubview:footer];
     self.footer = footer;
     
     return footer;
@@ -199,6 +197,8 @@ static char MJRefreshFooterKey;
                                  footer,
                                  OBJC_ASSOCIATION_ASSIGN);
         [self didChangeValueForKey:@"footer"];
+        
+        [self addSubview:footer];
     }
 }
 
