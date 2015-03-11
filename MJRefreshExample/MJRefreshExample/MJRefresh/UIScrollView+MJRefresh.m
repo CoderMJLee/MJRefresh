@@ -46,7 +46,6 @@
 - (MJRefreshLegendHeader *)addLegendHeader
 {
     MJRefreshLegendHeader *header = [[MJRefreshLegendHeader alloc] init];
-    [self addSubview:header];
     self.header = header;
     
     return header;
@@ -82,7 +81,6 @@
 - (MJRefreshGifHeader *)addGifHeader
 {
     MJRefreshGifHeader *header = [[MJRefreshGifHeader alloc] init];
-    [self addSubview:header];
     self.header = header;
     
     return header;
@@ -126,6 +124,8 @@ static char MJRefreshHeaderKey;
                                  header,
                                  OBJC_ASSOCIATION_ASSIGN);
         [self didChangeValueForKey:@"header"];
+        
+        [self addSubview:header];
     }
 }
 
@@ -153,7 +153,6 @@ static char MJRefreshHeaderKey;
 - (MJRefreshLegendFooter *)addLegendFooter
 {
     MJRefreshLegendFooter *footer = [[MJRefreshLegendFooter alloc] init];
-    [self addSubview:footer];
     self.footer = footer;
     
     return footer;
@@ -177,7 +176,6 @@ static char MJRefreshHeaderKey;
 - (MJRefreshGifFooter *)addGifFooter
 {
     MJRefreshGifFooter *footer = [[MJRefreshGifFooter alloc] init];
-    [self addSubview:footer];
     self.footer = footer;
     
     return footer;
@@ -199,6 +197,8 @@ static char MJRefreshFooterKey;
                                  footer,
                                  OBJC_ASSOCIATION_ASSIGN);
         [self didChangeValueForKey:@"footer"];
+        
+        [self addSubview:footer];
     }
 }
 
