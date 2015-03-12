@@ -1,6 +1,9 @@
 ## MJRefresh
 The easiest way to use pull-to-refresh
 
+## 支持哪些控件的刷新
+* `UIScrollView`、`UITableView`、`UICollectionView`、`UIWebView`
+
 ## 如何使用MJRefresh
 * cocoapods导入：`pod 'MJRefresh'`
 * 手动导入：
