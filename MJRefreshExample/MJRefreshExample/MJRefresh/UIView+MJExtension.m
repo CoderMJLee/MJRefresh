@@ -43,7 +43,7 @@
 
 - (CGFloat)mj_w
 {
-    return self.frame.size.width;
+    return MIN([UIScreen mainScreen].bounds.size.width, self.frame.size.width);
 }
 
 - (void)setMj_h:(CGFloat)mj_h
