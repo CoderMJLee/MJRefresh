@@ -16,7 +16,7 @@
 @interface UIScrollView (MJRefresh)
 #pragma mark - 访问下拉刷新控件
 /** 下拉刷新控件 */
-@property (weak, nonatomic, readonly) MJRefreshHeader *header;
+@property (strong, nonatomic, readonly) MJRefreshHeader *header;
 /** gif功能的下拉刷新控件 */
 @property (nonatomic, readonly) MJRefreshGifHeader *gifHeader;
 /** 传统的下拉刷新控件 */
@@ -88,7 +88,7 @@
 
 #pragma mark - 访问上拉刷新控件
 /** 上拉刷新控件 */
-@property (weak, nonatomic, readonly) MJRefreshFooter *footer;
+@property (strong, nonatomic, readonly) MJRefreshFooter *footer;
 /** gif功能的上拉刷新控件 */
 @property (nonatomic, readonly) MJRefreshGifFooter *gifFooter;
 /** 传统的上拉刷新控件 */
