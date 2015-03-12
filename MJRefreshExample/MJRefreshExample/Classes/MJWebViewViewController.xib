@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14D87h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MJWebViewViewController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="webView" destination="2Of-d4-HFt" id="PE7-tq-AIx"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Of-d4-HFt">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </webView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8xo-5D-MRC">
+                    <rect key="frame" x="466" y="470" width="113" height="30"/>
+                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="113" id="2YR-NZ-hF1"/>
+                        <constraint firstAttribute="height" constant="30" id="qIc-RV-DwB"/>
+                    </constraints>
+                    <state key="normal" title="回到上一页">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="back" destination="-1" eventType="touchUpInside" id="BG2-eT-gw7"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注意，这不是原生界面，是个网页：http://weibo.com/excepptions" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2VR-jQ-Qn4">
+                    <rect key="frame" x="371" y="392.5" width="208" height="31.5"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="208" id="qkq-G9-eo2"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="2Of-d4-HFt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="3LR-sb-d2d"/>
+                <constraint firstAttribute="bottom" secondItem="8xo-5D-MRC" secondAttribute="bottom" constant="100" id="GEd-8N-H2g"/>
+                <constraint firstAttribute="trailing" secondItem="2VR-jQ-Qn4" secondAttribute="trailing" constant="21" id="JkD-lQ-2rZ"/>
+                <constraint firstAttribute="trailing" secondItem="2Of-d4-HFt" secondAttribute="trailing" id="MWE-Gj-9Jb"/>
+                <constraint firstAttribute="bottom" secondItem="2Of-d4-HFt" secondAttribute="bottom" id="YY5-j2-abg"/>
+                <constraint firstAttribute="trailing" secondItem="8xo-5D-MRC" secondAttribute="trailing" constant="21" id="spl-mb-Eed"/>
+                <constraint firstItem="8xo-5D-MRC" firstAttribute="top" secondItem="2VR-jQ-Qn4" secondAttribute="bottom" constant="46" id="zTm-ax-FFk"/>
+                <constraint firstItem="2Of-d4-HFt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zy2-dj-Ccd"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

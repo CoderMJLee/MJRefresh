@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D4A99A71AB1727900828496 /* MJWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4A99A51AB1727900828496 /* MJWebViewViewController.m */; };
+		2D4A99A81AB1727900828496 /* MJWebViewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D4A99A61AB1727900828496 /* MJWebViewViewController.xib */; };
+		2D4A99AB1AB178EB00828496 /* UIViewController+Example.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4A99AA1AB178EB00828496 /* UIViewController+Example.m */; };
 		2DA7F92B1AA6B4C4005627AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA7F92A1AA6B4C4005627AB /* main.m */; };
 		2DA7F9341AA6B4C4005627AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DA7F9321AA6B4C4005627AB /* Main.storyboard */; };
 		2DA7F9361AA6B4C4005627AB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DA7F9351AA6B4C4005627AB /* Images.xcassets */; };
@@ -45,6 +48,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D4A99A41AB1727900828496 /* MJWebViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJWebViewViewController.h; sourceTree = "<group>"; };
+		2D4A99A51AB1727900828496 /* MJWebViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJWebViewViewController.m; sourceTree = "<group>"; };
+		2D4A99A61AB1727900828496 /* MJWebViewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MJWebViewViewController.xib; sourceTree = "<group>"; };
+		2D4A99A91AB178EB00828496 /* UIViewController+Example.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Example.h"; sourceTree = "<group>"; };
+		2D4A99AA1AB178EB00828496 /* UIViewController+Example.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Example.m"; sourceTree = "<group>"; };
 		2DA7F9251AA6B4C4005627AB /* MJRefreshExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MJRefreshExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DA7F9291AA6B4C4005627AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2DA7F92A1AA6B4C4005627AB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -177,6 +185,9 @@
 				2DA7F9601AA6BCD2005627AB /* MJTableViewController.m */,
 				2DF7EA0A1AA8C273008580B4 /* MJCollectionViewController.h */,
 				2DF7EA0B1AA8C273008580B4 /* MJCollectionViewController.m */,
+				2D4A99A41AB1727900828496 /* MJWebViewViewController.h */,
+				2D4A99A51AB1727900828496 /* MJWebViewViewController.m */,
+				2D4A99A61AB1727900828496 /* MJWebViewViewController.xib */,
 				2DF7EA0D1AA8C3DA008580B4 /* MJTestViewController.h */,
 				2DF7EA0E1AA8C3DA008580B4 /* MJTestViewController.m */,
 				2DF7EA0F1AA8C3DA008580B4 /* MJTestViewController.xib */,
@@ -188,6 +199,8 @@
 				2DF7EA081AA8A6F3008580B4 /* MJExample.m */,
 				2DA7F94F1AA6B51C005627AB /* AppDelegate.h */,
 				2DA7F9501AA6B51C005627AB /* AppDelegate.m */,
+				2D4A99A91AB178EB00828496 /* UIViewController+Example.h */,
+				2D4A99AA1AB178EB00828496 /* UIViewController+Example.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -305,6 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DA7F9341AA6B4C4005627AB /* Main.storyboard in Resources */,
+				2D4A99A81AB1727900828496 /* MJWebViewViewController.xib in Resources */,
 				2DA7F9391AA6B4C4005627AB /* LaunchScreen.xib in Resources */,
 				2DA7F96F1AA75076005627AB /* MJRefresh.bundle in Resources */,
 				2DF7EA111AA8C3DA008580B4 /* MJTestViewController.xib in Resources */,
@@ -329,6 +343,7 @@
 				2DA7F9671AA6BDC9005627AB /* MJRefreshLegendHeader.m in Sources */,
 				2DA7F97E1AA8389C005627AB /* MJRefreshLegendFooter.m in Sources */,
 				2DA7F9581AA6B57A005627AB /* UIScrollView+MJRefresh.m in Sources */,
+				2D4A99A71AB1727900828496 /* MJWebViewViewController.m in Sources */,
 				2DA7F95B1AA6B5F1005627AB /* MJRefreshHeader.m in Sources */,
 				2DA7F9541AA6B51C005627AB /* AppDelegate.m in Sources */,
 				2DF7EA101AA8C3DA008580B4 /* MJTestViewController.m in Sources */,
@@ -343,6 +358,7 @@
 				2DA7F9741AA759BC005627AB /* UIScrollView+MJExtension.m in Sources */,
 				2DA7F9611AA6BCD2005627AB /* MJTableViewController.m in Sources */,
 				2DA7F95E1AA6BC2C005627AB /* MJRefreshGifHeader.m in Sources */,
+				2D4A99AB1AB178EB00828496 /* UIViewController+Example.m in Sources */,
 				2DA7F97B1AA832F1005627AB /* MJRefreshFooter.m in Sources */,
 				2DF7EA0C1AA8C273008580B4 /* MJCollectionViewController.m in Sources */,
 			);

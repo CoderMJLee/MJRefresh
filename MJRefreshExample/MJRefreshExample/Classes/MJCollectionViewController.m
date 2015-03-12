@@ -9,6 +9,7 @@
 
 #import "MJCollectionViewController.h"
 #import "MJTestViewController.h"
+#import "UIViewController+Example.h"
 #import "MJRefresh.h"
 
 static const CGFloat MJDuration = 2.0;
@@ -77,10 +78,6 @@ static const CGFloat MJDuration = 2.0;
 }
 
 #pragma mark - 其他
-- (void)dealloc
-{
-    MJLog(@"%@销毁了", [self class]);
-}
 
 /**
  *  初始化
