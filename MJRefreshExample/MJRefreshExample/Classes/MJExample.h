@@ -13,4 +13,5 @@
 @property (copy, nonatomic) NSString *header;
 @property (strong, nonatomic) NSArray *titles;
 @property (strong, nonatomic) NSArray *methods;
+@property (assign, nonatomic) Class vcClass;
 @end

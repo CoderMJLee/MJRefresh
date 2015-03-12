@@ -8,9 +8,10 @@
 //
 
 #import "MJTableViewController.h"
-#import "MJRefresh.h"
 #import "UIView+MJExtension.h"
 #import "MJTestViewController.h"
+#import "UIViewController+Example.h"
+#import "MJRefresh.h"
 
 static const CGFloat MJDuration = 2.0;
 /**
@@ -497,11 +498,6 @@ static const CGFloat MJDuration = 2.0;
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:test];
         [self presentViewController:nav animated:YES completion:nil];
     }
-}
-
-- (void)dealloc
-{
-    MJLog(@"%@销毁了", [self class]);
 }
 
 @end

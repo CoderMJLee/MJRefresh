@@ -10,5 +10,5 @@
 #import <UIKit/UIKit.h>
 
 @interface MJCollectionViewController : UICollectionViewController
-@property (copy, nonatomic) NSString *method;
+
 @end

@@ -10,5 +10,5 @@
 #import <UIKit/UIKit.h>
 
 @interface MJTableViewController : UITableViewController
-@property (copy, nonatomic) NSString *method;
+
 @end
