@@ -66,8 +66,8 @@
                 
                 [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
                     self.activityView.alpha = 0.0;
-                    self.arrowImage.alpha = 1.0;
                 } completion:^(BOOL finished) {
+                    self.arrowImage.alpha = 1.0;
                     self.activityView.alpha = 1.0;
                     [self.activityView stopAnimating];
                 }];
