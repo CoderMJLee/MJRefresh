@@ -175,6 +175,15 @@ self.tableView.footer.hidden = YES;
 }];
 ```
 
+## UIWebView01-下拉刷新
+![(UIWebView01-下拉刷新)](http://ww1.sinaimg.cn/mw1024/800cdf9cjw1eq2zjzu78ng208w0fy4qp.gif)
+```objc
+// 添加下拉刷新控件
+[self.webView.scrollView addLegendHeaderWithRefreshingBlock:^{
+    // 进入刷新状态后会自动调用这个block
+}];
+```
+
 ## 提醒
 * 本框架纯ARC，兼容的系统>=iOS6.0、iPhone\iPad横竖屏
 
