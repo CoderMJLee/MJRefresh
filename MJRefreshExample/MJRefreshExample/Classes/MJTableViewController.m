@@ -109,8 +109,7 @@ static const CGFloat MJDuration = 2.0;
 - (void)example03
 {
     // 添加传统的下拉刷新
-    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
-    [self.tableView addLegendHeaderWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    self.tableView.header = [self legendHeader];
     
     // 隐藏时间
     self.tableView.header.updatedTimeHidden = YES;
