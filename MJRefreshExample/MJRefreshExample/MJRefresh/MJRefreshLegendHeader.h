@@ -11,4 +11,10 @@
 
 @interface MJRefreshLegendHeader : MJRefreshHeader
 
+/*
+ Constructor
+ */
++ (MJRefreshLegendHeader *)legendHeaderWithRefreshingBlock:(void (^)())block;
++ (MJRefreshLegendHeader *)legendHeaderWithRefreshingBlock:(void (^)())block dateKey:(NSString *)dateKey;
+
 @end

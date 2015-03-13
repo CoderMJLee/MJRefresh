@@ -20,6 +20,20 @@
 @end
 
 @implementation MJRefreshGifHeader
++ (MJRefreshGifHeader *)gifHeaderWithRefreshingBlock:(void (^)())block
+{
+    return [self gifHeaderWithRefreshingBlock:block dateKey:nil];
+}
+
++ (MJRefreshGifHeader *)gifHeaderWithRefreshingBlock:(void (^)())block dateKey:(NSString *)dateKey
+{
+    MJRefreshGifHeader *header = [[MJRefreshGifHeader alloc] init];
+    header.refreshingBlock = block;
+    header.dateKey = dateKey;
+    
+    return header;
+}
+
 #pragma mark - 懒加载
 - (NSMutableDictionary *)stateImages
 {
