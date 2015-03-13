@@ -73,17 +73,10 @@
         [self setTitle:MJRefreshHeaderStateIdleText forState:MJRefreshHeaderStateIdle];
         [self setTitle:MJRefreshHeaderStatePullingText forState:MJRefreshHeaderStatePulling];
         [self setTitle:MJRefreshHeaderStateRefreshingText forState:MJRefreshHeaderStateRefreshing];
+        
+        self.mj_h = MJRefreshHeaderHeight; // Default
     }
     return self;
-}
-
-- (void)willMoveToSuperview:(UIView *)newSuperview
-{
-    [super willMoveToSuperview:newSuperview];
-    
-    if (newSuperview) {
-        self.mj_h = MJRefreshHeaderHeight;
-    }
 }
 
 - (void)layoutSubviews
