@@ -26,25 +26,32 @@ static const CGFloat MJDuration = 2.0;
 
 @implementation MJTableViewController
 #pragma mark - 示例代码
+- (MJRefreshLegendHeader *)legendHeader
+{
+    __weak typeof(self) weakSelf = self;
+    
+    // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
+    MJRefreshLegendHeader *header = [MJRefreshLegendHeader legendHeaderWithRefreshingBlock:^{
+        [weakSelf loadNewData];
+    }];
+    
+    return header;
+}
+
 /**
  * UITableView + 下拉刷新 传统
  */
 - (void)example01
 {
-    __weak typeof(self) weakSelf = self;
-    
     // 添加传统的下拉刷新
-    // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
-    [self.tableView addLegendHeaderWithRefreshingBlock:^{
-        [weakSelf loadNewData];
-    }];
+    self.tableView.header = [self legendHeader];
     
     // 马上进入刷新状态
-    [self.tableView.legendHeader beginRefreshing];
+    [self.tableView.header beginRefreshing];
     
     /**
      也可以这样使用
-     [self.tableView.header beginRefreshing];
+     [self.tableView.legendHeader beginRefreshing];
      
      此时self.tableView.header == self.tableView.legendHeader
      */
