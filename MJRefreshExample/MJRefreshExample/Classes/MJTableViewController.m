@@ -120,20 +120,14 @@ static const CGFloat MJDuration = 2.0;
     // 此时self.tableView.header == self.tableView.legendHeader
 }
 
-/**
- * UITableView + 下拉刷新 隐藏状态和时间01
- */
-- (void)example04
+- (MJRefreshGifHeader *)gifHeader2
 {
-    // 添加动画图片的下拉刷新
+    __weak typeof(self) weakSelf = self;
+    
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
-    [self.tableView addGifHeaderWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
-    
-    // 隐藏时间
-    self.tableView.header.updatedTimeHidden = YES;
-    
-    // 隐藏状态
-    self.tableView.header.stateHidden = YES;
+    MJRefreshGifHeader *header = [MJRefreshGifHeader gifHeaderWithRefreshingBlock:^{
+        [weakSelf loadNewData];
+    }];
     
     // 设置普通状态的动画图片
     NSMutableArray *idleImages = [NSMutableArray array];
@@ -141,7 +135,7 @@ static const CGFloat MJDuration = 2.0;
         UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"PullToRefresh_%03zd", i]];
         [idleImages addObject:image];
     }
-    [self.tableView.gifHeader setImages:idleImages forState:MJRefreshHeaderStateIdle];
+    [header setImages:idleImages forState:MJRefreshHeaderStateIdle];
     
     // 设置正在刷新状态的动画图片
     NSMutableArray *refreshingImages = [NSMutableArray array];
@@ -149,9 +143,25 @@ static const CGFloat MJDuration = 2.0;
         UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"PullToRefresh_%03zd", i]];
         [refreshingImages addObject:image];
     }
-    [self.tableView.gifHeader setImages:refreshingImages forState:MJRefreshHeaderStateRefreshing];
+    [header setImages:refreshingImages forState:MJRefreshHeaderStateRefreshing];
     
     // 在这个例子中，即将刷新时没有动画图片
+    return header;
+}
+
+/**
+ * UITableView + 下拉刷新 隐藏状态和时间01
+ */
+- (void)example04
+{
+    // 添加动画图片的下拉刷新
+    self.tableView.header = [self gifHeader2];
+    
+    // 隐藏时间
+    self.tableView.header.updatedTimeHidden = YES;
+    
+    // 隐藏状态
+    self.tableView.header.stateHidden = YES;
     
     // 马上进入刷新状态
     [self.tableView.header beginRefreshing];
