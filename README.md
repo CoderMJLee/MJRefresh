@@ -44,7 +44,7 @@ UIView+MJExtension.h        UIView+MJExtension.m
 [self.tableView addLegendHeaderWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
 
 // 马上进入刷新状态
-[self.tableView.header beginRefreshing];
+[self.tableView.header headerBeginRefreshing];
 ```
  
 ## 下拉刷新02-动画图片
