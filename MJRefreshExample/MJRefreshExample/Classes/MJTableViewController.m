@@ -356,8 +356,7 @@ static const CGFloat MJDuration = 2.0;
 - (void)example16
 {
     // 添加传统的上拉刷新
-    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
-    [self.tableView addLegendFooterWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    self.tableView.footer = [self legendFooter];
     
     // 禁止自动加载
     self.tableView.footer.automaticallyRefresh = NO;
