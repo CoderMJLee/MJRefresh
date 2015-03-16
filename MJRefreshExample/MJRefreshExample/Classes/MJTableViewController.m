@@ -178,30 +178,13 @@ static const CGFloat MJDuration = 2.0;
 - (void)example05
 {
     // 添加动画图片的下拉刷新
-    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
-    [self.tableView addGifHeaderWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    self.tableView.header = [self gifHeader1];
     
     // 隐藏时间
     self.tableView.header.updatedTimeHidden = YES;
     
     // 隐藏状态
     self.tableView.header.stateHidden = YES;
-    
-    // 设置普通状态的动画图片
-    NSMutableArray *idleImages = [NSMutableArray array];
-    for (NSUInteger i = 1; i<=60; i++) {
-        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"dropdown_anim__000%zd", i]];
-        [idleImages addObject:image];
-    }
-    [self.tableView.gifHeader setImages:idleImages forState:MJRefreshHeaderStateIdle];
-    
-    // 设置正在刷新状态的动画图片
-    NSMutableArray *refreshingImages = [NSMutableArray array];
-    for (NSUInteger i = 1; i<=3; i++) {
-        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"dropdown_loading_0%zd", i]];
-        [refreshingImages addObject:image];
-    }
-    [self.tableView.gifHeader setImages:refreshingImages forState:MJRefreshHeaderStateRefreshing];
     
     // 马上进入刷新状态
     [self.tableView.header beginRefreshing];
