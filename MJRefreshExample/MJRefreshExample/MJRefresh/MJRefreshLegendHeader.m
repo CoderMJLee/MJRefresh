@@ -17,20 +17,6 @@
 @end
 
 @implementation MJRefreshLegendHeader
-+ (MJRefreshLegendHeader *)legendHeaderWithRefreshingBlock:(void (^)())block
-{
-    return [self legendHeaderWithRefreshingBlock:block dateKey:nil];
-}
-
-+ (MJRefreshLegendHeader *)legendHeaderWithRefreshingBlock:(void (^)())block dateKey:(NSString *)dateKey
-{
-    MJRefreshLegendHeader *header = [[MJRefreshLegendHeader alloc] init];
-    header.refreshingBlock = block;
-    header.dateKey = dateKey;
-    
-    return header;
-}
-
 #pragma mark - 懒加载
 - (UIImageView *)arrowImage
 {
