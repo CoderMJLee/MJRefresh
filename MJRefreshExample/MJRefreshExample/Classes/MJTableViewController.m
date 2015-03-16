@@ -238,14 +238,14 @@ static const CGFloat MJDuration = 2.0;
     self.tableView.footer = [self legendFooter];
 }
 
-/**
- * UITableView + 上拉刷新 动画图片
- */
-- (void)example12
+- (MJRefreshGifFooter *)gifFooter1
 {
-    // 添加动画图片的上拉刷新
+    __weak typeof(self) weakSelf = self;
+
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
-    [self.tableView addGifFooterWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    MJRefreshGifFooter *footer = [MJRefreshGifFooter footerWithRefreshingBlock:^{
+        [weakSelf loadMoreData];
+    }];
     
     // 设置正在刷新状态的动画图片
     NSMutableArray *refreshingImages = [NSMutableArray array];
@@ -253,7 +253,18 @@ static const CGFloat MJDuration = 2.0;
         UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"dropdown_loading_0%zd", i]];
         [refreshingImages addObject:image];
     }
-    self.tableView.gifFooter.refreshingImages = refreshingImages;
+    footer.refreshingImages = refreshingImages;
+    
+    return footer;
+}
+
+/**
+ * UITableView + 上拉刷新 动画图片
+ */
+- (void)example12
+{
+    // 添加动画图片的上拉刷新
+    self.tableView.footer = [self gifFooter1];
     
     // 此时self.tableView.footer == self.tableView.gifFooter
 }
