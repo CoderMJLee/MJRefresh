@@ -10,10 +10,6 @@
 #import "MJRefreshHeader.h"
 
 @interface MJRefreshGifHeader : MJRefreshHeader
-
-+ (MJRefreshGifHeader *)gifHeaderWithRefreshingBlock:(void (^)())block;
-+ (MJRefreshGifHeader *)gifHeaderWithRefreshingBlock:(void (^)())block dateKey:(NSString *)dateKey;
-
 /** 设置state状态下的动画图片images */
 - (void)setImages:(NSArray *)images forState:(MJRefreshHeaderState)state;
 @end
