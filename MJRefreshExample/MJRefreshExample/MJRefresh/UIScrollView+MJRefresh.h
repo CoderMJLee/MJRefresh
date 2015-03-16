@@ -88,7 +88,7 @@
 
 #pragma mark - 访问上拉刷新控件
 /** 上拉刷新控件 */
-@property (strong, nonatomic, readonly) MJRefreshFooter *footer;
+@property (nonatomic, strong) MJRefreshFooter *footer;
 /** gif功能的上拉刷新控件 */
 @property (nonatomic, readonly) MJRefreshGifFooter *gifFooter;
 /** 传统的上拉刷新控件 */
