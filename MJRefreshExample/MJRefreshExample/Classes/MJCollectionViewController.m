@@ -33,7 +33,7 @@ static const CGFloat MJDuration = 2.0;
     __weak typeof(self) weakSelf = self;
     
     // 下拉刷新
-    [self.collectionView addLegendHeaderWithRefreshingBlock:^{
+    self.collectionView.header = [MJRefreshLegendHeader headerWithRefreshingBlock:^{
         // 增加5条假数据
         for (int i = 0; i<10; i++) {
             [weakSelf.colors insertObject:MJRandomColor atIndex:0];
@@ -50,7 +50,7 @@ static const CGFloat MJDuration = 2.0;
     [self.collectionView.header beginRefreshing];
     
     // 上拉刷新
-     [self.collectionView addLegendFooterWithRefreshingBlock:^{
+    self.collectionView.footer = [MJRefreshLegendFooter footerWithRefreshingBlock:^{
         // 增加5条假数据
         for (int i = 0; i<5; i++) {
             [weakSelf.colors addObject:MJRandomColor];
