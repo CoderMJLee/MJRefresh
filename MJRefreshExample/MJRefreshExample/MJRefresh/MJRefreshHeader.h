@@ -20,6 +20,10 @@ typedef enum {
 } MJRefreshHeaderState;
 
 @interface MJRefreshHeader : MJRefreshComponent
+
++ (instancetype)headerWithRefreshingBlock:(void (^)())block;
++ (instancetype)headerWithRefreshingBlock:(void (^)())block dateKey:(NSString *)dateKey;
+
 /** 利用这个key来保存上次的刷新时间（不同界面的刷新控件应该用不同的dateKey，以区分不同界面的刷新时间） */
 @property (copy, nonatomic) NSString *dateKey;
 

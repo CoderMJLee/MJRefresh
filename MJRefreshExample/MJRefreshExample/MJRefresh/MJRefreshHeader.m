@@ -25,6 +25,21 @@
 @end
 
 @implementation MJRefreshHeader
+
++ (instancetype)headerWithRefreshingBlock:(void (^)())block
+{
+    return [self headerWithRefreshingBlock:block dateKey:nil];
+}
+
++ (instancetype)headerWithRefreshingBlock:(void (^)())block dateKey:(NSString *)dateKey
+{
+    MJRefreshHeader *header = [[self alloc] init];
+    header.refreshingBlock = block;
+    header.dateKey = dateKey;
+    
+    return header;
+}
+
 #pragma mark - 懒加载
 - (NSMutableDictionary *)stateTitles
 {
