@@ -31,7 +31,7 @@ static const CGFloat MJDuration = 2.0;
     __weak typeof(self) weakSelf = self;
     
     // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
-    MJRefreshLegendHeader *header = [MJRefreshLegendHeader legendHeaderWithRefreshingBlock:^{
+    MJRefreshLegendHeader *header = [MJRefreshLegendHeader headerWithRefreshingBlock:^{
         [weakSelf loadNewData];
     }];
     
@@ -62,7 +62,7 @@ static const CGFloat MJDuration = 2.0;
     __weak typeof(self) weakSelf = self;
     
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
-    MJRefreshGifHeader *header = [MJRefreshGifHeader gifHeaderWithRefreshingBlock:^{
+    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         [weakSelf loadNewData];
     }];
     
@@ -125,7 +125,7 @@ static const CGFloat MJDuration = 2.0;
     __weak typeof(self) weakSelf = self;
     
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
-    MJRefreshGifHeader *header = [MJRefreshGifHeader gifHeaderWithRefreshingBlock:^{
+    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         [weakSelf loadNewData];
     }];
     
