@@ -16,6 +16,9 @@ typedef enum {
 } MJRefreshFooterState;
 
 @interface MJRefreshFooter : MJRefreshComponent
+
++ (instancetype)footerWithRefreshingBlock:(void (^)())block;
+
 /** 提示没有更多的数据 */
 - (void)noticeNoMoreData;
 

@@ -27,6 +27,13 @@
 @end
 
 @implementation MJRefreshFooter
++ (instancetype)footerWithRefreshingBlock:(void (^)())block
+{
+    MJRefreshFooter *footer = [[self alloc] init];
+    footer.refreshingBlock = block;
+    return footer;
+}
+
 #pragma mark - 懒加载
 - (NSMutableArray *)willExecuteBlocks
 {
