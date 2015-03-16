@@ -217,27 +217,25 @@ static const CGFloat MJDuration = 2.0;
     // 此时self.tableView.header == self.tableView.legendHeader
 }
 
+- (MJRefreshLegendFooter *)legendFooter
+{
+    __weak typeof(self) weakSelf = self;
+    
+    // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
+    MJRefreshLegendFooter *footer = [MJRefreshLegendFooter footerWithRefreshingBlock:^{
+        [weakSelf loadMoreData];
+    }];
+    
+    return footer;
+}
+
 /**
  * UITableView + 上拉刷新 传统
  */
 - (void)example11
 {
-    __weak typeof(self) weakSelf = self;
-    
     // 添加传统的上拉刷新
-    // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
-    [self.tableView addLegendFooterWithRefreshingBlock:^{
-        [weakSelf loadMoreData];
-    }];
-    
-    /**
-     也可以这样使用
-     self.tableView.footer.refreshingBlock = ^{
-     
-     };
-     
-     此时self.tableView.footer == self.tableView.legendFooter
-     */
+    self.tableView.footer = [self legendFooter];
 }
 
 /**
