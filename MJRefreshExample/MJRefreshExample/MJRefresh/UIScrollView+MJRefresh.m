@@ -15,80 +15,15 @@
 #import <objc/runtime.h>
 
 @implementation UIScrollView (MJRefresh)
-#pragma mark - 下拉刷新
-- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingBlock:(void (^)())block dateKey:(NSString *)dateKey
-{
-    MJRefreshLegendHeader *header = [self addLegendHeader];
-    header.refreshingBlock = block;
-    header.dateKey = dateKey;
-    return header;
-}
-
-- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action dateKey:(NSString *)dateKey
-{
-    MJRefreshLegendHeader *header = [self addLegendHeader];
-    header.refreshingTarget = target;
-    header.refreshingAction = action;
-    header.dateKey = dateKey;
-    return header;
-}
-
-- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action
-{
-    return [self addLegendHeaderWithRefreshingTarget:target refreshingAction:action dateKey:nil];
-}
-
-- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingBlock:(void (^)())block
-{
-    return [self addLegendHeaderWithRefreshingBlock:block dateKey:nil];
-}
-
-- (MJRefreshLegendHeader *)addLegendHeader
-{
-    MJRefreshLegendHeader *header = [[MJRefreshLegendHeader alloc] init];
-    self.header = header;
-    
-    return header;
-}
-
-- (MJRefreshGifHeader *)addGifHeaderWithRefreshingBlock:(void (^)())block dateKey:(NSString *)dateKey
-{
-    MJRefreshGifHeader *header = [self addGifHeader];
-    header.refreshingBlock = block;
-    header.dateKey = dateKey;
-    return header;
-}
-
-- (MJRefreshGifHeader *)addGifHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action dateKey:(NSString *)dateKey
-{
-    MJRefreshGifHeader *header = [self addGifHeader];
-    header.refreshingTarget = target;
-    header.refreshingAction = action;
-    header.dateKey = dateKey;
-    return header;
-}
-
-- (MJRefreshGifHeader *)addGifHeaderWithRefreshingBlock:(void (^)())block
-{
-    return [self addGifHeaderWithRefreshingBlock:block dateKey:nil];
-}
-
-- (MJRefreshGifHeader *)addGifHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action
-{
-    return [self addGifHeaderWithRefreshingTarget:target refreshingAction:action dateKey:nil];
-}
-
-- (MJRefreshGifHeader *)addGifHeader
-{
-    MJRefreshGifHeader *header = [[MJRefreshGifHeader alloc] init];
-    self.header = header;
-    
-    return header;
-}
 
 - (void)removeHeader
 {
     self.header = nil;
+}
+
+- (void)removeFooter
+{
+    self.footer = nil;
 }
 
 #pragma mark - Property Methods
@@ -132,58 +67,6 @@ static char MJRefreshHeaderKey;
 - (MJRefreshHeader *)header
 {
     return objc_getAssociatedObject(self, &MJRefreshHeaderKey);
-}
-
-#pragma mark - 上拉刷新
-- (MJRefreshLegendFooter *)addLegendFooterWithRefreshingBlock:(void (^)())block
-{
-    MJRefreshLegendFooter *footer = [self addLegendFooter];
-    footer.refreshingBlock = block;
-    return footer;
-}
-
-- (MJRefreshLegendFooter *)addLegendFooterWithRefreshingTarget:(id)target refreshingAction:(SEL)action
-{
-    MJRefreshLegendFooter *footer = [self addLegendFooter];
-    footer.refreshingTarget = target;
-    footer.refreshingAction = action;
-    return footer;
-}
-
-- (MJRefreshLegendFooter *)addLegendFooter
-{
-    MJRefreshLegendFooter *footer = [[MJRefreshLegendFooter alloc] init];
-    self.footer = footer;
-    
-    return footer;
-}
-
-- (MJRefreshGifFooter *)addGifFooterWithRefreshingBlock:(void (^)())block
-{
-    MJRefreshGifFooter *footer = [self addGifFooter];
-    footer.refreshingBlock = block;
-    return footer;
-}
-
-- (MJRefreshGifFooter *)addGifFooterWithRefreshingTarget:(id)target refreshingAction:(SEL)action
-{
-    MJRefreshGifFooter *footer = [self addGifFooter];
-    footer.refreshingTarget = target;
-    footer.refreshingAction = action;
-    return footer;
-}
-
-- (MJRefreshGifFooter *)addGifFooter
-{
-    MJRefreshGifFooter *footer = [[MJRefreshGifFooter alloc] init];
-    self.footer = footer;
-    
-    return footer;
-}
-
-- (void)removeFooter
-{
-    self.footer = nil;
 }
 
 #pragma mark gifFooter
@@ -245,8 +128,9 @@ static char MJRefreshFooterKey;
 @end
 
 
-#pragma mark - 1.0.0版本以前的接口
+
 @implementation UIScrollView(MJRefreshDeprecated)
+#pragma mark - 1.0.0版本以前的接口
 #pragma mark - 下拉刷新
 /**
  *  添加一个下拉刷新头部控件
@@ -393,4 +277,124 @@ static char MJRefreshFooterKey;
 {
     return self.footer.isRefreshing;
 }
+
+#pragma mark - 2.0.0版本以前的接口
+#pragma mark - 下拉刷新
+- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingBlock:(void (^)())block dateKey:(NSString *)dateKey
+{
+    MJRefreshLegendHeader *header = [self addLegendHeader];
+    header.refreshingBlock = block;
+    header.dateKey = dateKey;
+    return header;
+}
+
+- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action dateKey:(NSString *)dateKey
+{
+    MJRefreshLegendHeader *header = [self addLegendHeader];
+    header.refreshingTarget = target;
+    header.refreshingAction = action;
+    header.dateKey = dateKey;
+    return header;
+}
+
+- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action
+{
+    return [self addLegendHeaderWithRefreshingTarget:target refreshingAction:action dateKey:nil];
+}
+
+- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingBlock:(void (^)())block
+{
+    return [self addLegendHeaderWithRefreshingBlock:block dateKey:nil];
+}
+
+- (MJRefreshLegendHeader *)addLegendHeader
+{
+    MJRefreshLegendHeader *header = [[MJRefreshLegendHeader alloc] init];
+    self.header = header;
+    
+    return header;
+}
+
+- (MJRefreshGifHeader *)addGifHeaderWithRefreshingBlock:(void (^)())block dateKey:(NSString *)dateKey
+{
+    MJRefreshGifHeader *header = [self addGifHeader];
+    header.refreshingBlock = block;
+    header.dateKey = dateKey;
+    return header;
+}
+
+- (MJRefreshGifHeader *)addGifHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action dateKey:(NSString *)dateKey
+{
+    MJRefreshGifHeader *header = [self addGifHeader];
+    header.refreshingTarget = target;
+    header.refreshingAction = action;
+    header.dateKey = dateKey;
+    return header;
+}
+
+- (MJRefreshGifHeader *)addGifHeaderWithRefreshingBlock:(void (^)())block
+{
+    return [self addGifHeaderWithRefreshingBlock:block dateKey:nil];
+}
+
+- (MJRefreshGifHeader *)addGifHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action
+{
+    return [self addGifHeaderWithRefreshingTarget:target refreshingAction:action dateKey:nil];
+}
+
+- (MJRefreshGifHeader *)addGifHeader
+{
+    MJRefreshGifHeader *header = [[MJRefreshGifHeader alloc] init];
+    self.header = header;
+    
+    return header;
+}
+
+#pragma mark - 上拉刷新
+- (MJRefreshLegendFooter *)addLegendFooterWithRefreshingBlock:(void (^)())block
+{
+    MJRefreshLegendFooter *footer = [self addLegendFooter];
+    footer.refreshingBlock = block;
+    return footer;
+}
+
+- (MJRefreshLegendFooter *)addLegendFooterWithRefreshingTarget:(id)target refreshingAction:(SEL)action
+{
+    MJRefreshLegendFooter *footer = [self addLegendFooter];
+    footer.refreshingTarget = target;
+    footer.refreshingAction = action;
+    return footer;
+}
+
+- (MJRefreshLegendFooter *)addLegendFooter
+{
+    MJRefreshLegendFooter *footer = [[MJRefreshLegendFooter alloc] init];
+    self.footer = footer;
+    
+    return footer;
+}
+
+- (MJRefreshGifFooter *)addGifFooterWithRefreshingBlock:(void (^)())block
+{
+    MJRefreshGifFooter *footer = [self addGifFooter];
+    footer.refreshingBlock = block;
+    return footer;
+}
+
+- (MJRefreshGifFooter *)addGifFooterWithRefreshingTarget:(id)target refreshingAction:(SEL)action
+{
+    MJRefreshGifFooter *footer = [self addGifFooter];
+    footer.refreshingTarget = target;
+    footer.refreshingAction = action;
+    return footer;
+}
+
+- (MJRefreshGifFooter *)addGifFooter
+{
+    MJRefreshGifFooter *footer = [[MJRefreshGifFooter alloc] init];
+    self.footer = footer;
+    
+    return footer;
+}
+
 @end

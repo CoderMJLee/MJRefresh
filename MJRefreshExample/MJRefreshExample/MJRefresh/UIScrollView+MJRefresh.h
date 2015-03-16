@@ -22,64 +22,6 @@
 /** 传统的下拉刷新控件 */
 @property (nonatomic, readonly) MJRefreshLegendHeader *legendHeader;
 
-#pragma mark - 添加下拉刷新控件
-/**
- * 添加一个传统的下拉刷新控件
- *
- * @param block 进入刷新状态就会自动调用这个block
- */
-- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingBlock:(void (^)())block;
-/**
- * 添加一个传统的下拉刷新控件
- *
- * @param block     进入刷新状态就会自动调用这个block
- * @param dateKey   用来记录刷新时间的key
- */
-- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingBlock:(void (^)())block dateKey:(NSString *)dateKey;
-/**
- * 添加一个传统的下拉刷新控件
- *
- * @param target 进入刷新状态就会自动调用target对象的action方法
- * @param action 进入刷新状态就会自动调用target对象的action方法
- */
-- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
-/**
- * 添加一个传统的下拉刷新控件
- *
- * @param target    进入刷新状态就会自动调用target对象的action方法
- * @param action    进入刷新状态就会自动调用target对象的action方法
- * @param dateKey   用来记录刷新时间的key
- */
-- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action dateKey:(NSString *)dateKey;
-/**
- * 添加一个gif图片的下拉刷新控件
- *
- * @param block 进入刷新状态就会自动调用这个block
- */
-- (MJRefreshGifHeader *)addGifHeaderWithRefreshingBlock:(void (^)())block;
-/**
- * 添加一个gif图片的下拉刷新控件
- *
- * @param block     进入刷新状态就会自动调用这个block
- * @param dateKey   用来记录刷新时间的key
- */
-- (MJRefreshGifHeader *)addGifHeaderWithRefreshingBlock:(void (^)())block dateKey:(NSString *)dateKey;
-/**
- * 添加一个gif图片的下拉刷新控件
- *
- * @param target 进入刷新状态就会自动调用target对象的action方法
- * @param action 进入刷新状态就会自动调用target对象的action方法
- */
-- (MJRefreshGifHeader *)addGifHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
-/**
- * 添加一个gif图片的下拉刷新控件
- *
- * @param target    进入刷新状态就会自动调用target对象的action方法
- * @param action    进入刷新状态就会自动调用target对象的action方法
- * @param dateKey   用来记录刷新时间的key
- */
-- (MJRefreshGifHeader *)addGifHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action dateKey:(NSString *)dateKey;
-
 #pragma mark - 移除下拉刷新控件
 /**
  * 移除下拉刷新控件
@@ -94,43 +36,20 @@
 /** 传统的上拉刷新控件 */
 @property (nonatomic, readonly) MJRefreshLegendFooter *legendFooter;
 
-#pragma mark - 添加上拉刷新控件
-/**
- * 添加一个传统的上拉刷新控件
- *
- * @param block 进入刷新状态就会自动调用这个block
- */
-- (MJRefreshLegendFooter *)addLegendFooterWithRefreshingBlock:(void (^)())block;
-/**
- * 添加一个传统的上拉刷新控件
- *
- * @param target 进入刷新状态就会自动调用target对象的action方法
- * @param action 进入刷新状态就会自动调用target对象的action方法
- */
-- (MJRefreshLegendFooter *)addLegendFooterWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
-/**
- * 添加一个gif图片的上拉刷新控件
- *
- * @param block 进入刷新状态就会自动调用这个block
- */
-- (MJRefreshGifFooter *)addGifFooterWithRefreshingBlock:(void (^)())block;
-/**
- * 添加一个gif图片的上拉刷新控件
- *
- * @param target 进入刷新状态就会自动调用target对象的action方法
- * @param action 进入刷新状态就会自动调用target对象的action方法
- */
-- (MJRefreshGifFooter *)addGifFooterWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
-
 #pragma mark - 移除上拉刷新控件
 /**
  * 移除上拉刷新控件
  */
 - (void)removeFooter;
+
 @end
 
-#pragma mark - 1.0.0版本以前的接口
+//_____________________________________________________________________________________________
+// Deprecated 废弃的接口
+
 @interface UIScrollView(MJRefreshDeprecated)
+
+#pragma mark - 1.0.0版本以前的接口
 #pragma mark - 下拉刷新
 /**
  *  添加一个下拉刷新头部控件
@@ -219,4 +138,92 @@
  *  是否正在上拉刷新
  */
 @property (nonatomic, assign, readonly, getter = isFooterRefreshing) BOOL footerRefreshing MJDeprecated("建议使用self.tableView.footer.isRefreshing");
+
+#pragma mark - 1.0.0版本以前的接口
+#pragma mark - 添加下拉刷新控件
+/**
+ * 添加一个传统的下拉刷新控件
+ *
+ * @param block 进入刷新状态就会自动调用这个block
+ */
+- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingBlock:(void (^)())block MJDeprecated("Use self.tableView.header to set header.");
+/**
+ * 添加一个传统的下拉刷新控件
+ *
+ * @param block     进入刷新状态就会自动调用这个block
+ * @param dateKey   用来记录刷新时间的key
+ */
+- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingBlock:(void (^)())block dateKey:(NSString *)dateKey MJDeprecated("Use self.tableView.header to set header.");
+/**
+ * 添加一个传统的下拉刷新控件
+ *
+ * @param target 进入刷新状态就会自动调用target对象的action方法
+ * @param action 进入刷新状态就会自动调用target对象的action方法
+ */
+- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action MJDeprecated("Use self.tableView.header to set header.");
+/**
+ * 添加一个传统的下拉刷新控件
+ *
+ * @param target    进入刷新状态就会自动调用target对象的action方法
+ * @param action    进入刷新状态就会自动调用target对象的action方法
+ * @param dateKey   用来记录刷新时间的key
+ */
+- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action dateKey:(NSString *)dateKey MJDeprecated("Use self.tableView.header to set header.");
+/**
+ * 添加一个gif图片的下拉刷新控件
+ *
+ * @param block 进入刷新状态就会自动调用这个block
+ */
+- (MJRefreshGifHeader *)addGifHeaderWithRefreshingBlock:(void (^)())block MJDeprecated("Use self.tableView.header to set header.");
+/**
+ * 添加一个gif图片的下拉刷新控件
+ *
+ * @param block     进入刷新状态就会自动调用这个block
+ * @param dateKey   用来记录刷新时间的key
+ */
+- (MJRefreshGifHeader *)addGifHeaderWithRefreshingBlock:(void (^)())block dateKey:(NSString *)dateKey MJDeprecated("Use self.tableView.header to set header.");
+/**
+ * 添加一个gif图片的下拉刷新控件
+ *
+ * @param target 进入刷新状态就会自动调用target对象的action方法
+ * @param action 进入刷新状态就会自动调用target对象的action方法
+ */
+- (MJRefreshGifHeader *)addGifHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action MJDeprecated("Use self.tableView.header to set header.");
+/**
+ * 添加一个gif图片的下拉刷新控件
+ *
+ * @param target    进入刷新状态就会自动调用target对象的action方法
+ * @param action    进入刷新状态就会自动调用target对象的action方法
+ * @param dateKey   用来记录刷新时间的key
+ */
+- (MJRefreshGifHeader *)addGifHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action dateKey:(NSString *)dateKey MJDeprecated("Use self.tableView.header to set header.");
+
+#pragma mark - 添加上拉刷新控件
+/**
+ * 添加一个传统的上拉刷新控件
+ *
+ * @param block 进入刷新状态就会自动调用这个block
+ */
+- (MJRefreshLegendFooter *)addLegendFooterWithRefreshingBlock:(void (^)())block MJDeprecated("Use self.tableView.footer to set footer.");
+/**
+ * 添加一个传统的上拉刷新控件
+ *
+ * @param target 进入刷新状态就会自动调用target对象的action方法
+ * @param action 进入刷新状态就会自动调用target对象的action方法
+ */
+- (MJRefreshLegendFooter *)addLegendFooterWithRefreshingTarget:(id)target refreshingAction:(SEL)action MJDeprecated("Use self.tableView.footer to set footer.");
+/**
+ * 添加一个gif图片的上拉刷新控件
+ *
+ * @param block 进入刷新状态就会自动调用这个block
+ */
+- (MJRefreshGifFooter *)addGifFooterWithRefreshingBlock:(void (^)())block MJDeprecated("Use self.tableView.footer to set footer.");
+/**
+ * 添加一个gif图片的上拉刷新控件
+ *
+ * @param target 进入刷新状态就会自动调用target对象的action方法
+ * @param action 进入刷新状态就会自动调用target对象的action方法
+ */
+- (MJRefreshGifFooter *)addGifFooterWithRefreshingTarget:(id)target refreshingAction:(SEL)action MJDeprecated("Use self.tableView.footer to set footer.");
+
 @end
