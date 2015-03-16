@@ -186,6 +186,25 @@ static char MJRefreshHeaderKey;
     self.footer = nil;
 }
 
+#pragma mark gifFooter
+- (MJRefreshGifFooter *)gifFooter
+{
+    if ([self.footer isKindOfClass:[MJRefreshGifFooter class]]) {
+        return (MJRefreshGifFooter *)self.footer;
+    }
+    return nil;
+}
+
+#pragma mark legendFooter
+- (MJRefreshLegendFooter *)legendFooter
+{
+    if ([self.footer isKindOfClass:[MJRefreshLegendFooter class]]) {
+        return (MJRefreshLegendFooter *)self.footer;
+    }
+    return nil;
+}
+
+#pragma mark footer
 static char MJRefreshFooterKey;
 - (void)setFooter:(MJRefreshFooter *)footer
 {
@@ -201,23 +220,6 @@ static char MJRefreshFooterKey;
         [self addSubview:footer];
     }
 }
-
-- (MJRefreshGifFooter *)gifFooter
-{
-    if ([self.footer isKindOfClass:[MJRefreshGifFooter class]]) {
-        return (MJRefreshGifFooter *)self.footer;
-    }
-    return nil;
-}
-
-- (MJRefreshLegendFooter *)legendFooter
-{
-    if ([self.footer isKindOfClass:[MJRefreshLegendFooter class]]) {
-        return (MJRefreshLegendFooter *)self.footer;
-    }
-    return nil;
-}
-
 
 - (MJRefreshFooter *)footer
 {
