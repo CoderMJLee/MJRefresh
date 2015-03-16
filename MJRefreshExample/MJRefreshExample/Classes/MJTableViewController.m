@@ -317,19 +317,10 @@ static const CGFloat MJDuration = 2.0;
 - (void)example14
 {
     // 添加动画图片的上拉刷新
-    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
-    [self.tableView addGifFooterWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    self.tableView.footer = [self gifFooter1];
     
     // 隐藏状态
     self.tableView.footer.stateHidden = YES;
-    
-    // 设置正在刷新状态的动画图片
-    NSMutableArray *refreshingImages = [NSMutableArray array];
-    for (NSUInteger i = 1; i<=3; i++) {
-        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"dropdown_loading_0%zd", i]];
-        [refreshingImages addObject:image];
-    }
-    self.tableView.gifFooter.refreshingImages = refreshingImages;
     
     // 此时self.tableView.footer == self.tableView.gifFooter
 }
