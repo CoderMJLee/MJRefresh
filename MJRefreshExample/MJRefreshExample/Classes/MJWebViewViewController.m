@@ -21,7 +21,7 @@
     __weak UIScrollView *scrollView = self.webView.scrollView;
     
     // 添加下拉刷新控件
-    [scrollView addLegendHeaderWithRefreshingBlock:^{
+    scrollView.header = [MJRefreshLegendHeader headerWithRefreshingBlock:^ {
         MJLog(@"进入下拉刷新");
         
         // 模仿2秒后刷新成功
