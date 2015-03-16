@@ -48,24 +48,20 @@
 - (UILabel *)updatedTimeLabel
 {
     if (!_updatedTimeLabel) {
-        // 1.创建控件
         UILabel *updatedTimeLabel = [[UILabel alloc] init];
         updatedTimeLabel.backgroundColor = [UIColor clearColor];
         updatedTimeLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:_updatedTimeLabel = updatedTimeLabel];
-        
-        // 2.设置更新时间
-        self.updatedTime = [[NSUserDefaults standardUserDefaults] objectForKey:self.dateKey];
     }
     return _updatedTimeLabel;
 }
 
 #pragma mark - 初始化方法
 - (instancetype)initWithFrame:(CGRect)frame {
-    // 设置默认的dateKey(赶在父类init之前)
-    self.dateKey = MJRefreshHeaderUpdatedTimeKey;
-    
     if (self = [super initWithFrame:frame]) {
+        // 设置默认的dateKey
+        self.dateKey = MJRefreshHeaderUpdatedTimeKey;
+        
         // 设置为默认状态
         self.state = MJRefreshHeaderStateIdle;
         
@@ -117,7 +113,9 @@
 #pragma mark - 私有方法
 - (void)setDateKey:(NSString *)dateKey
 {
-    _dateKey = dateKey ? [dateKey copy] : MJRefreshHeaderUpdatedTimeKey;
+    _dateKey = dateKey ? dateKey : MJRefreshHeaderUpdatedTimeKey;
+    
+    self.updatedTime = [[NSUserDefaults standardUserDefaults] objectForKey:_dateKey];
 }
 
 #pragma mark 设置最后的更新时间
