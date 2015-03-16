@@ -269,20 +269,14 @@ static const CGFloat MJDuration = 2.0;
     // 此时self.tableView.footer == self.tableView.gifFooter
 }
 
-/**
- * UITableView + 上拉刷新 隐藏状态01
- */
-- (void)example13
+- (MJRefreshGifFooter *)gifFooter2
 {
-    // 添加动画图片的上拉刷新
+    __weak typeof(self) weakSelf = self;
+    
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
-    [self.tableView addGifFooterWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
-    
-    // 当上拉刷新控件出现50%时（出现一半），就会自动刷新。这个值默认是1.0（也就是上拉刷新100%出现时，才会自动刷新）
-//    self.tableView.footer.appearencePercentTriggerAutoRefresh = 0.5;
-    
-    // 隐藏状态
-    self.tableView.footer.stateHidden = YES;
+    MJRefreshGifFooter *footer = [MJRefreshGifFooter footerWithRefreshingBlock:^{
+        [weakSelf loadMoreData];
+    }];
     
     // 设置正在刷新状态的动画图片
     NSMutableArray *refreshingImages = [NSMutableArray array];
@@ -290,7 +284,26 @@ static const CGFloat MJDuration = 2.0;
         UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"PullToRefresh_%03zd", i]];
         [refreshingImages addObject:image];
     }
-    self.tableView.gifFooter.refreshingImages = refreshingImages;
+    footer.refreshingImages = refreshingImages;
+    
+    return footer;
+}
+
+/**
+ * UITableView + 上拉刷新 隐藏状态01
+ */
+- (void)example13
+{
+    // 添加动画图片的上拉刷新
+    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
+//    [self.tableView addGifFooterWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    self.tableView.footer = [self gifFooter2];
+    
+    // 当上拉刷新控件出现50%时（出现一半），就会自动刷新。这个值默认是1.0（也就是上拉刷新100%出现时，才会自动刷新）
+//    self.tableView.footer.appearencePercentTriggerAutoRefresh = 0.5;
+    
+    // 隐藏状态
+    self.tableView.footer.stateHidden = YES;
     
     // 此时self.tableView.footer == self.tableView.gifFooter
     
