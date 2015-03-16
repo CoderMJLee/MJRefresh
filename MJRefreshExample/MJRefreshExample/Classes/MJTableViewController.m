@@ -391,9 +391,13 @@ static const CGFloat MJDuration = 2.0;
  */
 - (void)example18
 {
+    __weak __typeof(self) weakSelf = self;
+    
     // 添加传统的上拉刷新
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadOnceData方法）
-    [self.tableView addLegendFooterWithRefreshingTarget:self refreshingAction:@selector(loadOnceData)];
+    self.tableView.footer = [MJRefreshLegendFooter footerWithRefreshingBlock:^{
+        [weakSelf loadOnceData];
+    }];
 }
 
 #pragma mark - 数据处理相关
