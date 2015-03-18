@@ -227,6 +227,11 @@
     self.state = MJRefreshFooterStateNoMoreData;
 }
 
+- (void)resetNoMoreData
+{
+    self.state = MJRefreshFooterStateIdle;
+}
+
 - (void)setTitle:(NSString *)title forState:(MJRefreshFooterState)state
 {
     if (title == nil) return;
