@@ -26,9 +26,7 @@ static const CGFloat MJDuration = 2.0;
 
 @implementation MJTableViewController
 #pragma mark - 示例代码
-/**
- * UITableView + 下拉刷新 传统
- */
+#pragma mark UITableView + 下拉刷新 传统
 - (void)example01
 {
     __weak typeof(self) weakSelf = self;
@@ -50,9 +48,7 @@ static const CGFloat MJDuration = 2.0;
      */
 }
 
-/**
- * UITableView + 下拉刷新 动画图片
- */
+#pragma mark UITableView + 下拉刷新 动画图片
 - (void)example02
 {
     // 添加动画图片的下拉刷新
@@ -85,9 +81,7 @@ static const CGFloat MJDuration = 2.0;
     // 此时self.tableView.header == self.tableView.gifHeader
 }
 
-/**
- * UITableView + 下拉刷新 隐藏时间
- */
+#pragma mark UITableView + 下拉刷新 隐藏时间
 - (void)example03
 {
     // 添加传统的下拉刷新
@@ -103,9 +97,7 @@ static const CGFloat MJDuration = 2.0;
     // 此时self.tableView.header == self.tableView.legendHeader
 }
 
-/**
- * UITableView + 下拉刷新 隐藏状态和时间01
- */
+#pragma mark UITableView + 下拉刷新 隐藏状态和时间01
 - (void)example04
 {
     // 添加动画图片的下拉刷新
@@ -145,9 +137,7 @@ static const CGFloat MJDuration = 2.0;
     self.tableView.backgroundColor = [UIColor blackColor];
 }
 
-/**
- * UITableView + 下拉刷新 隐藏状态和时间02
- */
+#pragma mark UITableView + 下拉刷新 隐藏状态和时间02
 - (void)example05
 {
     // 添加动画图片的下拉刷新
@@ -182,9 +172,7 @@ static const CGFloat MJDuration = 2.0;
     // 此时self.tableView.header == self.tableView.gifHeader
 }
 
-/**
- * UITableView + 下拉刷新 自定义文字
- */
+#pragma mark UITableView + 下拉刷新 自定义文字
 - (void)example06
 {
     // 添加传统的下拉刷新
@@ -208,9 +196,7 @@ static const CGFloat MJDuration = 2.0;
     // 此时self.tableView.header == self.tableView.legendHeader
 }
 
-/**
- * UITableView + 上拉刷新 传统
- */
+#pragma mark UITableView + 上拉刷新 传统
 - (void)example11
 {
     __weak typeof(self) weakSelf = self;
@@ -231,9 +217,7 @@ static const CGFloat MJDuration = 2.0;
      */
 }
 
-/**
- * UITableView + 上拉刷新 动画图片
- */
+#pragma mark UITableView + 上拉刷新 动画图片
 - (void)example12
 {
     // 添加动画图片的上拉刷新
@@ -251,9 +235,7 @@ static const CGFloat MJDuration = 2.0;
     // 此时self.tableView.footer == self.tableView.gifFooter
 }
 
-/**
- * UITableView + 上拉刷新 隐藏状态01
- */
+#pragma mark UITableView + 上拉刷新 隐藏状态01
 - (void)example13
 {
     // 添加动画图片的上拉刷新
@@ -280,9 +262,7 @@ static const CGFloat MJDuration = 2.0;
     self.tableView.backgroundColor = [UIColor blackColor];
 }
 
-/**
- * UITableView + 上拉刷新 隐藏状态02
- */
+#pragma mark UITableView + 上拉刷新 隐藏状态02
 - (void)example14
 {
     // 添加动画图片的上拉刷新
@@ -303,9 +283,7 @@ static const CGFloat MJDuration = 2.0;
     // 此时self.tableView.footer == self.tableView.gifFooter
 }
 
-/**
- * UITableView + 上拉刷新 全部加载完毕
- */
+#pragma mark UITableView + 上拉刷新 全部加载完毕
 - (void)example15
 {
     // 添加传统的上拉刷新
@@ -313,21 +291,19 @@ static const CGFloat MJDuration = 2.0;
     [self.tableView addLegendFooterWithRefreshingTarget:self refreshingAction:@selector(loadLastData)];
     
     // 其他
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"恢复数据加载" style:UIBarButtonItemStyleDone target:self action:@selector(recover)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"恢复数据加载" style:UIBarButtonItemStyleDone target:self action:@selector(reset)];
 }
 
-- (void)recover
+- (void)reset
 {
     [self.tableView.footer setRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 //    [self.tableView.footer beginRefreshing];
-    self.tableView.footer.state = MJRefreshFooterStateIdle;
+    [self.tableView.footer resetNoMoreData];
     
     // 此时self.tableView.footer == self.tableView.legendFooter
 }
 
-/**
- * UITableView + 上拉刷新 禁止自动加载
- */
+#pragma mark UITableView + 上拉刷新 禁止自动加载
 - (void)example16
 {
     // 添加传统的上拉刷新
@@ -340,9 +316,7 @@ static const CGFloat MJDuration = 2.0;
     // 此时self.tableView.footer == self.tableView.legendFooter
 }
 
-/**
- * UITableView + 上拉刷新 自定义文字
- */
+#pragma mark UITableView + 上拉刷新 自定义文字
 - (void)example17
 {
     // 添加传统的上拉刷新
@@ -363,9 +337,7 @@ static const CGFloat MJDuration = 2.0;
     // 此时self.tableView.footer == self.tableView.legendFooter
 }
 
-/**
- * UITableView + 上拉刷新 加载后隐藏
- */
+#pragma mark UITableView + 上拉刷新 加载后隐藏
 - (void)example18
 {
     // 添加传统的上拉刷新
@@ -374,9 +346,7 @@ static const CGFloat MJDuration = 2.0;
 }
 
 #pragma mark - 数据处理相关
-/**
- * 下拉刷新数据
- */
+#pragma mark 下拉刷新数据
 - (void)loadNewData
 {
     // 1.添加假数据
@@ -394,9 +364,7 @@ static const CGFloat MJDuration = 2.0;
     });
 }
 
-/**
- * 上拉加载更多数据
- */
+#pragma mark 上拉加载更多数据
 - (void)loadMoreData
 {
     // 1.添加假数据
@@ -414,9 +382,7 @@ static const CGFloat MJDuration = 2.0;
     });
 }
 
-/**
- * 加载最后一份数据
- */
+#pragma mark 加载最后一份数据
 - (void)loadLastData
 {
     // 1.添加假数据
@@ -434,9 +400,7 @@ static const CGFloat MJDuration = 2.0;
     });
 }
 
-/**
- * 只加载一次数据
- */
+#pragma mark 只加载一次数据
 - (void)loadOnceData
 {
     // 1.添加假数据

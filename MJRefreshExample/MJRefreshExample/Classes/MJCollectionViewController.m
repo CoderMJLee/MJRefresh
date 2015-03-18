@@ -25,9 +25,7 @@ static const CGFloat MJDuration = 2.0;
 
 @implementation MJCollectionViewController
 #pragma mark - 示例
-/**
- * UICollectionView 上下拉刷新
- */
+#pragma mark UICollectionView 上下拉刷新
 - (void)example21
 {
     __weak typeof(self) weakSelf = self;
