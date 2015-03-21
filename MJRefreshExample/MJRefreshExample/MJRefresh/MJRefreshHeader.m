@@ -82,6 +82,13 @@
     }
 }
 
+- (void)drawRect:(CGRect)rect
+{
+    if (self.state == MJRefreshHeaderStateWillRefresh) {
+        self.state = MJRefreshHeaderStateRefreshing;
+    }
+}
+
 - (void)layoutSubviews
 {
     [super layoutSubviews];
@@ -219,7 +226,11 @@
 
 - (void)beginRefreshing
 {
-    self.state = MJRefreshHeaderStateRefreshing;
+    if (self.window) {
+        self.state = MJRefreshHeaderStateRefreshing;
+    } else {
+        self.state = MJRefreshHeaderStateWillRefresh;
+    }
 }
 
 - (void)endRefreshing
