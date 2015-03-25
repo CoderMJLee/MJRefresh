@@ -266,7 +266,14 @@
                 
                 // 恢复inset和offset
                 [UIView animateWithDuration:MJRefreshSlowAnimationDuration delay:0.0 options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionBeginFromCurrentState animations:^{
-                    _scrollView.mj_insetT -= self.mj_h;
+//                    _scrollView.mj_insetT -= self.mj_h;
+                    if (_scrollViewOriginalInset.top == 0) {
+                        _scrollView.mj_insetT = 0;
+                    } else if (_scrollViewOriginalInset.top ==_scrollView.mj_insetT) {
+                        _scrollView.mj_insetT -= self.mj_h;
+                    } else {
+                        _scrollView.mj_insetT = _scrollViewOriginalInset.top;
+                    }
                 } completion:nil];
             }
             break;
