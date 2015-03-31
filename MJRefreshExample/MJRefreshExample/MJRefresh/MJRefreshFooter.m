@@ -105,6 +105,8 @@
         
         // 重新调整frame
         [self adjustFrameWithContentSize];
+    } else { // 被移除了
+        _scrollView.mj_insetB -= self.mj_h;
     }
 }
 
