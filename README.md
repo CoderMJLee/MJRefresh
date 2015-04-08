@@ -25,6 +25,10 @@ UIScrollView+MJRefresh.h    UIScrollView+MJRefresh.m
 UIView+MJExtension.h        UIView+MJExtension.m
 ```
 
+## 有哪些App正在使用MJRefresh
+![(App01)](http://ww3.sinaimg.cn/mw1024/800cdf9cgw1eqyhgnwcw9j20f10kl42r.jpg)
+![(App02)](http://ww3.sinaimg.cn/mw1024/800cdf9cgw1eqyhhg4qwnj20f10kgtd1.jpg)
+
 ## 具体用法
 ```objc
 * 由于这个框架的功能较多，就不写具体文字描述其用法
