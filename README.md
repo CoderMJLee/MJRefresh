@@ -1,5 +1,6 @@
 ## MJRefresh
-The easiest way to use pull-to-refresh
+* The easiest way to use pull-to-refresh
+* 用法最简单的下拉刷新框架：一行代码搞定
 
 ## 支持哪些控件的刷新
 * `UIScrollView`、`UITableView`、`UICollectionView`、`UIWebView`
@@ -26,8 +27,10 @@ UIView+MJExtension.h        UIView+MJExtension.m
 ```
 
 ## 有哪些App正在使用MJRefresh
-![(App01)](http://ww3.sinaimg.cn/mw1024/800cdf9cgw1eqyhgnwcw9j20f10kl42r.jpg)
-![(App02)](http://ww3.sinaimg.cn/mw1024/800cdf9cgw1eqyhhg4qwnj20f10kgtd1.jpg)
+![(App01)](http://images.cnitblog.com/blog2015/497279/201504/091535245558276.png)
+![(App02)](http://images.cnitblog.com/blog2015/497279/201504/091535380555952.png)
+![(App03)](http://images.cnitblog.com/blog2015/497279/201504/091535439466718.png)
+* 其他可以关注：[M了个J-博客园](http://www.cnblogs.com/mjios/p/4409853.html)
 
 ## 具体用法
 ```objc
