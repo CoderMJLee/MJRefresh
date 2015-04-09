@@ -133,8 +133,8 @@ static const CGFloat MJDuration = 2.0;
     
     // 此时self.tableView.header == self.tableView.gifHeader
     
-    // 由于动画图片是黑色的，所以故意设置tableView底色为黑色
-    self.tableView.backgroundColor = [UIColor blackColor];
+    // 由于动画图片是黑色的，所以故意设置header底色为黑色
+    self.tableView.header.backgroundColor = [UIColor blackColor];
 }
 
 #pragma mark UITableView + 下拉刷新 隐藏状态和时间02
@@ -258,8 +258,8 @@ static const CGFloat MJDuration = 2.0;
     
     // 此时self.tableView.footer == self.tableView.gifFooter
     
-    // 由于动画图片是黑色的，所以故意设置tableView底色为黑色
-    self.tableView.backgroundColor = [UIColor blackColor];
+    // 由于动画图片是黑色的，所以故意设置footer底色为黑色
+    self.tableView.footer.backgroundColor = [UIColor blackColor];
 }
 
 #pragma mark UITableView + 上拉刷新 隐藏状态02
