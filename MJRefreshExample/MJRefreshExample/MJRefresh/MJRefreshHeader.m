@@ -241,6 +241,8 @@
         self.state = MJRefreshHeaderStateRefreshing;
     } else {
         self.state = MJRefreshHeaderStateWillRefresh;
+        // 刷新(预防从另一个控制器回到这个控制器的情况，回来要重新刷新一下)
+        [self setNeedsDisplay];
     }
 }
 
