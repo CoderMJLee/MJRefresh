@@ -135,7 +135,7 @@
 /** 传统的上拉刷新控件 */
 @property (nonatomic, readonly) MJRefreshLegendFooter *legendFooter;
 /** 传统的自定义上拉刷新控件 */
-@property (nonatomic, readonly) JQRefreshCustomLegendFooter *legendCustomFooter;
+@property (nonatomic, readonly) JQRefreshCustomLegendFooter *customLegendFooter;
 
 #pragma mark - 添加上拉刷新控件
 /**
