@@ -13,6 +13,7 @@
 #import "MJRefreshGifFooter.h"
 #import "MJRefreshLegendFooter.h"
 #import "JQRefreshCustomLegendHeader.h"
+#import "JQRefreshCustomLegendFooter.h"
 #import <objc/runtime.h>
 
 @implementation UIScrollView (MJRefresh)
@@ -188,6 +189,7 @@ static char MJRefreshHeaderKey;
 }
 
 #pragma mark - 上拉刷新
+#pragma mark MJRefreshLegendFooter
 - (MJRefreshLegendFooter *)addLegendFooterWithRefreshingBlock:(void (^)())block
 {
     MJRefreshLegendFooter *footer = [self addLegendFooter];
@@ -211,6 +213,33 @@ static char MJRefreshHeaderKey;
     return footer;
 }
 
+#pragma mark MJRefreshCustomLegendFooter
+
+- (JQRefreshCustomLegendFooter *)addCustomLegendFooterWithRefreshingBlock:(void (^)())block
+{
+    JQRefreshCustomLegendFooter *footer = [self addCustomLegendFooter];
+    footer.refreshingBlock = block;
+    return footer;
+}
+
+- (JQRefreshCustomLegendFooter *)addCustomLegendFooterWithRefreshingTarget:(id)target refreshingAction:(SEL)action
+{
+    JQRefreshCustomLegendFooter *footer = [self addCustomLegendFooter];
+    footer.refreshingTarget = target;
+    footer.refreshingAction = action;
+    return footer;
+}
+
+- (JQRefreshCustomLegendFooter *)addCustomLegendFooter
+{
+    JQRefreshCustomLegendFooter *footer = [[JQRefreshCustomLegendFooter alloc] init];
+    self.footer = footer;
+    
+    return footer;
+}
+
+
+#pragma mark MJRefreshGifFooter
 - (MJRefreshGifFooter *)addGifFooterWithRefreshingBlock:(void (^)())block
 {
     MJRefreshGifFooter *footer = [self addGifFooter];
@@ -225,6 +254,7 @@ static char MJRefreshHeaderKey;
     footer.refreshingAction = action;
     return footer;
 }
+
 
 - (MJRefreshGifFooter *)addGifFooter
 {
@@ -267,6 +297,13 @@ static char MJRefreshFooterKey;
 {
     if ([self.footer isKindOfClass:[MJRefreshLegendFooter class]]) {
         return (MJRefreshLegendFooter *)self.footer;
+    }
+    return nil;
+}
+- (JQRefreshCustomLegendFooter *)legendCustomFooter
+{
+    if ([self.footer isKindOfClass:[JQRefreshCustomLegendFooter class]]) {
+        return (JQRefreshCustomLegendFooter *)self.footer;
     }
     return nil;
 }

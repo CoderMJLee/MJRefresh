@@ -36,14 +36,16 @@
     switch (state) {
         case JQRefreshHeaderStateIdle:
         {
-            _idle = [UIImage imageNamed:MJRefreshSrcName(imageName)];
+//            _idle = [UIImage imageNamed:MJRefreshSrcName(imageName)];
+             _idle = [UIImage imageNamed:imageName];
             _idleView = [[UIImageView alloc] initWithImage:_idle];
             _idleViewAnimationBlock = animation;
         }
             break;
         case JQRefreshHeaderStateRefreshing:
         {
-            _refreshing = [UIImage imageNamed:MJRefreshSrcName(imageName)];
+//            _refreshing = [UIImage imageNamed:MJRefreshSrcName(imageName)];
+            _refreshing = [UIImage imageNamed:imageName];
             _refreshingView = [[UIImageView alloc] initWithImage:_refreshing];
             [self addSubview:_refreshingView ];
             _refreshingViewAnimationBlock = animation;
@@ -53,7 +55,8 @@
             
         case JQRefreshHeaderStatePulling:
         {
-            _pulling = [UIImage imageNamed:MJRefreshSrcName(imageName)];
+//            _pulling = [UIImage imageNamed:MJRefreshSrcName(imageName)];
+            _pulling = [UIImage imageNamed:imageName];
             _pullingView = [[UIImageView alloc] initWithImage:_pulling];
             [self addSubview:_pullingView ];
             _pullingViewAnimationBlock = animation;

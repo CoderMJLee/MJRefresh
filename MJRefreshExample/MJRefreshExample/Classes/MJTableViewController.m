@@ -236,6 +236,27 @@ static const CGFloat MJDuration = 2.0;
 }
 
 #pragma mark UITableView + 上拉刷新 传统
+- (void)example001{
+    __weak typeof(self) weakSelf = self;
+    
+    // 添加传统的上拉刷新
+    // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
+    [self.tableView addCustomLegendFooterWithRefreshingBlock:^{
+        [weakSelf loadMoreData];
+    }];
+    [self.tableView.legendCustomFooter setImage:@"loading" animationWithBlock:^(UIImageView *imageView) {
+        //动画效果
+        CABasicAnimation *basicAni = [CABasicAnimation animation];
+        basicAni.keyPath = @"transform.rotation";
+        basicAni.toValue = @(M_PI*2);
+        basicAni.duration = 1.0;
+        basicAni.repeatCount = CGFLOAT_MAX;
+        [imageView.layer addAnimation:basicAni forKey:nil];
+    }];
+
+}
+
+#pragma mark UITableView + 上拉刷新 传统
 - (void)example11
 {
     __weak typeof(self) weakSelf = self;
@@ -246,7 +267,8 @@ static const CGFloat MJDuration = 2.0;
         [weakSelf loadMoreData];
     }];
     
-    /**
+    
+       /**
      也可以这样使用
      self.tableView.footer.refreshingBlock = ^{
      

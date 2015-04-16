@@ -10,3 +10,4 @@
 
 
 #import "JQRefreshCustomLegendHeader.h"
+#import "JQRefreshCustomLegendFooter.h"
