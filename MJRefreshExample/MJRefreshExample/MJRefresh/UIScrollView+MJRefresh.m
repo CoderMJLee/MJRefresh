@@ -12,10 +12,13 @@
 #import "MJRefreshLegendHeader.h"
 #import "MJRefreshGifFooter.h"
 #import "MJRefreshLegendFooter.h"
+#import "JQRefreshCustomLegendHeader.h"
 #import <objc/runtime.h>
 
 @implementation UIScrollView (MJRefresh)
 #pragma mark - 下拉刷新
+
+#pragma mark MJRefreshLegendHeader
 - (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingBlock:(void (^)())block dateKey:(NSString *)dateKey
 {
     MJRefreshLegendHeader *header = [self addLegendHeader];
@@ -51,6 +54,46 @@
     return header;
 }
 
+#pragma mark JQRefreshCustomLegendHeader
+
+- (JQRefreshCustomLegendHeader *)addCustomLegendHeaderWithRefreshingBlock:(void (^)())block dateKey:(NSString *)dateKey
+{
+    JQRefreshCustomLegendHeader *header = [self addCustomLegendHeader];
+    header.refreshingBlock = block;
+    header.dateKey = dateKey;
+    return header;
+}
+
+- (JQRefreshCustomLegendHeader *)addCustomLegendHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action dateKey:(NSString *)dateKey
+{
+    JQRefreshCustomLegendHeader *header = [self addCustomLegendHeader];
+    header.refreshingTarget = target;
+    header.refreshingAction = action;
+    header.dateKey = dateKey;
+    return header;
+}
+
+- (JQRefreshCustomLegendHeader *)addCustomLegendHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action
+{
+    return [self addCustomLegendHeaderWithRefreshingTarget:target refreshingAction:action dateKey:nil];
+}
+
+- (JQRefreshCustomLegendHeader *)addCustomLegendHeaderWithRefreshingBlock:(void (^)())block
+{
+    return [self addCustomLegendHeaderWithRefreshingBlock:block dateKey:nil];
+}
+
+- (JQRefreshCustomLegendHeader *)addCustomLegendHeader
+{
+    JQRefreshCustomLegendHeader *header = [[JQRefreshCustomLegendHeader alloc] init];
+    self.header = header;
+    
+    return header;
+}
+
+
+
+#pragma mark MJRefreshGifHeader
 - (MJRefreshGifHeader *)addGifHeaderWithRefreshingBlock:(void (^)())block dateKey:(NSString *)dateKey
 {
     MJRefreshGifHeader *header = [self addGifHeader];
@@ -107,6 +150,16 @@
 {
     if ([self.header isKindOfClass:[MJRefreshLegendHeader class]]) {
         return (MJRefreshLegendHeader *)self.header;
+    }
+    
+    return nil;
+}
+
+#pragma mark legendHeader
+- (JQRefreshCustomLegendHeader *)customLegendHeader
+{
+    if ([self.header isKindOfClass:[JQRefreshCustomLegendHeader class]]) {
+        return (JQRefreshCustomLegendHeader *)self.header;
     }
     
     return nil;

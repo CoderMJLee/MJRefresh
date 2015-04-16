@@ -7,3 +7,6 @@
 #import "MJRefreshGifFooter.h"
 #import "MJRefreshLegendFooter.h"
 #import "MJRefreshConst.h"
+
+
+#import "JQRefreshCustomLegendHeader.h"

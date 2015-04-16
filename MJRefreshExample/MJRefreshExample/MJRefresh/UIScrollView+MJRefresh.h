@@ -12,7 +12,7 @@
 
 @class MJRefreshGifHeader, MJRefreshLegendHeader, MJRefreshHeader;
 @class MJRefreshGifFooter, MJRefreshLegendFooter, MJRefreshFooter;
-
+@class JQRefreshCustomLegendHeader;
 @interface UIScrollView (MJRefresh)
 #pragma mark - 访问下拉刷新控件
 /** 下拉刷新控件 */
@@ -21,6 +21,8 @@
 @property (nonatomic, readonly) MJRefreshGifHeader *gifHeader;
 /** 传统的下拉刷新控件 */
 @property (nonatomic, readonly) MJRefreshLegendHeader *legendHeader;
+/** 传统自定义下拉刷新控件*/
+@property (nonatomic, readonly) JQRefreshCustomLegendHeader *customLegendHeader;
 
 #pragma mark - 添加下拉刷新控件
 /**
@@ -51,6 +53,45 @@
  * @param dateKey   用来记录刷新时间的key
  */
 - (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action dateKey:(NSString *)dateKey;
+
+
+// ========================================
+// 增加 JQRefreshCustomLegendHeader 自定义传统下拉菜单控件
+// ========================================
+/**
+ * 添加一个自定义传统的下拉刷新控件
+ *
+ * @param block 进入刷新状态就会自动调用这个block
+ */
+- (JQRefreshCustomLegendHeader *)addCustomLegendHeaderWithRefreshingBlock:(void (^)())block dateKey:(NSString *)dateKey;
+
+/**
+ * 添加一个自定义传统的下拉刷新控件
+ *
+ * @param target 进入刷新状态就会自动调用target对象的action方法
+ * @param action 进入刷新状态就会自动调用target对象的action方法
+ */
+- (JQRefreshCustomLegendHeader *)addCustomLegendHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action dateKey:(NSString *)dateKey;
+
+/**
+ * 添加一个自定义传统的下拉刷新控件
+ *
+ * @param target 进入刷新状态就会自动调用target对象的action方法
+ * @param action 进入刷新状态就会自动调用target对象的action方法
+ */
+- (JQRefreshCustomLegendHeader *)addCustomLegendHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
+/**
+ * 添加一个自定义传统的下拉刷新控件
+ *
+ * @param target    进入刷新状态就会自动调用target对象的action方法
+ * @param action    进入刷新状态就会自动调用target对象的action方法
+ * @param dateKey   用来记录刷新时间的key
+ */
+- (JQRefreshCustomLegendHeader *)addCustomLegendHeaderWithRefreshingBlock:(void (^)())block;
+
+// ---------------------------------------
+
+
 /**
  * 添加一个gif图片的下拉刷新控件
  *

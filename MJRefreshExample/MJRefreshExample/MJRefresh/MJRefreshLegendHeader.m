@@ -13,8 +13,8 @@
 
 @interface MJRefreshLegendHeader()
 @property (nonatomic, weak) UIImageView *arrowImage;
-//@property (nonatomic, weak) UIActivityIndicatorView *activityView;
-@property (nonatomic, weak) UIImageView *activityView;
+@property (nonatomic, weak) UIActivityIndicatorView *activityView;
+
 
 @end
 
@@ -23,23 +23,21 @@
 - (UIImageView *)arrowImage
 {
     if (!_arrowImage) {
-        UIImageView *arrowImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:MJRefreshSrcName(@"arrowRefresh.png")]];
+
+         UIImageView *arrowImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:MJRefreshSrcName(@"arrow.png")]];
+        
         [self addSubview:_arrowImage = arrowImage];
     }
     return _arrowImage;
 }
 
-- (UIImageView *)activityView
+- (UIActivityIndicatorView *)activityView
 {
     if (!_activityView) {
-        
-         UIImageView *loadingImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:MJRefreshSrcName(@"loading@2x.png")]];
-        
-       
-        
-//        UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-//        activityView.bounds = self.arrowImage.bounds;
-        [self addSubview:_activityView = loadingImage];
+
+        UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        activityView.bounds = self.arrowImage.bounds;
+        [self addSubview:_activityView = activityView];
     }
     return _activityView;
 }
@@ -69,8 +67,7 @@
     
     switch (state) {
         case MJRefreshHeaderStateIdle: {
-            // --
-            self.activityView.alpha = 0.0;
+
             
             
             if (oldState == MJRefreshHeaderStateRefreshing) {
@@ -82,14 +79,11 @@
                     self.arrowImage.alpha = 0.0;
                 } completion:^(BOOL finished) {
                     
-                    // --
+
                     
                     self.arrowImage.alpha = 1.0;
-                    self.activityView.alpha = 0.0;
-                    
-//                    self.arrowImage.alpha = 1.0;
-//                    self.activityView.alpha = 1.0;
-//                    [self.activityView stopAnimating];
+                    self.activityView.alpha = 1.0;
+                    [self.activityView stopAnimating];
                 }];
             } else {
                 [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
@@ -103,32 +97,18 @@
             
         case MJRefreshHeaderStatePulling: {
             [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
-                // --
-                self.activityView.alpha = 0.0;
-                self.arrowImage.alpha = 1.0;
+
  
                 self.arrowImage.transform = CGAffineTransformMakeRotation(0.000001 - M_PI);
+                self.arrowImage.alpha = 1.0;
                 
             }];
             break;
         }
             
         case MJRefreshHeaderStateRefreshing: {
-//            [self.activityView startAnimating];
-            // --
-            
-            [self.arrowImage.layer removeAllAnimations];
-            self.activityView.alpha = 1.0;
+            [self.activityView startAnimating];
             self.arrowImage.alpha = 0.0;
-
-            CABasicAnimation *basicAni = [CABasicAnimation animation];
-            basicAni.keyPath = @"transform.rotation";
-            basicAni.toValue = @(M_PI*2);
-            basicAni.duration = 1.0;
-            basicAni.repeatCount = CGFLOAT_MAX;
-            [_activityView.layer addAnimation:basicAni forKey:nil];
-                
-            
             
             
             break;
