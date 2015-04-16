@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0499C59B1AE003070048B76E /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0499C5981AE003070048B76E /* arrow@2x.png */; };
+		0499C59C1AE003070048B76E /* arrowRefresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0499C5991AE003070048B76E /* arrowRefresh@2x.png */; };
+		0499C59D1AE003070048B76E /* loading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0499C59A1AE003070048B76E /* loading@2x.png */; };
+		04AF3B991ADFA88C007B32F5 /* JQRefreshCustomLegendHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AF3B981ADFA88C007B32F5 /* JQRefreshCustomLegendHeader.m */; };
+		04AF3BEB1ADFDEB8007B32F5 /* JQRefreshCustomLegendFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AF3BEA1ADFDEB8007B32F5 /* JQRefreshCustomLegendFooter.m */; };
 		2D4A99A71AB1727900828496 /* MJWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4A99A51AB1727900828496 /* MJWebViewViewController.m */; };
 		2D4A99A81AB1727900828496 /* MJWebViewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D4A99A61AB1727900828496 /* MJWebViewViewController.xib */; };
 		2D4A99AB1AB178EB00828496 /* UIViewController+Example.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4A99AA1AB178EB00828496 /* UIViewController+Example.m */; };
@@ -48,6 +53,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0499C5981AE003070048B76E /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
+		0499C5991AE003070048B76E /* arrowRefresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrowRefresh@2x.png"; sourceTree = "<group>"; };
+		0499C59A1AE003070048B76E /* loading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading@2x.png"; sourceTree = "<group>"; };
+		04AF3B971ADFA88C007B32F5 /* JQRefreshCustomLegendHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JQRefreshCustomLegendHeader.h; sourceTree = "<group>"; };
+		04AF3B981ADFA88C007B32F5 /* JQRefreshCustomLegendHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JQRefreshCustomLegendHeader.m; sourceTree = "<group>"; };
+		04AF3BE91ADFDEB8007B32F5 /* JQRefreshCustomLegendFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JQRefreshCustomLegendFooter.h; sourceTree = "<group>"; };
+		04AF3BEA1ADFDEB8007B32F5 /* JQRefreshCustomLegendFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JQRefreshCustomLegendFooter.m; sourceTree = "<group>"; };
 		2D4A99A41AB1727900828496 /* MJWebViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJWebViewViewController.h; sourceTree = "<group>"; };
 		2D4A99A51AB1727900828496 /* MJWebViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJWebViewViewController.m; sourceTree = "<group>"; };
 		2D4A99A61AB1727900828496 /* MJWebViewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MJWebViewViewController.xib; sourceTree = "<group>"; };
@@ -121,6 +133,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0499C5971AE003070048B76E /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				0499C5981AE003070048B76E /* arrow@2x.png */,
+				0499C5991AE003070048B76E /* arrowRefresh@2x.png */,
+				0499C59A1AE003070048B76E /* loading@2x.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		2DA7F91C1AA6B4C4005627AB = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +164,7 @@
 		2DA7F9271AA6B4C4005627AB /* MJRefreshExample */ = {
 			isa = PBXGroup;
 			children = (
+				0499C5971AE003070048B76E /* Images */,
 				2DA7F94E1AA6B51C005627AB /* Classes */,
 				2DA7F9531AA6B51C005627AB /* MJRefresh */,
 				2DA7F9281AA6B4C4005627AB /* Supporting Files */,
@@ -218,12 +241,16 @@
 				2DA7F95A1AA6B5F1005627AB /* MJRefreshHeader.m */,
 				2DA7F9651AA6BDC9005627AB /* MJRefreshLegendHeader.h */,
 				2DA7F9661AA6BDC9005627AB /* MJRefreshLegendHeader.m */,
+				04AF3B971ADFA88C007B32F5 /* JQRefreshCustomLegendHeader.h */,
+				04AF3B981ADFA88C007B32F5 /* JQRefreshCustomLegendHeader.m */,
 				2DA7F95C1AA6BC2C005627AB /* MJRefreshGifHeader.h */,
 				2DA7F95D1AA6BC2C005627AB /* MJRefreshGifHeader.m */,
 				2DA7F9791AA832F1005627AB /* MJRefreshFooter.h */,
 				2DA7F97A1AA832F1005627AB /* MJRefreshFooter.m */,
 				2DA7F97C1AA8389C005627AB /* MJRefreshLegendFooter.h */,
 				2DA7F97D1AA8389C005627AB /* MJRefreshLegendFooter.m */,
+				04AF3BE91ADFDEB8007B32F5 /* JQRefreshCustomLegendFooter.h */,
+				04AF3BEA1ADFDEB8007B32F5 /* JQRefreshCustomLegendFooter.m */,
 				2DA7F97F1AA838AE005627AB /* MJRefreshGifFooter.h */,
 				2DA7F9801AA838AE005627AB /* MJRefreshGifFooter.m */,
 				2DA7F9561AA6B57A005627AB /* UIScrollView+MJRefresh.h */,
@@ -317,9 +344,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0499C59D1AE003070048B76E /* loading@2x.png in Resources */,
 				2DA7F9341AA6B4C4005627AB /* Main.storyboard in Resources */,
 				2D4A99A81AB1727900828496 /* MJWebViewViewController.xib in Resources */,
+				0499C59C1AE003070048B76E /* arrowRefresh@2x.png in Resources */,
 				2DA7F9391AA6B4C4005627AB /* LaunchScreen.xib in Resources */,
+				0499C59B1AE003070048B76E /* arrow@2x.png in Resources */,
 				2DA7F96F1AA75076005627AB /* MJRefresh.bundle in Resources */,
 				2DF7EA111AA8C3DA008580B4 /* MJTestViewController.xib in Resources */,
 				2DA7F9361AA6B4C4005627AB /* Images.xcassets in Resources */,
@@ -354,6 +384,7 @@
 				2DF7EA031AA8A427008580B4 /* MJExampleViewController.m in Sources */,
 				2DA7F96A1AA6D025005627AB /* MJRefreshComponent.m in Sources */,
 				2DA7F9751AA759BC005627AB /* UIView+MJExtension.m in Sources */,
+				04AF3BEB1ADFDEB8007B32F5 /* JQRefreshCustomLegendFooter.m in Sources */,
 				2DA7F9811AA838AE005627AB /* MJRefreshGifFooter.m in Sources */,
 				2DA7F9741AA759BC005627AB /* UIScrollView+MJExtension.m in Sources */,
 				2DA7F9611AA6BCD2005627AB /* MJTableViewController.m in Sources */,
@@ -361,6 +392,7 @@
 				2D4A99AB1AB178EB00828496 /* UIViewController+Example.m in Sources */,
 				2DA7F97B1AA832F1005627AB /* MJRefreshFooter.m in Sources */,
 				2DF7EA0C1AA8C273008580B4 /* MJCollectionViewController.m in Sources */,
+				04AF3B991ADFA88C007B32F5 /* JQRefreshCustomLegendHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,10 +12,14 @@
 #import "MJRefreshLegendHeader.h"
 #import "MJRefreshGifFooter.h"
 #import "MJRefreshLegendFooter.h"
+#import "JQRefreshCustomLegendHeader.h"
+#import "JQRefreshCustomLegendFooter.h"
 #import <objc/runtime.h>
 
 @implementation UIScrollView (MJRefresh)
 #pragma mark - 下拉刷新
+
+#pragma mark MJRefreshLegendHeader
 - (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingBlock:(void (^)())block dateKey:(NSString *)dateKey
 {
     MJRefreshLegendHeader *header = [self addLegendHeader];
@@ -51,6 +55,46 @@
     return header;
 }
 
+#pragma mark JQRefreshCustomLegendHeader
+
+- (JQRefreshCustomLegendHeader *)addCustomLegendHeaderWithRefreshingBlock:(void (^)())block dateKey:(NSString *)dateKey
+{
+    JQRefreshCustomLegendHeader *header = [self addCustomLegendHeader];
+    header.refreshingBlock = block;
+    header.dateKey = dateKey;
+    return header;
+}
+
+- (JQRefreshCustomLegendHeader *)addCustomLegendHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action dateKey:(NSString *)dateKey
+{
+    JQRefreshCustomLegendHeader *header = [self addCustomLegendHeader];
+    header.refreshingTarget = target;
+    header.refreshingAction = action;
+    header.dateKey = dateKey;
+    return header;
+}
+
+- (JQRefreshCustomLegendHeader *)addCustomLegendHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action
+{
+    return [self addCustomLegendHeaderWithRefreshingTarget:target refreshingAction:action dateKey:nil];
+}
+
+- (JQRefreshCustomLegendHeader *)addCustomLegendHeaderWithRefreshingBlock:(void (^)())block
+{
+    return [self addCustomLegendHeaderWithRefreshingBlock:block dateKey:nil];
+}
+
+- (JQRefreshCustomLegendHeader *)addCustomLegendHeader
+{
+    JQRefreshCustomLegendHeader *header = [[JQRefreshCustomLegendHeader alloc] init];
+    self.header = header;
+    
+    return header;
+}
+
+
+
+#pragma mark MJRefreshGifHeader
 - (MJRefreshGifHeader *)addGifHeaderWithRefreshingBlock:(void (^)())block dateKey:(NSString *)dateKey
 {
     MJRefreshGifHeader *header = [self addGifHeader];
@@ -112,6 +156,16 @@
     return nil;
 }
 
+#pragma mark legendHeader
+- (JQRefreshCustomLegendHeader *)customLegendHeader
+{
+    if ([self.header isKindOfClass:[JQRefreshCustomLegendHeader class]]) {
+        return (JQRefreshCustomLegendHeader *)self.header;
+    }
+    
+    return nil;
+}
+
 #pragma mark header
 static char MJRefreshHeaderKey;
 - (void)setHeader:(MJRefreshHeader *)header
@@ -135,6 +189,7 @@ static char MJRefreshHeaderKey;
 }
 
 #pragma mark - 上拉刷新
+#pragma mark MJRefreshLegendFooter
 - (MJRefreshLegendFooter *)addLegendFooterWithRefreshingBlock:(void (^)())block
 {
     MJRefreshLegendFooter *footer = [self addLegendFooter];
@@ -158,6 +213,33 @@ static char MJRefreshHeaderKey;
     return footer;
 }
 
+#pragma mark MJRefreshCustomLegendFooter
+
+- (JQRefreshCustomLegendFooter *)addCustomLegendFooterWithRefreshingBlock:(void (^)())block
+{
+    JQRefreshCustomLegendFooter *footer = [self addCustomLegendFooter];
+    footer.refreshingBlock = block;
+    return footer;
+}
+
+- (JQRefreshCustomLegendFooter *)addCustomLegendFooterWithRefreshingTarget:(id)target refreshingAction:(SEL)action
+{
+    JQRefreshCustomLegendFooter *footer = [self addCustomLegendFooter];
+    footer.refreshingTarget = target;
+    footer.refreshingAction = action;
+    return footer;
+}
+
+- (JQRefreshCustomLegendFooter *)addCustomLegendFooter
+{
+    JQRefreshCustomLegendFooter *footer = [[JQRefreshCustomLegendFooter alloc] init];
+    self.footer = footer;
+    
+    return footer;
+}
+
+
+#pragma mark MJRefreshGifFooter
 - (MJRefreshGifFooter *)addGifFooterWithRefreshingBlock:(void (^)())block
 {
     MJRefreshGifFooter *footer = [self addGifFooter];
@@ -172,6 +254,7 @@ static char MJRefreshHeaderKey;
     footer.refreshingAction = action;
     return footer;
 }
+
 
 - (MJRefreshGifFooter *)addGifFooter
 {
@@ -214,6 +297,13 @@ static char MJRefreshFooterKey;
 {
     if ([self.footer isKindOfClass:[MJRefreshLegendFooter class]]) {
         return (MJRefreshLegendFooter *)self.footer;
+    }
+    return nil;
+}
+- (JQRefreshCustomLegendFooter *)legendCustomFooter
+{
+    if ([self.footer isKindOfClass:[JQRefreshCustomLegendFooter class]]) {
+        return (JQRefreshCustomLegendFooter *)self.footer;
     }
     return nil;
 }

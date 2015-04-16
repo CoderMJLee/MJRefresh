@@ -208,20 +208,24 @@
     CGFloat normal2pullingOffsetY = happenOffsetY - self.mj_h;
     if (_scrollView.isDragging) {
         self.pullingPercent = (happenOffsetY - offsetY) / self.mj_h;
-        
+
         if (self.state == MJRefreshHeaderStateIdle && offsetY < normal2pullingOffsetY) {
             // 转为即将刷新状态
             self.state = MJRefreshHeaderStatePulling;
+
         } else if (self.state == MJRefreshHeaderStatePulling && offsetY >= normal2pullingOffsetY) {
             // 转为普通状态
             self.state = MJRefreshHeaderStateIdle;
+
         }
     } else if (self.state == MJRefreshHeaderStatePulling) {// 即将刷新 && 手松开
         self.pullingPercent = 1.0;
         // 开始刷新
         self.state = MJRefreshHeaderStateRefreshing;
+
     } else {
         self.pullingPercent = (happenOffsetY - offsetY) / self.mj_h;
+
     }
 }
 
