@@ -31,14 +31,14 @@ static NSString *const MJExample30 = @"UIWebView";
         MJExample *exam0 = [[MJExample alloc] init];
         exam0.header = MJExample00;
         exam0.vcClass = [MJTableViewController class];
-        exam0.titles = @[@"传统", @"动画图片", @"隐藏时间", @"隐藏状态和时间01", @"隐藏状态和时间02", @"自定义文字"];
-        exam0.methods = @[@"example01", @"example02", @"example03", @"example04", @"example05", @"example06"];
+        exam0.titles = @[@"传统自定义动画 -- 新增功能",@"传统", @"动画图片", @"隐藏时间", @"隐藏状态和时间01", @"隐藏状态和时间02", @"自定义文字"];
+        exam0.methods = @[@"example00",@"example01", @"example02", @"example03", @"example04", @"example05", @"example06"];
         
         MJExample *exam1 = [[MJExample alloc] init];
         exam1.header = MJExample10;
         exam1.vcClass = [MJTableViewController class];
-        exam1.titles = @[@"传统(尝试向上拽)", @"动画图片", @"隐藏状态01", @"隐藏状态02", @"全部加载完毕", @"禁止自动加载", @"自定义文字", @"加载后隐藏"];
-        exam1.methods = @[@"example11", @"example12", @"example13", @"example14", @"example15", @"example16", @"example17", @"example18"];
+        exam1.titles = @[@"传统自定义上拉刷新动画 -- 新增功能",@"传统(尝试向上拽)", @"动画图片", @"隐藏状态01", @"隐藏状态02", @"全部加载完毕", @"禁止自动加载", @"自定义文字", @"加载后隐藏"];
+        exam1.methods = @[@"example001",@"example11", @"example12", @"example13", @"example14", @"example15", @"example16", @"example17", @"example18"];
         
         MJExample *exam2 = [[MJExample alloc] init];
         exam2.header = MJExample20;
@@ -74,9 +74,12 @@ static NSString *const MJExample30 = @"UIWebView";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     
     MJExample *exam = self.examples[indexPath.section];
-    cell.textLabel.text = exam.titles[indexPath.row];
+    cell.textLabel.text = exam.titles[indexPath.row  ];
+    
+
     
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", exam.vcClass, exam.methods[indexPath.row]];
+    
     
     return cell;
 }

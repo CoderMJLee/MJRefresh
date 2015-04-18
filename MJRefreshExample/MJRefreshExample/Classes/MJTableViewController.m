@@ -25,6 +25,36 @@ static const CGFloat MJDuration = 2.0;
 @end
 
 @implementation MJTableViewController
+
+- (void)example00
+{
+      __weak typeof(self) weakSelf = self;
+    [self.tableView addCustomLegendHeaderWithRefreshingBlock:^{
+        [weakSelf loadNewData];
+    }];
+    
+    [self.tableView.customLegendHeader setImage:@"arrowRefresh" forState:JQRefreshHeaderStateIdle];
+    
+    [self.tableView.customLegendHeader setImage:@"loading" forState:JQRefreshHeaderStateRefreshing animationWithBlock:^(UIImageView *imageView) {
+        {
+            //动画效果
+            CABasicAnimation *basicAni = [CABasicAnimation animation];
+            basicAni.keyPath = @"transform.rotation";
+            basicAni.toValue = @(M_PI*2);
+            basicAni.duration = 1.0;
+            basicAni.repeatCount = CGFLOAT_MAX;
+            [imageView.layer addAnimation:basicAni forKey:nil];
+            
+            
+        }
+    }];
+    [self.tableView.customLegendHeader setImage:@"arrowRefresh" forState:JQRefreshHeaderStatePulling animationWithBlock:^(UIImageView *imageView) {
+        imageView.transform = CGAffineTransformMakeRotation(0.000001 - M_PI);
+    }];
+    [self.tableView.customLegendHeader beginRefreshing];
+}
+
+
 #pragma mark - 示例代码
 #pragma mark UITableView + 下拉刷新 传统
 - (void)example01
@@ -46,9 +76,14 @@ static const CGFloat MJDuration = 2.0;
      
      此时self.tableView.header == self.tableView.legendHeader
      */
+     [self.tableView.customLegendHeader beginRefreshing];
+    
+    
+    
 }
 
 #pragma mark UITableView + 下拉刷新 动画图片
+
 - (void)example02
 {
     // 添加动画图片的下拉刷新
@@ -79,7 +114,11 @@ static const CGFloat MJDuration = 2.0;
     [self.tableView.gifHeader beginRefreshing];
     
     // 此时self.tableView.header == self.tableView.gifHeader
+    
 }
+ 
+
+
 
 #pragma mark UITableView + 下拉刷新 隐藏时间
 - (void)example03
@@ -197,6 +236,27 @@ static const CGFloat MJDuration = 2.0;
 }
 
 #pragma mark UITableView + 上拉刷新 传统
+- (void)example001{
+    __weak typeof(self) weakSelf = self;
+    
+    // 添加传统的上拉刷新
+    // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
+    [self.tableView addCustomLegendFooterWithRefreshingBlock:^{
+        [weakSelf loadMoreData];
+    }];
+    [self.tableView.customLegendFooter setImage:@"loading" animationWithBlock:^(UIImageView *imageView) {
+        //动画效果
+        CABasicAnimation *basicAni = [CABasicAnimation animation];
+        basicAni.keyPath = @"transform.rotation";
+        basicAni.toValue = @(M_PI*2);
+        basicAni.duration = 1.0;
+        basicAni.repeatCount = CGFLOAT_MAX;
+        [imageView.layer addAnimation:basicAni forKey:nil];
+    }];
+
+}
+
+#pragma mark UITableView + 上拉刷新 传统
 - (void)example11
 {
     __weak typeof(self) weakSelf = self;
@@ -207,7 +267,8 @@ static const CGFloat MJDuration = 2.0;
         [weakSelf loadMoreData];
     }];
     
-    /**
+    
+       /**
      也可以这样使用
      self.tableView.footer.refreshingBlock = ^{
      
@@ -361,6 +422,7 @@ static const CGFloat MJDuration = 2.0;
         
         // 拿到当前的下拉刷新控件，结束刷新状态
         [self.tableView.header endRefreshing];
+        
     });
 }
 

@@ -14,6 +14,8 @@
 @interface MJRefreshLegendHeader()
 @property (nonatomic, weak) UIImageView *arrowImage;
 @property (nonatomic, weak) UIActivityIndicatorView *activityView;
+
+
 @end
 
 @implementation MJRefreshLegendHeader
@@ -21,7 +23,9 @@
 - (UIImageView *)arrowImage
 {
     if (!_arrowImage) {
-        UIImageView *arrowImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:MJRefreshSrcName(@"arrow.png")]];
+
+         UIImageView *arrowImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:MJRefreshSrcName(@"arrow.png")]];
+        
         [self addSubview:_arrowImage = arrowImage];
     }
     return _arrowImage;
@@ -30,6 +34,7 @@
 - (UIActivityIndicatorView *)activityView
 {
     if (!_activityView) {
+
         UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         activityView.bounds = self.arrowImage.bounds;
         [self addSubview:_activityView = activityView];
@@ -48,6 +53,7 @@
     
     // 指示器
     self.activityView.center = self.arrowImage.center;
+
 }
 
 #pragma mark - 公共方法
@@ -61,12 +67,20 @@
     
     switch (state) {
         case MJRefreshHeaderStateIdle: {
+
+            
+            
             if (oldState == MJRefreshHeaderStateRefreshing) {
                 self.arrowImage.transform = CGAffineTransformIdentity;
-                
+                [self.arrowImage.layer removeAllAnimations] ;
+
                 [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
                     self.activityView.alpha = 0.0;
+                    self.arrowImage.alpha = 0.0;
                 } completion:^(BOOL finished) {
+                    
+
+                    
                     self.arrowImage.alpha = 1.0;
                     self.activityView.alpha = 1.0;
                     [self.activityView stopAnimating];
@@ -74,14 +88,20 @@
             } else {
                 [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
                     self.arrowImage.transform = CGAffineTransformIdentity;
+                    self.arrowImage.alpha = 1.0;
                 }];
             }
+
             break;
         }
             
         case MJRefreshHeaderStatePulling: {
             [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
+
+ 
                 self.arrowImage.transform = CGAffineTransformMakeRotation(0.000001 - M_PI);
+                self.arrowImage.alpha = 1.0;
+                
             }];
             break;
         }
@@ -89,6 +109,8 @@
         case MJRefreshHeaderStateRefreshing: {
             [self.activityView startAnimating];
             self.arrowImage.alpha = 0.0;
+            
+            
             break;
         }
             
