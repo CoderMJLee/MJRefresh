@@ -244,7 +244,7 @@ static const CGFloat MJDuration = 2.0;
     [self.tableView addCustomLegendFooterWithRefreshingBlock:^{
         [weakSelf loadMoreData];
     }];
-    [self.tableView.legendCustomFooter setImage:@"loading" animationWithBlock:^(UIImageView *imageView) {
+    [self.tableView.customLegendFooter setImage:@"loading" animationWithBlock:^(UIImageView *imageView) {
         //动画效果
         CABasicAnimation *basicAni = [CABasicAnimation animation];
         basicAni.keyPath = @"transform.rotation";

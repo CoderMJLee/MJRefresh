@@ -77,7 +77,8 @@
         case JQRefreshHeaderStateIdle:
         {
             self.state = MJRefreshHeaderStateIdle;
-            _idle = [UIImage imageNamed:MJRefreshSrcName(imageName)];
+//            _idle = [UIImage imageNamed:MJRefreshSrcName(imageName)];
+            _idle = [UIImage imageNamed:imageName];
             _idleView = [[UIImageView alloc] initWithImage:_idle];
             [self addSubview:_idleView];
         }
@@ -85,7 +86,8 @@
         case JQRefreshHeaderStateRefreshing:
         {
             self.state = JQRefreshHeaderStateRefreshing;
-            _refreshing = [UIImage imageNamed:MJRefreshSrcName(imageName)];
+//            _refreshing = [UIImage imageNamed:MJRefreshSrcName(imageName)];
+            _refreshing = [UIImage imageNamed:imageName];
             _refreshingView = [[UIImageView alloc] initWithImage:_refreshing];
             [self addSubview:_refreshingView ];
         }
@@ -93,7 +95,8 @@
         case JQRefreshHeaderStatePulling:
         {
             self.state = MJRefreshHeaderStatePulling;
-            _pulling = [UIImage imageNamed:MJRefreshSrcName(imageName)];
+//            _pulling = [UIImage imageNamed:MJRefreshSrcName(imageName)];
+             _pulling = [UIImage imageNamed:imageName];
             _pullingView = [[UIImageView alloc] initWithImage:_pulling];
             [self addSubview:_pullingView ];
         }

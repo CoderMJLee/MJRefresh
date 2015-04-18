@@ -300,7 +300,7 @@ static char MJRefreshFooterKey;
     }
     return nil;
 }
-- (JQRefreshCustomLegendFooter *)legendCustomFooter
+- (JQRefreshCustomLegendFooter *)customLegendFooter
 {
     if ([self.footer isKindOfClass:[JQRefreshCustomLegendFooter class]]) {
         return (JQRefreshCustomLegendFooter *)self.footer;
