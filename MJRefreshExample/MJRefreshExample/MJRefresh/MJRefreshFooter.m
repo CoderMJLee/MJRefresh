@@ -264,10 +264,16 @@
     _state = state;
     
     switch (state) {
-        case MJRefreshFooterStateIdle:
+        case MJRefreshFooterStateIdle:{
             self.noMoreLabel.hidden = YES;
             self.stateLabel.hidden = YES;
-            self.loadMoreButton.hidden = NO;
+            self.loadMoreButton.hidden = YES;
+            
+            //修复传统上拉加载更多在 UITableView 使用 '- (void)insertRowsAtIndexPaths:(NSArray *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation;'方法加载更多数据时露出按钮的的问题
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                self.loadMoreButton.hidden = NO;
+            });
+        }
             break;
             
         case MJRefreshFooterStateRefreshing:
