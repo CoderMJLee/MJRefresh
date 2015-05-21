@@ -101,12 +101,14 @@
         [newSuperview addObserver:self forKeyPath:MJRefreshPanState options:NSKeyValueObservingOptionNew context:nil];
         
         self.mj_h = MJRefreshFooterHeight;
-        _scrollView.mj_insetB += self.mj_h;
+        // 注释下句，解决上拉加载自动弹回问题
+        // _scrollView.mj_insetB += self.mj_h;
         
         // 重新调整frame
         [self adjustFrameWithContentSize];
     } else { // 被移除了
-        _scrollView.mj_insetB -= self.mj_h;
+        // 注释下句，解决上拉加载自动弹回问题
+        // _scrollView.mj_insetB -= self.mj_h;
     }
 }
 
@@ -169,8 +171,12 @@
 
 - (void)adjustFrameWithContentSize
 {
+    // 内容的高度
+    CGFloat contentHeight = _scrollView.mj_contentSizeH;
+    // 表格的高度
+    CGFloat scrollHeight = _scrollView.mj_h - _scrollViewOriginalInset.top - _scrollViewOriginalInset.bottom;
     // 设置位置
-    self.mj_y = _scrollView.mj_contentSizeH;
+    self.mj_y = MAX(contentHeight, scrollHeight);
 }
 
 - (void)buttonClick
@@ -260,11 +266,17 @@
 - (void)setState:(MJRefreshFooterState)state
 {
     if (_state == state) return;
-    
+    // 根据不同状态，设置scrollView的contentInset.bottom，解决上拉加载自动弹回问题
+    MJRefreshFooterState oldState = _state;
     _state = state;
     
     switch (state) {
         case MJRefreshFooterStateIdle:{
+            if (MJRefreshFooterStateRefreshing == oldState) {
+                [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
+                    _scrollView.mj_insetB = _scrollViewOriginalInset.bottom;
+                }];
+            }
             self.noMoreLabel.hidden = YES;
             self.stateLabel.hidden = YES;
             self.loadMoreButton.hidden = YES;
@@ -278,6 +290,15 @@
             
         case MJRefreshFooterStateRefreshing:
         {
+            [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
+                CGFloat bottom = self.mj_h + _scrollViewOriginalInset.bottom;
+                CGFloat scrollViewH = _scrollView.frame.size.height - _scrollViewOriginalInset.bottom - _scrollViewOriginalInset.top;
+                CGFloat deltaH = _scrollView.contentSize.height - scrollViewH;
+                if (deltaH < 0) {
+                    bottom -= deltaH;
+                }
+                _scrollView.mj_insetB = bottom;
+            }];
             self.loadMoreButton.hidden = YES;
             self.noMoreLabel.hidden = YES;
             if (!self.stateHidden) self.stateLabel.hidden = NO;
@@ -293,6 +314,11 @@
             break;
             
         case MJRefreshFooterStateNoMoreData:
+            if (MJRefreshFooterStateRefreshing == oldState) {
+                [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
+                    _scrollView.mj_insetB = _scrollViewOriginalInset.bottom;
+                }];
+            }
             self.loadMoreButton.hidden = YES;
             self.noMoreLabel.hidden = NO;
             self.stateLabel.hidden = YES;
