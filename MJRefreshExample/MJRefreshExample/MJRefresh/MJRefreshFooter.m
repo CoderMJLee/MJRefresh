@@ -271,12 +271,7 @@
     _state = state;
     
     switch (state) {
-        case MJRefreshFooterStateIdle:{
-            if (MJRefreshFooterStateRefreshing == oldState) {
-                [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
-                    _scrollView.mj_insetB = _scrollViewOriginalInset.bottom;
-                }];
-            }
+        case MJRefreshFooterStateIdle: {
             self.noMoreLabel.hidden = YES;
             self.stateLabel.hidden = YES;
             self.loadMoreButton.hidden = YES;
@@ -285,20 +280,15 @@
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 self.loadMoreButton.hidden = self.state != MJRefreshFooterStateIdle;
             });
+            if (MJRefreshFooterStateRefreshing == oldState) {
+                [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
+                    _scrollView.mj_insetB = _scrollViewOriginalInset.bottom;
+                }];
+            }
         }
             break;
             
-        case MJRefreshFooterStateRefreshing:
-        {
-            [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
-                CGFloat bottom = self.mj_h + _scrollViewOriginalInset.bottom;
-                CGFloat scrollViewH = _scrollView.frame.size.height - _scrollViewOriginalInset.bottom - _scrollViewOriginalInset.top;
-                CGFloat deltaH = _scrollView.contentSize.height - scrollViewH;
-                if (deltaH < 0) {
-                    bottom -= deltaH;
-                }
-                _scrollView.mj_insetB = bottom;
-            }];
+        case MJRefreshFooterStateRefreshing: {
             self.loadMoreButton.hidden = YES;
             self.noMoreLabel.hidden = YES;
             if (!self.stateHidden) self.stateLabel.hidden = NO;
@@ -310,18 +300,28 @@
                     msgSend(msgTarget(self.refreshingTarget), self.refreshingAction, self);
                 }
             });
+            [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
+                CGFloat bottom = self.mj_h + _scrollViewOriginalInset.bottom;
+                CGFloat scrollViewH = _scrollView.frame.size.height - _scrollViewOriginalInset.bottom - _scrollViewOriginalInset.top;
+                CGFloat deltaH = _scrollView.contentSize.height - scrollViewH;
+                if (deltaH < 0) {
+                    bottom -= deltaH;
+                }
+                _scrollView.mj_insetB = bottom;
+            }];
         }
             break;
             
-        case MJRefreshFooterStateNoMoreData:
+        case MJRefreshFooterStateNoMoreData: {
+            self.loadMoreButton.hidden = YES;
+            self.noMoreLabel.hidden = NO;
+            self.stateLabel.hidden = YES;
             if (MJRefreshFooterStateRefreshing == oldState) {
                 [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
                     _scrollView.mj_insetB = _scrollViewOriginalInset.bottom;
                 }];
             }
-            self.loadMoreButton.hidden = YES;
-            self.noMoreLabel.hidden = NO;
-            self.stateLabel.hidden = YES;
+        }
             break;
             
         default:
