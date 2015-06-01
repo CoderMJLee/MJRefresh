@@ -22,6 +22,8 @@
 @property (weak, nonatomic) UILabel *stateLabel;
 /** 所有状态对应的文字 */
 @property (strong, nonatomic) NSMutableDictionary *stateTitles;
+/** 防止回弹 */
+@property (assign, nonatomic) BOOL savedPageEnabled;
 @end
 
 @implementation MJRefreshHeader
@@ -79,6 +81,7 @@
     
     if (newSuperview) {
         self.mj_h = MJRefreshHeaderHeight;
+        self.savedPageEnabled = _scrollView.pagingEnabled;
     }
 }
 
@@ -281,12 +284,16 @@
                 [UIView animateWithDuration:MJRefreshSlowAnimationDuration delay:0.0 options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionBeginFromCurrentState animations:^{
                     // 修复top值不断累加
                     _scrollView.mj_insetT -= self.mj_h;
-                } completion:nil];
+                } completion:^(BOOL finished){
+                    _scrollView.pagingEnabled = _savedPageEnabled;
+                }];
             }
             break;
         }
             
         case MJRefreshHeaderStateRefreshing: {
+            self.savedPageEnabled = _scrollView.pagingEnabled;
+            _scrollView.pagingEnabled = NO;
             [UIView animateWithDuration:MJRefreshFastAnimationDuration delay:0.0 options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionBeginFromCurrentState animations:^{
                 // 增加滚动区域
                 CGFloat top = _scrollViewOriginalInset.top + self.mj_h;
