@@ -268,7 +268,8 @@
     if (_state == state) return;
     // 根据不同状态，设置scrollView的contentInset.bottom，解决上拉加载自动弹回问题
     MJRefreshFooterState oldState = _state;
-    _state = state;
+    //应该在动画结束后再设置状态
+    //_state = state;
     
     switch (state) {
         case MJRefreshFooterStateIdle: {
@@ -283,7 +284,12 @@
             if (MJRefreshFooterStateRefreshing == oldState) {
                 [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
                     _scrollView.mj_insetB = _scrollViewOriginalInset.bottom;
+                } completion:^(BOOL finished) {
+                    _state = state;
                 }];
+            }
+            else {
+                _state = state;
             }
         }
             break;
@@ -308,6 +314,8 @@
                     bottom -= deltaH;
                 }
                 _scrollView.mj_insetB = bottom;
+            } completion:^(BOOL finished) {
+                _state = state;
             }];
         }
             break;
@@ -319,12 +327,18 @@
             if (MJRefreshFooterStateRefreshing == oldState) {
                 [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
                     _scrollView.mj_insetB = _scrollViewOriginalInset.bottom;
+                } completion:^(BOOL finished) {
+                    _state = state;
                 }];
+            }
+            else {
+                _state = state;
             }
         }
             break;
             
         default:
+            _state = state;
             break;
     }
 }
