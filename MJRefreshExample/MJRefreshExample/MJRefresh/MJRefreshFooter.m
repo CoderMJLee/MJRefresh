@@ -181,7 +181,7 @@
 #pragma mark - 公共方法
 - (void)setHidden:(BOOL)hidden
 {
-    __weak typeof(self) weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
     BOOL lastHidden = weakSelf.isHidden;
     CGFloat h = weakSelf.mj_h;
     [weakSelf.willExecuteBlocks addObject:^{
