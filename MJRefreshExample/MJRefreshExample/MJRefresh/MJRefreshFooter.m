@@ -101,12 +101,14 @@
         [newSuperview addObserver:self forKeyPath:MJRefreshPanState options:NSKeyValueObservingOptionNew context:nil];
         
         self.mj_h = MJRefreshFooterHeight;
-        _scrollView.mj_insetB += self.mj_h;
+        // 注释下句，解决上拉加载自动弹回问题
+        // _scrollView.mj_insetB += self.mj_h;
         
         // 重新调整frame
         [self adjustFrameWithContentSize];
     } else { // 被移除了
-        _scrollView.mj_insetB -= self.mj_h;
+        // 注释下句，解决上拉加载自动弹回问题
+        // _scrollView.mj_insetB -= self.mj_h;
     }
 }
 
@@ -169,8 +171,12 @@
 
 - (void)adjustFrameWithContentSize
 {
+    // 内容的高度
+    CGFloat contentHeight = _scrollView.mj_contentSizeH;
+    // 表格的高度
+    CGFloat scrollHeight = _scrollView.mj_h - _scrollViewOriginalInset.top - _scrollViewOriginalInset.bottom;
     // 设置位置
-    self.mj_y = _scrollView.mj_contentSizeH;
+    self.mj_y = MAX(contentHeight, scrollHeight);
 }
 
 - (void)buttonClick
@@ -260,11 +266,13 @@
 - (void)setState:(MJRefreshFooterState)state
 {
     if (_state == state) return;
-    
-    _state = state;
+    // 根据不同状态，设置scrollView的contentInset.bottom，解决上拉加载自动弹回问题
+    MJRefreshFooterState oldState = _state;
+    //应该在动画结束后再设置状态
+    //_state = state;
     
     switch (state) {
-        case MJRefreshFooterStateIdle:{
+        case MJRefreshFooterStateIdle: {
             self.noMoreLabel.hidden = YES;
             self.stateLabel.hidden = YES;
             self.loadMoreButton.hidden = YES;
@@ -273,11 +281,20 @@
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 self.loadMoreButton.hidden = self.state != MJRefreshFooterStateIdle;
             });
+            if (MJRefreshFooterStateRefreshing == oldState) {
+                [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
+                    _scrollView.mj_insetB = _scrollViewOriginalInset.bottom;
+                } completion:^(BOOL finished) {
+                    _state = state;
+                }];
+            }
+            else {
+                _state = state;
+            }
         }
             break;
             
-        case MJRefreshFooterStateRefreshing:
-        {
+        case MJRefreshFooterStateRefreshing: {
             self.loadMoreButton.hidden = YES;
             self.noMoreLabel.hidden = YES;
             if (!self.stateHidden) self.stateLabel.hidden = NO;
@@ -289,16 +306,39 @@
                     msgSend(msgTarget(self.refreshingTarget), self.refreshingAction, self);
                 }
             });
+            [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
+                CGFloat bottom = self.mj_h + _scrollViewOriginalInset.bottom;
+                CGFloat scrollViewH = _scrollView.frame.size.height - _scrollViewOriginalInset.bottom - _scrollViewOriginalInset.top;
+                CGFloat deltaH = _scrollView.contentSize.height - scrollViewH;
+                if (deltaH < 0) {
+                    bottom -= deltaH;
+                }
+                _scrollView.mj_insetB = bottom;
+            } completion:^(BOOL finished) {
+                _state = state;
+            }];
         }
             break;
             
-        case MJRefreshFooterStateNoMoreData:
+        case MJRefreshFooterStateNoMoreData: {
             self.loadMoreButton.hidden = YES;
             self.noMoreLabel.hidden = NO;
             self.stateLabel.hidden = YES;
+            if (MJRefreshFooterStateRefreshing == oldState) {
+                [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
+                    _scrollView.mj_insetB = _scrollViewOriginalInset.bottom;
+                } completion:^(BOOL finished) {
+                    _state = state;
+                }];
+            }
+            else {
+                _state = state;
+            }
+        }
             break;
             
         default:
+            _state = state;
             break;
     }
 }

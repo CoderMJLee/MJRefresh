@@ -345,6 +345,19 @@ static const CGFloat MJDuration = 2.0;
     [self.tableView addLegendFooterWithRefreshingTarget:self refreshingAction:@selector(loadOnceData)];
 }
 
+#pragma mark UITableView + 上拉刷新 禁止自动加载，加载5页后显示已加载完毕（测试上拉结束后回弹）
+- (void)example19
+{
+    // 添加传统的上拉刷新
+    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreDataLimit5Page方法）
+    [self.tableView addLegendFooterWithRefreshingTarget:self refreshingAction:@selector(loadMoreDataLimit5Page)];
+    
+    // 禁止自动加载
+    self.tableView.footer.automaticallyRefresh = NO;
+    
+    // 此时self.tableView.footer == self.tableView.legendFooter
+}
+
 #pragma mark - 数据处理相关
 #pragma mark 下拉刷新数据
 - (void)loadNewData
@@ -418,6 +431,28 @@ static const CGFloat MJDuration = 2.0;
     });
 }
 
+#pragma mark 上拉加载更多数据，加载5页后显示已加载完毕
+- (void)loadMoreDataLimit5Page
+{
+    // 1.添加假数据
+    for (int i = 0; i<5; i++) {
+        [self.data addObject:MJRandomData];
+    }
+    
+    // 2.模拟2秒后刷新表格UI（真实开发中，可以移除这段gcd代码）
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        // 刷新表格
+        [self.tableView reloadData];
+        
+        // 拿到当前的上拉刷新控件，结束刷新状态
+        if (self.data.count >= 25) {
+            [self.tableView.footer noticeNoMoreData];
+        } else {
+            [self.tableView.footer endRefreshing];
+        }
+    });
+}
+
 - (NSMutableArray *)data
 {
     if (!_data) {
@@ -430,7 +465,11 @@ static const CGFloat MJDuration = 2.0;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    // 适配iOS 7+ 上UITableView的Insets问题
+    if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self performSelector:NSSelectorFromString(self.method) withObject:nil];
 }
