@@ -293,9 +293,13 @@
             break;
             
         case MJRefreshFooterStateNoMoreData:
-            self.loadMoreButton.hidden = YES;
-            self.noMoreLabel.hidden = NO;
-            self.stateLabel.hidden = YES;
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.loadMoreButton.hidden = YES;
+                self.noMoreLabel.hidden = NO;
+                self.stateLabel.hidden = YES;
+            });
+        }
             break;
             
         default:
