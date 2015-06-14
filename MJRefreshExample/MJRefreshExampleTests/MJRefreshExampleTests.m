@@ -3,7 +3,7 @@
 //  MJRefreshExampleTests
 //
 //  Created by MJ Lee on 15/3/4.
-//  Copyright (c) 2015年 itcast. All rights reserved.
+//  Copyright (c) 2015年 小码哥. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
