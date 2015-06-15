@@ -204,7 +204,7 @@ footer.stateLabel.textColor = [UIColor blueColor];
 ## <a id="上拉刷新06-加载后隐藏"></a>上拉刷新06-加载后隐藏
 ```objc
 // 隐藏当前的上拉刷新控件
-self.tableView.footer = nil;
+self.tableView.footer.hidden = YES;
 ```
 ![(上拉刷新06-加载后隐藏)](http://images0.cnblogs.com/blog2015/497279/201506/141205343481821.gif)
 

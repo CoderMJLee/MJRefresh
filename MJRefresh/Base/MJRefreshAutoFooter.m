@@ -94,4 +94,20 @@
         });
     }
 }
+
+- (void)setHidden:(BOOL)hidden
+{
+    BOOL lastHidden = self.isHidden;
+    
+    [super setHidden:hidden];
+    
+    if (!lastHidden && hidden) {
+        self.state = MJRefreshStateIdle;
+        _scrollView.mj_insetB -= self.mj_h;
+    } else if (lastHidden && !hidden) {
+        _scrollView.mj_insetB += self.mj_h;
+        
+        [self scrollViewContentSizeDidChange:nil];
+    }
+}
 @end

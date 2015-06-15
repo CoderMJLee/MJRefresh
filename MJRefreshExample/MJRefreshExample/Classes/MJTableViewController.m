@@ -321,7 +321,7 @@ static const CGFloat MJDuration = 2.0;
         
         [self.tableView.footer endRefreshing];
         // 隐藏当前的上拉刷新控件
-        self.tableView.footer = nil;
+        self.tableView.footer.hidden = YES;
     });
 }
 
