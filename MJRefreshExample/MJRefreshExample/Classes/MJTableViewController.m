@@ -310,7 +310,7 @@ static const CGFloat MJDuration = 2.0;
 - (void)loadOnceData
 {
     // 1.添加假数据
-    for (int i = 0; i<25; i++) {
+    for (int i = 0; i<5; i++) {
         [self.data addObject:MJRandomData];
     }
     
@@ -319,7 +319,6 @@ static const CGFloat MJDuration = 2.0;
         // 刷新表格
         [self.tableView reloadData];
         
-        [self.tableView.footer endRefreshing];
         // 隐藏当前的上拉刷新控件
         self.tableView.footer.hidden = YES;
     });
