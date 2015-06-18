@@ -3,14 +3,14 @@
 * The easiest way to use pull-to-refresh
 * 用法最简单的下拉刷新框架：一行代码搞定
 
-## 导航
-* 简介
-    * [支持哪些控件的刷新](#支持哪些控件的刷新)
-    * [如何使用MJRefresh](#如何使用MJRefresh)
-    * [已经超过上百个App正在使用MJRefresh](#已经超过上百个App正在使用MJRefresh)
-    * [MJRefresh类结构图](#MJRefresh类结构图)
-* 用法
-    * [参考](#参考)
+## Contents
+* Getting Started
+    * [Features【支持哪些控件的刷新】](#支持哪些控件的刷新)
+    * [Installation【如何使用MJRefresh】](#如何使用MJRefresh)
+    * [Who's using【已经超过上百个App正在使用MJRefresh】](#已经超过上百个App正在使用MJRefresh)
+    * [Classes【MJRefresh类结构图】](#MJRefresh类结构图)
+* Examples
+    * [Reference【参考】](#参考)
     * [下拉刷新01-默认](#下拉刷新01-默认)
     * [下拉刷新02-动画图片](#下拉刷新02-动画图片)
     * [下拉刷新03-隐藏时间](#下拉刷新03-隐藏时间)
@@ -50,7 +50,7 @@ UIView+MJExtension.h        UIView+MJExtension.m
 ```
 
 ## <a id="已经超过上百个App正在使用MJRefresh"></a>已经超过上百个App正在使用MJRefresh
-![(App)](http://images0.cnblogs.com/blog2015/497279/201506/141212365041650.png)
+<img src="http://images0.cnblogs.com/blog2015/497279/201506/141212365041650.png" width="200" height="300">
 * 更多App信息可以关注：[M了个J-博客园](http://www.cnblogs.com/mjios/p/4409853.html)
 
 ## <a id="MJRefresh类结构图"></a>MJRefresh类结构图
@@ -67,15 +67,15 @@ UIView+MJExtension.h        UIView+MJExtension.m
             - 默认（Normal）：`MJRefreshBackNormalFooter`
             - 动图（Gif）：`MJRefreshBackGifFooter`
 - 图中`非红色文字的类`：拿来继承，用于自定义刷新控件
-- 关于如何自定义刷新控件，可以参考下图的类
-![](http://images0.cnblogs.com/blog2015/497279/201506/141358159107893.png)
+- 关于如何自定义刷新控件，可以参考下图的类<br>
+<img src="http://images0.cnblogs.com/blog2015/497279/201506/141358159107893.png" width="30%" height="30%">
 
 ## <a id="参考"></a>参考
 ```objc
 * 由于这个框架的功能较多，就不写具体文字描述其用法
 * 大家可以直接参考示例中的MJTableViewController、MJCollectionViewController、MJWebViewController，更为直观快速
 ```
-![](http://images0.cnblogs.com/blog2015/497279/201506/141345470048120.png)
+<img src="http://images0.cnblogs.com/blog2015/497279/201506/141345470048120.png" width="30%" height="30%">
 
 ## <a id="下拉刷新01-默认"></a>下拉刷新01-默认
 ```objc
