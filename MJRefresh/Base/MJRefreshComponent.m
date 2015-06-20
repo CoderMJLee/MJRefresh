@@ -133,7 +133,9 @@
 #pragma mark 进入刷新状态
 - (void)beginRefreshing
 {
-    self.alpha = 1.0;
+    [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
+        self.alpha = 1.0;
+    }];
     self.pullingPercent = 1.0;
     // 只要正在刷新，就完全显示
     if (self.window) {
