@@ -433,7 +433,7 @@ static const CGFloat MJDuration = 2.0;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    SuppressPerformSelectorLeakWarning(
+    MJPerformSelectorLeakWarning(
     
          [self performSelector:NSSelectorFromString(self.method) withObject:nil];
     );

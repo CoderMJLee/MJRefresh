@@ -96,7 +96,7 @@ static NSString *const MJCollectionViewCellIdentifier = @"color";
 {
     [super viewDidLoad];
     
-    SuppressPerformSelectorLeakWarning([self performSelector:NSSelectorFromString(self.method) withObject:nil];);
+    MJPerformSelectorLeakWarning([self performSelector:NSSelectorFromString(self.method) withObject:nil];);
     
     
     self.collectionView.backgroundColor = [UIColor whiteColor];

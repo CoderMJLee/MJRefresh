@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define SuppressPerformSelectorLeakWarning(Stuff) \
+#define MJPerformSelectorLeakWarning(Stuff) \
 do { \
 _Pragma("clang diagnostic push") \
 _Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"") \

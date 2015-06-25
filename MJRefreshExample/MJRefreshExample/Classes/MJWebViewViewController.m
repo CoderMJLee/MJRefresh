@@ -42,7 +42,7 @@
     // 加载页面
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://weibo.com/exceptions"]]];
     
-    SuppressPerformSelectorLeakWarning(
+    MJPerformSelectorLeakWarning(
        [self performSelector:NSSelectorFromString(self.method) withObject:nil];
                                        );
     
