@@ -432,7 +432,12 @@ static const CGFloat MJDuration = 2.0;
     [super viewDidLoad];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self performSelector:NSSelectorFromString(self.method) withObject:nil];
+    
+    SuppressPerformSelectorLeakWarning(
+    
+         [self performSelector:NSSelectorFromString(self.method) withObject:nil];
+    );
+
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

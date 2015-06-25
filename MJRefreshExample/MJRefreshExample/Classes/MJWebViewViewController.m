@@ -42,7 +42,10 @@
     // 加载页面
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://weibo.com/exceptions"]]];
     
-    [self performSelector:NSSelectorFromString(self.method) withObject:nil];
+    SuppressPerformSelectorLeakWarning(
+       [self performSelector:NSSelectorFromString(self.method) withObject:nil];
+                                       );
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
