@@ -338,13 +338,10 @@ static const CGFloat MJDuration = 2.0;
     [super viewDidLoad];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    [self performSelector:NSSelectorFromString(self.method) withObject:nil];
-#pragma clang diagnostic pop
-    
-    
     [self.tableView registerNib:[UINib nibWithNibName:@"MJTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    MJPerformSelectorLeakWarning(
+        [self performSelector:NSSelectorFromString(self.method) withObject:nil];
+                                 );
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

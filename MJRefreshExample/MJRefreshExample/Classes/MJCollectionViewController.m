@@ -96,10 +96,9 @@ static NSString *const MJCollectionViewCellIdentifier = @"color";
 {
     [super viewDidLoad];
     
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    [self performSelector:NSSelectorFromString(self.method) withObject:nil];
-#pragma clang diagnostic pop
+    MJPerformSelectorLeakWarning(
+        [self performSelector:NSSelectorFromString(self.method) withObject:nil];
+                                 );
     
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:MJCollectionViewCellIdentifier];
