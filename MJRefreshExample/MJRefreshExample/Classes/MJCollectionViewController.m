@@ -4,7 +4,7 @@
 //  MJRefreshExample
 //
 //  Created by MJ Lee on 15/3/6.
-//  Copyright (c) 2015年 itcast. All rights reserved.
+//  Copyright (c) 2015年 小码哥. All rights reserved.
 //
 
 #import "MJCollectionViewController.h"
@@ -28,10 +28,10 @@ static const CGFloat MJDuration = 2.0;
 #pragma mark UICollectionView 上下拉刷新
 - (void)example21
 {
-    __weak typeof(self) weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
     
     // 下拉刷新
-    [self.collectionView addLegendHeaderWithRefreshingBlock:^{
+    self.collectionView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         // 增加5条假数据
         for (int i = 0; i<10; i++) {
             [weakSelf.colors insertObject:MJRandomColor atIndex:0];
@@ -46,9 +46,9 @@ static const CGFloat MJDuration = 2.0;
         });
     }];
     [self.collectionView.header beginRefreshing];
-    
+
     // 上拉刷新
-     [self.collectionView addLegendFooterWithRefreshingBlock:^{
+    self.collectionView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         // 增加5条假数据
         for (int i = 0; i<5; i++) {
             [weakSelf.colors addObject:MJRandomColor];
@@ -96,7 +96,9 @@ static NSString *const MJCollectionViewCellIdentifier = @"color";
 {
     [super viewDidLoad];
     
-    [self performSelector:NSSelectorFromString(self.method) withObject:nil];
+    MJPerformSelectorLeakWarning(
+        [self performSelector:NSSelectorFromString(self.method) withObject:nil];
+                                 );
     
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:MJCollectionViewCellIdentifier];
