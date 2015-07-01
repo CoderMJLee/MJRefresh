@@ -29,15 +29,30 @@
 - (UIActivityIndicatorView *)loadingView
 {
     if (!_loadingView) {
-        UIActivityIndicatorView *loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        UIActivityIndicatorView *loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:self.activityIndicatorViewStyle];
         loadingView.hidesWhenStopped = YES;
         [self addSubview:_loadingView = loadingView];
     }
     return _loadingView;
 }
 
+#pragma mark - 公共方法
+- (void)setActivityIndicatorViewStyle:(UIActivityIndicatorViewStyle)activityIndicatorViewStyle
+{
+    _activityIndicatorViewStyle = activityIndicatorViewStyle;
+    
+    self.loadingView = nil;
+    [self setNeedsLayout];
+}
 
 #pragma makr - 重写父类的方法
+- (void)prepare
+{
+    [super prepare];
+    
+    self.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+}
+
 - (void)placeSubviews
 {
     [super placeSubviews];
