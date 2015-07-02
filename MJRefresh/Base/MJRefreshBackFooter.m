@@ -21,7 +21,7 @@
     [super scrollViewContentOffsetDidChange:change];
     
     // 如果正在刷新，直接返回
-    if (self.state == MJRefreshStateRefreshing || self.state == MJRefreshStateNoMoreData) return;
+    if (self.state == MJRefreshStateRefreshing) return;
     
     _scrollViewOriginalInset = self.scrollView.contentInset;
     
@@ -33,6 +33,13 @@
     if (currentOffsetY <= happenOffsetY) return;
     
     CGFloat pullingPercent = (currentOffsetY - happenOffsetY) / self.mj_h;
+    
+    // 如果已全部加载，仅设置pullingPercent，然后返回
+    if (self.state == MJRefreshStateNoMoreData) {
+        self.pullingPercent = pullingPercent;
+        return;
+    }
+    
     if (self.scrollView.isDragging) {
         self.pullingPercent = pullingPercent;
         // 普通 和 即将刷新 的临界点

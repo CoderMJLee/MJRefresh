@@ -235,6 +235,7 @@ static const CGFloat MJDuration = 2.0;
 {
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadLastData方法）
     self.tableView.footer = [MJChiBaoZiFooter2 footerWithRefreshingTarget:self refreshingAction:@selector(loadLastData)];
+    self.tableView.footer.autoChangeAlpha = YES;
 }
 
 #pragma mark UITableView + 上拉刷新 自定义刷新控件(自动刷新)
