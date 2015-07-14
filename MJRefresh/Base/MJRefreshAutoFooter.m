@@ -57,7 +57,7 @@
     
     if (_scrollView.mj_insetT + _scrollView.mj_contentH > _scrollView.mj_h) { // 内容超过一个屏幕
         // 这里的_scrollView.mj_contentH替换掉self.mj_y更为合理
-        if (_scrollView.mj_offsetY > _scrollView.mj_contentH - _scrollView.mj_h + self.mj_h * self.appearencePercentTriggerAutoRefresh + _scrollView.mj_insetB - self.mj_h) {
+        if (_scrollView.mj_offsetY >= _scrollView.mj_contentH - _scrollView.mj_h + self.mj_h * self.appearencePercentTriggerAutoRefresh + _scrollView.mj_insetB - self.mj_h) {
             // 防止手松开时连续调用
             CGPoint old = [change[@"old"] CGPointValue];
             CGPoint new = [change[@"new"] CGPointValue];
@@ -77,11 +77,11 @@
     
     if (_scrollView.panGestureRecognizer.state == UIGestureRecognizerStateEnded) {// 手松开
         if (_scrollView.mj_insetT + _scrollView.mj_contentH <= _scrollView.mj_h) {  // 不够一个屏幕
-            if (_scrollView.mj_offsetY > - _scrollView.mj_insetT) { // 向上拽
+            if (_scrollView.mj_offsetY >= - _scrollView.mj_insetT) { // 向上拽
                 [self beginRefreshing];
             }
         } else { // 超出一个屏幕
-            if (_scrollView.mj_offsetY > _scrollView.mj_contentH + _scrollView.mj_insetB - _scrollView.mj_h) {
+            if (_scrollView.mj_offsetY >= _scrollView.mj_contentH + _scrollView.mj_insetB - _scrollView.mj_h) {
                 [self beginRefreshing];
             }
         }
