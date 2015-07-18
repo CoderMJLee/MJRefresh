@@ -65,9 +65,9 @@
     [super scrollViewContentSizeDidChange:change];
     
     // 内容的高度
-    CGFloat contentHeight = self.scrollView.mj_contentH;
+    CGFloat contentHeight = self.scrollView.mj_contentH + self.ignoredInsetBottom;
     // 表格的高度
-    CGFloat scrollHeight = self.scrollView.mj_h - self.scrollViewOriginalInset.top - self.scrollViewOriginalInset.bottom;
+    CGFloat scrollHeight = self.scrollView.mj_h - self.scrollViewOriginalInset.top - self.scrollViewOriginalInset.bottom + self.ignoredInsetBottom;
     // 这里一定是用：self.scrollView.mj_insetT 和 self.scrollViewOriginalInset.bottom;
     // 设置位置和尺寸
     self.mj_y = MAX(contentHeight, scrollHeight);

@@ -193,7 +193,7 @@
             self.refreshingBlock();
         }
         if ([self.refreshingTarget respondsToSelector:self.refreshingAction]) {
-            msgSend(msgTarget(self.refreshingTarget), self.refreshingAction, self);
+            MJRefreshMsgSend(MJRefreshMsgTarget(self.refreshingTarget), self.refreshingAction, self);
         }
     });
 }

@@ -19,4 +19,7 @@
 @property (copy, nonatomic) NSString *lastUpdatedTimeKey;
 /** 上一次下拉刷新成功的时间 */
 @property (strong, nonatomic, readonly) NSDate *lastUpdatedTime;
+
+/** 忽略多少ignoredInsetTop */
+@property (assign, nonatomic) CGFloat ignoredInsetTop;
 @end
