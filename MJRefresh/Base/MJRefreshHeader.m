@@ -38,6 +38,9 @@
     
     // 设置高度
     self.mj_h = MJRefreshHeaderHeight;
+    
+    // 默认应该以动画显示开始刷新前的回弹效果
+    self.shouldAnimateWhenRefreshing = YES;
 }
 
 - (void)placeSubviews
@@ -111,16 +114,30 @@
             self.pullingPercent = 0.0;
         }];
     } else if (state == MJRefreshStateRefreshing) {
-        [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
+        
+        if(self.shouldAnimateWhenRefreshing){
+            
+            [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
+                // 增加滚动区域
+                CGFloat top = self.scrollViewOriginalInset.top + self.mj_h;
+                self.scrollView.mj_insetT = top;
+                
+                // 设置滚动位置
+                self.scrollView.mj_offsetY = - top;
+            } completion:^(BOOL finished) {
+                [self executeRefreshingCallback];
+            }];
+        }else{
+            
             // 增加滚动区域
             CGFloat top = self.scrollViewOriginalInset.top + self.mj_h;
             self.scrollView.mj_insetT = top;
             
             // 设置滚动位置
             self.scrollView.mj_offsetY = - top;
-        } completion:^(BOOL finished) {
+            
             [self executeRefreshingCallback];
-        }];
+        }
     }
 }
 

@@ -22,4 +22,8 @@
 
 /** 忽略多少scrollView的contentInset的top */
 @property (assign, nonatomic) CGFloat ignoredScrollViewContentInsetTop;
+
+/** 是否以动画显示开始刷新前的回弹效果 */
+@property BOOL shouldAnimateWhenRefreshing;
+
 @end
