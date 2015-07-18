@@ -20,6 +20,6 @@
 /** 重置没有更多的数据（消除没有更多数据的状态） */
 - (void)resetNoMoreData;
 
-/** 忽略多少ignoredInsetBottom */
-@property (assign, nonatomic) CGFloat ignoredInsetBottom;
+/** 忽略多少scrollView的contentInset的bottom */
+@property (assign, nonatomic) CGFloat ignoredScrollViewContentInsetTop;
 @end
