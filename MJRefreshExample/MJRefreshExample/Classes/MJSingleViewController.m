@@ -31,7 +31,7 @@
             [tableView.header endRefreshing];
         });
     }];
-    tableView.header.autoChangeAlpha = YES;
+    tableView.header.automaticallyChangeAlpha = YES;
     
     tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -40,7 +40,7 @@
             [tableView.footer endRefreshing];
         });
     }];
-    tableView.footer.autoChangeAlpha = YES;
+    tableView.footer.automaticallyChangeAlpha = YES;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section

@@ -74,7 +74,7 @@ static NSString *const MJExample30 = @"UIWebView";
     }];
     
     // 设置自动切换透明度(在导航栏下面自动隐藏)
-    tableView.header.autoChangeAlpha = YES;
+    tableView.header.automaticallyChangeAlpha = YES;
     
     // 上拉刷新
     tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{

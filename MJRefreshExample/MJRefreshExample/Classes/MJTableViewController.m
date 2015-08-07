@@ -65,7 +65,7 @@ static const CGFloat MJDuration = 2.0;
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     
     // 设置自动切换透明度(在导航栏下面自动隐藏)
-    header.autoChangeAlpha = YES;
+    header.automaticallyChangeAlpha = YES;
     
     // 隐藏时间
     header.lastUpdatedTimeLabel.hidden = YES;
@@ -239,7 +239,7 @@ static const CGFloat MJDuration = 2.0;
 {
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadLastData方法）
     self.tableView.footer = [MJChiBaoZiFooter2 footerWithRefreshingTarget:self refreshingAction:@selector(loadLastData)];
-    self.tableView.footer.autoChangeAlpha = YES;
+    self.tableView.footer.automaticallyChangeAlpha = YES;
 }
 
 #pragma mark UITableView + 上拉刷新 自定义刷新控件(自动刷新)
@@ -333,6 +333,9 @@ static const CGFloat MJDuration = 2.0;
 {
     if (!_data) {
         self.data = [NSMutableArray array];
+        for (int i = 0; i<5; i++) {
+            [self.data addObject:MJRandomData];
+        }
     }
     return _data;
 }

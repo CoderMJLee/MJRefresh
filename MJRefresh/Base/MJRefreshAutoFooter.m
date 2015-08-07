@@ -39,6 +39,9 @@
     
     // 设置为默认状态
     self.automaticallyRefresh = YES;
+    
+    // 默认是自动隐藏
+    self.automaticallyHidden = YES;
 }
 
 - (void)scrollViewContentSizeDidChange:(NSDictionary *)change
@@ -47,6 +50,24 @@
     
     // 设置位置
     self.mj_y = _scrollView.mj_contentH;
+    
+    if ([self.scrollView isKindOfClass:[UITableView class]]) {
+        UITableView *tableView = (UITableView *)self.scrollView;
+        NSInteger count = 0;
+        NSInteger sections = [tableView numberOfSections];
+        for (NSInteger i = 0; i < sections; i++) {
+            count += [tableView numberOfRowsInSection:i];
+        }
+        self.hidden = (count == 0);
+    } else if ([self.scrollView isKindOfClass:[UICollectionView class]]) {
+        UICollectionView *collectionView = (UICollectionView *)self.scrollView;
+        NSInteger count = 0;
+        NSInteger sections = [collectionView numberOfSections];
+        for (NSInteger i = 0; i < sections; i++) {
+            count += [collectionView numberOfItemsInSection:i];
+        }
+        self.hidden = (count == 0);
+    }
 }
 
 - (void)scrollViewContentOffsetDidChange:(NSDictionary *)change

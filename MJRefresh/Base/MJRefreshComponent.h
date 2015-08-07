@@ -83,7 +83,9 @@ typedef void (^MJRefreshComponentRefreshingBlock)();
 /** 拉拽的百分比(交给子类重写) */
 @property (assign, nonatomic) CGFloat pullingPercent;
 /** 根据拖拽比例自动切换透明度 */
-@property (assign, nonatomic, getter=isAutoChangeAlpha) BOOL autoChangeAlpha;
+@property (assign, nonatomic, getter=isAutoChangeAlpha) BOOL autoChangeAlpha MJRefreshDeprecated("请使用automaticallyChangeAlpha属性");
+/** 根据拖拽比例自动切换透明度 */
+@property (assign, nonatomic, getter=isAutomaticallyChangeAlpha) BOOL automaticallyChangeAlpha;
 @end
 
 @interface UILabel(MJRefresh)

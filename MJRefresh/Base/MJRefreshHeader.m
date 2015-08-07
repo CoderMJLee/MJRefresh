@@ -106,7 +106,7 @@
             self.scrollView.mj_insetT -= self.mj_h;
             
             // 自动调整透明度
-            if (self.isAutoChangeAlpha) self.alpha = 0.0;
+            if (self.isAutomaticallyChangeAlpha) self.alpha = 0.0;
         } completion:^(BOOL finished) {
             self.pullingPercent = 0.0;
         }];
