@@ -37,6 +37,30 @@
     self.mj_h = MJRefreshFooterHeight;
 }
 
+
+- (void)scrollViewContentSizeDidChange:(NSDictionary *)change
+{
+    [super scrollViewContentSizeDidChange:change];
+    
+    if ([self.scrollView isKindOfClass:[UITableView class]]) {
+        UITableView *tableView = (UITableView *)self.scrollView;
+        NSInteger count = 0;
+        NSInteger sections = [tableView numberOfSections];
+        for (NSInteger i = 0; i < sections; i++) {
+            count += [tableView numberOfRowsInSection:i];
+        }
+        self.hidden = (count == 0);
+    } else if ([self.scrollView isKindOfClass:[UICollectionView class]]) {
+        UICollectionView *collectionView = (UICollectionView *)self.scrollView;
+        NSInteger count = 0;
+        NSInteger sections = [collectionView numberOfSections];
+        for (NSInteger i = 0; i < sections; i++) {
+            count += [collectionView numberOfItemsInSection:i];
+        }
+        self.hidden = (count == 0);
+    }
+}
+
 #pragma mark - 公共方法
 - (void)noticeNoMoreData
 {

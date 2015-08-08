@@ -231,7 +231,7 @@ static const CGFloat MJDuration = 2.0;
     // 设置了底部inset
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
     // 忽略掉底部inset
-    self.tableView.footer.ignoredScrollViewContentInsetTop = 30;
+    self.tableView.footer.ignoredScrollViewContentInsetBottom = 30;
 }
 
 #pragma mark UITableView + 上拉刷新 自动回弹的上拉02

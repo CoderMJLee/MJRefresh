@@ -50,24 +50,6 @@
     
     // 设置位置
     self.mj_y = _scrollView.mj_contentH;
-    
-    if ([self.scrollView isKindOfClass:[UITableView class]]) {
-        UITableView *tableView = (UITableView *)self.scrollView;
-        NSInteger count = 0;
-        NSInteger sections = [tableView numberOfSections];
-        for (NSInteger i = 0; i < sections; i++) {
-            count += [tableView numberOfRowsInSection:i];
-        }
-        self.hidden = (count == 0);
-    } else if ([self.scrollView isKindOfClass:[UICollectionView class]]) {
-        UICollectionView *collectionView = (UICollectionView *)self.scrollView;
-        NSInteger count = 0;
-        NSInteger sections = [collectionView numberOfSections];
-        for (NSInteger i = 0; i < sections; i++) {
-            count += [collectionView numberOfItemsInSection:i];
-        }
-        self.hidden = (count == 0);
-    }
 }
 
 - (void)scrollViewContentOffsetDidChange:(NSDictionary *)change
@@ -86,6 +68,13 @@
             
             // 当底部刷新控件完全出现时，才刷新
             [self beginRefreshing];
+            
+            // 如果正在减速，并且希望阻止连续刷新
+            if (self.scrollView.isDecelerating && self.preventContinuousRefreshing) {
+                CGPoint offset = self.scrollView.contentOffset;
+                offset.y = _scrollView.mj_contentH - _scrollView.mj_h + self.mj_h + _scrollView.mj_insetB - self.mj_h;
+                [self.scrollView setContentOffset:offset animated:YES];
+            }
         }
     }
 }
@@ -114,10 +103,7 @@
     MJRefreshCheckState
     
     if (state == MJRefreshStateRefreshing) {
-        // 这里延迟是防止惯性导致连续上拉
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self executeRefreshingCallback];
-        });
+        [self executeRefreshingCallback];
     }
 }
 
