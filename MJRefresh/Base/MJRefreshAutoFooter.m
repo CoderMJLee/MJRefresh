@@ -9,7 +9,6 @@
 #import "MJRefreshAutoFooter.h"
 
 @interface MJRefreshAutoFooter()
-@property (strong, nonatomic) UIPanGestureRecognizer *pan;
 @end
 
 @implementation MJRefreshAutoFooter
@@ -65,13 +64,6 @@
             
             // 当底部刷新控件完全出现时，才刷新
             [self beginRefreshing];
-            
-            // 如果正在减速，并且希望阻止连续刷新
-            if (self.scrollView.isDecelerating && self.preventContinuousRefreshing) {
-                CGPoint offset = self.scrollView.contentOffset;
-                offset.y = _scrollView.mj_contentH - _scrollView.mj_h + self.mj_h + _scrollView.mj_insetB - self.mj_h;
-                [self.scrollView setContentOffset:offset animated:YES];
-            }
         }
     }
 }
@@ -100,7 +92,9 @@
     MJRefreshCheckState
     
     if (state == MJRefreshStateRefreshing) {
-        [self executeRefreshingCallback];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self executeRefreshingCallback];
+        });
     }
 }
 
