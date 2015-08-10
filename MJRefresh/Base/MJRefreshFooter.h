@@ -24,5 +24,5 @@
 @property (assign, nonatomic) CGFloat ignoredScrollViewContentInsetBottom;
 
 /** 自动根据有无数据来显示和隐藏（有数据就显示，没有数据隐藏） */
-@property (assign, nonatomic) BOOL automaticallyHidden;
+@property (assign, nonatomic, getter=isAutomaticallyHidden) BOOL automaticallyHidden;
 @end

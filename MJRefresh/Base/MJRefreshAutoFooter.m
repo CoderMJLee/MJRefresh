@@ -39,9 +39,6 @@
     
     // 设置为默认状态
     self.automaticallyRefresh = YES;
-    
-    // 默认是自动隐藏
-    self.automaticallyHidden = YES;
 }
 
 - (void)scrollViewContentSizeDidChange:(NSDictionary *)change

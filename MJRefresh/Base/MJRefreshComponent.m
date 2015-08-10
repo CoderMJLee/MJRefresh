@@ -110,8 +110,6 @@
         [self scrollViewContentOffsetDidChange:change];
     } else if ([keyPath isEqualToString:MJRefreshKeyPathContentSize]) {
         [self scrollViewContentSizeDidChange:change];
-    } else if ([keyPath isEqualToString:MJRefreshKeyPathContentInset]) {
-        [self scrollViewContentInsetDidChange:change];
     } else if ([keyPath isEqualToString:MJRefreshKeyPathPanState]) {
         [self scrollViewPanStateDidChange:change];
     }
@@ -119,7 +117,6 @@
 
 - (void)scrollViewContentOffsetDidChange:(NSDictionary *)change{}
 - (void)scrollViewContentSizeDidChange:(NSDictionary *)change{}
-- (void)scrollViewContentInsetDidChange:(NSDictionary *)change{}
 - (void)scrollViewPanStateDidChange:(NSDictionary *)change{}
 
 #pragma mark - 公共方法
