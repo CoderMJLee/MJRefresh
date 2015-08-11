@@ -40,6 +40,13 @@
     self.automaticallyHidden = YES;
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    if (self.isAutomaticallyHidden && self.userInteractionEnabled && object == self.scrollView && [keyPath isEqualToString:MJRefreshKeyPathContentSize]) {
+        [self scrollViewContentSizeDidChange:change];
+    }
+}
 
 - (void)scrollViewContentSizeDidChange:(NSDictionary *)change
 {
