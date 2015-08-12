@@ -133,6 +133,8 @@ static const CGFloat MJDuration = 2.0;
 #pragma mark UITableView + 上拉刷新 默认
 - (void)example11
 {
+    [self example01];
+    
     __weak __typeof(self) weakSelf = self;
     
     // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
@@ -144,6 +146,8 @@ static const CGFloat MJDuration = 2.0;
 #pragma mark UITableView + 上拉刷新 动画图片
 - (void)example12
 {
+    [self example01];
+    
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
     self.tableView.footer = [MJChiBaoZiFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 }
@@ -151,6 +155,8 @@ static const CGFloat MJDuration = 2.0;
 #pragma mark UITableView + 上拉刷新 隐藏刷新状态的文字
 - (void)example13
 {
+    [self example01];
+    
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
     MJChiBaoZiFooter *footer = [MJChiBaoZiFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     
@@ -167,6 +173,8 @@ static const CGFloat MJDuration = 2.0;
 #pragma mark UITableView + 上拉刷新 全部加载完毕
 - (void)example14
 {
+    [self example01];
+    
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadLastData方法）
     self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadLastData)];
     
@@ -184,6 +192,8 @@ static const CGFloat MJDuration = 2.0;
 #pragma mark UITableView + 上拉刷新 禁止自动加载
 - (void)example15
 {
+    [self example01];
+    
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
     MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     
@@ -197,6 +207,8 @@ static const CGFloat MJDuration = 2.0;
 #pragma mark UITableView + 上拉刷新 自定义文字
 - (void)example16
 {
+    [self example01];
+    
     // 添加默认的上拉刷新
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
     MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
@@ -219,6 +231,8 @@ static const CGFloat MJDuration = 2.0;
 #pragma mark UITableView + 上拉刷新 加载后隐藏
 - (void)example17
 {
+    [self example01];
+    
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadOnceData方法）
     self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadOnceData)];
 }
@@ -226,6 +240,8 @@ static const CGFloat MJDuration = 2.0;
 #pragma mark UITableView + 上拉刷新 自动回弹的上拉01
 - (void)example18
 {
+    [self example01];
+    
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
     self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     // 设置了底部inset
@@ -237,6 +253,8 @@ static const CGFloat MJDuration = 2.0;
 #pragma mark UITableView + 上拉刷新 自动回弹的上拉02
 - (void)example19
 {
+    [self example01];
+    
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadLastData方法）
     self.tableView.footer = [MJChiBaoZiFooter2 footerWithRefreshingTarget:self refreshingAction:@selector(loadLastData)];
     self.tableView.footer.automaticallyChangeAlpha = YES;
@@ -245,6 +263,8 @@ static const CGFloat MJDuration = 2.0;
 #pragma mark UITableView + 上拉刷新 自定义刷新控件(自动刷新)
 - (void)example20
 {
+    [self example01];
+    
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
     self.tableView.footer = [MJDIYAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 }
@@ -252,6 +272,8 @@ static const CGFloat MJDuration = 2.0;
 #pragma mark UITableView + 上拉刷新 自定义刷新控件(自动回弹)
 - (void)example21
 {
+    [self example01];
+    
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
     self.tableView.footer = [MJDIYBackFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 }
@@ -333,9 +355,6 @@ static const CGFloat MJDuration = 2.0;
 {
     if (!_data) {
         self.data = [NSMutableArray array];
-        for (int i = 0; i<5; i++) {
-            [self.data addObject:MJRandomData];
-        }
     }
     return _data;
 }
