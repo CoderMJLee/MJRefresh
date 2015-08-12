@@ -19,8 +19,9 @@
     [super willMoveToSuperview:newSuperview];
     
     if (newSuperview) { // 新的父控件
-        self.scrollView.mj_insetB += self.mj_h;
-        
+        if (!self.hidden) {
+            self.scrollView.mj_insetB += self.mj_h;
+        }
         // 重新调整frame
         [self scrollViewContentSizeDidChange:nil];
     } else { // 被移除了
