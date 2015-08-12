@@ -112,7 +112,7 @@
     }
     
     // 看不见
-    if (self.hidden || self.alpha <= 0.01) return;
+    if (self.hidden) return;
     if ([keyPath isEqualToString:MJRefreshKeyPathContentOffset]) {
         [self scrollViewContentOffsetDidChange:change];
     } else if ([keyPath isEqualToString:MJRefreshKeyPathPanState]) {

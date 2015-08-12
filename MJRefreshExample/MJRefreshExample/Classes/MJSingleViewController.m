@@ -40,7 +40,6 @@
             [tableView.footer endRefreshing];
         });
     }];
-    tableView.footer.automaticallyChangeAlpha = YES;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section
