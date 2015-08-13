@@ -20,4 +20,6 @@
 
 @property (assign, nonatomic) CGFloat mj_contentW;
 @property (assign, nonatomic) CGFloat mj_contentH;
+
+- (NSInteger)totalDataCount;
 @end

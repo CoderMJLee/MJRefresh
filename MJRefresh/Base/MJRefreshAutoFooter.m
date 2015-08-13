@@ -9,22 +9,40 @@
 #import "MJRefreshAutoFooter.h"
 
 @interface MJRefreshAutoFooter()
+@property (assign, nonatomic, getter=isPlusInsetBottom) BOOL plusInsetBottom;
+@property (assign, nonatomic, getter=isMinusInsetBottom) BOOL minusInsetBottom;
 @end
 
 @implementation MJRefreshAutoFooter
 
 #pragma mark - 初始化
+- (void)plusInsetBottom
+{
+    if (self.isPlusInsetBottom == NO) {
+        self.scrollView.mj_insetB += self.mj_h;
+        self.plusInsetBottom = YES;
+    }
+}
+
+- (void)minusInsetBottom
+{
+    if (self.isMinusInsetBottom == NO) {
+        self.scrollView.mj_insetB -= self.mj_h;
+        self.minusInsetBottom = YES;
+    }
+}
+
 - (void)willMoveToSuperview:(UIView *)newSuperview
 {
     [super willMoveToSuperview:newSuperview];
     
     if (newSuperview) { // 新的父控件
-        self.scrollView.mj_insetB += self.mj_h;
+        [self plusInsetBottom];
         
-        // 重新调整frame
-        [self scrollViewContentSizeDidChange:nil];
+        // 设置位置
+        self.mj_y = _scrollView.mj_contentH;
     } else { // 被移除了
-        self.scrollView.mj_insetB -= self.mj_h;
+        [self minusInsetBottom];
     }
 }
 
@@ -106,11 +124,13 @@
     
     if (!lastHidden && hidden) {
         self.state = MJRefreshStateIdle;
-        _scrollView.mj_insetB -= self.mj_h;
-    } else if (lastHidden && !hidden) {
-        _scrollView.mj_insetB += self.mj_h;
         
-        [self scrollViewContentSizeDidChange:nil];
+        [self minusInsetBottom];
+    } else if (lastHidden && !hidden) {
+        [self plusInsetBottom];
+        
+        // 设置位置
+        self.mj_y = _scrollView.mj_contentH;
     }
 }
 @end

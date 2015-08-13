@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.count = 10;
+    self.count = 0;
     
     __weak typeof(self) weakSelf = self;
     __weak UITableView *tableView = self.tableView;
@@ -40,6 +40,7 @@
             [tableView.footer endRefreshing];
         });
     }];
+    tableView.footer.automaticallyChangeAlpha = YES;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section

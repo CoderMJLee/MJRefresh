@@ -10,34 +10,20 @@
 #import "AppDelegate.h"
 
 @interface AppDelegate ()
-//@property (strong, nonatomic) UIWindow *alert;
+@property (strong, nonatomic) UIWindow *alert;
 @end
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//    UIWindow *alert = [[UIWindow alloc] init];
-//    CGFloat width = 150;
-//    CGFloat x = [UIScreen mainScreen].bounds.size.width - width - 10;
-//    alert.frame = CGRectMake(x, 0, width, 25);
-//    alert.windowLevel = UIWindowLevelAlert;
-//    alert.hidden = NO;
-//    alert.alpha = 0.5;
-//    UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:@[@"示例1", @"示例2", @"示例3"]];
-//    control.tintColor = [UIColor orangeColor];
-//    control.frame = alert.bounds;
-//    control.selectedSegmentIndex = 0;
-//    [control addTarget:self action:@selector(contorlSelect:) forControlEvents:UIControlEventValueChanged];
-//    [alert addSubview:control];
-//    self.alert = alert;
     return YES;
 }
 
-//- (void)contorlSelect:(UISegmentedControl *)control
-//{
-//    self.window.rootViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:[NSString stringWithFormat:@"%zd", control.selectedSegmentIndex]];
-//}
+- (void)contorlSelect:(UISegmentedControl *)control
+{
+    self.window.rootViewController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:[NSString stringWithFormat:@"%zd", control.selectedSegmentIndex]];
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -55,6 +41,23 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        UIWindow *alert = [[UIWindow alloc] init];
+        CGFloat width = 150;
+        CGFloat x = [UIScreen mainScreen].bounds.size.width - width - 10;
+        alert.frame = CGRectMake(x, 0, width, 25);
+        alert.windowLevel = UIWindowLevelAlert;
+        alert.hidden = NO;
+        alert.alpha = 0.5;
+        UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:@[@"示例1", @"示例2", @"示例3"]];
+        control.tintColor = [UIColor orangeColor];
+        control.frame = alert.bounds;
+        control.selectedSegmentIndex = 0;
+        [control addTarget:self action:@selector(contorlSelect:) forControlEvents:UIControlEventValueChanged];
+        [alert addSubview:control];
+        self.alert = alert;
+    });
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
