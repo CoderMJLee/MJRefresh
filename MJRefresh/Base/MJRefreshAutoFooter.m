@@ -16,33 +16,21 @@
 @implementation MJRefreshAutoFooter
 
 #pragma mark - 初始化
-- (void)plusInsetBottom
-{
-    if (self.isPlusInsetBottom == NO) {
-        self.scrollView.mj_insetB += self.mj_h;
-        self.plusInsetBottom = YES;
-    }
-}
-
-- (void)minusInsetBottom
-{
-    if (self.isMinusInsetBottom == NO) {
-        self.scrollView.mj_insetB -= self.mj_h;
-        self.minusInsetBottom = YES;
-    }
-}
-
 - (void)willMoveToSuperview:(UIView *)newSuperview
 {
     [super willMoveToSuperview:newSuperview];
     
     if (newSuperview) { // 新的父控件
-        [self plusInsetBottom];
+        if (self.hidden == NO) {
+            self.scrollView.mj_insetB += self.mj_h;
+        }
         
         // 设置位置
         self.mj_y = _scrollView.mj_contentH;
     } else { // 被移除了
-        [self minusInsetBottom];
+        if (self.hidden == NO) {
+            self.scrollView.mj_insetB -= self.mj_h;
+        }
     }
 }
 
@@ -125,9 +113,9 @@
     if (!lastHidden && hidden) {
         self.state = MJRefreshStateIdle;
         
-        [self minusInsetBottom];
+        self.scrollView.mj_insetB -= self.mj_h;
     } else if (lastHidden && !hidden) {
-        [self plusInsetBottom];
+        self.scrollView.mj_insetB += self.mj_h;
         
         // 设置位置
         self.mj_y = _scrollView.mj_contentH;

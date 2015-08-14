@@ -26,21 +26,23 @@
     
     tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            weakSelf.count += 2;
+            weakSelf.count += 12;
             [tableView reloadData];
             [tableView.header endRefreshing];
         });
     }];
     tableView.header.automaticallyChangeAlpha = YES;
     
-    tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             weakSelf.count += 5;
             [tableView reloadData];
             [tableView.footer endRefreshing];
         });
     }];
-    tableView.footer.automaticallyChangeAlpha = YES;
+    footer.hidden = YES;
+    tableView.footer = footer;
+//    tableView.footer.automaticallyChangeAlpha = YES;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section
