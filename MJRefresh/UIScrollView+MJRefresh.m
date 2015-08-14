@@ -12,6 +12,20 @@
 #import "MJRefreshFooter.h"
 #import <objc/runtime.h>
 
+@implementation NSObject (MJRefresh)
+
++ (void)exchangeInstanceMethod1:(SEL)method1 method2:(SEL)method2
+{
+    method_exchangeImplementations(class_getInstanceMethod(self, method1), class_getInstanceMethod(self, method2));
+}
+
++ (void)exchangeClassMethod1:(SEL)method1 method2:(SEL)method2
+{
+    method_exchangeImplementations(class_getClassMethod(self, method1), class_getClassMethod(self, method2));
+}
+
+@end
+
 @implementation UIScrollView (MJRefresh)
 
 #pragma mark - header
@@ -56,5 +70,170 @@ static const char MJRefreshFooterKey = '\0';
 - (MJRefreshFooter *)footer
 {
     return objc_getAssociatedObject(self, &MJRefreshFooterKey);
+}
+
+#pragma mark - other
+- (NSInteger)totalDataCount
+{
+    NSInteger totalCount = 0;
+    if ([self isKindOfClass:[UITableView class]]) {
+        UITableView *tableView = (UITableView *)self;
+        
+        for (NSInteger section = 0; section<tableView.numberOfSections; section++) {
+            totalCount += [tableView numberOfRowsInSection:section];
+        }
+    } else if ([self isKindOfClass:[UICollectionView class]]) {
+        UICollectionView *collectionView = (UICollectionView *)self;
+        
+        for (NSInteger section = 0; section<collectionView.numberOfSections; section++) {
+            totalCount += [collectionView numberOfItemsInSection:section];
+        }
+    }
+    return totalCount;
+}
+
+static const char MJRefreshReloadDataBlockKey = '\0';
+- (void)setReloadDataBlock:(void (^)(NSInteger))reloadDataBlock
+{
+    [self willChangeValueForKey:@"reloadDataBlock"]; // KVO
+    objc_setAssociatedObject(self, &MJRefreshReloadDataBlockKey, reloadDataBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    [self willChangeValueForKey:@"reloadDataBlock"]; // KVO
+}
+
+- (void (^)(NSInteger))reloadDataBlock
+{
+    return objc_getAssociatedObject(self, &MJRefreshReloadDataBlockKey);
+}
+
+- (void)executeReloadDataBlock
+{
+    void (^reloadDataBlock)(NSInteger) = self.reloadDataBlock;
+    !reloadDataBlock ? : reloadDataBlock(self.totalDataCount);
+}
+@end
+
+@implementation UITableView (MJRefresh)
+
++ (void)load
+{
+    [self exchangeInstanceMethod1:@selector(reloadData) method2:@selector(mj_reloadData)];
+    [self exchangeInstanceMethod1:@selector(reloadRowsAtIndexPaths:withRowAnimation:) method2:@selector(mj_reloadRowsAtIndexPaths:withRowAnimation:)];
+    [self exchangeInstanceMethod1:@selector(deleteRowsAtIndexPaths:withRowAnimation:) method2:@selector(mj_deleteRowsAtIndexPaths:withRowAnimation:)];
+    [self exchangeInstanceMethod1:@selector(insertRowsAtIndexPaths:withRowAnimation:) method2:@selector(mj_insertRowsAtIndexPaths:withRowAnimation:)];
+    [self exchangeInstanceMethod1:@selector(reloadSections:withRowAnimation:) method2:@selector(mj_reloadSections:withRowAnimation:)];
+    [self exchangeInstanceMethod1:@selector(deleteSections:withRowAnimation:) method2:@selector(mj_deleteSections:withRowAnimation:)];
+    [self exchangeInstanceMethod1:@selector(insertSections:withRowAnimation:) method2:@selector(mj_insertSections:withRowAnimation:)];
+}
+
+- (void)mj_reloadData
+{
+    [self mj_reloadData];
+    
+    [self executeReloadDataBlock];
+}
+
+- (void)mj_insertRowsAtIndexPaths:(NSArray *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation
+{
+    [self mj_insertRowsAtIndexPaths:indexPaths withRowAnimation:animation];
+    
+    [self executeReloadDataBlock];
+}
+
+- (void)mj_deleteRowsAtIndexPaths:(NSArray *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation
+{
+    [self mj_deleteRowsAtIndexPaths:indexPaths withRowAnimation:animation];
+    
+    [self executeReloadDataBlock];
+}
+
+- (void)mj_reloadRowsAtIndexPaths:(NSArray *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation
+{
+    [self mj_reloadRowsAtIndexPaths:indexPaths withRowAnimation:animation];
+    
+    [self executeReloadDataBlock];
+}
+
+- (void)mj_insertSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation
+{
+    [self mj_insertSections:sections withRowAnimation:animation];
+    
+    [self executeReloadDataBlock];
+}
+
+- (void)mj_deleteSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation
+{
+    [self mj_deleteSections:sections withRowAnimation:animation];
+    
+    [self executeReloadDataBlock];
+}
+
+- (void)mj_reloadSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation
+{
+    [self mj_reloadSections:sections withRowAnimation:animation];
+    
+    [self executeReloadDataBlock];
+}
+@end
+
+@implementation UICollectionView (MJRefresh)
+
++ (void)load
+{
+    [self exchangeInstanceMethod1:@selector(reloadData) method2:@selector(mj_reloadData)];
+    [self exchangeInstanceMethod1:@selector(reloadItemsAtIndexPaths:) method2:@selector(mj_reloadItemsAtIndexPaths:)];
+    [self exchangeInstanceMethod1:@selector(insertItemsAtIndexPaths:) method2:@selector(mj_insertItemsAtIndexPaths:)];
+    [self exchangeInstanceMethod1:@selector(deleteItemsAtIndexPaths:) method2:@selector(mj_deleteItemsAtIndexPaths:)];
+    [self exchangeInstanceMethod1:@selector(reloadSections:) method2:@selector(mj_reloadSections:)];
+    [self exchangeInstanceMethod1:@selector(insertSections:) method2:@selector(mj_insertSections:)];
+    [self exchangeInstanceMethod1:@selector(deleteSections:) method2:@selector(mj_deleteSections:)];
+}
+
+- (void)mj_reloadData
+{
+    [self mj_reloadData];
+    
+    [self executeReloadDataBlock];
+}
+
+- (void)mj_insertSections:(NSIndexSet *)sections
+{
+    [self mj_insertSections:sections];
+    
+    [self executeReloadDataBlock];
+}
+
+- (void)mj_deleteSections:(NSIndexSet *)sections
+{
+    [self mj_deleteSections:sections];
+    
+    [self executeReloadDataBlock];
+}
+
+- (void)mj_reloadSections:(NSIndexSet *)sections
+{
+    [self mj_reloadSections:sections];
+    
+    [self executeReloadDataBlock];
+}
+
+- (void)mj_insertItemsAtIndexPaths:(NSArray *)indexPaths
+{
+    [self mj_insertItemsAtIndexPaths:indexPaths];
+    
+    [self executeReloadDataBlock];
+}
+
+- (void)mj_deleteItemsAtIndexPaths:(NSArray *)indexPaths
+{
+    [self mj_deleteItemsAtIndexPaths:indexPaths];
+    
+    [self executeReloadDataBlock];
+}
+
+- (void)mj_reloadItemsAtIndexPaths:(NSArray *)indexPaths
+{
+    [self mj_reloadItemsAtIndexPaths:indexPaths];
+    
+    [self executeReloadDataBlock];
 }
 @end

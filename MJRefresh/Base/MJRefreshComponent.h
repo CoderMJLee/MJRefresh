@@ -11,6 +11,7 @@
 #import "MJRefreshConst.h"
 #import "UIView+MJExtension.h"
 #import "UIScrollView+MJExtension.h"
+#import "UIScrollView+MJRefresh.h"
 
 /** 刷新控件的状态 */
 typedef enum {

@@ -40,19 +40,18 @@
     self.automaticallyHidden = YES;
 }
 
-
-- (void)scrollViewContentSizeDidChange:(NSDictionary *)change
+- (void)willMoveToSuperview:(UIView *)newSuperview
 {
-    [super scrollViewContentSizeDidChange:change];
+    [super willMoveToSuperview:newSuperview];
     
-    if (self.isAutomaticallyHidden) {
-        self.hidden = (self.scrollView.totalDataCount == 0);
+    if (newSuperview) {
+        // 监听scrollView数据的变化
+        [self.scrollView setReloadDataBlock:^(NSInteger totalDataCount) {
+            if (self.isAutomaticallyHidden) {
+                self.hidden = (self.scrollView.totalDataCount == 0);
+            }
+        }];
     }
-}
-
-- (void)setAutomaticallyHidden:(BOOL)automaticallyHidden
-{
-    _automaticallyHidden = automaticallyHidden;
 }
 
 #pragma mark - 公共方法

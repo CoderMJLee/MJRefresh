@@ -16,4 +16,8 @@
 @property (strong, nonatomic) MJRefreshHeader *header;
 /** 上拉刷新控件 */
 @property (strong, nonatomic) MJRefreshFooter *footer;
+
+#pragma mark - other
+- (NSInteger)totalDataCount;
+@property (copy, nonatomic) void (^reloadDataBlock)(NSInteger totalDataCount);
 @end
