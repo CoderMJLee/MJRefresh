@@ -9,8 +9,6 @@
 #import "MJRefreshAutoFooter.h"
 
 @interface MJRefreshAutoFooter()
-@property (assign, nonatomic, getter=isPlusInsetBottom) BOOL plusInsetBottom;
-@property (assign, nonatomic, getter=isMinusInsetBottom) BOOL minusInsetBottom;
 @end
 
 @implementation MJRefreshAutoFooter
