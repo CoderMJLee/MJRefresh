@@ -97,7 +97,7 @@ static const char MJRefreshReloadDataBlockKey = '\0';
 {
     [self willChangeValueForKey:@"reloadDataBlock"]; // KVO
     objc_setAssociatedObject(self, &MJRefreshReloadDataBlockKey, reloadDataBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    [self willChangeValueForKey:@"reloadDataBlock"]; // KVO
+    [self didChangeValueForKey:@"reloadDataBlock"]; // KVO
 }
 
 - (void (^)(NSInteger))reloadDataBlock
