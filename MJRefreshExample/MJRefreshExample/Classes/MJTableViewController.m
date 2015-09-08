@@ -161,7 +161,7 @@ static const CGFloat MJDuration = 2.0;
     MJChiBaoZiFooter *footer = [MJChiBaoZiFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     
     // 当上拉刷新控件出现50%时（出现一半），就会自动刷新。这个值默认是1.0（也就是上拉刷新100%出现时，才会自动刷新）
-    //    footer.appearencePercentTriggerAutoRefresh = 0.5;
+    //    footer.triggerAutomaticallyRefreshPercent = 0.5;
     
     // 隐藏刷新状态的文字
     footer.refreshingTitleHidden = YES;
@@ -355,6 +355,9 @@ static const CGFloat MJDuration = 2.0;
 {
     if (!_data) {
         self.data = [NSMutableArray array];
+        for (int i = 0; i<5; i++) {
+            [self.data addObject:MJRandomData];
+        }
     }
     return _data;
 }

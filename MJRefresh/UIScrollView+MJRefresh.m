@@ -107,8 +107,7 @@ static const char MJRefreshReloadDataBlockKey = '\0';
 
 - (void)executeReloadDataBlock
 {
-    void (^reloadDataBlock)(NSInteger) = self.reloadDataBlock;
-    !reloadDataBlock ? : reloadDataBlock(self.totalDataCount);
+    !self.reloadDataBlock ? : self.reloadDataBlock(self.totalDataCount);
 }
 @end
 

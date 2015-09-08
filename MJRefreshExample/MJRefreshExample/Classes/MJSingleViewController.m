@@ -42,7 +42,6 @@
     }];
     footer.hidden = YES;
     tableView.footer = footer;
-//    tableView.footer.automaticallyChangeAlpha = YES;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section

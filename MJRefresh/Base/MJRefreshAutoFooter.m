@@ -32,13 +32,24 @@
     }
 }
 
+#pragma mark - 过期方法
+- (void)setAppearencePercentTriggerAutoRefresh:(CGFloat)appearencePercentTriggerAutoRefresh
+{
+    self.triggerAutomaticallyRefreshPercent = appearencePercentTriggerAutoRefresh;
+}
+
+- (CGFloat)appearencePercentTriggerAutoRefresh
+{
+    return self.triggerAutomaticallyRefreshPercent;
+}
+
 #pragma mark - 实现父类的方法
 - (void)prepare
 {
     [super prepare];
     
     // 默认底部控件100%出现时才会自动刷新
-    self.appearencePercentTriggerAutoRefresh = 1.0;
+    self.triggerAutomaticallyRefreshPercent = 1.0;
     
     // 设置为默认状态
     self.automaticallyRefresh = YES;
@@ -49,7 +60,7 @@
     [super scrollViewContentSizeDidChange:change];
     
     // 设置位置
-    self.mj_y = _scrollView.mj_contentH;
+    self.mj_y = self.scrollView.mj_contentH;
 }
 
 - (void)scrollViewContentOffsetDidChange:(NSDictionary *)change
@@ -60,7 +71,7 @@
     
     if (_scrollView.mj_insetT + _scrollView.mj_contentH > _scrollView.mj_h) { // 内容超过一个屏幕
         // 这里的_scrollView.mj_contentH替换掉self.mj_y更为合理
-        if (_scrollView.mj_offsetY >= _scrollView.mj_contentH - _scrollView.mj_h + self.mj_h * self.appearencePercentTriggerAutoRefresh + _scrollView.mj_insetB - self.mj_h) {
+        if (_scrollView.mj_offsetY >= _scrollView.mj_contentH - _scrollView.mj_h + self.mj_h * self.triggerAutomaticallyRefreshPercent + _scrollView.mj_insetB - self.mj_h) {
             // 防止手松开时连续调用
             CGPoint old = [change[@"old"] CGPointValue];
             CGPoint new = [change[@"new"] CGPointValue];
