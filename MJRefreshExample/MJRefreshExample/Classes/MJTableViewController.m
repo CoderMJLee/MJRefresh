@@ -368,7 +368,7 @@ static const CGFloat MJDuration = 2.0;
     [super viewDidLoad];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.tableView registerNib:[UINib nibWithNibName:@"MJTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     MJPerformSelectorLeakWarning(
         [self performSelector:NSSelectorFromString(self.method) withObject:nil];
                                  );

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D30C3B21B2BE95E00A207DF /* MJTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D30C3B11B2BE95E00A207DF /* MJTableViewCell.xib */; };
 		2D415E6E1B81ECC30068038E /* MJExampleWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D415E6D1B81ECC30068038E /* MJExampleWindow.m */; };
 		2D4A99A71AB1727900828496 /* MJWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4A99A51AB1727900828496 /* MJWebViewViewController.m */; };
 		2D4A99A81AB1727900828496 /* MJWebViewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D4A99A61AB1727900828496 /* MJWebViewViewController.xib */; };
@@ -64,7 +63,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2D30C3B11B2BE95E00A207DF /* MJTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MJTableViewCell.xib; sourceTree = "<group>"; };
 		2D415E6C1B81ECC30068038E /* MJExampleWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJExampleWindow.h; sourceTree = "<group>"; };
 		2D415E6D1B81ECC30068038E /* MJExampleWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJExampleWindow.m; sourceTree = "<group>"; };
 		2D4A99A41AB1727900828496 /* MJWebViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJWebViewViewController.h; sourceTree = "<group>"; };
@@ -314,7 +312,6 @@
 			children = (
 				2DA7F95F1AA6BCD2005627AB /* MJTableViewController.h */,
 				2DA7F9601AA6BCD2005627AB /* MJTableViewController.m */,
-				2D30C3B11B2BE95E00A207DF /* MJTableViewCell.xib */,
 				2DF7EA0A1AA8C273008580B4 /* MJCollectionViewController.h */,
 				2DF7EA0B1AA8C273008580B4 /* MJCollectionViewController.m */,
 				2D4A99A41AB1727900828496 /* MJWebViewViewController.h */,
@@ -468,7 +465,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D30C3B21B2BE95E00A207DF /* MJTableViewCell.xib in Resources */,
 				2DA7F9341AA6B4C4005627AB /* Main.storyboard in Resources */,
 				2D7780F51B2C1DE4009EF21B /* MJRefresh.bundle in Resources */,
 				2D4A99A81AB1727900828496 /* MJWebViewViewController.xib in Resources */,
