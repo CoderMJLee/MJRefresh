@@ -48,7 +48,7 @@
         // 监听scrollView数据的变化
         [self.scrollView setReloadDataBlock:^(NSInteger totalDataCount) {
             if (self.isAutomaticallyHidden) {
-                self.hidden = (self.scrollView.totalDataCount == 0);
+                self.hidden = (totalDataCount == 0);
             }
         }];
     }
