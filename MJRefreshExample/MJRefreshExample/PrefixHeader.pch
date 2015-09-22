@@ -1,0 +1,12 @@
+//
+//  PrefixHeader.pch
+//  MJRefreshExample
+//
+//  Created by MJ Lee on 15/9/22.
+//  Copyright © 2015年 小码哥. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+#import "MJTempViewController.h"
+#endif /* PrefixHeader_pch */

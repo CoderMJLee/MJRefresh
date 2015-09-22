@@ -36,10 +36,4 @@
     [navBar setTitleTextAttributes:@{UITextAttributeTextColor : [UIColor whiteColor]}];
 #endif
 }
-
-#pragma mark 控制状态栏的样式
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
-}
 @end
