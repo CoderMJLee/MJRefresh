@@ -1,6 +1,6 @@
 ![(logo)](http://images.cnitblog.com/blog2015/497279/201505/051004492043385.png)
 ## MJRefresh
-* A easy way to use pull-to-refresh
+* An easy way to use pull-to-refresh
 * 用法简单的下拉刷新框架：一行代码搞定
 
 ## Contents
