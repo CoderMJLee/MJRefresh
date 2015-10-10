@@ -329,7 +329,7 @@ static const CGFloat MJDuration = 2.0;
         [self.tableView reloadData];
         
         // 拿到当前的上拉刷新控件，变为没有更多数据的状态
-        [self.tableView.footer noticeNoMoreData];
+        [self.tableView.footer endRefreshingWithNoMoreData];
     });
 }
 

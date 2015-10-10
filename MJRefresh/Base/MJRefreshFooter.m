@@ -55,9 +55,14 @@
 }
 
 #pragma mark - 公共方法
-- (void)noticeNoMoreData
+- (void)endRefreshingWithNoMoreData
 {
     self.state = MJRefreshStateNoMoreData;
+}
+
+- (void)noticeNoMoreData
+{
+    [self endRefreshingWithNoMoreData];
 }
 
 - (void)resetNoMoreData
