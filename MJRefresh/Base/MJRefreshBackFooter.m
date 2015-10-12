@@ -108,14 +108,16 @@
         self.lastRefreshCount = self.scrollView.totalDataCount;
         
         [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
-            CGFloat bottom = self.mj_h + self.scrollViewOriginalInset.bottom;
-            CGFloat deltaH = [self heightForContentBreakView];
-            if (deltaH < 0) { // 如果内容高度小于view的高度
-                bottom -= deltaH;
+            if (!self.scrollView.pagingEnabled) {
+                CGFloat bottom = self.mj_h + self.scrollViewOriginalInset.bottom;
+                CGFloat deltaH = [self heightForContentBreakView];
+                if (deltaH < 0) { // 如果内容高度小于view的高度
+                    bottom -= deltaH;
+                }
+                self.lastBottomDelta = bottom - self.scrollView.mj_insetB;
+                self.scrollView.mj_insetB = bottom;
+                self.scrollView.mj_offsetY = [self happenOffsetY] + self.mj_h;
             }
-            self.lastBottomDelta = bottom - self.scrollView.mj_insetB;
-            self.scrollView.mj_insetB = bottom;
-            self.scrollView.mj_offsetY = [self happenOffsetY] + self.mj_h;
         } completion:^(BOOL finished) {
             [self executeRefreshingCallback];
         }];
