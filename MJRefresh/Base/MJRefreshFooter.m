@@ -46,11 +46,13 @@
     
     if (newSuperview) {
         // 监听scrollView数据的变化
-        [self.scrollView setReloadDataBlock:^(NSInteger totalDataCount) {
-            if (self.isAutomaticallyHidden) {
-                self.hidden = (totalDataCount == 0);
-            }
-        }];
+        if ([self.scrollView isKindOfClass:[UITableView class]] || [self.scrollView isKindOfClass:[UICollectionView class]]) {
+            [self.scrollView setReloadDataBlock:^(NSInteger totalDataCount) {
+                if (self.isAutomaticallyHidden) {
+                    self.hidden = (totalDataCount == 0);
+                }
+            }];
+        }
     }
 }
 
