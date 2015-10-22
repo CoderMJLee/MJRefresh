@@ -55,6 +55,9 @@ static const char MJRefreshFooterKey = '\0';
 - (void)setFooter:(MJRefreshFooter *)footer
 {
     if (footer != self.footer) {
+        // 如果内容太少，不添加Footer
+        if (self.contentSize.height <= self.frame.size.height) return;
+        
         // 删除旧的，添加新的
         [self.footer removeFromSuperview];
         [self addSubview:footer];
