@@ -40,6 +40,7 @@
     
     // logo
     UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
+    logo.contentMode = UIViewContentModeScaleAspectFit;
     [self addSubview:logo];
     self.logo = logo;
     
@@ -56,6 +57,7 @@
     
     self.label.frame = self.bounds;
     
+    self.logo.bounds = CGRectMake(0, 0, self.bounds.size.width, 100);
     self.logo.center = CGPointMake(self.mj_w * 0.5, self.mj_h + self.logo.mj_h * 0.5);
     
     self.loading.center = CGPointMake(self.mj_w - 30, self.mj_h * 0.5);

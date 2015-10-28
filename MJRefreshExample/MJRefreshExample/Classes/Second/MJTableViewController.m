@@ -46,6 +46,10 @@ static const CGFloat MJDuration = 2.0;
     
     // 马上进入刷新状态
     [self.tableView.header beginRefreshing];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.tableView.header beginRefreshing];
+    });
 }
 
 #pragma mark UITableView + 下拉刷新 动画图片
