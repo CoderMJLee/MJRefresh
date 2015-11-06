@@ -47,7 +47,7 @@
     if (newSuperview) {
         // 监听scrollView数据的变化
         if ([self.scrollView isKindOfClass:[UITableView class]] || [self.scrollView isKindOfClass:[UICollectionView class]]) {
-            [self.scrollView setReloadDataBlock:^(NSInteger totalDataCount) {
+            [self.scrollView setMj_reloadDataBlock:^(NSInteger totalDataCount) {
                 if (self.isAutomaticallyHidden) {
                     self.hidden = (totalDataCount == 0);
                 }
