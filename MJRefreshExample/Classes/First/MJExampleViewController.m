@@ -62,7 +62,7 @@ static NSString *const MJExample30 = @"UIWebView";
 {
     [super viewDidLoad];
     
-    __weak UITableView *tableView = self.tableView;
+    __unsafe_unretained UITableView *tableView = self.tableView;
     
     // 下拉刷新
     tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{

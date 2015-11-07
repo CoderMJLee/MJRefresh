@@ -37,7 +37,7 @@ static const CGFloat MJDuration = 2.0;
 #pragma mark UITableView + 下拉刷新 默认
 - (void)example01
 {
-    __weak __typeof(self) weakSelf = self;
+    __unsafe_unretained __typeof(self) weakSelf = self;
     
     // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -46,10 +46,6 @@ static const CGFloat MJDuration = 2.0;
     
     // 马上进入刷新状态
     [self.tableView.mj_header beginRefreshing];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.tableView.mj_header beginRefreshing];
-    });
 }
 
 #pragma mark UITableView + 下拉刷新 动画图片
@@ -139,7 +135,7 @@ static const CGFloat MJDuration = 2.0;
 {
     [self example01];
     
-    __weak __typeof(self) weakSelf = self;
+    __unsafe_unretained __typeof(self) weakSelf = self;
     
     // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{

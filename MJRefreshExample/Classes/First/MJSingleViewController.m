@@ -21,8 +21,8 @@
     
     self.count = 0;
     
-    __weak typeof(self) weakSelf = self;
-    __weak UITableView *tableView = self.tableView;
+    __unsafe_unretained typeof(self) weakSelf = self;
+    __unsafe_unretained UITableView *tableView = self.tableView;
     
     tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

@@ -10,7 +10,7 @@
 
 @interface MJRefreshBackNormalFooter()
 {
-    __weak UIImageView *_arrowView;
+    __unsafe_unretained UIImageView *_arrowView;
 }
 @property (weak, nonatomic) UIActivityIndicatorView *loadingView;
 @end
