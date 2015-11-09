@@ -53,6 +53,14 @@
     self.stateLabel.text = self.stateTitles[@(self.state)];
 }
 
+#pragma mark - 日历获取在9.x之后的系统使用currentCalendar会出异常。在8.0之后使用系统新API。
+- (NSCalendar *)currentCalendar {
+    if (([[[UIDevice currentDevice] systemVersion] compare:@"8.0" options:NSNumericSearch] == NSOrderedDescending)) {
+        return [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+    }
+    return [NSCalendar currentCalendar];
+}
+
 #pragma mark key的处理
 - (void)setLastUpdatedTimeKey:(NSString *)lastUpdatedTimeKey
 {
@@ -68,7 +76,7 @@
     
     if (lastUpdatedTime) {
         // 1.获得年月日
-        NSCalendar *calendar = [NSCalendar currentCalendar];
+        NSCalendar *calendar = [self currentCalendar];
         NSUInteger unitFlags = NSCalendarUnitYear| NSCalendarUnitMonth | NSCalendarUnitDay |NSCalendarUnitHour |NSCalendarUnitMinute;
         NSDateComponents *cmp1 = [calendar components:unitFlags fromDate:lastUpdatedTime];
         NSDateComponents *cmp2 = [calendar components:unitFlags fromDate:[NSDate date]];
