@@ -35,7 +35,9 @@ static const char MJRefreshHeaderKey = '\0';
     if (mj_header != self.mj_header) {
         // 删除旧的，添加新的
         [self.mj_header removeFromSuperview];
-        [self addSubview:mj_header];
+        //header添加的子控件会在如果超出范围，会显示在scrollview之上
+        //[self addSubview:mj_header];
+        [self insertSubview:mj_header atIndex:0];
         
         // 存储新的
         [self willChangeValueForKey:@"mj_header"]; // KVO
