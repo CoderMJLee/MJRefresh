@@ -63,6 +63,8 @@
 {
     [super placeSubviews];
     
+    if (self.stateLabel.constraints.count) return;
+    
     // 状态标签
     self.stateLabel.frame = self.bounds;
 }

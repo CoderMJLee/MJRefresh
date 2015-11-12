@@ -58,17 +58,24 @@
 {
     [super placeSubviews];
     
-    // 箭头
-    self.arrowView.mj_size = self.arrowView.image.size;
+    // 箭头的中心点
     CGFloat arrowCenterX = self.mj_w * 0.5;
     if (!self.stateLabel.hidden) {
         arrowCenterX -= 100;
     }
     CGFloat arrowCenterY = self.mj_h * 0.5;
-    self.arrowView.center = CGPointMake(arrowCenterX, arrowCenterY);
+    CGPoint arrowCenter = CGPointMake(arrowCenterX, arrowCenterY);
     
+    // 箭头
+    if (self.arrowView.constraints.count == 0) {
+        self.arrowView.mj_size = self.arrowView.image.size;
+        self.arrowView.center = arrowCenter;
+    }
+        
     // 圈圈
-    self.loadingView.frame = self.arrowView.frame;
+    if (self.loadingView.constraints.count == 0) {
+        self.loadingView.center = arrowCenter;
+    }
 }
 
 - (void)setState:(MJRefreshState)state

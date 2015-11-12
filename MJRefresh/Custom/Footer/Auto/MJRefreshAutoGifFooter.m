@@ -68,6 +68,8 @@
 {
     [super placeSubviews];
     
+    if (self.gifView.constraints.count) return;
+    
     self.gifView.frame = self.bounds;
     if (self.isRefreshingTitleHidden) {
         self.gifView.contentMode = UIViewContentModeCenter;

@@ -43,13 +43,15 @@
 {
     [super placeSubviews];
     
+    if (self.loadingView.constraints.count) return;
+    
     // 圈圈
-    CGFloat arrowCenterX = self.mj_w * 0.5;
+    CGFloat loadingCenterX = self.mj_w * 0.5;
     if (!self.isRefreshingTitleHidden) {
-        arrowCenterX -= 100;
+        loadingCenterX -= 100;
     }
-    CGFloat arrowCenterY = self.mj_h * 0.5;
-    self.loadingView.center = CGPointMake(arrowCenterX, arrowCenterY);
+    CGFloat loadingCenterY = self.mj_h * 0.5;
+    self.loadingView.center = CGPointMake(loadingCenterX, loadingCenterY);
 }
 
 - (void)setState:(MJRefreshState)state
