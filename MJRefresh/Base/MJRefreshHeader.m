@@ -55,6 +55,10 @@
     // 在刷新的refreshing状态
     if (self.state == MJRefreshStateRefreshing) {
         // sectionheader停留解决
+        CGFloat insetT = -self.scrollView.mj_offsetY > _scrollViewOriginalInset.top ? -self.scrollView.mj_offsetY : _scrollViewOriginalInset.top;
+        insetT = insetT > self.mj_h + _scrollViewOriginalInset.top ? self.mj_h + _scrollViewOriginalInset.top : insetT;
+        self.scrollView.mj_insetT = insetT;
+
         return;
     }
     
@@ -105,7 +109,7 @@
         
         // 恢复inset和offset
         [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
-            self.scrollView.mj_insetT -= self.mj_h;
+            self.scrollView.mj_insetT = self.scrollViewOriginalInset.top;
             
             // 自动调整透明度
             if (self.isAutomaticallyChangeAlpha) self.alpha = 0.0;
