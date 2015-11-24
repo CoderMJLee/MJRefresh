@@ -66,6 +66,9 @@
 {
     [super setLastUpdatedTimeKey:lastUpdatedTimeKey];
     
+    // 如果label隐藏了，就不用再处理
+    if (self.lastUpdatedTimeLabel.hidden) return;
+    
     NSDate *lastUpdatedTime = [[NSUserDefaults standardUserDefaults] objectForKey:lastUpdatedTimeKey];
     
     // 如果有block
