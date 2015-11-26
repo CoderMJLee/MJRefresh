@@ -109,6 +109,8 @@
             self.gifView.animationDuration = [self.stateDurations[@(state)] doubleValue];
             [self.gifView startAnimating];
         }
+    } else if (state == MJRefreshStateIdle) {
+        [self.gifView stopAnimating];
     }
 }
 @end
