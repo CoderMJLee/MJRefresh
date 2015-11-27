@@ -53,10 +53,10 @@
     [super prepare];
     
     // 初始化文字
-    [self setTitle:MJRefreshBackFooterIdleText forState:MJRefreshStateIdle];
-    [self setTitle:MJRefreshBackFooterPullingText forState:MJRefreshStatePulling];
-    [self setTitle:MJRefreshBackFooterRefreshingText forState:MJRefreshStateRefreshing];
-    [self setTitle:MJRefreshBackFooterNoMoreDataText forState:MJRefreshStateNoMoreData];
+    [self setTitle:[self localizedStringForKey:MJRefreshBackFooterIdleText] forState:MJRefreshStateIdle];
+    [self setTitle:[self localizedStringForKey:MJRefreshBackFooterPullingText] forState:MJRefreshStatePulling];
+    [self setTitle:[self localizedStringForKey:MJRefreshBackFooterRefreshingText] forState:MJRefreshStateRefreshing];
+    [self setTitle:[self localizedStringForKey:MJRefreshBackFooterNoMoreDataText] forState:MJRefreshStateNoMoreData];
 }
 
 - (void)placeSubviews
