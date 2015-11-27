@@ -10,6 +10,8 @@
 
 @interface MJRefreshNormalHeader : MJRefreshStateHeader
 @property (weak, nonatomic, readonly) UIImageView *arrowView;
+/** 箭头图标距离中心偏移量 **/
+@property (assign, nonatomic) CGFloat arrowViewOffset;
 /** 菊花的样式 */
 @property (assign, nonatomic) UIActivityIndicatorViewStyle activityIndicatorViewStyle;
 @end
