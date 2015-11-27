@@ -52,6 +52,7 @@
     [super prepare];
     
     self.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    self.arrowViewOffset = -100;
 }
 
 - (void)placeSubviews
@@ -61,7 +62,7 @@
     // 箭头的中心点
     CGFloat arrowCenterX = self.mj_w * 0.5;
     if (!self.stateLabel.hidden) {
-        arrowCenterX -= 100;
+        arrowCenterX += self.arrowViewOffset;
     }
     CGFloat arrowCenterY = self.mj_h * 0.5;
     CGPoint arrowCenter = CGPointMake(arrowCenterX, arrowCenterY);
