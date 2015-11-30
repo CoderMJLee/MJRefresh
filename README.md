@@ -120,7 +120,7 @@ UIView+MJExtension.h        UIView+MJExtension.m
 + (instancetype)footerWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
 
 /** 提示没有更多的数据 */
-- (void)noticeNoMoreData;
+- (void)endRefreshingWithNoMoreData;
 /** 重置没有更多的数据（消除没有更多数据的状态） */
 - (void)resetNoMoreData;
 
@@ -255,7 +255,7 @@ footer.refreshingTitleHidden = YES;
 ## <a id="上拉刷新04-全部加载完毕"></a>上拉刷新04-全部加载完毕
 ```objc
 // 变为没有更多数据的状态
-[footer noticeNoMoreData];
+[footer endRefreshingWithNoMoreData];
 ```
 ![(上拉刷新04-全部加载完毕)](http://images0.cnblogs.com/blog2015/497279/201506/141205248634686.gif)
 
