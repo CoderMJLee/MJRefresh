@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name         = 'MJRefresh'
-    s.version      = '3.0.7'
+    s.version      = '3.0.8'
     s.summary      = 'An easy way to use pull-to-refresh'
     s.homepage     = 'https://github.com/CoderMJLee/MJRefresh'
     s.license      = 'MIT'

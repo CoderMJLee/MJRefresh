@@ -9,7 +9,9 @@
 #import "MJRefreshBackGifFooter.h"
 
 @interface MJRefreshBackGifFooter()
-@property (weak, nonatomic) UIImageView *gifView;
+{
+    __unsafe_unretained UIImageView *_gifView;
+}
 /** 所有状态对应的动画图片 */
 @property (strong, nonatomic) NSMutableDictionary *stateImages;
 /** 所有状态对应的动画时间 */
