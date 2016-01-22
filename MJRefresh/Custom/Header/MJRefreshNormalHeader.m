@@ -46,7 +46,7 @@
     [self setNeedsLayout];
 }
 
-#pragma makr - 重写父类的方法
+#pragma mark - 重写父类的方法
 - (void)prepare
 {
     [super prepare];
