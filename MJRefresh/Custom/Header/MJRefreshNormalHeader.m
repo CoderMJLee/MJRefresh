@@ -7,21 +7,20 @@
 //
 
 #import "MJRefreshNormalHeader.h"
-
+#import "MJResouseImageView.h"
 @interface MJRefreshNormalHeader()
 {
-    __unsafe_unretained UIImageView *_arrowView;
+    __unsafe_unretained UIView *_arrowView;
 }
 @property (weak, nonatomic) UIActivityIndicatorView *loadingView;
 @end
 
 @implementation MJRefreshNormalHeader
 #pragma mark - 懒加载子控件
-- (UIImageView *)arrowView
+- (UIView *)arrowView
 {
     if (!_arrowView) {
-        UIImage *image = [UIImage imageNamed:MJRefreshSrcName(@"arrow.png")] ?: [UIImage imageNamed:MJRefreshFrameworkSrcName(@"arrow.png")];
-        UIImageView *arrowView = [[UIImageView alloc] initWithImage:image];
+        MJResouseImageView *arrowView = [[MJResouseImageView alloc] initWithFrame:CGRectMake(0, 0, 15, 40)];
         [self addSubview:_arrowView = arrowView];
     }
     return _arrowView;
@@ -68,7 +67,7 @@
     
     // 箭头
     if (self.arrowView.constraints.count == 0) {
-        self.arrowView.mj_size = self.arrowView.image.size;
+        self.arrowView.mj_size = self.arrowView.bounds.size;
         self.arrowView.center = arrowCenter;
     }
         
