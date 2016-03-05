@@ -10,7 +10,7 @@
 #import "MJRefreshHeader.h"
 
 @interface MJRefreshHeader()
-
+@property (assign, nonatomic) CGFloat insetTDelta;
 @end
 
 @implementation MJRefreshHeader
@@ -54,12 +54,19 @@
     
     // 在刷新的refreshing状态
     if (self.state == MJRefreshStateRefreshing) {
+        if (self.window == nil) return;
+        
         // sectionheader停留解决
+        CGFloat insetT = - self.scrollView.mj_offsetY > _scrollViewOriginalInset.top ? - self.scrollView.mj_offsetY : _scrollViewOriginalInset.top;
+        insetT = insetT > self.mj_h + _scrollViewOriginalInset.top ? self.mj_h + _scrollViewOriginalInset.top : insetT;
+        self.scrollView.mj_insetT = insetT;
+        
+        self.insetTDelta = _scrollViewOriginalInset.top - insetT;
         return;
     }
     
     // 跳转到下一个控制器时，contentInset可能会变
-    _scrollViewOriginalInset = self.scrollView.contentInset;
+     _scrollViewOriginalInset = self.scrollView.contentInset;
     
     // 当前的contentOffset
     CGFloat offsetY = self.scrollView.mj_offsetY;
@@ -105,9 +112,13 @@
         
         // 恢复inset和offset
         [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
+<<<<<<< HEAD
             self.scrollView.mj_insetT -= self.mj_h;
             // 设置滚动位置
             self.scrollView.mj_offsetY = - self.scrollViewOriginalInset.top;
+=======
+            self.scrollView.mj_insetT += self.insetTDelta;
+>>>>>>> CoderMJLee/master
             
             // 自动调整透明度
             if (self.isAutomaticallyChangeAlpha) self.alpha = 0.0;
@@ -126,6 +137,13 @@
             [self executeRefreshingCallback];
         }];
     }
+}
+
+- (void)drawRect:(CGRect)rect
+{
+    [super drawRect:rect];
+    
+    
 }
 
 #pragma mark - 公共方法

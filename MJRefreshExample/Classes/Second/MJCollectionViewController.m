@@ -28,10 +28,10 @@ static const CGFloat MJDuration = 2.0;
 #pragma mark UICollectionView 上下拉刷新
 - (void)example21
 {
-    __weak __typeof(self) weakSelf = self;
+    __unsafe_unretained __typeof(self) weakSelf = self;
     
     // 下拉刷新
-    self.collectionView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.collectionView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         // 增加5条假数据
         for (int i = 0; i<10; i++) {
             [weakSelf.colors insertObject:MJRandomColor atIndex:0];
@@ -42,13 +42,13 @@ static const CGFloat MJDuration = 2.0;
             [weakSelf.collectionView reloadData];
             
             // 结束刷新
-            [weakSelf.collectionView.header endRefreshing];
+            [weakSelf.collectionView.mj_header endRefreshing];
         });
     }];
-    [self.collectionView.header beginRefreshing];
+    [self.collectionView.mj_header beginRefreshing];
 
     // 上拉刷新
-    self.collectionView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+    self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         // 增加5条假数据
         for (int i = 0; i<5; i++) {
             [weakSelf.colors addObject:MJRandomColor];
@@ -59,11 +59,11 @@ static const CGFloat MJDuration = 2.0;
             [weakSelf.collectionView reloadData];
             
             // 结束刷新
-            [weakSelf.collectionView.footer endRefreshing];
+            [weakSelf.collectionView.mj_footer endRefreshing];
         });
     }];
     // 默认先隐藏footer
-    self.collectionView.footer.hidden = YES;
+    self.collectionView.mj_footer.hidden = YES;
 }
 
 #pragma mark - 数据相关
@@ -108,7 +108,7 @@ static NSString *const MJCollectionViewCellIdentifier = @"color";
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     // 设置尾部控件的显示和隐藏
-    self.collectionView.footer.hidden = self.colors.count == 0;
+    self.collectionView.mj_footer.hidden = self.colors.count == 0;
     return self.colors.count;
 }
 

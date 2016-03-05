@@ -9,7 +9,9 @@
 #import "MJRefreshGifHeader.h"
 
 @interface MJRefreshGifHeader()
-@property (weak, nonatomic) UIImageView *gifView;
+{
+    __unsafe_unretained UIImageView *_gifView;
+}
 /** 所有状态对应的动画图片 */
 @property (strong, nonatomic) NSMutableDictionary *stateImages;
 /** 所有状态对应的动画时间 */
@@ -81,6 +83,8 @@
 {
     [super placeSubviews];
     
+    if (self.gifView.constraints.count) return;
+    
     self.gifView.frame = self.bounds;
     if (self.stateLabel.hidden && self.lastUpdatedTimeLabel.hidden) {
         self.gifView.contentMode = UIViewContentModeCenter;
@@ -107,6 +111,8 @@
             self.gifView.animationDuration = [self.stateDurations[@(state)] doubleValue];
             [self.gifView startAnimating];
         }
+    } else if (state == MJRefreshStateIdle) {
+        [self.gifView stopAnimating];
     }
 }
 @end
