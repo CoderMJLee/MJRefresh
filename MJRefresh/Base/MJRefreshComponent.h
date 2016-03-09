@@ -89,5 +89,5 @@ typedef void (^MJRefreshComponentRefreshingBlock)();
 @end
 
 @interface UILabel(MJRefresh)
-+ (instancetype)label;
++ (instancetype)mj_label;
 @end
