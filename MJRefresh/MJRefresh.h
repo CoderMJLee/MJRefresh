@@ -6,14 +6,14 @@ FOUNDATION_EXPORT double MJRefreshVersionNumber;
 //! Project version string for MJRefresh.
 FOUNDATION_EXPORT const unsigned char MJRefreshVersionString[];
 
-#import "UIScrollView+MJRefresh.h"
-#import "UIScrollView+MJExtension.h"
-#import "UIView+MJExtension.h"
+#import <MJRefresh/UIScrollView+MJRefresh.h>
+#import <MJRefresh/UIScrollView+MJExtension.h>
+#import <MJRefresh/UIView+MJExtension.h>
 
-#import "MJRefreshNormalHeader.h"
-#import "MJRefreshGifHeader.h"
+#import <MJRefresh/MJRefreshNormalHeader.h>
+#import <MJRefresh/MJRefreshGifHeader.h>
 
-#import "MJRefreshBackNormalFooter.h"
-#import "MJRefreshBackGifFooter.h"
-#import "MJRefreshAutoNormalFooter.h"
-#import "MJRefreshAutoGifFooter.h"
+#import <MJRefresh/MJRefreshBackNormalFooter.h>
+#import <MJRefresh/MJRefreshBackGifFooter.h>
+#import <MJRefresh/MJRefreshAutoNormalFooter.h>
+#import <MJRefresh/MJRefreshAutoGifFooter.h>
