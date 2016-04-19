@@ -26,6 +26,7 @@
         
         // 默认是普通状态
         self.state = MJRefreshStateIdle;
+        _dragging = NO;
     }
     return self;
 }
@@ -199,6 +200,19 @@
     if (self.isAutomaticallyChangeAlpha) {
         self.alpha = pullingPercent;
     }
+}
+
+#pragma mark - 代码设置 contentOffset
+
+- (void)setDragging:(BOOL)dragging {
+    if (_dragging == dragging) {
+        return;
+    }
+    _dragging = dragging;
+    /**
+     *  通知 MJRefreshKeyPathContentOffset
+     */
+    [_scrollView setContentOffset:_scrollView.contentOffset];
 }
 
 #pragma mark - 内部方法

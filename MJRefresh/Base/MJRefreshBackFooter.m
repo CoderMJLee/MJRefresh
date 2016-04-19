@@ -48,7 +48,7 @@
         return;
     }
     
-    if (self.scrollView.isDragging) {
+    if (self.scrollView.isDragging || self.dragging) {
         self.pullingPercent = pullingPercent;
         // 普通 和 即将刷新 的临界点
         CGFloat normal2pullingOffsetY = happenOffsetY + self.mj_h;

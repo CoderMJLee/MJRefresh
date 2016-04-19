@@ -130,6 +130,27 @@ static const CGFloat MJDuration = 2.0;
     [self.tableView.mj_header beginRefreshing];
 }
 
+#pragma mark UITableView + 下拉刷新 代码设置contentOffset
+- (void)example07
+{
+    __unsafe_unretained __typeof(self) weakSelf = self;
+    
+    // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakSelf loadNewData];
+    }];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [weakSelf.tableView.mj_header setDragging:YES];
+        CGPoint contentOffset = weakSelf.tableView.contentOffset;
+        contentOffset.y -= 80;
+        [weakSelf.tableView setContentOffset:contentOffset animated:YES];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf.tableView.mj_header setDragging:NO];
+        });
+    });
+}
+
 #pragma mark UITableView + 上拉刷新 默认
 - (void)example11
 {
@@ -276,6 +297,23 @@ static const CGFloat MJDuration = 2.0;
     
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
     self.tableView.mj_footer = [MJDIYBackFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+}
+
+#pragma mark UITableView + 上拉刷新 代码设置contentOffset(自动回弹)
+- (void)example22
+{
+    [self example21];
+    
+    __unsafe_unretained __typeof(self) weakSelf = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [weakSelf.tableView.mj_footer setDragging:YES];
+        CGPoint contentOffset = weakSelf.tableView.contentOffset;
+        contentOffset.y += 80;
+        [weakSelf.tableView setContentOffset:contentOffset animated:YES];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf.tableView.mj_footer setDragging:NO];
+        });
+    });
 }
 
 #pragma mark - 数据处理相关

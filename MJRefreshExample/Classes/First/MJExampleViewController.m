@@ -32,14 +32,14 @@ static NSString *const MJExample30 = @"UIWebView";
         MJExample *exam0 = [[MJExample alloc] init];
         exam0.header = MJExample00;
         exam0.vcClass = [MJTableViewController class];
-        exam0.titles = @[@"默认", @"动画图片", @"隐藏时间", @"隐藏状态和时间", @"自定义文字", @"自定义刷新控件"];
-        exam0.methods = @[@"example01", @"example02", @"example03", @"example04", @"example05", @"example06"];
+        exam0.titles = @[@"默认", @"动画图片", @"隐藏时间", @"隐藏状态和时间", @"自定义文字", @"自定义刷新控件", @"代码设置contentOffset"];
+        exam0.methods = @[@"example01", @"example02", @"example03", @"example04", @"example05", @"example06", @"example07"];
         
         MJExample *exam1 = [[MJExample alloc] init];
         exam1.header = MJExample10;
         exam1.vcClass = [MJTableViewController class];
-        exam1.titles = @[@"默认", @"动画图片", @"隐藏刷新状态的文字", @"全部加载完毕", @"禁止自动加载", @"自定义文字", @"加载后隐藏", @"自动回弹的上拉01", @"自动回弹的上拉02", @"自定义刷新控件(自动刷新)", @"自定义刷新控件(自动回弹)"];
-        exam1.methods = @[@"example11", @"example12", @"example13", @"example14", @"example15", @"example16", @"example17", @"example18", @"example19", @"example20", @"example21"];
+        exam1.titles = @[@"默认", @"动画图片", @"隐藏刷新状态的文字", @"全部加载完毕", @"禁止自动加载", @"自定义文字", @"加载后隐藏", @"自动回弹的上拉01", @"自动回弹的上拉02", @"自定义刷新控件(自动刷新)", @"自定义刷新控件(自动回弹)", @"代码设置contentOffset(自动回弹)"];
+        exam1.methods = @[@"example11", @"example12", @"example13", @"example14", @"example15", @"example16", @"example17", @"example18", @"example19", @"example20", @"example21", @"example22"];
         
         MJExample *exam2 = [[MJExample alloc] init];
         exam2.header = MJExample20;

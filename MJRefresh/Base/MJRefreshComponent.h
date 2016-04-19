@@ -86,6 +86,16 @@ typedef void (^MJRefreshComponentRefreshingBlock)();
 @property (assign, nonatomic, getter=isAutoChangeAlpha) BOOL autoChangeAlpha MJRefreshDeprecated("请使用automaticallyChangeAlpha属性");
 /** 根据拖拽比例自动切换透明度 */
 @property (assign, nonatomic, getter=isAutomaticallyChangeAlpha) BOOL automaticallyChangeAlpha;
+
+#pragma mark - 代码设置 contentOffset
+
+/**
+ *  代码设置contentOffset前设为YES
+ *  代码设置contentOffset后设为NO
+ *  默认为NO
+ */
+@property (assign, nonatomic) BOOL dragging;
+
 @end
 
 @interface UILabel(MJRefresh)
