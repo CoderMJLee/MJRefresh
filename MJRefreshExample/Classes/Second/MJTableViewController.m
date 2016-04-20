@@ -151,6 +151,21 @@ static const CGFloat MJDuration = 2.0;
     });
 }
 
+#pragma mark UITableView + 下拉刷新 beginRefresh不改变contentOffSet
+- (void)example08
+{
+    __unsafe_unretained __typeof(self) weakSelf = self;
+    
+    // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakSelf loadNewData];
+    }];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [weakSelf.tableView.mj_header beginRefreshingWithNoOffset];
+    });
+}
+
 #pragma mark UITableView + 上拉刷新 默认
 - (void)example11
 {

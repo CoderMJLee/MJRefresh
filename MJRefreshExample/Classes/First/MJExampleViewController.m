@@ -32,8 +32,8 @@ static NSString *const MJExample30 = @"UIWebView";
         MJExample *exam0 = [[MJExample alloc] init];
         exam0.header = MJExample00;
         exam0.vcClass = [MJTableViewController class];
-        exam0.titles = @[@"默认", @"动画图片", @"隐藏时间", @"隐藏状态和时间", @"自定义文字", @"自定义刷新控件", @"代码设置contentOffset"];
-        exam0.methods = @[@"example01", @"example02", @"example03", @"example04", @"example05", @"example06", @"example07"];
+        exam0.titles = @[@"默认", @"动画图片", @"隐藏时间", @"隐藏状态和时间", @"自定义文字", @"自定义刷新控件", @"代码设置contentOffset", @"beginRefresh 不改变 contentOffSet"];
+        exam0.methods = @[@"example01", @"example02", @"example03", @"example04", @"example05", @"example06", @"example07", @"example08"];
         
         MJExample *exam1 = [[MJExample alloc] init];
         exam1.header = MJExample10;

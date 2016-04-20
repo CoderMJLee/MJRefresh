@@ -22,4 +22,16 @@
 
 /** 忽略多少scrollView的contentInset的top */
 @property (assign, nonatomic) CGFloat ignoredScrollViewContentInsetTop;
+
+/**
+ *  beginRefresh 是否改变 contentOffset
+ *  默认 YES
+ */
+@property (nonatomic, assign) BOOL refreshWithOffset;
+
+/**
+ *  beginRefresh 不改变 contentOffSet
+ */
+- (void)beginRefreshingWithNoOffset;
+
 @end

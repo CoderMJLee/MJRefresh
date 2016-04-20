@@ -11,9 +11,20 @@
 
 @interface MJRefreshHeader()
 @property (assign, nonatomic) CGFloat insetTDelta;
+
 @end
 
 @implementation MJRefreshHeader
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _refreshWithOffset = YES;
+    }
+    return self;
+}
+
 #pragma mark - 构造方法
 + (instancetype)headerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock
 {
@@ -125,12 +136,22 @@
             CGFloat top = self.scrollViewOriginalInset.top + self.mj_h;
             self.scrollView.mj_insetT = top;
             
-            // 设置滚动位置
-            self.scrollView.mj_offsetY = - top;
+            if (_refreshWithOffset) {
+                // 设置滚动位置
+                self.scrollView.mj_offsetY = - top;
+            } else {
+                self.scrollView.mj_offsetY += self.mj_h;
+            }
         } completion:^(BOOL finished) {
             [self executeRefreshingCallback];
         }];
     }
+}
+
+- (void)beginRefreshingWithNoOffset {
+    _refreshWithOffset = NO;
+    [self beginRefreshing];
+    _refreshWithOffset = YES;
 }
 
 - (void)drawRect:(CGRect)rect
