@@ -30,6 +30,12 @@
 @property (nonatomic, assign) BOOL refreshWithOffset;
 
 /**
+ *  进入刷新状态后是否立即刷新
+ *  默认 NO
+ */
+@property (nonatomic, assign) BOOL refreshRightAway;
+
+/**
  *  beginRefresh 不改变 contentOffSet
  */
 - (void)beginRefreshingWithNoOffset;

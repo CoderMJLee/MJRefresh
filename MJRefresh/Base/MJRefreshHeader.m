@@ -16,15 +16,6 @@
 
 @implementation MJRefreshHeader
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        _refreshWithOffset = YES;
-    }
-    return self;
-}
-
 #pragma mark - 构造方法
 + (instancetype)headerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock
 {
@@ -49,6 +40,9 @@
     
     // 设置高度
     self.mj_h = MJRefreshHeaderHeight;
+    
+    _refreshWithOffset = YES;
+    _refreshRightAway = NO;
 }
 
 - (void)placeSubviews
@@ -131,7 +125,7 @@
             self.pullingPercent = 0.0;
         }];
     } else if (state == MJRefreshStateRefreshing) {
-        [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
+        [UIView animateWithDuration: _refreshRightAway ? 0.f : MJRefreshFastAnimationDuration animations:^{
             // 增加滚动区域
             CGFloat top = self.scrollViewOriginalInset.top + self.mj_h;
             self.scrollView.mj_insetT = top;
