@@ -57,7 +57,7 @@ static const char MJRefreshFooterKey = '\0';
     if (mj_footer != self.mj_footer) {
         // 删除旧的，添加新的
         [self.mj_footer removeFromSuperview];
-        [self addSubview:mj_footer];
+        [self insertSubview:mj_footer atIndex:0];
         
         // 存储新的
         [self willChangeValueForKey:@"mj_footer"]; // KVO
