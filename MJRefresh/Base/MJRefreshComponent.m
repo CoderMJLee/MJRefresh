@@ -133,6 +133,34 @@
     self.refreshingAction = action;
 }
 
+- (NSString *)localizedStringForKey:(NSString *)key{
+    return [self localizedStringForKey:key withDefault:nil];
+}
+
+- (NSString *)localizedStringForKey:(NSString *)key withDefault:(NSString *)defaultString
+{
+    static NSBundle *bundle = nil;
+    if (bundle == nil)
+    {
+        NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"MJRefresh" ofType:@"bundle"];
+        
+        bundle = [NSBundle bundleWithPath:bundlePath];
+        NSString *language = [[NSLocale preferredLanguages] count]? [NSLocale preferredLanguages][0]: @"en";
+        if (![[bundle localizations] containsObject:language])
+        {
+            language = [language componentsSeparatedByString:@"-"][0];
+        }
+        if ([[bundle localizations] containsObject:language])
+        {
+            bundlePath = [bundle pathForResource:language ofType:@"lproj"];
+        }
+
+        bundle = [NSBundle bundleWithPath:bundlePath] ?: [NSBundle mainBundle];
+    }
+    defaultString = [bundle localizedStringForKey:key value:defaultString table:nil];
+    return [[NSBundle mainBundle] localizedStringForKey:key value:defaultString table:nil];
+}
+
 #pragma mark 进入刷新状态
 - (void)beginRefreshing
 {
