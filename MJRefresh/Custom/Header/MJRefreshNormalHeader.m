@@ -21,7 +21,8 @@
 {
     if (!_arrowView) {
         UIImage *image = [UIImage imageNamed:MJRefreshSrcName(@"arrow.png")] ?: [UIImage imageNamed:MJRefreshFrameworkSrcName(@"arrow.png")];
-        UIImageView *arrowView = [[UIImageView alloc] initWithImage:image];
+        UIImageView *arrowView = [[UIImageView alloc] initWithImage:[image imageWithRenderingMode:(UIImageRenderingModeAlwaysTemplate)]];
+        arrowView.tintColor = self.stateLabel.textColor;
         [self addSubview:_arrowView = arrowView];
     }
     return _arrowView;
