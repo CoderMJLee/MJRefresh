@@ -244,7 +244,7 @@
 @end
 
 @implementation UILabel(MJRefresh)
-+ (instancetype)label
++ (instancetype)mj_label
 {
     UILabel *label = [[self alloc] init];
     label.font = MJRefreshLabelFont;

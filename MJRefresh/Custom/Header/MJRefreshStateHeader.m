@@ -32,7 +32,7 @@
 - (UILabel *)stateLabel
 {
     if (!_stateLabel) {
-        [self addSubview:_stateLabel = [UILabel label]];
+        [self addSubview:_stateLabel = [UILabel mj_label]];
     }
     return _stateLabel;
 }
@@ -40,7 +40,7 @@
 - (UILabel *)lastUpdatedTimeLabel
 {
     if (!_lastUpdatedTimeLabel) {
-        [self addSubview:_lastUpdatedTimeLabel = [UILabel label]];
+        [self addSubview:_lastUpdatedTimeLabel = [UILabel mj_label]];
     }
     return _lastUpdatedTimeLabel;
 }
