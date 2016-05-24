@@ -5,6 +5,13 @@
 //  Created by MJ Lee on 15/6/13.
 //  Copyright © 2015年 小码哥. All rights reserved.
 //
+/**
+ 
+   weakSelf.count += 12; 代码崩溃
+ 
+ -[MJExampleViewController count]: unrecognized selector sent to instance 0x7f87da4e8190
+ 
+ */
 
 #import "MJSingleViewController.h"
 #import "MJTestViewController.h"
