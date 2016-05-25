@@ -44,8 +44,6 @@ static id instance_;
     
     UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:@[@"示例1", @"示例2", @"示例3"]];
     control.tintColor = [UIColor orangeColor];
-    control.frame = self.view.bounds;
-    control.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     control.selectedSegmentIndex = 0;
     [control addTarget:self action:@selector(contorlSelect:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:control];
