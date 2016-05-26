@@ -1,14 +1,40 @@
-//  代码地址: https://github.com/CoderMJLee/MJRefresh
-//  代码地址: http://code4app.com/ios/%E5%BF%AB%E9%80%9F%E9%9B%86%E6%88%90%E4%B8%8B%E6%8B%89%E4%B8%8A%E6%8B%89%E5%88%B7%E6%96%B0/52326ce26803fabc46000000
+//
+//  MJRefresh.h
+//  MJRefresh
+//
+//  Created by Kevin on 5/26/16.
+//  Copyright © 2016 小码哥. All rights reserved.
+//
 
-#import "UIScrollView+MJRefresh.h"
-#import "UIScrollView+MJExtension.h"
-#import "UIView+MJExtension.h"
+#import <UIKit/UIKit.h>
 
-#import "MJRefreshNormalHeader.h"
-#import "MJRefreshGifHeader.h"
+//! Project version number for MJRefresh.
+FOUNDATION_EXPORT double MJRefreshVersionNumber;
 
-#import "MJRefreshBackNormalFooter.h"
-#import "MJRefreshBackGifFooter.h"
-#import "MJRefreshAutoNormalFooter.h"
-#import "MJRefreshAutoGifFooter.h"
+//! Project version string for MJRefresh.
+FOUNDATION_EXPORT const unsigned char MJRefreshVersionString[];
+
+// In this header, you should import all the public headers of your framework using statements like #import <MJRefresh/PublicHeader.h>
+
+
+#import <MJRefresh/UIScrollView+MJExtension.h>
+#import <MJRefresh/UIScrollView+MJRefresh.h>
+#import <MJRefresh/UIView+MJExtension.h>
+
+#import <MJRefresh/MJRefreshNormalHeader.h>
+#import <MJRefresh/MJRefreshGifHeader.h>
+
+#import <MJRefresh/MJRefreshBackNormalFooter.h>
+#import <MJRefresh/MJRefreshBackGifFooter.h>
+#import <MJRefresh/MJRefreshAutoNormalFooter.h>
+#import <MJRefresh/MJRefreshAutoGifFooter.h>
+
+#import <MJRefresh/MJRefreshConst.h>
+#import <MJRefresh/MJRefreshBackStateFooter.h>
+#import <MJRefresh/MJRefreshAutoFooter.h>
+#import <MJRefresh/MJRefreshBackFooter.h>
+#import <MJRefresh/MJRefreshComponent.h>
+#import <MJRefresh/MJRefreshFooter.h>
+#import <MJRefresh/MJRefreshHeader.h>
+#import <MJRefresh/MJRefreshAutoStateFooter.h>
+#import <MJRefresh/MJRefreshStateHeader.h>
