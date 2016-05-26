@@ -1,0 +1,16 @@
+"MJRefreshHeaderIdleText" = "Тяните чтобы обновить";
+"MJRefreshHeaderPullingText" = "Отпустите чтобы обновить";
+"MJRefreshHeaderRefreshingText" = "Загрузка...";
+
+"MJRefreshAutoFooterIdleText" = "Нажмите или тяните вверх чтобы загрузить больше";
+"MJRefreshAutoFooterRefreshingText" = "Загрузка...";
+"MJRefreshAutoFooterNoMoreDataText" = "Больше нет данных";
+
+"MJRefreshBackFooterIdleText" = "Тяните вверх чтобы загрузить больше";
+"MJRefreshBackFooterPullingText" = "Отпустите чтобы загрузить больше";
+"MJRefreshBackFooterRefreshingText" = "Загрузка...";
+"MJRefreshBackFooterNoMoreDataText" = "Больше нет данных";
+
+"MJRefreshHeaderLastTimeText" = "Последнее обновление:";
+"MJRefreshHeaderDateTodayText" = "Сегодня";
+"MJRefreshHeaderNoneLastDateText" = "Нет записей";
