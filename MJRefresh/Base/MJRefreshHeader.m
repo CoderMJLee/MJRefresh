@@ -118,6 +118,7 @@
             if (self.isAutomaticallyChangeAlpha) self.alpha = 0.0;
         } completion:^(BOOL finished) {
             self.pullingPercent = 0.0;
+            self.scrollView.mj_offsetY = -self.scrollView.mj_insetT;
         }];
     } else if (state == MJRefreshStateRefreshing) {
         [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
