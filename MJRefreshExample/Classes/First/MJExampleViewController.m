@@ -65,7 +65,7 @@ static NSString *const MJExample30 = @"UIWebView";
     __unsafe_unretained UITableView *tableView = self.tableView;
     
     // 下拉刷新
-    tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    tableView.mj_header= [MJRefreshNormalHeader mj_headerWithRefreshingBlock:^{
         // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             // 结束刷新
@@ -77,7 +77,7 @@ static NSString *const MJExample30 = @"UIWebView";
     tableView.mj_header.automaticallyChangeAlpha = YES;
     
     // 上拉刷新
-    tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    tableView.mj_footer = [MJRefreshBackNormalFooter mj_footerWithRefreshingBlock:^{
         // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             // 结束刷新

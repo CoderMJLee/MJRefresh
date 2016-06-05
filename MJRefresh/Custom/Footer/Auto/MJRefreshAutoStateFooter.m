@@ -36,7 +36,7 @@
 }
 
 #pragma mark - 公共方法
-- (void)setTitle:(NSString *)title forState:(MJRefreshState)state
+- (void)mj_setTitle:(NSString *)title forState:(MJRefreshState)state
 {
     if (title == nil) return;
     self.stateTitles[@(state)] = title;
@@ -47,7 +47,7 @@
 - (void)stateLabelClick
 {
     if (self.state == MJRefreshStateIdle) {
-        [self beginRefreshing];
+        [self mj_beginRefreshing];
     }
 }
 
@@ -57,9 +57,9 @@
     [super prepare];
     
     // 初始化文字
-    [self setTitle:[self localizedStringForKey:MJRefreshAutoFooterIdleText] forState:MJRefreshStateIdle];
-    [self setTitle:[self localizedStringForKey:MJRefreshAutoFooterRefreshingText] forState:MJRefreshStateRefreshing];
-    [self setTitle:[self localizedStringForKey:MJRefreshAutoFooterNoMoreDataText] forState:MJRefreshStateNoMoreData];
+    [self mj_setTitle:[self localizedStringForKey:MJRefreshAutoFooterIdleText] forState:MJRefreshStateIdle];
+    [self mj_setTitle:[self localizedStringForKey:MJRefreshAutoFooterRefreshingText] forState:MJRefreshStateRefreshing];
+    [self mj_setTitle:[self localizedStringForKey:MJRefreshAutoFooterNoMoreDataText] forState:MJRefreshStateNoMoreData];
     
     // 监听label
     self.stateLabel.userInteractionEnabled = YES;
@@ -85,5 +85,12 @@
     } else {
         self.stateLabel.text = self.stateTitles[@(state)];
     }
+}
+
+
+#pragma mark - 过期方法
+- (void)setTitle:(NSString *)title forState:(MJRefreshState)state
+{
+    [self mj_setTitle:title forState:state];
 }
 @end

@@ -13,8 +13,11 @@
 @property (weak, nonatomic, readonly) UILabel *stateLabel;
 
 /** 设置state状态下的文字 */
-- (void)setTitle:(NSString *)title forState:(MJRefreshState)state;
+- (void)mj_setTitle:(NSString *)title forState:(MJRefreshState)state;
 
 /** 隐藏刷新状态的文字 */
 @property (assign, nonatomic, getter=isRefreshingTitleHidden) BOOL refreshingTitleHidden;
+
+#pragma mark - 过期方法
+- (void)setTitle:(NSString *)title forState:(MJRefreshState)state MJRefreshDeprecated("使用mj_setTitle:forState:");
 @end

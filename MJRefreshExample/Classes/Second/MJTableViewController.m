@@ -40,29 +40,29 @@ static const CGFloat MJDuration = 2.0;
     __unsafe_unretained __typeof(self) weakSelf = self;
     
     // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.tableView.mj_header = [MJRefreshNormalHeader mj_headerWithRefreshingBlock:^{
         [weakSelf loadNewData];
     }];
     
     // 马上进入刷新状态
-    [self.tableView.mj_header beginRefreshing];
+    [self.tableView.mj_header mj_beginRefreshing];
 }
 
 #pragma mark UITableView + 下拉刷新 动画图片
 - (void)example02
 {
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
-    self.tableView.mj_header = [MJChiBaoZiHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    self.tableView.mj_header = [MJChiBaoZiHeader mj_headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     
     // 马上进入刷新状态
-    [self.tableView.mj_header beginRefreshing];
+    [self.tableView.mj_header mj_beginRefreshing];
 }
 
 #pragma mark UITableView + 下拉刷新 隐藏时间
 - (void)example03
 {
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
-    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader mj_headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     
     // 设置自动切换透明度(在导航栏下面自动隐藏)
     header.automaticallyChangeAlpha = YES;
@@ -71,7 +71,7 @@ static const CGFloat MJDuration = 2.0;
     header.lastUpdatedTimeLabel.hidden = YES;
     
     // 马上进入刷新状态
-    [header beginRefreshing];
+    [header mj_beginRefreshing];
     
     // 设置header
     self.tableView.mj_header = header;
@@ -81,7 +81,7 @@ static const CGFloat MJDuration = 2.0;
 - (void)example04
 {
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
-    MJChiBaoZiHeader *header = [MJChiBaoZiHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    MJChiBaoZiHeader *header = [MJChiBaoZiHeader mj_headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     
     // 隐藏时间
     header.lastUpdatedTimeLabel.hidden = YES;
@@ -90,7 +90,7 @@ static const CGFloat MJDuration = 2.0;
     header.stateLabel.hidden = YES;
     
     // 马上进入刷新状态
-    [header beginRefreshing];
+    [header mj_beginRefreshing];
     
     // 设置header
     self.tableView.mj_header = header;
@@ -100,12 +100,12 @@ static const CGFloat MJDuration = 2.0;
 - (void)example05
 {
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
-    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader mj_headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     
     // 设置文字
-    [header setTitle:@"Pull down to refresh" forState:MJRefreshStateIdle];
-    [header setTitle:@"Release to refresh" forState:MJRefreshStatePulling];
-    [header setTitle:@"Loading ..." forState:MJRefreshStateRefreshing];
+    [header mj_setTitle:@"Pull down to refresh" forState:MJRefreshStateIdle];
+    [header mj_setTitle:@"Release to refresh" forState:MJRefreshStatePulling];
+    [header mj_setTitle:@"Loading ..." forState:MJRefreshStateRefreshing];
     
     // 设置字体
     header.stateLabel.font = [UIFont systemFontOfSize:15];
@@ -116,7 +116,7 @@ static const CGFloat MJDuration = 2.0;
     header.lastUpdatedTimeLabel.textColor = [UIColor blueColor];
     
     // 马上进入刷新状态
-    [header beginRefreshing];
+    [header mj_beginRefreshing];
     
     // 设置刷新控件
     self.tableView.mj_header = header;
@@ -126,8 +126,8 @@ static const CGFloat MJDuration = 2.0;
 - (void)example06
 {
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
-    self.tableView.mj_header = [MJDIYHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
-    [self.tableView.mj_header beginRefreshing];
+    self.tableView.mj_header = [MJDIYHeader mj_headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    [self.tableView.mj_header mj_beginRefreshing];
 }
 
 #pragma mark UITableView + 上拉刷新 默认
@@ -138,7 +138,7 @@ static const CGFloat MJDuration = 2.0;
     __unsafe_unretained __typeof(self) weakSelf = self;
     
     // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter mj_footerWithRefreshingBlock:^{
         [weakSelf loadMoreData];
     }];
 }
@@ -149,7 +149,7 @@ static const CGFloat MJDuration = 2.0;
     [self example01];
     
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
-    self.tableView.mj_footer = [MJChiBaoZiFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    self.tableView.mj_footer = [MJChiBaoZiFooter mj_footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 }
 
 #pragma mark UITableView + 上拉刷新 隐藏刷新状态的文字
@@ -158,7 +158,7 @@ static const CGFloat MJDuration = 2.0;
     [self example01];
     
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
-    MJChiBaoZiFooter *footer = [MJChiBaoZiFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    MJChiBaoZiFooter *footer = [MJChiBaoZiFooter mj_footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     
     // 当上拉刷新控件出现50%时（出现一半），就会自动刷新。这个值默认是1.0（也就是上拉刷新100%出现时，才会自动刷新）
     //    footer.triggerAutomaticallyRefreshPercent = 0.5;
@@ -176,7 +176,7 @@ static const CGFloat MJDuration = 2.0;
     [self example01];
     
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadLastData方法）
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadLastData)];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter mj_footerWithRefreshingTarget:self refreshingAction:@selector(loadLastData)];
     
     // 其他
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"恢复数据加载" style:UIBarButtonItemStyleDone target:self action:@selector(reset)];
@@ -184,9 +184,9 @@ static const CGFloat MJDuration = 2.0;
 
 - (void)reset
 {
-    [self.tableView.mj_footer setRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
-//    [self.tableView.mj_footer beginRefreshing];
-    [self.tableView.mj_footer resetNoMoreData];
+    [self.tableView.mj_footer mj_setRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+//    [self.tableView.mj_footer mj_beginRefreshing];
+    [self.tableView.mj_footer mj_resetNoMoreData];
 }
 
 #pragma mark UITableView + 上拉刷新 禁止自动加载
@@ -195,7 +195,7 @@ static const CGFloat MJDuration = 2.0;
     [self example01];
     
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
-    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter mj_footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     
     // 禁止自动加载
     footer.automaticallyRefresh = NO;
@@ -211,12 +211,12 @@ static const CGFloat MJDuration = 2.0;
     
     // 添加默认的上拉刷新
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
-    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter mj_footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     
     // 设置文字
-    [footer setTitle:@"Click or drag up to refresh" forState:MJRefreshStateIdle];
-    [footer setTitle:@"Loading more ..." forState:MJRefreshStateRefreshing];
-    [footer setTitle:@"No more data" forState:MJRefreshStateNoMoreData];
+    [footer mj_setTitle:@"Click or drag up to refresh" forState:MJRefreshStateIdle];
+    [footer mj_setTitle:@"Loading more ..." forState:MJRefreshStateRefreshing];
+    [footer mj_setTitle:@"No more data" forState:MJRefreshStateNoMoreData];
 
     // 设置字体
     footer.stateLabel.font = [UIFont systemFontOfSize:17];
@@ -234,7 +234,7 @@ static const CGFloat MJDuration = 2.0;
     [self example01];
     
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadOnceData方法）
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadOnceData)];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter mj_footerWithRefreshingTarget:self refreshingAction:@selector(loadOnceData)];
 }
 
 #pragma mark UITableView + 上拉刷新 自动回弹的上拉01
@@ -243,7 +243,7 @@ static const CGFloat MJDuration = 2.0;
     [self example01];
     
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
-    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter mj_footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     // 设置了底部inset
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
     // 忽略掉底部inset
@@ -256,7 +256,7 @@ static const CGFloat MJDuration = 2.0;
     [self example01];
     
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadLastData方法）
-    self.tableView.mj_footer = [MJChiBaoZiFooter2 footerWithRefreshingTarget:self refreshingAction:@selector(loadLastData)];
+    self.tableView.mj_footer = [MJChiBaoZiFooter2 mj_footerWithRefreshingTarget:self refreshingAction:@selector(loadLastData)];
     self.tableView.mj_footer.automaticallyChangeAlpha = YES;
 }
 
@@ -266,7 +266,7 @@ static const CGFloat MJDuration = 2.0;
     [self example01];
     
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
-    self.tableView.mj_footer = [MJDIYAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    self.tableView.mj_footer = [MJDIYAutoFooter mj_footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 }
 
 #pragma mark UITableView + 上拉刷新 自定义刷新控件(自动回弹)
@@ -275,7 +275,7 @@ static const CGFloat MJDuration = 2.0;
     [self example01];
     
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
-    self.tableView.mj_footer = [MJDIYBackFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    self.tableView.mj_footer = [MJDIYBackFooter mj_footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 }
 
 #pragma mark - 数据处理相关
@@ -293,7 +293,7 @@ static const CGFloat MJDuration = 2.0;
         [self.tableView reloadData];
         
         // 拿到当前的下拉刷新控件，结束刷新状态
-        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_header mj_endRefreshing];
     });
 }
 
@@ -311,7 +311,7 @@ static const CGFloat MJDuration = 2.0;
         [self.tableView reloadData];
         
         // 拿到当前的上拉刷新控件，结束刷新状态
-        [self.tableView.mj_footer endRefreshing];
+        [self.tableView.mj_footer mj_endRefreshing];
     });
 }
 
@@ -329,7 +329,7 @@ static const CGFloat MJDuration = 2.0;
         [self.tableView reloadData];
         
         // 拿到当前的上拉刷新控件，变为没有更多数据的状态
-        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        [self.tableView.mj_footer mj_endRefreshingWithNoMoreData];
     });
 }
 

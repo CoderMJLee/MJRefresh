@@ -24,7 +24,7 @@
     __unsafe_unretained UIScrollView *scrollView = self.webView.scrollView;
     
     // 添加下拉刷新控件
-    scrollView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    scrollView.mj_header= [MJRefreshNormalHeader mj_headerWithRefreshingBlock:^{
         [webView reload];
     }];
     
@@ -34,7 +34,7 @@
 #pragma mark - webViewDelegate
 - (void)webViewDidFinishLoad:(nonnull UIWebView *)webView
 {
-    [self.webView.scrollView.mj_header endRefreshing];
+    [self.webView.scrollView.mj_header mj_endRefreshing];
 }
 
 #pragma mark - 其他

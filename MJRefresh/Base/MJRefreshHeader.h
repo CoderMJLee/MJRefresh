@@ -10,10 +10,11 @@
 #import "MJRefreshComponent.h"
 
 @interface MJRefreshHeader : MJRefreshComponent
+
 /** 创建header */
-+ (instancetype)headerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock;
++ (instancetype)mj_headerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock;
 /** 创建header */
-+ (instancetype)headerWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
++ (instancetype)mj_headerWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
 
 /** 这个key用来存储上一次下拉刷新成功的时间 */
 @property (copy, nonatomic) NSString *lastUpdatedTimeKey;
@@ -22,4 +23,9 @@
 
 /** 忽略多少scrollView的contentInset的top */
 @property (assign, nonatomic) CGFloat ignoredScrollViewContentInsetTop;
+
+
+#pragma mark - 过期方法
++ (instancetype)headerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock MJRefreshDeprecated("使用mj_headerWithRefreshingBlock:");
++ (instancetype)headerWithRefreshingTarget:(id)target refreshingAction:(SEL)action MJRefreshDeprecated("使用mj_headerWithRefreshingTarget:refreshingAction:");
 @end

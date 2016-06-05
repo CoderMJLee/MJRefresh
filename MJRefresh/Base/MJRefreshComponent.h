@@ -42,7 +42,7 @@ typedef void (^MJRefreshComponentRefreshingBlock)();
 /** 正在刷新的回调 */
 @property (copy, nonatomic) MJRefreshComponentRefreshingBlock refreshingBlock;
 /** 设置回调对象和回调方法 */
-- (void)setRefreshingTarget:(id)target refreshingAction:(SEL)action;
+- (void)mj_setRefreshingTarget:(id)target refreshingAction:(SEL)action;
 
 - (NSString *)localizedStringForKey:(NSString *)key;
 
@@ -55,11 +55,11 @@ typedef void (^MJRefreshComponentRefreshingBlock)();
 
 #pragma mark - 刷新状态控制
 /** 进入刷新状态 */
-- (void)beginRefreshing;
+- (void)mj_beginRefreshing;
 /** 结束刷新状态 */
-- (void)endRefreshing;
+- (void)mj_endRefreshing;
 /** 是否正在刷新 */
-- (BOOL)isRefreshing;
+- (BOOL)mj_isRefreshing;
 /** 刷新状态 一般交给子类内部实现 */
 @property (assign, nonatomic) MJRefreshState state;
 
@@ -68,6 +68,15 @@ typedef void (^MJRefreshComponentRefreshingBlock)();
 @property (assign, nonatomic, readonly) UIEdgeInsets scrollViewOriginalInset;
 /** 父控件 */
 @property (weak, nonatomic, readonly) UIScrollView *scrollView;
+
+#pragma mark - 过期方法
+- (void)setRefreshingTarget:(id)target refreshingAction:(SEL)action MJRefreshDeprecated("使用mj_setRefreshingTarget:refreshingAction:");
+/** 进入刷新状态 */
+- (void)beginRefreshing MJRefreshDeprecated("使用mj_beginRefreshing:");
+/** 结束刷新状态 */
+- (void)endRefreshing MJRefreshDeprecated("使用mj_endRefreshing:");
+/** 是否正在刷新 */
+- (BOOL)isRefreshing MJRefreshDeprecated("使用mj_isRefreshing:");
 
 #pragma mark - 交给子类们去实现
 /** 初始化 */
@@ -80,6 +89,7 @@ typedef void (^MJRefreshComponentRefreshingBlock)();
 - (void)scrollViewContentSizeDidChange:(NSDictionary *)change NS_REQUIRES_SUPER;
 /** 当scrollView的拖拽状态发生改变的时候调用 */
 - (void)scrollViewPanStateDidChange:(NSDictionary *)change NS_REQUIRES_SUPER;
+
 
 
 #pragma mark - 其他
