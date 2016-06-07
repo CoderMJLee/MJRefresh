@@ -146,6 +146,10 @@
         
         bundle = [NSBundle bundleWithPath:bundlePath];
         NSString *language = [[NSLocale preferredLanguages] count]? [NSLocale preferredLanguages][0]: @"en";
+        if ([UIDevice currentDevice].systemVersion.floatValue >= 9.0) {
+            NSRange range = [language rangeOfString:@"-" options:NSBackwardsSearch];
+            language = [language substringToIndex:range.location];
+        }
         if (![[bundle localizations] containsObject:language])
         {
             language = [language componentsSeparatedByString:@"-"][0];
