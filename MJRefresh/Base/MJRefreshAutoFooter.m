@@ -78,7 +78,7 @@
             if (new.y <= old.y) return;
             
             // 当底部刷新控件完全出现时，才刷新
-            [self beginRefreshing];
+            [self mj_beginRefreshing];
         }
     }
 }
@@ -92,11 +92,11 @@
     if (_scrollView.panGestureRecognizer.state == UIGestureRecognizerStateEnded) {// 手松开
         if (_scrollView.mj_insetT + _scrollView.mj_contentH <= _scrollView.mj_h) {  // 不够一个屏幕
             if (_scrollView.mj_offsetY >= - _scrollView.mj_insetT) { // 向上拽
-                [self beginRefreshing];
+                [self mj_beginRefreshing];
             }
         } else { // 超出一个屏幕
             if (_scrollView.mj_offsetY >= _scrollView.mj_contentH + _scrollView.mj_insetB - _scrollView.mj_h) {
-                [self beginRefreshing];
+                [self mj_beginRefreshing];
             }
         }
     }

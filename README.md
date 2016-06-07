@@ -81,11 +81,11 @@ UIView+MJExtension.h        UIView+MJExtension.m
 @interface MJRefreshComponent : UIView
 #pragma mark - 刷新状态控制
 /** 进入刷新状态 */
-- (void)beginRefreshing;
+- (void)mj_beginRefreshing;
 /** 结束刷新状态 */
-- (void)endRefreshing;
+- (void)mj_endRefreshing;
 /** 是否正在刷新 */
-- (BOOL)isRefreshing;
+- (BOOL)mj_isRefreshing;
 
 #pragma mark - 其他
 /** 根据拖拽比例自动切换透明度 */
@@ -97,9 +97,9 @@ UIView+MJExtension.h        UIView+MJExtension.m
 ```objc
 @interface MJRefreshHeader : MJRefreshComponent
 /** 创建header */
-+ (instancetype)headerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock;
++ (instancetype)mj_headerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock;
 /** 创建header */
-+ (instancetype)headerWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
++ (instancetype)mj_headerWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
 
 /** 这个key用来存储上一次下拉刷新成功的时间 */
 @property (copy, nonatomic) NSString *lastUpdatedTimeKey;
@@ -115,14 +115,14 @@ UIView+MJExtension.h        UIView+MJExtension.m
 ```objc
 @interface MJRefreshFooter : MJRefreshComponent
 /** 创建footer */
-+ (instancetype)footerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock;
++ (instancetype)mj_footerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock;
 /** 创建footer */
-+ (instancetype)footerWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
++ (instancetype)mj_footerWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
 
 /** 提示没有更多的数据 */
-- (void)endRefreshingWithNoMoreData;
+- (void)mj_endRefreshingWithNoMoreData;
 /** 重置没有更多的数据（消除没有更多数据的状态） */
-- (void)resetNoMoreData;
+- (void)mj_resetNoMoreData;
 
 /** 忽略多少scrollView的contentInset的bottom */
 @property (assign, nonatomic) CGFloat ignoredScrollViewContentInsetBottom;
@@ -152,28 +152,28 @@ UIView+MJExtension.h        UIView+MJExtension.m
 
 ## <a id="下拉刷新01-默认"></a>下拉刷新01-默认
 ```objc
-self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+self.tableView.header = [MJRefreshNormalHeader mj_headerWithRefreshingBlock:^{
    // 进入刷新状态后会自动调用这个block
 }];
 或
 // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
-self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+self.tableView.header = [MJRefreshNormalHeader mj_headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
 
 // 马上进入刷新状态
-[self.tableView.header beginRefreshing];
+[self.tableView.header mj_beginRefreshing];
 ```
 ![(下拉刷新01-普通)](http://images0.cnblogs.com/blog2015/497279/201506/141204343486151.gif)
 
 ## <a id="下拉刷新02-动画图片"></a>下拉刷新02-动画图片
 ```objc
 // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
-MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+MJRefreshGifHeader *header = [MJRefreshGifHeader mj_headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
 // 设置普通状态的动画图片
-[header setImages:idleImages forState:MJRefreshStateIdle];
+[header mj_setImages:idleImages forState:MJRefreshStateIdle];
 // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
-[header setImages:pullingImages forState:MJRefreshStatePulling];
+[header mj_setImages:pullingImages forState:MJRefreshStatePulling];
 // 设置正在刷新状态的动画图片
-[header setImages:refreshingImages forState:MJRefreshStateRefreshing];
+[header mj_setImages:refreshingImages forState:MJRefreshStateRefreshing];
 // 设置header
 self.tableView.mj_header = header;
 ```
@@ -199,9 +199,9 @@ header.stateLabel.hidden = YES;
 ## <a id="下拉刷新05-自定义文字"></a>下拉刷新05-自定义文字
 ```objc
 // 设置文字
-[header setTitle:@"Pull down to refresh" forState:MJRefreshStateIdle];
-[header setTitle:@"Release to refresh" forState:MJRefreshStatePulling];
-[header setTitle:@"Loading ..." forState:MJRefreshStateRefreshing];
+[header mj_setTitle:@"Pull down to refresh" forState:MJRefreshStateIdle];
+[header mj_setTitle:@"Release to refresh" forState:MJRefreshStatePulling];
+[header mj_setTitle:@"Loading ..." forState:MJRefreshStateRefreshing];
 
 // 设置字体
 header.stateLabel.font = [UIFont systemFontOfSize:15];
@@ -215,29 +215,29 @@ header.lastUpdatedTimeLabel.textColor = [UIColor blueColor];
 
 ## <a id="下拉刷新06-自定义刷新控件"></a>下拉刷新06-自定义刷新控件
 ```objc
-self.tableView.mj_header = [MJDIYHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+self.tableView.mj_header = [MJDIYHeader mj_headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
 // 具体实现参考MJDIYHeader.h和MJDIYHeader.m
 ```
 ![(下拉刷新06-自定义刷新控件)](http://images0.cnblogs.com/blog2015/497279/201506/141205019261159.gif)
 
 ## <a id="上拉刷新01-默认"></a>上拉刷新01-默认
 ```objc
-self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+self.tableView.mj_footer = [MJRefreshAutoNormalFooter mj_footerWithRefreshingBlock:^{
    // 进入刷新状态后会自动调用这个block
 }];
 或
 // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
-self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+self.tableView.mj_footer = [MJRefreshAutoNormalFooter mj_footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 ```
 ![(上拉刷新01-默认)](http://images0.cnblogs.com/blog2015/497279/201506/141205090047696.gif)
 
 ## <a id="上拉刷新02-动画图片"></a>上拉刷新02-动画图片
 ```objc
 // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
-MJRefreshAutoGifFooter *footer = [MJRefreshAutoGifFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+MJRefreshAutoGifFooter *footer = [MJRefreshAutoGifFooter mj_footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 
 // 设置刷新图片
-[footer setImages:refreshingImages forState:MJRefreshStateRefreshing];
+[footer mj_setImages:refreshingImages forState:MJRefreshStateRefreshing];
 
 // 设置尾部
 self.tableView.mj_footer = footer;
@@ -255,16 +255,16 @@ footer.refreshingTitleHidden = YES;
 ## <a id="上拉刷新04-全部加载完毕"></a>上拉刷新04-全部加载完毕
 ```objc
 // 变为没有更多数据的状态
-[footer endRefreshingWithNoMoreData];
+[footer mj_endRefreshingWithNoMoreData];
 ```
 ![(上拉刷新04-全部加载完毕)](http://images0.cnblogs.com/blog2015/497279/201506/141205248634686.gif)
 
 ## <a id="上拉刷新05-自定义文字"></a>上拉刷新05-自定义文字
 ```objc
 // 设置文字
-[footer setTitle:@"Click or drag up to refresh" forState:MJRefreshStateIdle];
-[footer setTitle:@"Loading more ..." forState:MJRefreshStateRefreshing];
-[footer setTitle:@"No more data" forState:MJRefreshStateNoMoreData];
+[footer mj_setTitle:@"Click or drag up to refresh" forState:MJRefreshStateIdle];
+[footer mj_setTitle:@"Loading more ..." forState:MJRefreshStateRefreshing];
+[footer mj_setTitle:@"No more data" forState:MJRefreshStateNoMoreData];
 
 // 设置字体
 footer.stateLabel.font = [UIFont systemFontOfSize:17];
@@ -283,20 +283,20 @@ self.tableView.mj_footer.hidden = YES;
 
 ## <a id="上拉刷新07-自动回弹的上拉01"></a>上拉刷新07-自动回弹的上拉01
 ```objc
-self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+self.tableView.mj_footer = [MJRefreshBackNormalFooter mj_footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 ```
 ![(上拉刷新07-自动回弹的上拉01)](http://images0.cnblogs.com/blog2015/497279/201506/141205392239231.gif)
 
 ## <a id="上拉刷新08-自动回弹的上拉02"></a>上拉刷新08-自动回弹的上拉02
 ```objc
-MJRefreshBackGifFooter *footer = [MJRefreshBackGifFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+MJRefreshBackGifFooter *footer = [MJRefreshBackGifFooter mj_footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 
 // 设置普通状态的动画图片
-[footer setImages:idleImages forState:MJRefreshStateIdle];
+[footer mj_setImages:idleImages forState:MJRefreshStateIdle];
 // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
-[footer setImages:pullingImages forState:MJRefreshStatePulling];
+[footer mj_setImages:pullingImages mj_forState:MJRefreshStatePulling];
 // 设置正在刷新状态的动画图片
-[footer setImages:refreshingImages forState:MJRefreshStateRefreshing];
+[footer mj_setImages:refreshingImages forState:MJRefreshStateRefreshing];
 
 // 设置尾部
 self.tableView.mj_footer = footer;
@@ -305,14 +305,14 @@ self.tableView.mj_footer = footer;
 
 ## <a id="上拉刷新09-自定义刷新控件(自动刷新)"></a>上拉刷新09-自定义刷新控件(自动刷新)
 ```objc
-self.tableView.mj_footer = [MJDIYAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+self.tableView.mj_footer = [MJDIYAutoFooter mj_footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 // 具体实现参考MJDIYAutoFooter.h和MJDIYAutoFooter.m
 ```
 ![(上拉刷新09-自定义刷新控件(自动刷新))](http://images0.cnblogs.com/blog2015/497279/201506/141205500195866.gif)
 
 ## <a id="上拉刷新10-自定义刷新控件(自动回弹)"></a>上拉刷新10-自定义刷新控件(自动回弹)
 ```objc
-self.tableView.mj_footer = [MJDIYBackFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+self.tableView.mj_footer = [MJDIYBackFooter mj_footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 // 具体实现参考MJDIYBackFooter.h和MJDIYBackFooter.m
 ```
 ![(上拉刷新10-自定义刷新控件(自动回弹))](http://images0.cnblogs.com/blog2015/497279/201506/141205560666819.gif)
@@ -320,12 +320,12 @@ self.tableView.mj_footer = [MJDIYBackFooter footerWithRefreshingTarget:self refr
 ## <a id="UICollectionView01-上下拉刷新"></a>UICollectionView01-上下拉刷新
 ```objc
 // 下拉刷新
-self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+self.collectionView.mj_header = [MJRefreshNormalHeader mj_headerWithRefreshingBlock:^{
    // 进入刷新状态后会自动调用这个block
 }];
 
 // 上拉刷新
-self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+self.collectionView.mj_footer = [MJRefreshAutoNormalFooter mj_footerWithRefreshingBlock:^{
    // 进入刷新状态后会自动调用这个block
 }];
 ```
@@ -334,7 +334,7 @@ self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingB
 ## <a id="UIWebView01-下拉刷新"></a>UIWebView01-下拉刷新
 ```objc
 // 添加下拉刷新控件
-self.webView.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+self.webView.scrollView.mj_header = [MJRefreshNormalHeader mj_headerWithRefreshingBlock:^{
    // 进入刷新状态后会自动调用这个block
 }];
 ```
@@ -356,3 +356,5 @@ self.webView.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingB
 ![(step03)](http://ww1.sinaimg.cn/mw1024/800cdf9ctw1eq0viocpo5j20wc0dc0un.jpg)
    * 步骤04
 ![(step04)](http://ww3.sinaimg.cn/mw1024/800cdf9ctw1eq0vir137xj20si0gewgu.jpg)
+
+

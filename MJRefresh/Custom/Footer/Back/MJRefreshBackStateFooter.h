@@ -12,8 +12,16 @@
 /** 显示刷新状态的label */
 @property (weak, nonatomic, readonly) UILabel *stateLabel;
 /** 设置state状态下的文字 */
-- (void)setTitle:(NSString *)title forState:(MJRefreshState)state;
+- (void)mj_setTitle:(NSString *)title forState:(MJRefreshState)state;
 
 /** 获取state状态下的title */
-- (NSString *)titleForState:(MJRefreshState)state;
+- (NSString *)mj_titleForState:(MJRefreshState)state;
+
+
+#pragma mark - 过期方法
+/** 设置state状态下的文字 */
+- (void)setTitle:(NSString *)title forState:(MJRefreshState)state MJRefreshDeprecated("使用mj_setTitle:forState:");
+
+/** 获取state状态下的title */
+- (NSString *)titleForState:(MJRefreshState)state MJRefreshDeprecated("使用mj_titleForState:");
 @end

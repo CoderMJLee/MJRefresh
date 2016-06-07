@@ -11,16 +11,29 @@
 
 @interface MJRefreshFooter : MJRefreshComponent
 /** 创建footer */
-+ (instancetype)footerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock;
++ (instancetype)mj_footerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock;
 /** 创建footer */
-+ (instancetype)footerWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
++ (instancetype)mj_footerWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
 
 /** 提示没有更多的数据 */
-- (void)endRefreshingWithNoMoreData;
-- (void)noticeNoMoreData MJRefreshDeprecated("使用endRefreshingWithNoMoreData");
+- (void)mj_endRefreshingWithNoMoreData;
 
 /** 重置没有更多的数据（消除没有更多数据的状态） */
-- (void)resetNoMoreData;
+- (void)mj_resetNoMoreData;
+
+
+#pragma mark - 过期方法
+/** 创建footer */
++ (instancetype)footerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock MJRefreshDeprecated("使用mj_footerWithRefreshingBlock:");
+/** 创建footer */
++ (instancetype)footerWithRefreshingTarget:(id)target refreshingAction:(SEL)action MJRefreshDeprecated("使用mj_footerWithRefreshingTarget:refreshingAction:");
+
+/** 提示没有更多的数据 */
+- (void)endRefreshingWithNoMoreData MJRefreshDeprecated("使用mj_endRefreshingWithNoMoreData");
+- (void)noticeNoMoreData MJRefreshDeprecated("使用mj_endRefreshingWithNoMoreData");
+
+/** 重置没有更多的数据（消除没有更多数据的状态） */
+- (void)resetNoMoreData MJRefreshDeprecated("使用mj_resetNoMoreData");
 
 /** 忽略多少scrollView的contentInset的bottom */
 @property (assign, nonatomic) CGFloat ignoredScrollViewContentInsetBottom;

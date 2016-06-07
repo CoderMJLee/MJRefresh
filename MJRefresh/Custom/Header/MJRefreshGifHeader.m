@@ -46,7 +46,7 @@
 }
 
 #pragma mark - 公共方法
-- (void)setImages:(NSArray *)images duration:(NSTimeInterval)duration forState:(MJRefreshState)state 
+- (void)mj_setImages:(NSArray *)images duration:(NSTimeInterval)duration forState:(MJRefreshState)state
 { 
     if (images == nil) return; 
     
@@ -60,9 +60,9 @@
     } 
 }
 
-- (void)setImages:(NSArray *)images forState:(MJRefreshState)state 
+- (void)mj_setImages:(NSArray *)images forState:(MJRefreshState)state
 { 
-    [self setImages:images duration:images.count * 0.1 forState:state]; 
+    [self mj_setImages:images duration:images.count * 0.1 forState:state];
 }
 
 #pragma mark - 实现父类的方法
@@ -114,5 +114,16 @@
     } else if (state == MJRefreshStateIdle) {
         [self.gifView stopAnimating];
     }
+}
+
+
+#pragma mark - 过期方法
+- (void)setImages:(NSArray *)images duration:(NSTimeInterval)duration forState:(MJRefreshState)state
+{
+    [self mj_setImages:images duration:duration forState:state];
+}
+- (void)setImages:(NSArray *)images forState:(MJRefreshState)state
+{
+    [self mj_setImages:images forState:state];
 }
 @end

@@ -24,20 +24,20 @@
     __unsafe_unretained typeof(self) weakSelf = self;
     __unsafe_unretained UITableView *tableView = self.tableView;
     
-    tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    tableView.mj_header= [MJRefreshNormalHeader mj_headerWithRefreshingBlock:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             weakSelf.count += 12;
             [tableView reloadData];
-            [tableView.mj_header endRefreshing];
+            [tableView.mj_header mj_endRefreshing];
         });
     }];
     tableView.mj_header.automaticallyChangeAlpha = YES;
     
-    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter mj_footerWithRefreshingBlock:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             weakSelf.count += 5;
             [tableView reloadData];
-            [tableView.mj_footer endRefreshing];
+            [tableView.mj_footer mj_endRefreshing];
         });
     }];
     footer.hidden = YES;

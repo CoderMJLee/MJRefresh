@@ -14,19 +14,23 @@
 @end
 
 @implementation MJRefreshHeader
+
 #pragma mark - 构造方法
-+ (instancetype)headerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock
++ (instancetype)mj_headerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock
 {
     MJRefreshHeader *cmp = [[self alloc] init];
     cmp.refreshingBlock = refreshingBlock;
     return cmp;
 }
-+ (instancetype)headerWithRefreshingTarget:(id)target refreshingAction:(SEL)action
+
++ (instancetype)mj_headerWithRefreshingTarget:(id)target refreshingAction:(SEL)action
 {
     MJRefreshHeader *cmp = [[self alloc] init];
     [cmp setRefreshingTarget:target refreshingAction:action];
     return cmp;
 }
+
+
 
 #pragma mark - 覆盖父类的方法
 - (void)prepare
@@ -155,5 +159,15 @@
 - (NSDate *)lastUpdatedTime
 {
     return [[NSUserDefaults standardUserDefaults] objectForKey:self.lastUpdatedTimeKey];
+}
+
+#pragma mark - 过期方法
++ (instancetype)headerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock
+{
+    return [self mj_headerWithRefreshingBlock:refreshingBlock];
+}
++ (instancetype)headerWithRefreshingTarget:(id)target refreshingAction:(SEL)action
+{
+    return [self mj_headerWithRefreshingTarget:target refreshingAction:action];
 }
 @end

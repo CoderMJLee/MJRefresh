@@ -46,7 +46,7 @@
 }
 
 #pragma mark - 公共方法
-- (void)setTitle:(NSString *)title forState:(MJRefreshState)state
+- (void)mj_setTitle:(NSString *)title forState:(MJRefreshState)state
 {
     if (title == nil) return;
     self.stateTitles[@(state)] = title;
@@ -115,9 +115,9 @@
     [super prepare];
     
     // 初始化文字
-    [self setTitle:[self localizedStringForKey:MJRefreshHeaderIdleText] forState:MJRefreshStateIdle];
-    [self setTitle:[self localizedStringForKey:MJRefreshHeaderPullingText] forState:MJRefreshStatePulling];
-    [self setTitle:[self localizedStringForKey:MJRefreshHeaderRefreshingText] forState:MJRefreshStateRefreshing];
+    [self mj_setTitle:[self localizedStringForKey:MJRefreshHeaderIdleText] forState:MJRefreshStateIdle];
+    [self mj_setTitle:[self localizedStringForKey:MJRefreshHeaderPullingText] forState:MJRefreshStatePulling];
+    [self mj_setTitle:[self localizedStringForKey:MJRefreshHeaderRefreshingText] forState:MJRefreshStateRefreshing];
 }
 
 - (void)placeSubviews
@@ -160,5 +160,11 @@
     
     // 重新设置key（重新显示时间）
     self.lastUpdatedTimeKey = self.lastUpdatedTimeKey;
+}
+
+#pragma mark - 过期方法
+- (void)setTitle:(NSString *)title forState:(MJRefreshState)state MJRefreshDeprecated("使用mj_setTitle:forState:")
+{
+    [self mj_setTitle:title forState:state];
 }
 @end

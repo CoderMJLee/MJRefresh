@@ -127,7 +127,7 @@
 
 #pragma mark - 公共方法
 #pragma mark 设置回调对象和回调方法
-- (void)setRefreshingTarget:(id)target refreshingAction:(SEL)action
+- (void)mj_setRefreshingTarget:(id)target refreshingAction:(SEL)action
 {
     self.refreshingTarget = target;
     self.refreshingAction = action;
@@ -166,7 +166,7 @@
 }
 
 #pragma mark 进入刷新状态
-- (void)beginRefreshing
+- (void)mj_beginRefreshing
 {
     [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
         self.alpha = 1.0;
@@ -186,13 +186,13 @@
 }
 
 #pragma mark 结束刷新状态
-- (void)endRefreshing
+- (void)mj_endRefreshing
 {
     self.state = MJRefreshStateIdle;
 }
 
 #pragma mark 是否正在刷新
-- (BOOL)isRefreshing
+- (BOOL)mj_isRefreshing
 {
     return self.state == MJRefreshStateRefreshing || self.state == MJRefreshStateWillRefresh;
 }
@@ -212,7 +212,7 @@
 {
     _automaticallyChangeAlpha = automaticallyChangeAlpha;
     
-    if (self.isRefreshing) return;
+    if (self.mj_isRefreshing) return;
     
     if (automaticallyChangeAlpha) {
         self.alpha = self.pullingPercent;
@@ -226,7 +226,7 @@
 {
     _pullingPercent = pullingPercent;
     
-    if (self.isRefreshing) return;
+    if (self.mj_isRefreshing) return;
     
     if (self.isAutomaticallyChangeAlpha) {
         self.alpha = pullingPercent;
@@ -245,6 +245,31 @@
         }
     });
 }
+
+
+#pragma mark - 过期方法
+- (void)setRefreshingTarget:(id)target refreshingAction:(SEL)action
+{
+    [self mj_setRefreshingTarget:target refreshingAction:action];
+}
+
+- (void)beginRefreshing
+{
+    [self mj_beginRefreshing];
+}
+
+- (void)endRefreshing
+{
+    [self mj_endRefreshing];
+}
+
+- (BOOL)isRefreshing
+{
+    return [self mj_isRefreshing];
+}
+
+
+
 @end
 
 @implementation UILabel(MJRefresh)

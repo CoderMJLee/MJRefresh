@@ -36,14 +36,14 @@
 }
 
 #pragma mark - 公共方法
-- (void)setTitle:(NSString *)title forState:(MJRefreshState)state
+- (void)mj_setTitle:(NSString *)title forState:(MJRefreshState)state
 {
     if (title == nil) return;
     self.stateTitles[@(state)] = title;
     self.stateLabel.text = self.stateTitles[@(self.state)];
 }
 
-- (NSString *)titleForState:(MJRefreshState)state {
+- (NSString *)mj_titleForState:(MJRefreshState)state {
   return self.stateTitles[@(state)];
 }
 
@@ -53,10 +53,10 @@
     [super prepare];
     
     // 初始化文字
-    [self setTitle:[self localizedStringForKey:MJRefreshBackFooterIdleText] forState:MJRefreshStateIdle];
-    [self setTitle:[self localizedStringForKey:MJRefreshBackFooterPullingText] forState:MJRefreshStatePulling];
-    [self setTitle:[self localizedStringForKey:MJRefreshBackFooterRefreshingText] forState:MJRefreshStateRefreshing];
-    [self setTitle:[self localizedStringForKey:MJRefreshBackFooterNoMoreDataText] forState:MJRefreshStateNoMoreData];
+    [self mj_setTitle:[self localizedStringForKey:MJRefreshBackFooterIdleText] forState:MJRefreshStateIdle];
+    [self mj_setTitle:[self localizedStringForKey:MJRefreshBackFooterPullingText] forState:MJRefreshStatePulling];
+    [self mj_setTitle:[self localizedStringForKey:MJRefreshBackFooterRefreshingText] forState:MJRefreshStateRefreshing];
+    [self mj_setTitle:[self localizedStringForKey:MJRefreshBackFooterNoMoreDataText] forState:MJRefreshStateNoMoreData];
 }
 
 - (void)placeSubviews
@@ -75,5 +75,15 @@
     
     // 设置状态文字
     self.stateLabel.text = self.stateTitles[@(state)];
+}
+
+#pragma mark - 过期方法
+- (void)setTitle:(NSString *)title forState:(MJRefreshState)state
+{
+    [self mj_setTitle:title forState:state];
+}
+- (NSString *)titleForState:(MJRefreshState)state
+{
+    return [self mj_titleForState:state];
 }
 @end

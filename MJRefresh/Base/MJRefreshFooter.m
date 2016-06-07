@@ -14,19 +14,39 @@
 @end
 
 @implementation MJRefreshFooter
+
 #pragma mark - 构造方法
-+ (instancetype)footerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock
+/** 创建footer */
++ (instancetype)mj_footerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock
 {
     MJRefreshFooter *cmp = [[self alloc] init];
     cmp.refreshingBlock = refreshingBlock;
     return cmp;
 }
-+ (instancetype)footerWithRefreshingTarget:(id)target refreshingAction:(SEL)action
+
+/** 创建footer */
++ (instancetype)mj_footerWithRefreshingTarget:(id)target refreshingAction:(SEL)action
 {
     MJRefreshFooter *cmp = [[self alloc] init];
-    [cmp setRefreshingTarget:target refreshingAction:action];
+    [cmp mj_setRefreshingTarget:target refreshingAction:action];
     return cmp;
 }
+
+#pragma mark - 公共方法
+/** 提示没有更多的数据 */
+- (void)mj_endRefreshingWithNoMoreData
+{
+    
+    self.state = MJRefreshStateNoMoreData;
+}
+
+/** 重置没有更多的数据（消除没有更多数据的状态） */
+- (void)mj_resetNoMoreData
+{
+    self.state = MJRefreshStateIdle;
+}
+
+
 
 #pragma mark - 重写父类的方法
 - (void)prepare
@@ -56,19 +76,34 @@
     }
 }
 
-#pragma mark - 公共方法
+
+
+#pragma mark - 过期方法
++ (instancetype)footerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock
+{
+    return [self mj_footerWithRefreshingBlock:refreshingBlock];
+}
+
+
++ (instancetype)footerWithRefreshingTarget:(id)target refreshingAction:(SEL)action
+{
+    return [self mj_footerWithRefreshingTarget:target refreshingAction:action];
+    
+}
+
 - (void)endRefreshingWithNoMoreData
 {
-    self.state = MJRefreshStateNoMoreData;
+    [self mj_endRefreshingWithNoMoreData];
 }
 
 - (void)noticeNoMoreData
 {
-    [self endRefreshingWithNoMoreData];
+    [self mj_endRefreshingWithNoMoreData];
 }
 
 - (void)resetNoMoreData
 {
-    self.state = MJRefreshStateIdle;
+    [self mj_resetNoMoreData];
+    
 }
 @end
