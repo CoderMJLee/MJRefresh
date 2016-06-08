@@ -55,29 +55,6 @@
     self.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
 }
 
-- (CGFloat)stringWidth:(UILabel *)_label
-{
-    CGFloat stringWidth = 0;
-    CGSize size = CGSizeMake(self.mj_w, self.mj_h);
-    if (_label.text.length > 0) {
-#if defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
-        stringWidth =[_label.text
-                      boundingRectWithSize:size
-                      options:NSStringDrawingUsesLineFragmentOrigin
-                      attributes:@{NSFontAttributeName:_label.font}
-                      context:nil].size.width;
-#else
-        
-        stringWidth = [_label.text sizeWithFont:_label.font
-                              constrainedToSize:size
-                                  lineBreakMode:NSLineBreakByCharWrapping].width;
-#endif
-    }
-    
-    
-    return stringWidth;
-}
-
 - (void)placeSubviews
 {
     [super placeSubviews];
@@ -86,10 +63,10 @@
     CGFloat arrowCenterX = self.mj_w * 0.5;
     if (!self.stateLabel.hidden) {
         CGFloat offset = 20;
-        CGFloat stateWidth = [self stringWidth:self.stateLabel];
+        CGFloat stateWidth = self.stateLabel.mj_textWith;
         CGFloat timeWidth = 0.0;
         if (!self.lastUpdatedTimeLabel.hidden) {
-            timeWidth = [self stringWidth:self.lastUpdatedTimeLabel];
+            timeWidth = self.lastUpdatedTimeLabel.mj_textWith;
         }
         CGFloat textWidth = MAX(stateWidth, timeWidth);
         arrowCenterX -= textWidth / 2 + offset;

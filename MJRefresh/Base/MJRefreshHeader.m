@@ -130,15 +130,8 @@
             } completion:^(BOOL finished) {
                 [self executeRefreshingCallback];
             }];
-         }];
+         });
     }
-}
-
-- (void)drawRect:(CGRect)rect
-{
-    [super drawRect:rect];
-    
-    
 }
 
 #pragma mark - 公共方法

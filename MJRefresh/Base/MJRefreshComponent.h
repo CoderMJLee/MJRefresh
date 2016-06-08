@@ -93,4 +93,5 @@ typedef void (^MJRefreshComponentRefreshingBlock)();
 
 @interface UILabel(MJRefresh)
 + (instancetype)mj_label;
+- (CGFloat)mj_textWith;
 @end

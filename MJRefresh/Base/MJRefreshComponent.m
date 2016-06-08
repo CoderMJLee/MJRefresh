@@ -165,6 +165,13 @@
     return [[NSBundle mainBundle] localizedStringForKey:key value:defaultString table:nil];
 }
 
+- (void)setState:(MJRefreshState)state
+{
+    _state = state;
+    
+    [self setNeedsLayout];
+}
+
 #pragma mark 进入刷新状态
 - (void)beginRefreshing
 {
@@ -257,5 +264,25 @@
     label.textAlignment = NSTextAlignmentCenter;
     label.backgroundColor = [UIColor clearColor];
     return label;
+}
+
+- (CGFloat)mj_textWith {
+    CGFloat stringWidth = 0;
+    CGSize size = CGSizeMake(MAXFLOAT, MAXFLOAT);
+    if (self.text.length > 0) {
+#if defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
+        stringWidth =[self.text
+                      boundingRectWithSize:size
+                      options:NSStringDrawingUsesLineFragmentOrigin
+                      attributes:@{NSFontAttributeName:self.font}
+                      context:nil].size.width;
+#else
+        
+        stringWidth = [self.text sizeWithFont:self.font
+                             constrainedToSize:size
+                                 lineBreakMode:NSLineBreakByCharWrapping].width;
+#endif
+    }
+    return stringWidth;
 }
 @end
