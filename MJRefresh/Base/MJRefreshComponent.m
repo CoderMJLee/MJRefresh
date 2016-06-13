@@ -11,6 +11,7 @@
 #import "MJRefreshConst.h"
 #import "UIView+MJExtension.h"
 #import "UIScrollView+MJRefresh.h"
+#import "NSBundle+MJRefresh.h"
 
 @interface MJRefreshComponent()
 @property (strong, nonatomic) UIPanGestureRecognizer *pan;
@@ -149,8 +150,12 @@
             language = [language substringToIndex:range.location];
         }
         
+        if (language.length == 0) {
+            language = @"zh-Hans";
+        }
+        
         // 先从MJRefresh.bundle中查找资源
-        NSBundle *refreshBundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"MJRefresh" ofType:@"bundle"]];
+        NSBundle *refreshBundle = [NSBundle mj_refreshBundle];
         if ([refreshBundle.localizations containsObject:language]) {
             bundle = [NSBundle bundleWithPath:[refreshBundle pathForResource:language ofType:@"lproj"]];
         }

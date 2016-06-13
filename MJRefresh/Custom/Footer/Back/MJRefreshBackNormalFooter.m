@@ -7,6 +7,7 @@
 //
 
 #import "MJRefreshBackNormalFooter.h"
+#import "NSBundle+MJRefresh.h"
 
 @interface MJRefreshBackNormalFooter()
 {
@@ -20,8 +21,7 @@
 - (UIImageView *)arrowView
 {
     if (!_arrowView) {
-        UIImage *image = [UIImage imageNamed:MJRefreshSrcName(@"arrow.png")] ?: [UIImage imageNamed:MJRefreshFrameworkSrcName(@"arrow.png")];
-        UIImageView *arrowView = [[UIImageView alloc] initWithImage:image];
+        UIImageView *arrowView = [[UIImageView alloc] initWithImage:[NSBundle mj_arrowImage]];
         [self addSubview:_arrowView = arrowView];
     }
     return _arrowView;
@@ -75,6 +75,8 @@
     if (self.loadingView.constraints.count == 0) {
         self.loadingView.center = arrowCenter;
     }
+    
+    self.arrowView.tintColor = self.stateLabel.textColor;
 }
 
 - (void)setState:(MJRefreshState)state
