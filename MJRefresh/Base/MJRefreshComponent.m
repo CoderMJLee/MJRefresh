@@ -150,7 +150,7 @@
         }
         
         // 先从MJRefresh.bundle中查找资源
-        NSBundle *refreshBundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"MJRefresh" ofType:@"bundle"]];
+        NSBundle *refreshBundle = [NSBundle bundleWithPath:[[NSBundle bundleForClass:[MJRefreshComponent class]] pathForResource:@"MJRefresh" ofType:@"bundle"]];
         if ([refreshBundle.localizations containsObject:language]) {
             bundle = [NSBundle bundleWithPath:[refreshBundle pathForResource:language ofType:@"lproj"]];
         }
