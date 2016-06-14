@@ -137,13 +137,9 @@
 #pragma mark - 公共方法
 - (void)endRefreshing
 {
-    if ([self.scrollView isKindOfClass:[UICollectionView class]]) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [super endRefreshing];
-        });
-    } else {
-        [super endRefreshing];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.state = MJRefreshStateIdle;
+    });
 }
 
 - (NSDate *)lastUpdatedTime

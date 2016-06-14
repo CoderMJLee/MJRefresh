@@ -48,7 +48,7 @@ static const CGFloat MJDuration = 2.0;
     [self.collectionView.mj_header beginRefreshing];
 
     // 上拉刷新
-    self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+    self.collectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         // 增加5条假数据
         for (int i = 0; i<5; i++) {
             [weakSelf.colors addObject:MJRandomColor];

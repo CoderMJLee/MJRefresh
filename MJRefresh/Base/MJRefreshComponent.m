@@ -170,7 +170,9 @@
 {
     _state = state;
     
-    [self setNeedsLayout];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self setNeedsLayout];
+    });
 }
 
 #pragma mark 进入刷新状态
