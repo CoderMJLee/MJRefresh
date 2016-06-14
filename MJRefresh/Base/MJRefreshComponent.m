@@ -147,7 +147,10 @@
         // 如果是iOS9以上，截取前面的语言标识
         if ([UIDevice currentDevice].systemVersion.floatValue >= 9.0) {
             NSRange range = [language rangeOfString:@"-" options:NSBackwardsSearch];
-            language = [language substringToIndex:range.location];
+            //解决在iOS10下会奔溃的问题
+            if (range.location != NSNotFound) {
+                language = [language substringToIndex:range.location];
+            }
         }
         
         if (language.length == 0) {
