@@ -155,6 +155,9 @@
         if (language.length == 0) {
             language = @"zh-Hans";
         }
+        if ([language isEqual:@"zh-HK"]) {
+            language = @"zh-Hant";
+        }
         
         // 先从MJRefresh.bundle中查找资源
         NSBundle *refreshBundle = [NSBundle mj_refreshBundle];
