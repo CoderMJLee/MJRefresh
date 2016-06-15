@@ -144,12 +144,16 @@
     if (bundle == nil) {
         // 获得设备的语言
         NSString *language = [NSLocale preferredLanguages].firstObject;
-        // 如果是iOS9以上，截取前面的语言标识
+        // 如果是iOS9以上，去掉后面的设备购买地区比如zh-Hans-US和zh-Hans-CN后面的US和CN
         if ([UIDevice currentDevice].systemVersion.floatValue >= 9.0) {
             NSRange range = [language rangeOfString:@"-" options:NSBackwardsSearch];
             if (range.location != NSNotFound) {
                 language = [language substringToIndex:range.location];
             }
+        }
+        
+        if ([language isEqualToString:@"zh"]) { // zh-HK被去掉了-HK
+            language = @"zh-Hant";
         }
         
         if (language.length == 0) {
