@@ -99,13 +99,13 @@
         
         // 3.显示日期
         self.lastUpdatedTimeLabel.text = [NSString stringWithFormat:@"%@%@%@",
-                                          [self localizedStringForKey:MJRefreshHeaderLastTimeText],
-                                          isToday ? [self localizedStringForKey:MJRefreshHeaderDateTodayText] : @"",
+                                          [NSBundle mj_localizedStringForKey:MJRefreshHeaderLastTimeText],
+                                          isToday ? [NSBundle mj_localizedStringForKey:MJRefreshHeaderDateTodayText] : @"",
                                           time];
     } else {
         self.lastUpdatedTimeLabel.text = [NSString stringWithFormat:@"%@%@",
-                                          [self localizedStringForKey:MJRefreshHeaderLastTimeText],
-                                          [self localizedStringForKey:MJRefreshHeaderNoneLastDateText]];
+                                          [NSBundle mj_localizedStringForKey:MJRefreshHeaderLastTimeText],
+                                          [NSBundle mj_localizedStringForKey:MJRefreshHeaderNoneLastDateText]];
     }
 }
 
@@ -115,9 +115,9 @@
     [super prepare];
     
     // 初始化文字
-    [self setTitle:[self localizedStringForKey:MJRefreshHeaderIdleText] forState:MJRefreshStateIdle];
-    [self setTitle:[self localizedStringForKey:MJRefreshHeaderPullingText] forState:MJRefreshStatePulling];
-    [self setTitle:[self localizedStringForKey:MJRefreshHeaderRefreshingText] forState:MJRefreshStateRefreshing];
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshHeaderIdleText] forState:MJRefreshStateIdle];
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshHeaderPullingText] forState:MJRefreshStatePulling];
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshHeaderRefreshingText] forState:MJRefreshStateRefreshing];
 }
 
 - (void)placeSubviews
