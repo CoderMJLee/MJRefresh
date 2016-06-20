@@ -60,7 +60,7 @@
     // 箭头的中心点
     CGFloat arrowCenterX = self.mj_w * 0.5;
     if (!self.stateLabel.hidden) {
-        arrowCenterX -= 20 + self.stateLabel.mj_textWith * 0.5;
+        arrowCenterX -= self.labelLeftInset + self.stateLabel.mj_textWith * 0.5;
     }
     CGFloat arrowCenterY = self.mj_h * 0.5;
     CGPoint arrowCenter = CGPointMake(arrowCenterX, arrowCenterY);
