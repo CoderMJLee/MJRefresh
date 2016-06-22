@@ -43,7 +43,7 @@
         if ([language hasPrefix:@"en"]) {
             language = @"en";
         } else if ([language hasPrefix:@"zh"]) {
-            if ([language containsString:@"Hans"]) {
+            if ([language rangeOfString:@"Hans"].location != NSNotFound) {
                 language = @"zh-Hans"; // 简体中文
             } else { // zh-Hant\zh-HK\zh-TW
                 language = @"zh-Hant"; // 繁體中文
