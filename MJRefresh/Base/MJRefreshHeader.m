@@ -141,9 +141,7 @@
 #pragma mark - 公共方法
 - (void)endRefreshing
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.state = MJRefreshStateIdle;
-    });
+    self.state = MJRefreshStateIdle;
 }
 
 - (NSDate *)lastUpdatedTime
