@@ -57,7 +57,7 @@ UIView+MJExtension.h        UIView+MJExtension.m
 <img src="http://images0.cnblogs.com/blog2015/497279/201506/141212365041650.png" width="200" height="300">
 * More information of App can focus on：[M了个J-博客园](http://www.cnblogs.com/mjios/p/4409853.html)
 
-## <a id="The Class Structure Chart of MJRefresh"></a>The Class Structure Chart of MJRefres
+## <a id="The Class Structure Chart of MJRefresh"></a>The Class Structure Chart of MJRefresh
 ![](http://images0.cnblogs.com/blog2015/497279/201506/132232456139177.png)
 - `The class of red text` in the chart：You can use them directly
     - The drop-down refresh control types
