@@ -28,7 +28,7 @@ static const CGFloat MJDuration = 2.0;
 #pragma mark UICollectionView 上下拉刷新
 - (void)example21
 {
-    __unsafe_unretained __typeof(self) weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
     
     // 下拉刷新
     self.collectionView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
