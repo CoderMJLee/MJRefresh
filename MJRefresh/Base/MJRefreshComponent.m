@@ -37,9 +37,9 @@
 
 - (void)layoutSubviews
 {
-    [super layoutSubviews];
-    
     [self placeSubviews];
+    
+    [super layoutSubviews];
 }
 
 - (void)placeSubviews{}
@@ -135,6 +135,7 @@
 {
     _state = state;
     
+    // 加入主队列的目的是等setState:方法调用完毕、设置完文字后再去布局子控件
     dispatch_async(dispatch_get_main_queue(), ^{
         [self setNeedsLayout];
     });
@@ -151,7 +152,7 @@
     if (self.window) {
         self.state = MJRefreshStateRefreshing;
     } else {
-        // 预发当前正在刷新中时调用本方法使得header insert回置失败
+        // 预防正在刷新中时，调用本方法使得header inset回置失败
         if (self.state != MJRefreshStateRefreshing) {
             self.state = MJRefreshStateWillRefresh;
             // 刷新(预防从另一个控制器回到这个控制器的情况，回来要重新刷新一下)
