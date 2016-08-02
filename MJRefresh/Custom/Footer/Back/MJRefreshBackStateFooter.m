@@ -52,11 +52,14 @@
 {
     [super prepare];
     
+    // 初始化间距
+    self.labelLeftInset = MJRefreshLabelLeftInset;
+    
     // 初始化文字
-    [self setTitle:[self localizedStringForKey:MJRefreshBackFooterIdleText] forState:MJRefreshStateIdle];
-    [self setTitle:[self localizedStringForKey:MJRefreshBackFooterPullingText] forState:MJRefreshStatePulling];
-    [self setTitle:[self localizedStringForKey:MJRefreshBackFooterRefreshingText] forState:MJRefreshStateRefreshing];
-    [self setTitle:[self localizedStringForKey:MJRefreshBackFooterNoMoreDataText] forState:MJRefreshStateNoMoreData];
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshBackFooterIdleText] forState:MJRefreshStateIdle];
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshBackFooterPullingText] forState:MJRefreshStatePulling];
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshBackFooterRefreshingText] forState:MJRefreshStateRefreshing];
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshBackFooterNoMoreDataText] forState:MJRefreshStateNoMoreData];
 }
 
 - (void)placeSubviews

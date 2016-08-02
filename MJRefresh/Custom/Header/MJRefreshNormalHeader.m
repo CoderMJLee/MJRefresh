@@ -7,6 +7,7 @@
 //
 
 #import "MJRefreshNormalHeader.h"
+#import "NSBundle+MJRefresh.h"
 
 @interface MJRefreshNormalHeader()
 {
@@ -20,9 +21,7 @@
 - (UIImageView *)arrowView
 {
     if (!_arrowView) {
-        UIImage *image = [UIImage imageNamed:MJRefreshSrcName(@"arrow.png")] ?: [UIImage imageNamed:MJRefreshFrameworkSrcName(@"arrow.png")];
-        UIImageView *arrowView = [[UIImageView alloc] initWithImage:[image imageWithRenderingMode:(UIImageRenderingModeAlwaysTemplate)]];
-        arrowView.tintColor = self.stateLabel.textColor;
+        UIImageView *arrowView = [[UIImageView alloc] initWithImage:[NSBundle mj_arrowImage]];
         [self addSubview:_arrowView = arrowView];
     }
     return _arrowView;
@@ -62,14 +61,13 @@
     // 箭头的中心点
     CGFloat arrowCenterX = self.mj_w * 0.5;
     if (!self.stateLabel.hidden) {
-        CGFloat offset = 20;
         CGFloat stateWidth = self.stateLabel.mj_textWith;
         CGFloat timeWidth = 0.0;
         if (!self.lastUpdatedTimeLabel.hidden) {
             timeWidth = self.lastUpdatedTimeLabel.mj_textWith;
         }
         CGFloat textWidth = MAX(stateWidth, timeWidth);
-        arrowCenterX -= textWidth / 2 + offset;
+        arrowCenterX -= textWidth / 2 + self.labelLeftInset;
     }
     CGFloat arrowCenterY = self.mj_h * 0.5;
     CGPoint arrowCenter = CGPointMake(arrowCenterX, arrowCenterY);
@@ -84,6 +82,8 @@
     if (self.loadingView.constraints.count == 0) {
         self.loadingView.center = arrowCenter;
     }
+    
+    self.arrowView.tintColor = self.stateLabel.textColor;
 }
 
 - (void)setState:(MJRefreshState)state

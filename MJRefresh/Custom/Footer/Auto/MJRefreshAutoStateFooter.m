@@ -56,10 +56,13 @@
 {
     [super prepare];
     
+    // 初始化间距
+    self.labelLeftInset = MJRefreshLabelLeftInset;
+    
     // 初始化文字
-    [self setTitle:[self localizedStringForKey:MJRefreshAutoFooterIdleText] forState:MJRefreshStateIdle];
-    [self setTitle:[self localizedStringForKey:MJRefreshAutoFooterRefreshingText] forState:MJRefreshStateRefreshing];
-    [self setTitle:[self localizedStringForKey:MJRefreshAutoFooterNoMoreDataText] forState:MJRefreshStateNoMoreData];
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshAutoFooterIdleText] forState:MJRefreshStateIdle];
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshAutoFooterRefreshingText] forState:MJRefreshStateRefreshing];
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshAutoFooterNoMoreDataText] forState:MJRefreshStateNoMoreData];
     
     // 监听label
     self.stateLabel.userInteractionEnabled = YES;

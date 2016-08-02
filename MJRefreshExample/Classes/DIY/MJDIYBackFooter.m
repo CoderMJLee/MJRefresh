@@ -39,7 +39,7 @@
     self.s = s;
     
     // logo
-    UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
+    UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Logo"]];
     logo.contentMode = UIViewContentModeScaleAspectFit;
     [self addSubview:logo];
     self.logo = logo;
