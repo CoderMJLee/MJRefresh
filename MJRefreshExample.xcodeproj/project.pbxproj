@@ -52,6 +52,7 @@
 		2DB2EA271BECBE6700D58F6A /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB2EA121BECBE6700D58F6A /* UIScrollView+MJExtension.m */; };
 		2DB2EA281BECBE6700D58F6A /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB2EA141BECBE6700D58F6A /* UIScrollView+MJRefresh.m */; };
 		2DB2EA291BECBE6700D58F6A /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB2EA161BECBE6700D58F6A /* UIView+MJExtension.m */; };
+		635E578F1D51A29B00F1F1E7 /* WNPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 635E578E1D51A29B00F1F1E7 /* WNPerson.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,6 +154,8 @@
 		2DB2EA141BECBE6700D58F6A /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		2DB2EA151BECBE6700D58F6A /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		2DB2EA161BECBE6700D58F6A /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
+		635E578D1D51A29B00F1F1E7 /* WNPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WNPerson.h; sourceTree = "<group>"; };
+		635E578E1D51A29B00F1F1E7 /* WNPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WNPerson.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -307,6 +310,7 @@
 		2DA7F94E1AA6B51C005627AB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				635E578C1D51A28E00F1F1E7 /* WNPerson */,
 				2D9BEADE1BB15F4A00AED473 /* Category */,
 				2D9BEAFB1BB15F4A00AED473 /* Other */,
 				2D9BEAE11BB15F4A00AED473 /* DIY */,
@@ -409,6 +413,15 @@
 				2DB2EA0C1BECBE6700D58F6A /* MJRefreshStateHeader.m */,
 			);
 			path = Header;
+			sourceTree = "<group>";
+		};
+		635E578C1D51A28E00F1F1E7 /* WNPerson */ = {
+			isa = PBXGroup;
+			children = (
+				635E578D1D51A29B00F1F1E7 /* WNPerson.h */,
+				635E578E1D51A29B00F1F1E7 /* WNPerson.m */,
+			);
+			path = WNPerson;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -549,6 +562,7 @@
 				2DB2EA1B1BECBE6700D58F6A /* MJRefreshHeader.m in Sources */,
 				2D9BEB191BB15F4A00AED473 /* MJTestViewController.m in Sources */,
 				2DB2EA211BECBE6700D58F6A /* MJRefreshBackStateFooter.m in Sources */,
+				635E578F1D51A29B00F1F1E7 /* WNPerson.m in Sources */,
 				2DB2EA281BECBE6700D58F6A /* UIScrollView+MJRefresh.m in Sources */,
 				2D9BEB151BB15F4A00AED473 /* MJTempViewController.m in Sources */,
 				2D9BEB171BB15F4A00AED473 /* MJCollectionViewController.m in Sources */,
