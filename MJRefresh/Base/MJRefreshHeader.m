@@ -112,13 +112,8 @@
         
         // 恢复inset和offset
         [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
-<<<<<<< HEAD
-            self.scrollView.mj_insetT -= self.mj_h;
-            // 设置滚动位置
-            self.scrollView.mj_offsetY = - self.scrollViewOriginalInset.top;
-=======
+
             self.scrollView.mj_insetT += self.insetTDelta;
->>>>>>> CoderMJLee/master
             
             // 自动调整透明度
             if (self.isAutomaticallyChangeAlpha) self.alpha = 0.0;
