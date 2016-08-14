@@ -39,7 +39,11 @@
     self.s = s;
     
     // logo
+<<<<<<< HEAD:MJRefreshExample/Classes/DIY/MJDIYBackFooter.m
     UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
+=======
+    UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Logo"]];
+>>>>>>> CoderMJLee/master:MJRefreshExample/Classes/DIY/MJDIYBackFooter.m
     logo.contentMode = UIViewContentModeScaleAspectFit;
     [self addSubview:logo];
     self.logo = logo;

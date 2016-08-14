@@ -16,6 +16,8 @@
 @property (weak, nonatomic, readonly) UILabel *lastUpdatedTimeLabel;
 
 #pragma mark - 状态相关
+/** 文字距离圈圈、箭头的距离 */
+@property (assign, nonatomic) CGFloat labelLeftInset;
 /** 显示刷新状态的label */
 @property (weak, nonatomic, readonly) UILabel *stateLabel;
 /** 设置state状态下的文字 */

@@ -288,12 +288,17 @@ static const CGFloat MJDuration = 2.0;
     }
     
     // 2.模拟2秒后刷新表格UI（真实开发中，可以移除这段gcd代码）
+    __weak UITableView *tableView = self.tableView;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // 刷新表格
-        [self.tableView reloadData];
+        [tableView reloadData];
         
         // 拿到当前的下拉刷新控件，结束刷新状态
+<<<<<<< HEAD:MJRefreshExample/Classes/Second/MJTableViewController.m
         [self.tableView.mj_header endRefreshing];
+=======
+        [tableView.mj_header endRefreshing];
+>>>>>>> CoderMJLee/master:MJRefreshExample/Classes/Second/MJTableViewController.m
     });
 }
 
@@ -306,12 +311,17 @@ static const CGFloat MJDuration = 2.0;
     }
     
     // 2.模拟2秒后刷新表格UI（真实开发中，可以移除这段gcd代码）
+    __weak UITableView *tableView = self.tableView;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // 刷新表格
-        [self.tableView reloadData];
+        [tableView reloadData];
         
         // 拿到当前的上拉刷新控件，结束刷新状态
+<<<<<<< HEAD:MJRefreshExample/Classes/Second/MJTableViewController.m
         [self.tableView.mj_footer endRefreshing];
+=======
+        [tableView.mj_footer endRefreshing];
+>>>>>>> CoderMJLee/master:MJRefreshExample/Classes/Second/MJTableViewController.m
     });
 }
 
@@ -324,12 +334,17 @@ static const CGFloat MJDuration = 2.0;
     }
     
     // 2.模拟2秒后刷新表格UI（真实开发中，可以移除这段gcd代码）
+    __weak UITableView *tableView = self.tableView;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // 刷新表格
-        [self.tableView reloadData];
+        [tableView reloadData];
         
         // 拿到当前的上拉刷新控件，变为没有更多数据的状态
+<<<<<<< HEAD:MJRefreshExample/Classes/Second/MJTableViewController.m
         [self.tableView.mj_footer endRefreshingWithNoMoreData];
+=======
+        [tableView.mj_footer endRefreshingWithNoMoreData];
+>>>>>>> CoderMJLee/master:MJRefreshExample/Classes/Second/MJTableViewController.m
     });
 }
 
@@ -342,12 +357,17 @@ static const CGFloat MJDuration = 2.0;
     }
     
     // 2.模拟2秒后刷新表格UI（真实开发中，可以移除这段gcd代码）
+    __weak UITableView *tableView = self.tableView;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // 刷新表格
-        [self.tableView reloadData];
+        [tableView reloadData];
         
         // 隐藏当前的上拉刷新控件
+<<<<<<< HEAD:MJRefreshExample/Classes/Second/MJTableViewController.m
         self.tableView.mj_footer.hidden = YES;
+=======
+        tableView.mj_footer.hidden = YES;
+>>>>>>> CoderMJLee/master:MJRefreshExample/Classes/Second/MJTableViewController.m
     });
 }
 

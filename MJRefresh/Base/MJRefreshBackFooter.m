@@ -95,6 +95,10 @@
                 if (self.isAutomaticallyChangeAlpha) self.alpha = 0.0;
             } completion:^(BOOL finished) {
                 self.pullingPercent = 0.0;
+                
+                if (self.endRefreshingCompletionBlock) {
+                    self.endRefreshingCompletionBlock();
+                }
             }];
         }
         
@@ -122,29 +126,19 @@
     }
 }
 
-#pragma mark - 公共方法
 - (void)endRefreshing
 {
-    if ([self.scrollView isKindOfClass:[UICollectionView class]]) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [super endRefreshing];
-        });
-    } else {
-        [super endRefreshing];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.state = MJRefreshStateIdle;
+    });
 }
 
-- (void)noticeNoMoreData
+- (void)endRefreshingWithNoMoreData
 {
-    if ([self.scrollView isKindOfClass:[UICollectionView class]]) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [super noticeNoMoreData];
-        });
-    } else {
-        [super noticeNoMoreData];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.state = MJRefreshStateNoMoreData;
+    });
 }
-
 #pragma mark - 私有方法
 #pragma mark 获得scrollView的内容 超出 view 的高度
 - (CGFloat)heightForContentBreakView
