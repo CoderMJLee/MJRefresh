@@ -52,6 +52,7 @@
 		2DB2EA271BECBE6700D58F6A /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB2EA121BECBE6700D58F6A /* UIScrollView+MJExtension.m */; };
 		2DB2EA281BECBE6700D58F6A /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB2EA141BECBE6700D58F6A /* UIScrollView+MJRefresh.m */; };
 		2DB2EA291BECBE6700D58F6A /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB2EA161BECBE6700D58F6A /* UIView+MJExtension.m */; };
+		8BCF655B1D60B47800BBBE8F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BCF655D1D60B47800BBBE8F /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,6 +154,8 @@
 		2DB2EA141BECBE6700D58F6A /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		2DB2EA151BECBE6700D58F6A /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		2DB2EA161BECBE6700D58F6A /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
+		8BCF655C1D60B47800BBBE8F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8BCF655E1D60B48700BBBE8F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,6 +285,7 @@
 				2DA7F9371AA6B4C4005627AB /* LaunchScreen.xib */,
 				2DA7F9291AA6B4C4005627AB /* Info.plist */,
 				2DA7F92A1AA6B4C4005627AB /* main.m */,
+				8BCF655D1D60B47800BBBE8F /* Localizable.strings */,
 				2DAA837B1BB1685300B62152 /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
@@ -475,6 +479,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = 2DA7F91C1AA6B4C4005627AB;
 			productRefGroup = 2DA7F9261AA6B4C4005627AB /* Products */;
@@ -495,6 +500,7 @@
 				2DA7F9341AA6B4C4005627AB /* Main.storyboard in Resources */,
 				2D9BEB1C1BB15F4A00AED473 /* MJWebViewViewController.xib in Resources */,
 				2DB2EA251BECBE6700D58F6A /* MJRefresh.bundle in Resources */,
+				8BCF655B1D60B47800BBBE8F /* Localizable.strings in Resources */,
 				2DA7F9391AA6B4C4005627AB /* LaunchScreen.xib in Resources */,
 				2D9BEB1A1BB15F4A00AED473 /* MJTestViewController.xib in Resources */,
 				2DA7F9361AA6B4C4005627AB /* Images.xcassets in Resources */,
@@ -589,6 +595,15 @@
 				2DA7F9381AA6B4C4005627AB /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		8BCF655D1D60B47800BBBE8F /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8BCF655C1D60B47800BBBE8F /* ja */,
+				8BCF655E1D60B48700BBBE8F /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

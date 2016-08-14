@@ -119,9 +119,15 @@ UIView+MJExtension.h        UIView+MJExtension.m
 /** Creat footer */
 + (instancetype)footerWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
 
+<<<<<<< HEAD
+/** 提示没有更多的数据 */
+- (void)endRefreshingWithNoMoreData;
+/** 重置没有更多的数据（消除没有更多数据的状态） */
+=======
 /** NoticeNoMoreData */
 - (void)noticeNoMoreData;
 /** ResetNoMoreData（Clear the status of NoMoreData ） */
+>>>>>>> CoderMJLee/master
 - (void)resetNoMoreData;
 
 /** Ignored scrollView contentInset bottom */
@@ -175,7 +181,11 @@ MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self
 [header setImages:pullingImages forState:MJRefreshStatePulling];
 // Set the refreshing state of animated images
 [header setImages:refreshingImages forState:MJRefreshStateRefreshing];
+<<<<<<< HEAD
+// 设置header
+=======
 // Set header
+>>>>>>> CoderMJLee/master
 self.tableView.mj_header = header;
 ```
 ![(下拉刷新02-动画图片)](http://images0.cnblogs.com/blog2015/497279/201506/141204402238389.gif)
@@ -217,17 +227,28 @@ header.lastUpdatedTimeLabel.textColor = [UIColor blueColor];
 ## <a id="The drop-down refresh 06-DIY the control of refresh"></a>The drop-down refresh 06-DIY the control of refresh
 ```objc
 self.tableView.mj_header = [MJDIYHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+<<<<<<< HEAD
+// 具体实现参考MJDIYHeader.h和MJDIYHeader.m
+=======
 // Implementation reference to MJDIYHeader.h和MJDIYHeader.m
+>>>>>>> CoderMJLee/master
 ```
 ![(下拉刷新06-自定义刷新控件)](http://images0.cnblogs.com/blog2015/497279/201506/141205019261159.gif)
 
 ## <a id="The pull to refresh 01-Default"></a>The pull to refresh 01-Default
 ```objc
 self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+<<<<<<< HEAD
+   // 进入刷新状态后会自动调用这个block
+}];
+或
+// 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
+=======
     //Call this Block When enter the refresh status automatically
 }];
 或
 // Set the callback（Once you enter the refresh status，then call the action of target，that is call [self loadMoreData]）
+>>>>>>> CoderMJLee/master
 self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 ```
 ![(上拉刷新01-默认)](http://images0.cnblogs.com/blog2015/497279/201506/141205090047696.gif)
@@ -240,7 +261,11 @@ MJRefreshAutoGifFooter *footer = [MJRefreshAutoGifFooter footerWithRefreshingTar
 // Set the refresh image
 [footer setImages:refreshingImages forState:MJRefreshStateRefreshing];
 
+<<<<<<< HEAD
+// 设置尾部
+=======
 // Set footer
+>>>>>>> CoderMJLee/master
 self.tableView.mj_footer = footer;
 ```
 ![(上拉刷新02-动画图片)](http://images0.cnblogs.com/blog2015/497279/201506/141205141445793.gif)
@@ -255,8 +280,13 @@ footer.refreshingTitleHidden = YES;
 
 ## <a id="The pull to refresh 04-All loaded"></a>The pull to refresh 04-All loaded
 ```objc
+<<<<<<< HEAD
+// 变为没有更多数据的状态
+[footer endRefreshingWithNoMoreData];
+=======
 //Become the status of NoMoreData
 [footer noticeNoMoreData];
+>>>>>>> CoderMJLee/master
 ```
 ![(上拉刷新04-全部加载完毕)](http://images0.cnblogs.com/blog2015/497279/201506/141205248634686.gif)
 
@@ -277,7 +307,11 @@ footer.stateLabel.textColor = [UIColor blueColor];
 
 ## <a id="The pull to refresh 06-Hidden After loaded"></a>The pull to refresh 06-Hidden After loaded
 ```objc
+<<<<<<< HEAD
+// 隐藏当前的上拉刷新控件
+=======
 //Hidden current control of the pull to refresh
+>>>>>>> CoderMJLee/master
 self.tableView.mj_footer.hidden = YES;
 ```
 ![(上拉刷新06-加载后隐藏)](http://images0.cnblogs.com/blog2015/497279/201506/141205343481821.gif)
@@ -299,7 +333,11 @@ MJRefreshBackGifFooter *footer = [MJRefreshBackGifFooter footerWithRefreshingTar
 // Set the refreshing state of animated images
 [footer setImages:refreshingImages forState:MJRefreshStateRefreshing];
 
+<<<<<<< HEAD
+// 设置尾部
+=======
 // Set footer
+>>>>>>> CoderMJLee/master
 self.tableView.mj_footer = footer;
 ```
 ![(上拉刷新07-自动回弹的上拉02)](http://images0.cnblogs.com/blog2015/497279/201506/141205441443628.gif)
@@ -307,19 +345,37 @@ self.tableView.mj_footer = footer;
 ## <a id="The pull to refresh 09-DIY the control of refresh(Automatic refresh)"></a>The pull to refresh 09-DIY the control of refresh(Automatic refresh)
 ```objc
 self.tableView.mj_footer = [MJDIYAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+<<<<<<< HEAD
+// 具体实现参考MJDIYAutoFooter.h和MJDIYAutoFooter.m
+=======
 // Implementation reference to MJDIYAutoFooter.h和MJDIYAutoFooter.m
+>>>>>>> CoderMJLee/master
 ```
 ![(上拉刷新09-自定义刷新控件(自动刷新))](http://images0.cnblogs.com/blog2015/497279/201506/141205500195866.gif)
 
 ## <a id="The pull to refresh 10-DIY the control of refresh(Automatic back)"></a>The pull to refresh 10-DIY the control of refresh(Automatic back)
 ```objc
 self.tableView.mj_footer = [MJDIYBackFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+<<<<<<< HEAD
+// 具体实现参考MJDIYBackFooter.h和MJDIYBackFooter.m
+=======
 // Implementation reference to MJDIYBackFooter.h和MJDIYBackFooter.m
+>>>>>>> CoderMJLee/master
 ```
 ![(上拉刷新10-自定义刷新控件(自动回弹))](http://images0.cnblogs.com/blog2015/497279/201506/141205560666819.gif)
 
 ## <a id="UICollectionView01-The pull and drop-down refresh"></a>UICollectionView01-The pull and drop-down refresh
 ```objc
+<<<<<<< HEAD
+// 下拉刷新
+self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+   // 进入刷新状态后会自动调用这个block
+}];
+
+// 上拉刷新
+self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+   // 进入刷新状态后会自动调用这个block
+=======
 // The drop-down refresh
 self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
    //Call this Block When enter the refresh status automatically 
@@ -328,19 +384,37 @@ self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock
 // The pull to refresh
 self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
    //Call this Block When enter the refresh status automatically
+>>>>>>> CoderMJLee/master
 }];
 ```
 ![(UICollectionView01-上下拉刷新)](http://images0.cnblogs.com/blog2015/497279/201506/141206021603758.gif)
 
 ## <a id="UIWebView01-The drop-down refresh"></a>UIWebView01-The drop-down refresh
 ```objc
+<<<<<<< HEAD
+// 添加下拉刷新控件
+self.webView.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+   // 进入刷新状态后会自动调用这个block
+=======
 //Add the control of The drop-down refresh
 self.webView.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
    //Call this Block When enter the refresh status automatically
+>>>>>>> CoderMJLee/master
 }];
 ```
 ![(UICollectionView01-上下拉刷新)](http://images0.cnblogs.com/blog2015/497279/201506/141206080514524.gif)
 
+<<<<<<< HEAD
+## 提醒
+* 本框架纯ARC，兼容的系统>=iOS6.0、iPhone\iPad横竖屏
+
+## <a id="期待"></a>期待
+* 如果在使用过程中遇到BUG，希望你能Issues我，谢谢（或者尝试下载最新的框架代码看看BUG修复没有）
+* 如果在使用过程中发现功能不够用，希望你能Issues我，我非常想为这个框架增加更多好用的功能，谢谢
+* 如果你想为MJRefresh输出代码，请拼命Pull Requests我
+* 如果你开发的应用中用到了MJRefresh，希望你能到[CocoaControls](https://www.cocoacontrols.com/controls/mjrefresh)添加你应用的iTunes路径，我将会安装使用你的应用，并且根据众多应用的使用情况，对MJRefresh进行一个更好的设计和完善，提供更多好用的功能，谢谢
+   * 步骤01（微信是举个例子，百度“你的应用名称 itunes”）
+=======
 ## Remind
 * ARC
 * iOS>=6.0
@@ -353,6 +427,7 @@ self.webView.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingB
 *  If you use MJRefresh in your develop app，Hope you can go to[CocoaControls](https://www.cocoacontrols.com/controls/mjrefresh)to add the iTunes path
  of you app，I Will install your app，and according to the usage of many app，to be a better design and improve to MJRefresh，Thank you !
    * StepO1（WeChat is just an Example，Explore“Your app name itunes”）
+>>>>>>> CoderMJLee/master
 ![(step01)](http://ww4.sinaimg.cn/mw1024/800cdf9ctw1eq0viiv5rsj20sm0ea41t.jpg)
    * StepO2
 ![(step02)](http://ww2.sinaimg.cn/mw1024/800cdf9ctw1eq0vilejxlj20tu0me7a0.jpg)

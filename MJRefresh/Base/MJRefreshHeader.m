@@ -138,6 +138,13 @@
     }
 }
 
+- (void)drawRect:(CGRect)rect
+{
+    [super drawRect:rect];
+    
+    
+}
+
 #pragma mark - 公共方法
 - (void)endRefreshing
 {
