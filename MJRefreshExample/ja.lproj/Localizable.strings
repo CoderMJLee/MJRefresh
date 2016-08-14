@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  MJRefreshExample
+
+  Created by Envy15 on 16/8/14.
+  Copyright © 2016年 小码哥. All rights reserved.
+*/
+
+"MJRefreshHeaderDateTodayText" = "今日は";

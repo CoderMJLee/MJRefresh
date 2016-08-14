@@ -75,11 +75,8 @@
     if (self.loadingView.constraints.count == 0) {
         self.loadingView.center = arrowCenter;
     }
-<<<<<<< HEAD
-=======
     
     self.arrowView.tintColor = self.stateLabel.textColor;
->>>>>>> CoderMJLee/master
 }
 
 - (void)setState:(MJRefreshState)state

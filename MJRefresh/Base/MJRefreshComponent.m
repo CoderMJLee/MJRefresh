@@ -152,11 +152,7 @@
     if (self.window) {
         self.state = MJRefreshStateRefreshing;
     } else {
-<<<<<<< HEAD
-        // 预发当前正在刷新中时调用本方法使得header insert回置失败
-=======
         // 预防正在刷新中时，调用本方法使得header inset回置失败
->>>>>>> CoderMJLee/master
         if (self.state != MJRefreshStateRefreshing) {
             self.state = MJRefreshStateWillRefresh;
             // 刷新(预防从另一个控制器回到这个控制器的情况，回来要重新刷新一下)

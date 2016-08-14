@@ -48,11 +48,7 @@
     // 圈圈
     CGFloat loadingCenterX = self.mj_w * 0.5;
     if (!self.isRefreshingTitleHidden) {
-<<<<<<< HEAD
-        loadingCenterX -= 100;
-=======
         loadingCenterX -= self.stateLabel.mj_textWith * 0.5 + self.labelLeftInset;
->>>>>>> CoderMJLee/master
     }
     CGFloat loadingCenterY = self.mj_h * 0.5;
     self.loadingView.center = CGPointMake(loadingCenterX, loadingCenterY);

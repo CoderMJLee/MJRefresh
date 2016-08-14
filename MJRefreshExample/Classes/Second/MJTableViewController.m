@@ -294,11 +294,7 @@ static const CGFloat MJDuration = 2.0;
         [tableView reloadData];
         
         // 拿到当前的下拉刷新控件，结束刷新状态
-<<<<<<< HEAD:MJRefreshExample/Classes/Second/MJTableViewController.m
-        [self.tableView.mj_header endRefreshing];
-=======
         [tableView.mj_header endRefreshing];
->>>>>>> CoderMJLee/master:MJRefreshExample/Classes/Second/MJTableViewController.m
     });
 }
 
@@ -317,11 +313,7 @@ static const CGFloat MJDuration = 2.0;
         [tableView reloadData];
         
         // 拿到当前的上拉刷新控件，结束刷新状态
-<<<<<<< HEAD:MJRefreshExample/Classes/Second/MJTableViewController.m
-        [self.tableView.mj_footer endRefreshing];
-=======
         [tableView.mj_footer endRefreshing];
->>>>>>> CoderMJLee/master:MJRefreshExample/Classes/Second/MJTableViewController.m
     });
 }
 
@@ -340,11 +332,7 @@ static const CGFloat MJDuration = 2.0;
         [tableView reloadData];
         
         // 拿到当前的上拉刷新控件，变为没有更多数据的状态
-<<<<<<< HEAD:MJRefreshExample/Classes/Second/MJTableViewController.m
-        [self.tableView.mj_footer endRefreshingWithNoMoreData];
-=======
         [tableView.mj_footer endRefreshingWithNoMoreData];
->>>>>>> CoderMJLee/master:MJRefreshExample/Classes/Second/MJTableViewController.m
     });
 }
 
@@ -363,11 +351,7 @@ static const CGFloat MJDuration = 2.0;
         [tableView reloadData];
         
         // 隐藏当前的上拉刷新控件
-<<<<<<< HEAD:MJRefreshExample/Classes/Second/MJTableViewController.m
-        self.tableView.mj_footer.hidden = YES;
-=======
         tableView.mj_footer.hidden = YES;
->>>>>>> CoderMJLee/master:MJRefreshExample/Classes/Second/MJTableViewController.m
     });
 }
 
