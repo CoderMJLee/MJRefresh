@@ -8,6 +8,7 @@
 //
 
 #import "MJRefreshHeader.h"
+#import <Pop.h>
 
 @interface MJRefreshHeader()
 @property (assign, nonatomic) CGFloat insetTDelta;
@@ -111,18 +112,19 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         
         // 恢复inset和offset
-        [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
-            self.scrollView.mj_insetT += self.insetTDelta;
-            
-            // 自动调整透明度
-            if (self.isAutomaticallyChangeAlpha) self.alpha = 0.0;
-        } completion:^(BOOL finished) {
-            self.pullingPercent = 0.0;
-            
-            if (self.endRefreshingCompletionBlock) {
-                self.endRefreshingCompletionBlock();
-            }
-        }];
+        POPBasicAnimation *anBasic = [POPBasicAnimation animationWithPropertyNamed:kPOPScrollViewContentInset];
+        anBasic.toValue = [NSValue valueWithUIEdgeInsets:UIEdgeInsetsMake(self.scrollView.mj_insetT + self.insetTDelta, self.scrollView.mj_insetL, self.scrollView.mj_insetB, self.scrollView.mj_insetR)];
+        anBasic.beginTime = CACurrentMediaTime();
+        anBasic.duration = MJRefreshSlowAnimationDuration;
+        anBasic.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+        [self.scrollView pop_addAnimation:anBasic forKey:@"contentInset"];
+        
+        
+        self.pullingPercent = 0.0;
+        
+        if (self.endRefreshingCompletionBlock) {
+            self.endRefreshingCompletionBlock();
+        }
     } else if (state == MJRefreshStateRefreshing) {
          dispatch_async(dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{

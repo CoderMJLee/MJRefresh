@@ -10,4 +10,5 @@ Pod::Spec.new do |s|
     s.source_files = 'MJRefresh/**/*.{h,m}'
     s.resource     = 'MJRefresh/MJRefresh.bundle'
     s.requires_arc = true
+    s.dependency   = 'pop', ~> '1.0'
 end
