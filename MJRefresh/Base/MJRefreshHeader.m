@@ -8,7 +8,7 @@
 //
 
 #import "MJRefreshHeader.h"
-#import <Pop.h>
+#import <POP.h>
 
 @interface MJRefreshHeader()
 @property (assign, nonatomic) CGFloat insetTDelta;
@@ -118,13 +118,14 @@
         anBasic.duration = MJRefreshSlowAnimationDuration;
         anBasic.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
         [self.scrollView pop_addAnimation:anBasic forKey:@"contentInset"];
+        [anBasic setCompletionBlock:^(POPAnimation *animation, BOOL finished) {
+            self.pullingPercent = 0.0;
+            if (self.endRefreshingCompletionBlock) {
+                self.endRefreshingCompletionBlock();
+            }
+        }];
         
         
-        self.pullingPercent = 0.0;
-        
-        if (self.endRefreshingCompletionBlock) {
-            self.endRefreshingCompletionBlock();
-        }
     } else if (state == MJRefreshStateRefreshing) {
          dispatch_async(dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
