@@ -14,4 +14,8 @@
 /** 设置state状态下的动画图片images 动画持续时间duration*/
 - (void)setImages:(NSArray *)images duration:(NSTimeInterval)duration forState:(MJRefreshState)state;
 - (void)setImages:(NSArray *)images forState:(MJRefreshState)state;
+
+/** 设置动画播放次数，0表示循环播放。默认为0 */
+- (NSUInteger)repeatTimesForeState:(MJRefreshState)state;
+- (void)setRepeatTimes:(NSUInteger)times forState:(MJRefreshState)state;
 @end

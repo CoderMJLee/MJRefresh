@@ -16,6 +16,8 @@
 @property (strong, nonatomic) NSMutableDictionary *stateImages;
 /** 所有状态对应的动画时间 */
 @property (strong, nonatomic) NSMutableDictionary *stateDurations;
+/** 所有状态对应的动画播放次数 */
+@property (strong, nonatomic) NSMutableDictionary *stateRepeatTimes;
 @end
 
 @implementation MJRefreshAutoGifFooter
@@ -45,6 +47,14 @@
     return _stateDurations;
 }
 
+- (NSMutableDictionary *)stateRepeatTimes
+{
+    if (!_stateRepeatTimes) {
+        self.stateRepeatTimes = [[NSMutableDictionary alloc]init];
+    }
+    return _stateRepeatTimes;
+}
+
 #pragma mark - 公共方法
 - (void)setImages:(NSArray *)images duration:(NSTimeInterval)duration forState:(MJRefreshState)state
 {
@@ -63,6 +73,16 @@
 - (void)setImages:(NSArray *)images forState:(MJRefreshState)state
 {
     [self setImages:images duration:images.count * 0.1 forState:state];
+}
+
+- (NSUInteger)repeatTimesForeState:(MJRefreshState)state
+{
+    return [self.stateRepeatTimes[@(state)] unsignedIntegerValue];
+}
+
+- (void)setRepeatTimes:(NSUInteger)times forState:(MJRefreshState)state
+{
+    self.stateRepeatTimes[@(state)] = @(times);
 }
 
 #pragma mark - 实现父类的方法
@@ -105,6 +125,8 @@
         } else { // 多张图片
             self.gifView.animationImages = images;
             self.gifView.animationDuration = [self.stateDurations[@(state)] doubleValue];
+            self.gifView.animationRepeatCount = [self repeatTimesForeState:state];
+            self.gifView.image = [images lastObject];  // 在动画结束后，显示最后一张图片
             [self.gifView startAnimating];
         }
     } else if (state == MJRefreshStateNoMoreData || state == MJRefreshStateIdle) {
