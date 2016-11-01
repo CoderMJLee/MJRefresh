@@ -128,7 +128,9 @@
     if (!lastHidden && hidden) {
         self.state = MJRefreshStateIdle;
         
-        self.scrollView.mj_insetB -= self.mj_h;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.scrollView.mj_insetB -= self.mj_h;
+        });
     } else if (lastHidden && !hidden) {
         self.scrollView.mj_insetB += self.mj_h;
         
