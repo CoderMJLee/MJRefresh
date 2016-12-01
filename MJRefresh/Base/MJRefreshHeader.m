@@ -127,10 +127,11 @@
          dispatch_async(dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
                 CGFloat top = self.scrollViewOriginalInset.top + self.mj_h;
+                CGFloat x = self.scrollView.mj_offsetX;
                 // 增加滚动区域top
                 self.scrollView.mj_insetT = top;
                 // 设置滚动位置
-                [self.scrollView setContentOffset:CGPointMake(0, -top) animated:NO];
+                [self.scrollView setContentOffset:CGPointMake(x, -top) animated:NO];
             } completion:^(BOOL finished) {
                 [self executeRefreshingCallback];
             }];
