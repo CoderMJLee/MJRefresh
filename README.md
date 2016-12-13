@@ -162,6 +162,9 @@ self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self r
 
 // Enter the refresh status immediately
 [self.tableView.header beginRefreshing];
+
+// When the refresh is done, plese call `endRefreshing` to stop the animation and notice the header
+[self.tableView.header endRefreshing];
 ```
 ![(下拉刷新01-普通)](http://images0.cnblogs.com/blog2015/497279/201506/141204343486151.gif)
 
@@ -229,6 +232,9 @@ self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:
 或
 // Set the callback（Once you enter the refresh status，then call the action of target，that is call [self loadMoreData]）
 self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+
+// When PTR is done, please call `endRefreshing` to end the PTR
+[self.tableView.mj_footer endRefreshing];
 ```
 ![(上拉刷新01-默认)](http://images0.cnblogs.com/blog2015/497279/201506/141205090047696.gif)
 
