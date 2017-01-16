@@ -9,7 +9,7 @@
 
 #import "MJRefreshHeader.h"
 
-@interface MJRefreshHeader()
+@interface MJRefreshHeader() <CAAnimationDelegate>
 @property (assign, nonatomic) CGFloat insetTDelta;
 @end
 
@@ -111,18 +111,38 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         
         // 恢复inset和offset
-        [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
-            self.scrollView.mj_insetT += self.insetTDelta;
+        /**
+         修改了用+ [UIView animateWithDuration: animations:]实现的修改contentInset的动画
+         fix issue#225 https://github.com/CoderMJLee/MJRefresh/issues/225
+         另一种解法 pull#737 https://github.com/CoderMJLee/MJRefresh/pull/737
+         */
+        
+        //先改inset
+        self.scrollView.mj_insetT += self.insetTDelta;
+        self.scrollView.userInteractionEnabled = NO;//关掉手势
+        
+        //CAAnimation keyPath不支持contentInset 用Bounds的动画代替
+        CABasicAnimation *boundsAnimation = [CABasicAnimation animationWithKeyPath:@"bounds"];
+        boundsAnimation.fromValue = [NSValue valueWithCGRect:CGRectOffset(self.scrollView.bounds, 0, self.insetTDelta)];
+        boundsAnimation.duration = MJRefreshSlowAnimationDuration;
+        boundsAnimation.removedOnCompletion = NO;//在delegate里移除
+        boundsAnimation.fillMode = kCAFillModeBoth;
+        boundsAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        boundsAnimation.delegate = self;
+        [self.scrollView.layer addAnimation:boundsAnimation forKey:@"mj_headerRefreshBounds"];
+        
+        // 自动调整透明度的动画
+        if (self.isAutomaticallyChangeAlpha) {
+            CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+            opacityAnimation.fromValue = @(self.alpha);
+            opacityAnimation.toValue = @(0.0);
+            opacityAnimation.duration = MJRefreshSlowAnimationDuration;
+            opacityAnimation.removedOnCompletion = YES;
+            opacityAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+            [self.layer addAnimation:opacityAnimation forKey:@"mj_headerRefreshOpacity"];
             
-            // 自动调整透明度
-            if (self.isAutomaticallyChangeAlpha) self.alpha = 0.0;
-        } completion:^(BOOL finished) {
-            self.pullingPercent = 0.0;
-            
-            if (self.endRefreshingCompletionBlock) {
-                self.endRefreshingCompletionBlock();
-            }
-        }];
+            self.alpha = 0.0;
+        }
     } else if (state == MJRefreshStateRefreshing) {
          dispatch_async(dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
@@ -135,6 +155,19 @@
                 [self executeRefreshingCallback];
             }];
          });
+    }
+}
+
+#pragma mark - CAAnimationDelegate
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    if ([anim isEqual:[self.scrollView.layer animationForKey:@"mj_headerRefreshBounds"]]) {
+        [self.scrollView.layer removeAnimationForKey:@"mj_headerRefreshBounds"];
+        self.pullingPercent = 0.0;
+        self.scrollView.userInteractionEnabled = YES;
+        if (self.endRefreshingCompletionBlock) {
+            self.endRefreshingCompletionBlock();
+        }
     }
 }
 
