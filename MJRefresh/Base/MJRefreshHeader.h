@@ -22,4 +22,9 @@
 
 /** 忽略多少scrollView的contentInset的top */
 @property (assign, nonatomic) CGFloat ignoredScrollViewContentInsetTop;
+
+
+/** 控制Header下拉后, 回滚到初始位置的动画 */
+@property (assign, nonatomic) BOOL stopHeaderScrollBackAnimate;
+
 @end

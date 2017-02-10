@@ -110,8 +110,13 @@
         [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:self.lastUpdatedTimeKey];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
+        NSTimeInterval interval = MJRefreshSlowAnimationDuration;
+        if (self.stopHeaderScrollBackAnimate) {
+            interval = 0;
+        }
+        
         // 恢复inset和offset
-        [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
+        [UIView animateWithDuration:interval animations:^{
             self.scrollView.mj_insetT += self.insetTDelta;
             
             // 自动调整透明度
