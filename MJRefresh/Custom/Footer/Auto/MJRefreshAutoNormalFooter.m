@@ -9,10 +9,13 @@
 #import "MJRefreshAutoNormalFooter.h"
 
 @interface MJRefreshAutoNormalFooter()
-@property (weak, nonatomic) UIActivityIndicatorView *loadingView;
+@property (strong, nonatomic) UIActivityIndicatorView *loadingView;
 @end
 
 @implementation MJRefreshAutoNormalFooter
+
+@synthesize loadingView = _loadingView;
+
 #pragma mark - 懒加载子控件
 - (UIActivityIndicatorView *)loadingView
 {
@@ -23,6 +26,14 @@
     }
     return _loadingView;
 }
+
+- (void)setLoadingView:(UIActivityIndicatorView *)loadingView {
+    if (nil == loadingView) {
+        [_loadingView removeFromSuperview];
+        _loadingView = nil;
+    }
+}
+
 
 - (void)setActivityIndicatorViewStyle:(UIActivityIndicatorViewStyle)activityIndicatorViewStyle
 {

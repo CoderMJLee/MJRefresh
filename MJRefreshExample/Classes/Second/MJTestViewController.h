@@ -17,6 +17,11 @@ Stuff; \
 _Pragma("clang diagnostic pop") \
 } while (0)
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface MJTestViewController : UIViewController
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -16,7 +16,7 @@
 @implementation MJRefreshBackFooter
 
 #pragma mark - 初始化
-- (void)willMoveToSuperview:(UIView *)newSuperview
+- (void)willMoveToSuperview:(UIView * _Nullable)newSuperview
 {
     [super willMoveToSuperview:newSuperview];
     
@@ -24,7 +24,7 @@
 }
 
 #pragma mark - 实现父类的方法
-- (void)scrollViewContentOffsetDidChange:(NSDictionary *)change
+- (void)scrollViewContentOffsetDidChange:(nullable NSDictionary<NSKeyValueChangeKey, id> *)change
 {
     [super scrollViewContentOffsetDidChange:change];
     
@@ -68,7 +68,7 @@
     }
 }
 
-- (void)scrollViewContentSizeDidChange:(NSDictionary *)change
+- (void)scrollViewContentSizeDidChange:(nullable NSDictionary<NSKeyValueChangeKey, id> *)change
 {
     [super scrollViewContentSizeDidChange:change];
     

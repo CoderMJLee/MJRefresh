@@ -64,21 +64,21 @@
 }
 
 #pragma mark 监听scrollView的contentOffset改变
-- (void)scrollViewContentOffsetDidChange:(NSDictionary *)change
+- (void)scrollViewContentOffsetDidChange:(nullable NSDictionary<NSKeyValueChangeKey, id> *)change
 {
     [super scrollViewContentOffsetDidChange:change];
 
 }
 
 #pragma mark 监听scrollView的contentSize改变
-- (void)scrollViewContentSizeDidChange:(NSDictionary *)change
+- (void)scrollViewContentSizeDidChange:(nullable NSDictionary<NSKeyValueChangeKey, id> *)change
 {
     [super scrollViewContentSizeDidChange:change];
     
 }
 
 #pragma mark 监听scrollView的拖拽状态改变
-- (void)scrollViewPanStateDidChange:(NSDictionary *)change
+- (void)scrollViewPanStateDidChange:(nullable NSDictionary<NSKeyValueChangeKey, id> *)change
 {
     [super scrollViewPanStateDidChange:change];
 

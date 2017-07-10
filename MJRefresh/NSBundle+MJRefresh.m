@@ -10,7 +10,7 @@
 #import "MJRefreshComponent.h"
 
 @implementation NSBundle (MJRefresh)
-+ (instancetype)mj_refreshBundle
++ (nullable instancetype)mj_refreshBundle
 {
     static NSBundle *refreshBundle = nil;
     if (refreshBundle == nil) {
@@ -20,7 +20,7 @@
     return refreshBundle;
 }
 
-+ (UIImage *)mj_arrowImage
++ (nullable UIImage *)mj_arrowImage
 {
     static UIImage *arrowImage = nil;
     if (arrowImage == nil) {
@@ -29,12 +29,12 @@
     return arrowImage;
 }
 
-+ (NSString *)mj_localizedStringForKey:(NSString *)key
++ (nullable NSString *)mj_localizedStringForKey:(nonnull NSString *)key
 {
     return [self mj_localizedStringForKey:key value:nil];
 }
 
-+ (NSString *)mj_localizedStringForKey:(NSString *)key value:(NSString *)value
++ (nullable NSString *)mj_localizedStringForKey:(nonnull NSString *)key value:(nullable NSString *)value
 {
     static NSBundle *bundle = nil;
     if (bundle == nil) {

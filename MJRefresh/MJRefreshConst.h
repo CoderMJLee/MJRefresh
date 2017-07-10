@@ -3,6 +3,8 @@
 #import <UIKit/UIKit.h>
 #import <objc/message.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 // 弱引用
 #define MJWeakSelf __weak typeof(self) weakSelf = self;
 
@@ -65,3 +67,6 @@ UIKIT_EXTERN NSString *const MJRefreshHeaderNoneLastDateText;
 MJRefreshState oldState = self.state; \
 if (state == oldState) return; \
 [super setState:state];
+
+
+NS_ASSUME_NONNULL_END

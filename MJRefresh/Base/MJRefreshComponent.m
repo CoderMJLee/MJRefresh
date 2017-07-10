@@ -44,7 +44,7 @@
 
 - (void)placeSubviews{}
 
-- (void)willMoveToSuperview:(UIView *)newSuperview
+- (void)willMoveToSuperview:(UIView * _Nullable)newSuperview
 {
     [super willMoveToSuperview:newSuperview];
     
@@ -100,7 +100,7 @@
     self.pan = nil;
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+- (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary<NSKeyValueChangeKey, id> *)change context:(nullable void *)context
 {
     // 遇到这些情况就直接返回
     if (!self.userInteractionEnabled) return;
@@ -119,13 +119,13 @@
     }
 }
 
-- (void)scrollViewContentOffsetDidChange:(NSDictionary *)change{}
-- (void)scrollViewContentSizeDidChange:(NSDictionary *)change{}
-- (void)scrollViewPanStateDidChange:(NSDictionary *)change{}
+- (void)scrollViewContentOffsetDidChange:(nullable NSDictionary<NSKeyValueChangeKey, id> *)change{}
+- (void)scrollViewContentSizeDidChange:(nullable NSDictionary<NSKeyValueChangeKey, id> *)change{}
+- (void)scrollViewPanStateDidChange:(nullable NSDictionary<NSKeyValueChangeKey, id> *)change{}
 
 #pragma mark - 公共方法
 #pragma mark 设置回调对象和回调方法
-- (void)setRefreshingTarget:(id)target refreshingAction:(SEL)action
+- (void)setRefreshingTarget:(nullable id)target refreshingAction:(nullable SEL)action
 {
     self.refreshingTarget = target;
     self.refreshingAction = action;
@@ -161,7 +161,7 @@
     }
 }
 
-- (void)beginRefreshingWithCompletionBlock:(void (^)())completionBlock
+- (void)beginRefreshingWithCompletionBlock:(nullable void (^)())completionBlock
 {
     self.beginRefreshingCompletionBlock = completionBlock;
     
@@ -174,7 +174,7 @@
     self.state = MJRefreshStateIdle;
 }
 
-- (void)endRefreshingWithCompletionBlock:(void (^)())completionBlock
+- (void)endRefreshingWithCompletionBlock:(nullable void (^)())completionBlock
 {
     self.endRefreshingCompletionBlock = completionBlock;
     
@@ -241,7 +241,7 @@
 @end
 
 @implementation UILabel(MJRefresh)
-+ (instancetype)mj_label
++ (instancetype _Nonnull)mj_label
 {
     UILabel *label = [[self alloc] init];
     label.font = MJRefreshLabelFont;

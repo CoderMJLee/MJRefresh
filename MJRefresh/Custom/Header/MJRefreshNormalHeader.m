@@ -11,28 +11,29 @@
 
 @interface MJRefreshNormalHeader()
 {
-    __unsafe_unretained UIImageView *_arrowView;
+    UIImageView *_arrowView;
 }
-@property (weak, nonatomic) UIActivityIndicatorView *loadingView;
+@property (strong, null_resettable, nonatomic) UIActivityIndicatorView *loadingView;
 @end
 
 @implementation MJRefreshNormalHeader
 #pragma mark - 懒加载子控件
-- (UIImageView *)arrowView
+- (UIImageView * _Nonnull)arrowView
 {
-    if (!_arrowView) {
-        UIImageView *arrowView = [[UIImageView alloc] initWithImage:[NSBundle mj_arrowImage]];
-        [self addSubview:_arrowView = arrowView];
+    if (nil == _arrowView) {
+        _arrowView = [[UIImageView alloc] initWithImage:[NSBundle mj_arrowImage]];
+        [self addSubview: _arrowView];
     }
     return _arrowView;
 }
 
-- (UIActivityIndicatorView *)loadingView
+
+- (UIActivityIndicatorView * _Nonnull)loadingView
 {
-    if (!_loadingView) {
-        UIActivityIndicatorView *loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:self.activityIndicatorViewStyle];
-        loadingView.hidesWhenStopped = YES;
-        [self addSubview:_loadingView = loadingView];
+    if (nil == _loadingView) {
+        _loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:self.activityIndicatorViewStyle];
+        _loadingView.hidesWhenStopped = YES;
+        [self addSubview: _loadingView];
     }
     return _loadingView;
 }

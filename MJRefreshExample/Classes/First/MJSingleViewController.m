@@ -23,7 +23,12 @@
     
     __unsafe_unretained typeof(self) weakSelf = self;
     __unsafe_unretained UITableView *tableView = self.tableView;
-    
+
+    //self.edgesForExtendedLayout = UIRectEdgeLeft | UIRectEdgeRight | UIRectEdgeBottom;
+    //self.extendedLayoutIncludesOpaqueBars = true;
+    //self.automaticallyAdjustsScrollViewInsets = false;
+    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+
     tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             weakSelf.count += 12;

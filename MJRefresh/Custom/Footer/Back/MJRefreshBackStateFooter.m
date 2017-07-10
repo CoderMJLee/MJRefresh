@@ -11,15 +11,15 @@
 @interface MJRefreshBackStateFooter()
 {
     /** 显示刷新状态的label */
-    __unsafe_unretained UILabel *_stateLabel;
+    UILabel *_stateLabel;
 }
 /** 所有状态对应的文字 */
-@property (strong, nonatomic) NSMutableDictionary *stateTitles;
+@property (strong, nonatomic) NSMutableDictionary<NSNumber *, NSString *> *stateTitles;
 @end
 
 @implementation MJRefreshBackStateFooter
 #pragma mark - 懒加载
-- (NSMutableDictionary *)stateTitles
+- (NSMutableDictionary<NSNumber *, NSString *> * _Nonnull)stateTitles
 {
     if (!_stateTitles) {
         self.stateTitles = [NSMutableDictionary dictionary];
@@ -27,10 +27,10 @@
     return _stateTitles;
 }
 
-- (UILabel *)stateLabel
+- (UILabel * _Nonnull)stateLabel
 {
     if (!_stateLabel) {
-        [self addSubview:_stateLabel = [UILabel mj_label]];
+        [self addSubview: _stateLabel = [UILabel mj_label]];
     }
     return _stateLabel;
 }
@@ -43,7 +43,7 @@
     self.stateLabel.text = self.stateTitles[@(self.state)];
 }
 
-- (NSString *)titleForState:(MJRefreshState)state {
+- (NSString * _Nullable)titleForState:(MJRefreshState)state {
   return self.stateTitles[@(state)];
 }
 

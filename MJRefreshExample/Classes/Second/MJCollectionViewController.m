@@ -18,10 +18,15 @@ static const CGFloat MJDuration = 2.0;
  */
 #define MJRandomColor [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1]
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface MJCollectionViewController()
 /** 存放假数据 */
-@property (strong, nonatomic) NSMutableArray *colors;
+@property (strong, nonatomic) NSMutableArray<UIColor *> *colors;
 @end
+
+NS_ASSUME_NONNULL_END
+
 
 @implementation MJCollectionViewController
 #pragma mark - 示例
@@ -67,7 +72,7 @@ static const CGFloat MJDuration = 2.0;
 }
 
 #pragma mark - 数据相关
-- (NSMutableArray *)colors
+- (NSMutableArray<UIColor *> * _Nonnull)colors
 {
     if (!_colors) {
         self.colors = [NSMutableArray array];
@@ -80,7 +85,7 @@ static const CGFloat MJDuration = 2.0;
 /**
  *  初始化
  */
-- (id)init
+- (nonnull instancetype)init
 {
     // UICollectionViewFlowLayout的初始化（与刷新控件无关）
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
@@ -104,22 +109,22 @@ static NSString *const MJCollectionViewCellIdentifier = @"color";
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:MJCollectionViewCellIdentifier];
 }
 
-#pragma mark - collection数据源代理
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+#pragma mark - UICollectionViewDataSource
+- (NSInteger)collectionView:(UICollectionView * _Nonnull)collectionView numberOfItemsInSection:(NSInteger)section
 {
     // 设置尾部控件的显示和隐藏
     self.collectionView.mj_footer.hidden = self.colors.count == 0;
     return self.colors.count;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+- (__kindof UICollectionViewCell * _Nonnull)collectionView:(UICollectionView * _Nonnull)collectionView cellForItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:MJCollectionViewCellIdentifier forIndexPath:indexPath];
     cell.backgroundColor = self.colors[indexPath.row];
     return cell;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+- (void)collectionView:(UICollectionView * _Nonnull)collectionView didSelectItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath
 {
     MJTestViewController *test = [[MJTestViewController alloc] init];
     if (indexPath.row % 2) {

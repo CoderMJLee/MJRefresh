@@ -29,7 +29,7 @@ static const CGFloat MJDuration = 2.0;
 
 @interface MJTableViewController()
 /** 用来显示的假数据 */
-@property (strong, nonatomic) NSMutableArray *data;
+@property (strong, nonatomic) NSMutableArray<NSString *> *data;
 @end
 
 @implementation MJTableViewController

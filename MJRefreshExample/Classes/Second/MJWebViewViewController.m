@@ -10,9 +10,13 @@
 #import "UIViewController+Example.h"
 #import "MJRefresh.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface MJWebViewViewController () <UIWebViewDelegate>
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nullable, nonatomic) IBOutlet UIWebView *webView;
 @end
+
+NS_ASSUME_NONNULL_END
 
 @implementation MJWebViewViewController
 #pragma mark - 示例

@@ -14,12 +14,12 @@
 
 @implementation NSObject (MJRefresh)
 
-+ (void)exchangeInstanceMethod1:(SEL)method1 method2:(SEL)method2
++ (void)exchangeInstanceMethod1:(nonnull SEL)method1 method2:(nonnull SEL)method2
 {
     method_exchangeImplementations(class_getInstanceMethod(self, method1), class_getInstanceMethod(self, method2));
 }
 
-+ (void)exchangeClassMethod1:(SEL)method1 method2:(SEL)method2
++ (void)exchangeClassMethod1:(nonnull SEL)method1 method2:(nonnull SEL)method2
 {
     method_exchangeImplementations(class_getClassMethod(self, method1), class_getClassMethod(self, method2));
 }
@@ -30,7 +30,7 @@
 
 #pragma mark - header
 static const char MJRefreshHeaderKey = '\0';
-- (void)setMj_header:(MJRefreshHeader *)mj_header
+- (void)setMj_header:(nullable MJRefreshHeader *)mj_header
 {
     if (mj_header != self.mj_header) {
         // 删除旧的，添加新的
@@ -45,14 +45,14 @@ static const char MJRefreshHeaderKey = '\0';
     }
 }
 
-- (MJRefreshHeader *)mj_header
+- (nullable MJRefreshHeader *)mj_header
 {
     return objc_getAssociatedObject(self, &MJRefreshHeaderKey);
 }
 
 #pragma mark - footer
 static const char MJRefreshFooterKey = '\0';
-- (void)setMj_footer:(MJRefreshFooter *)mj_footer
+- (void)setMj_footer:(nullable MJRefreshFooter *)mj_footer
 {
     if (mj_footer != self.mj_footer) {
         // 删除旧的，添加新的
@@ -67,28 +67,28 @@ static const char MJRefreshFooterKey = '\0';
     }
 }
 
-- (MJRefreshFooter *)mj_footer
+- (nullable MJRefreshFooter *)mj_footer
 {
     return objc_getAssociatedObject(self, &MJRefreshFooterKey);
 }
 
 #pragma mark - 过期
-- (void)setFooter:(MJRefreshFooter *)footer
+- (void)setFooter:(nullable MJRefreshFooter *)footer
 {
     self.mj_footer = footer;
 }
 
-- (MJRefreshFooter *)footer
+- (nullable MJRefreshFooter *)footer
 {
     return self.mj_footer;
 }
 
-- (void)setHeader:(MJRefreshHeader *)header
+- (void)setHeader:(nullable MJRefreshHeader *)header
 {
     self.mj_header = header;
 }
 
-- (MJRefreshHeader *)header
+- (nullable MJRefreshHeader *)header
 {
     return self.mj_header;
 }
@@ -114,14 +114,14 @@ static const char MJRefreshFooterKey = '\0';
 }
 
 static const char MJRefreshReloadDataBlockKey = '\0';
-- (void)setMj_reloadDataBlock:(void (^)(NSInteger))mj_reloadDataBlock
+- (void)setMj_reloadDataBlock:(nullable void (^)(NSInteger))mj_reloadDataBlock
 {
     [self willChangeValueForKey:@"mj_reloadDataBlock"]; // KVO
     objc_setAssociatedObject(self, &MJRefreshReloadDataBlockKey, mj_reloadDataBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
     [self didChangeValueForKey:@"mj_reloadDataBlock"]; // KVO
 }
 
-- (void (^)(NSInteger))mj_reloadDataBlock
+- (nullable void (^)(NSInteger))mj_reloadDataBlock
 {
     return objc_getAssociatedObject(self, &MJRefreshReloadDataBlockKey);
 }

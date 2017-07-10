@@ -11,18 +11,21 @@
 
 @interface MJRefreshBackNormalFooter()
 {
-    __unsafe_unretained UIImageView *_arrowView;
+    UIImageView *_arrowView;
 }
-@property (weak, nonatomic) UIActivityIndicatorView *loadingView;
+@property (strong, nullable, nonatomic) UIActivityIndicatorView *loadingView;
 @end
 
 @implementation MJRefreshBackNormalFooter
+
+@synthesize loadingView = _loadingView;
+
 #pragma mark - 懒加载子控件
 - (UIImageView *)arrowView
 {
     if (!_arrowView) {
-        UIImageView *arrowView = [[UIImageView alloc] initWithImage:[NSBundle mj_arrowImage]];
-        [self addSubview:_arrowView = arrowView];
+        _arrowView = [[UIImageView alloc] initWithImage:[NSBundle mj_arrowImage]];
+        [self addSubview: _arrowView];
     }
     return _arrowView;
 }
@@ -31,12 +34,20 @@
 - (UIActivityIndicatorView *)loadingView
 {
     if (!_loadingView) {
-        UIActivityIndicatorView *loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:self.activityIndicatorViewStyle];
-        loadingView.hidesWhenStopped = YES;
-        [self addSubview:_loadingView = loadingView];
+        _loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:self.activityIndicatorViewStyle];
+        _loadingView.hidesWhenStopped = YES;
+        [self addSubview: _loadingView];
     }
     return _loadingView;
 }
+
+- (void)setLoadingView:(UIActivityIndicatorView *)loadingView {
+    if (nil == loadingView) {
+        [_loadingView removeFromSuperview];
+        _loadingView = nil;
+    }
+}
+
 
 - (void)setActivityIndicatorViewStyle:(UIActivityIndicatorViewStyle)activityIndicatorViewStyle
 {

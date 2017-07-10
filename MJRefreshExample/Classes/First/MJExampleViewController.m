@@ -21,12 +21,12 @@ static NSString *const MJExample20 = @"UICollectionView";
 static NSString *const MJExample30 = @"UIWebView";
 
 @interface MJExampleViewController()
-@property (strong, nonatomic) NSArray *examples;
+@property (nonnull, strong, nonatomic) NSArray<MJExample *> *examples;
 @end
 
 @implementation MJExampleViewController
 
-- (NSArray *)examples
+- (nonnull NSArray<MJExample *> *)examples
 {
     if (!_examples) {
         MJExample *exam0 = [[MJExample alloc] init];

@@ -11,17 +11,17 @@
 @interface MJRefreshStateHeader()
 {
     /** 显示上一次刷新时间的label */
-    __unsafe_unretained UILabel *_lastUpdatedTimeLabel;
+    UILabel *_lastUpdatedTimeLabel;
     /** 显示刷新状态的label */
-    __unsafe_unretained UILabel *_stateLabel;
+    UILabel *_stateLabel;
 }
 /** 所有状态对应的文字 */
-@property (strong, nonatomic) NSMutableDictionary *stateTitles;
+@property (strong, nonatomic, null_resettable) NSMutableDictionary<NSNumber *, NSString *> *stateTitles;
 @end
 
 @implementation MJRefreshStateHeader
 #pragma mark - 懒加载
-- (NSMutableDictionary *)stateTitles
+- (NSMutableDictionary<NSNumber *, NSString *> * _Nonnull)stateTitles
 {
     if (!_stateTitles) {
         self.stateTitles = [NSMutableDictionary dictionary];
@@ -32,7 +32,7 @@
 - (UILabel *)stateLabel
 {
     if (!_stateLabel) {
-        [self addSubview:_stateLabel = [UILabel mj_label]];
+        [self addSubview: _stateLabel = [UILabel mj_label]];
     }
     return _stateLabel;
 }
@@ -40,7 +40,7 @@
 - (UILabel *)lastUpdatedTimeLabel
 {
     if (!_lastUpdatedTimeLabel) {
-        [self addSubview:_lastUpdatedTimeLabel = [UILabel mj_label]];
+        [self addSubview: _lastUpdatedTimeLabel = [UILabel mj_label]];
     }
     return _lastUpdatedTimeLabel;
 }
@@ -58,7 +58,7 @@
     if ([NSCalendar respondsToSelector:@selector(calendarWithIdentifier:)]) {
         return [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
     }
-    return [NSCalendar currentCalendar];
+    return [NSCalendar currentCalendar]; // 为什么不统一用 [[NSCalendar alloc] initWithIdentifier: NSCalendarIdentifierGregorian] ？
 }
 
 #pragma mark key的处理

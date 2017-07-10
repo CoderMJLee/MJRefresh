@@ -15,13 +15,13 @@
 
 @implementation MJRefreshHeader
 #pragma mark - 构造方法
-+ (instancetype)headerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock
++ (instancetype)headerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock _Nullable)refreshingBlock
 {
     MJRefreshHeader *cmp = [[self alloc] init];
     cmp.refreshingBlock = refreshingBlock;
     return cmp;
 }
-+ (instancetype)headerWithRefreshingTarget:(id)target refreshingAction:(SEL)action
++ (instancetype)headerWithRefreshingTarget:(id _Nullable)target refreshingAction:(SEL _Nullable)action
 {
     MJRefreshHeader *cmp = [[self alloc] init];
     [cmp setRefreshingTarget:target refreshingAction:action];
@@ -48,7 +48,7 @@
     self.mj_y = - self.mj_h - self.ignoredScrollViewContentInsetTop;
 }
 
-- (void)scrollViewContentOffsetDidChange:(NSDictionary *)change
+- (void)scrollViewContentOffsetDidChange:(nullable NSDictionary<NSKeyValueChangeKey, id> *)change
 {
     [super scrollViewContentOffsetDidChange:change];
     
@@ -146,7 +146,7 @@
     });
 }
 
-- (NSDate *)lastUpdatedTime
+- (NSDate * _Nullable)lastUpdatedTime
 {
     return [[NSUserDefaults standardUserDefaults] objectForKey:self.lastUpdatedTimeKey];
 }

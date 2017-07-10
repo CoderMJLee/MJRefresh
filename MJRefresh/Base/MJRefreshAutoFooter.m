@@ -14,7 +14,7 @@
 @implementation MJRefreshAutoFooter
 
 #pragma mark - 初始化
-- (void)willMoveToSuperview:(UIView *)newSuperview
+- (void)willMoveToSuperview:(UIView * _Nullable)newSuperview
 {
     [super willMoveToSuperview:newSuperview];
     
@@ -55,7 +55,7 @@
     self.automaticallyRefresh = YES;
 }
 
-- (void)scrollViewContentSizeDidChange:(NSDictionary *)change
+- (void)scrollViewContentSizeDidChange:(nullable NSDictionary<NSKeyValueChangeKey, id> *)change
 {
     [super scrollViewContentSizeDidChange:change];
     
@@ -63,7 +63,7 @@
     self.mj_y = self.scrollView.mj_contentH;
 }
 
-- (void)scrollViewContentOffsetDidChange:(NSDictionary *)change
+- (void)scrollViewContentOffsetDidChange:(nullable NSDictionary<NSKeyValueChangeKey, id> *)change
 {
     [super scrollViewContentOffsetDidChange:change];
     
@@ -83,7 +83,7 @@
     }
 }
 
-- (void)scrollViewPanStateDidChange:(NSDictionary *)change
+- (void)scrollViewPanStateDidChange:(nullable NSDictionary<NSKeyValueChangeKey, id> *)change
 {
     [super scrollViewPanStateDidChange:change];
     

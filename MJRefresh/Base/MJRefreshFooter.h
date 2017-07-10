@@ -9,11 +9,15 @@
 
 #import "MJRefreshComponent.h"
 
+
+NS_ASSUME_NONNULL_BEGIN
+
+
 @interface MJRefreshFooter : MJRefreshComponent
 /** 创建footer */
-+ (instancetype)footerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock;
++ (instancetype)footerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock _Nullable)refreshingBlock;
 /** 创建footer */
-+ (instancetype)footerWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
++ (instancetype)footerWithRefreshingTarget:(id _Nullable)target refreshingAction:(SEL _Nullable)action;
 
 /** 提示没有更多的数据 */
 - (void)endRefreshingWithNoMoreData;
@@ -28,3 +32,6 @@
 /** 自动根据有无数据来显示和隐藏（有数据就显示，没有数据隐藏。默认是NO） */
 @property (assign, nonatomic, getter=isAutomaticallyHidden) BOOL automaticallyHidden;
 @end
+
+
+NS_ASSUME_NONNULL_END

@@ -8,7 +8,11 @@
 
 #import "MJRefreshAutoStateFooter.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface MJRefreshAutoNormalFooter : MJRefreshAutoStateFooter
 /** 菊花的样式 */
 @property (assign, nonatomic) UIActivityIndicatorViewStyle activityIndicatorViewStyle;
 @end
+
+NS_ASSUME_NONNULL_END

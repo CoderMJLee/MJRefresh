@@ -9,9 +9,14 @@
 
 #import <Foundation/Foundation.h>
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface MJExample : NSObject
 @property (copy, nonatomic) NSString *header;
-@property (strong, nonatomic) NSArray *titles;
-@property (strong, nonatomic) NSArray *methods;
+@property (strong, nonatomic) NSArray<NSString *> *titles;
+@property (strong, nonatomic) NSArray<NSString *> *methods;
 @property (assign, nonatomic) Class vcClass;
 @end
+
+NS_ASSUME_NONNULL_END
