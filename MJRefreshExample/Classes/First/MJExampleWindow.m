@@ -23,5 +23,9 @@ static UIWindow *window_;
     window_.alpha = 0.5;
     window_.rootViewController = [[MJTempViewController alloc] init];
     window_.backgroundColor = [UIColor clearColor];
+
+    // 解决 iOS 8 rootViewController.view.frame 为 UIScreen.current.bounds 的问题
+    // 本行代码在 MJTempViewController 的 viewWillAppear 之后，viewDidAppear 之前调用，所以比在 viewDidAppear 调用好。
+    window_.rootViewController.view.frame = window_.bounds;
 }
 @end
