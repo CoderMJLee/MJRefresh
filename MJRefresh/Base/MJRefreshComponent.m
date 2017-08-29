@@ -65,7 +65,7 @@
         // 设置永远支持垂直弹簧效果
         _scrollView.alwaysBounceVertical = YES;
         // 记录UIScrollView最开始的contentInset
-        _scrollViewOriginalInset = _scrollView.contentInset;
+        _scrollViewOriginalInset = _scrollView.mj_inset;
         
         // 添加监听
         [self addObservers];

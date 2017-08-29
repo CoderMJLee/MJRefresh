@@ -12,28 +12,48 @@
 
 @implementation UIScrollView (MJExtension)
 
+- (UIEdgeInsets)mj_inset
+{
+#ifdef __IPHONE_11_0
+    if(@available(iOS 11.0, *)){
+        return self.adjustedContentInset;
+    }
+#endif
+    return self.contentInset;
+}
+
 - (void)setMj_insetT:(CGFloat)mj_insetT
 {
     UIEdgeInsets inset = self.contentInset;
     inset.top = mj_insetT;
+#ifdef __IPHONE_11_0
+    if(@available(iOS 11.0, *)){
+        inset.top -= (self.adjustedContentInset.top - self.contentInset.top);
+    }
+#endif
     self.contentInset = inset;
 }
 
 - (CGFloat)mj_insetT
 {
-    return self.contentInset.top;
+    return self.mj_inset.top;
 }
 
 - (void)setMj_insetB:(CGFloat)mj_insetB
 {
     UIEdgeInsets inset = self.contentInset;
     inset.bottom = mj_insetB;
+#ifdef __IPHONE_11_0
+    if(@available(iOS 11.0, *)){
+        inset.bottom -= (self.adjustedContentInset.bottom - self.contentInset.bottom);
+    }
+#endif
     self.contentInset = inset;
 }
 
 - (CGFloat)mj_insetB
 {
-    return self.contentInset.bottom;
+    return self.mj_inset.bottom;
 }
 
 - (void)setMj_insetL:(CGFloat)mj_insetL

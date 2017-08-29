@@ -31,7 +31,7 @@
     // 如果正在刷新，直接返回
     if (self.state == MJRefreshStateRefreshing) return;
     
-    _scrollViewOriginalInset = self.scrollView.contentInset;
+    _scrollViewOriginalInset = self.scrollView.mj_inset;
     
     // 当前的contentOffset
     CGFloat currentOffsetY = self.scrollView.mj_offsetY;
