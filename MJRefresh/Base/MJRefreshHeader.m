@@ -70,6 +70,11 @@
     CGFloat offsetY = self.scrollView.mj_offsetY;
     // 头部控件刚好出现的offsetY
     CGFloat happenOffsetY = - self.scrollViewOriginalInset.top;
+    if (@available(iOS 11, *)) {
+        if (self.scrollView.contentInsetAdjustmentBehavior != UIScrollViewContentInsetAdjustmentNever) {
+            happenOffsetY -= self.scrollView.safeAreaInsets.top;
+        }
+    }
     
     // 如果是向上滚动到看不见头部控件，直接返回
     // >= -> >
@@ -125,6 +130,11 @@
          dispatch_async(dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
                 CGFloat top = self.scrollViewOriginalInset.top + self.mj_h;
+                if (@available(iOS 11, *)) {
+                    if (self.scrollView.contentInsetAdjustmentBehavior != UIScrollViewContentInsetAdjustmentNever) {
+                        top += self.scrollView.safeAreaInsets.top;
+                    }
+                }
                 // 增加滚动区域top
                 self.scrollView.mj_insetT = top;
                 // 设置滚动位置
