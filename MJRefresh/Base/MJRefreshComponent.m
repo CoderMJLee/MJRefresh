@@ -95,7 +95,7 @@
 - (void)removeObservers
 {
     [self.superview removeObserver:self forKeyPath:MJRefreshKeyPathContentOffset];
-    [self.superview removeObserver:self forKeyPath:MJRefreshKeyPathContentSize];;
+    [self.superview removeObserver:self forKeyPath:MJRefreshKeyPathContentSize];
     [self.pan removeObserver:self forKeyPath:MJRefreshKeyPathPanState];
     self.pan = nil;
 }

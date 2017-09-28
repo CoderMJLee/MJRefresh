@@ -68,7 +68,8 @@ typedef void (^MJRefreshComponentEndRefreshingCompletionBlock)();
 - (void)endRefreshing;
 - (void)endRefreshingWithCompletionBlock:(void (^)())completionBlock;
 /** 是否正在刷新 */
-- (BOOL)isRefreshing;
+@property (assign, nonatomic, readonly, getter=isRefreshing) BOOL refreshing;
+//- (BOOL)isRefreshing;
 /** 刷新状态 一般交给子类内部实现 */
 @property (assign, nonatomic) MJRefreshState state;
 

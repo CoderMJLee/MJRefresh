@@ -60,6 +60,11 @@
 {
     UIEdgeInsets inset = self.contentInset;
     inset.left = mj_insetL;
+#ifdef __IPHONE_11_0
+    if(@available(iOS 11.0, *)){
+        inset.left -= (self.adjustedContentInset.left - self.contentInset.left);
+    }
+#endif
     self.contentInset = inset;
 }
 
@@ -72,6 +77,11 @@
 {
     UIEdgeInsets inset = self.contentInset;
     inset.right = mj_insetR;
+#ifdef __IPHONE_11_0
+    if(@available(iOS 11.0, *)){
+        inset.right -= (self.adjustedContentInset.right - self.contentInset.right);
+    }
+#endif
     self.contentInset = inset;
 }
 
