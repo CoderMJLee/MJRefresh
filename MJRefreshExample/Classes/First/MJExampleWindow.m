@@ -17,7 +17,11 @@ static UIWindow *window_;
     window_ = [[UIWindow alloc] init];
     CGFloat width = 150;
     CGFloat x = [UIScreen mainScreen].bounds.size.width - width - 10;
-    window_.frame = CGRectMake(x, 0, width, 25);
+    CGFloat y = 0;
+    if ([UIScreen mainScreen].bounds.size.height == 812) {
+        y = 33;
+    }
+    window_.frame = CGRectMake(x, y, width, 25);
     window_.windowLevel = UIWindowLevelAlert;
     window_.hidden = NO;
     window_.alpha = 0.5;
