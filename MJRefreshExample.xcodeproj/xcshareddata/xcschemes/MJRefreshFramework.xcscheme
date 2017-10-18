@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D9DF4511F7CE29B0042D6DD"
-               BuildableName = "MJRefreshFramework.framework"
+               BuildableName = "MJRefresh.framework"
                BlueprintName = "MJRefreshFramework"
                ReferencedContainer = "container:MJRefreshExample.xcodeproj">
             </BuildableReference>
@@ -48,7 +48,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D9DF4511F7CE29B0042D6DD"
-            BuildableName = "MJRefreshFramework.framework"
+            BuildableName = "MJRefresh.framework"
             BlueprintName = "MJRefreshFramework"
             ReferencedContainer = "container:MJRefreshExample.xcodeproj">
          </BuildableReference>
@@ -66,7 +66,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D9DF4511F7CE29B0042D6DD"
-            BuildableName = "MJRefreshFramework.framework"
+            BuildableName = "MJRefresh.framework"
             BlueprintName = "MJRefreshFramework"
             ReferencedContainer = "container:MJRefreshExample.xcodeproj">
          </BuildableReference>
