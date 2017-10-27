@@ -161,7 +161,8 @@
     }
 }
 
-- (void)beginRefreshingWithCompletionBlock:(nullable void (^)())completionBlock
+
+- (void)beginRefreshingWithCompletionBlock:(void (^)(void))completionBlock
 {
     self.beginRefreshingCompletionBlock = completionBlock;
     
@@ -174,7 +175,7 @@
     self.state = MJRefreshStateIdle;
 }
 
-- (void)endRefreshingWithCompletionBlock:(nullable void (^)())completionBlock
+- (void)endRefreshingWithCompletionBlock:(void (^)(void))completionBlock
 {
     self.endRefreshingCompletionBlock = completionBlock;
     

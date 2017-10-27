@@ -64,7 +64,7 @@
 		2D9DF47B1F7CE2F90042D6DD /* MJRefreshNormalHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB2EA0A1BECBE6700D58F6A /* MJRefreshNormalHeader.m */; };
 		2D9DF47C1F7CE2F90042D6DD /* MJRefreshStateHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB2EA0C1BECBE6700D58F6A /* MJRefreshStateHeader.m */; };
 		2D9DF47D1F7CE2F90042D6DD /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB2EA101BECBE6700D58F6A /* MJRefreshConst.m */; };
-		2D9DF47E1F7CE2F90042D6DD /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB2EA121BECBE6700D58F6A /* UIScrollView+MJExtension.m */; };
+		2D9DF47E1F7CE2F90042D6DD /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB2EA121BECBE6700D58F6A /* UIScrollView+MJExtension.m */; settings = {COMPILER_FLAGS = "-Wno-unguarded-availability-new"; }; };
 		2D9DF47F1F7CE2F90042D6DD /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB2EA141BECBE6700D58F6A /* UIScrollView+MJRefresh.m */; };
 		2D9DF4801F7CE2F90042D6DD /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB2EA161BECBE6700D58F6A /* UIView+MJExtension.m */; };
 		2D9DF4811F7CE2F90042D6DD /* NSBundle+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4698851D0EE6A400CB8025 /* NSBundle+MJRefresh.m */; };
@@ -782,7 +782,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = MJRefreshFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.520it.MJRefreshFramework;
 				PRODUCT_MODULE_NAME = MJRefresh;
@@ -823,7 +823,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = MJRefreshFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.520it.MJRefreshFramework;
 				PRODUCT_MODULE_NAME = MJRefresh;
