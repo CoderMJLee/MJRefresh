@@ -58,7 +58,7 @@
         // 设置宽度
         self.mj_w = newSuperview.mj_w;
         // 设置位置
-        self.mj_x = 0;
+        self.mj_x = -_scrollView.mj_insetL;
         
         // 记录UIScrollView
         _scrollView = (UIScrollView *)newSuperview;
@@ -171,7 +171,9 @@
 #pragma mark 结束刷新状态
 - (void)endRefreshing
 {
-    self.state = MJRefreshStateIdle;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.state = MJRefreshStateIdle;
+    });
 }
 
 - (void)endRefreshingWithCompletionBlock:(void (^)(void))completionBlock

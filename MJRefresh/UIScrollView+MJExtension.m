@@ -75,7 +75,7 @@
 
 - (CGFloat)mj_insetL
 {
-    return self.contentInset.left;
+    return self.mj_inset.left;
 }
 
 - (void)setMj_insetR:(CGFloat)mj_insetR
@@ -92,7 +92,7 @@
 
 - (CGFloat)mj_insetR
 {
-    return self.contentInset.right;
+    return self.mj_inset.right;
 }
 
 - (void)setMj_offsetX:(CGFloat)mj_offsetX
