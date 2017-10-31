@@ -130,7 +130,9 @@
                 // 增加滚动区域top
                 self.scrollView.mj_insetT = top;
                 // 设置滚动位置
-                [self.scrollView setContentOffset:CGPointMake(0, -top) animated:NO];
+                CGPoint offset = self.scrollView.contentOffset;
+                offset.y = -top;
+                [self.scrollView setContentOffset:offset animated:NO];
             } completion:^(BOOL finished) {
                 [self executeRefreshingCallback];
             }];

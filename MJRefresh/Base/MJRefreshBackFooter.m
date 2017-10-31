@@ -125,20 +125,6 @@
         }];
     }
 }
-
-- (void)endRefreshing
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.state = MJRefreshStateIdle;
-    });
-}
-
-- (void)endRefreshingWithNoMoreData
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.state = MJRefreshStateNoMoreData;
-    });
-}
 #pragma mark - 私有方法
 #pragma mark 获得scrollView的内容 超出 view 的高度
 - (CGFloat)heightForContentBreakView
