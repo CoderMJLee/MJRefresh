@@ -44,8 +44,8 @@ static NSString *const MJExample30 = @"UIWebView";
         MJExample *exam2 = [[MJExample alloc] init];
         exam2.header = MJExample20;
         exam2.vcClass = [MJCollectionViewController class];
-        exam2.titles = @[@"上下拉刷新"];
-        exam2.methods = @[@"example21"];
+        exam2.titles = @[@"上下拉刷新",@"左右拉刷新",@"左右拉刷新Gif带文字",@"左右拉刷新Gif不带文字"];
+        exam2.methods = @[@"example21",@"example22",@"example23",@"example24"];
         
         MJExample *exam3 = [[MJExample alloc] init];
         exam3.header = MJExample30;

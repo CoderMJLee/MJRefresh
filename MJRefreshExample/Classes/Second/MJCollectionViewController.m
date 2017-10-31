@@ -12,6 +12,10 @@
 #import "UIViewController+Example.h"
 #import "MJRefresh.h"
 
+#import "MJChiBaoZiHeader.h"
+#import "MJChiBaoZiFooter.h"
+#import "MJChiBaoZiFooter2.h"
+
 static const CGFloat MJDuration = 2.0;
 /**
  * 随机色
@@ -64,6 +68,184 @@ static const CGFloat MJDuration = 2.0;
     }];
     // 默认先隐藏footer
     self.collectionView.mj_footer.hidden = YES;
+}
+
+#pragma mark UICollectionView 左右拉刷新
+- (void)example22
+{
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    layout.scrollDirection=UICollectionViewScrollDirectionHorizontal;
+    layout.itemSize = CGSizeMake(80, 80);
+    layout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
+    layout.minimumInteritemSpacing = 20;
+    layout.minimumLineSpacing = 20;
+    self.collectionView.collectionViewLayout=layout;
+    
+    self.collectionView.mj_refreshDirection=MJRefreshDirectionHorizontal;
+    __weak __typeof(self) weakSelf = self;
+    
+    // 下拉刷新
+    self.collectionView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        // 增加5条假数据
+        for (int i = 0; i<10; i++) {
+            [weakSelf.colors insertObject:MJRandomColor atIndex:0];
+        }
+        
+        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf.collectionView reloadData];
+            
+            // 结束刷新
+            [weakSelf.collectionView.mj_header endRefreshing];
+        });
+    }];
+    
+    [self.collectionView.mj_header beginRefreshing];
+    
+    
+    // 上拉刷新
+    self.collectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        // 增加5条假数据
+        for (int i = 0; i<5; i++) {
+            [weakSelf.colors addObject:MJRandomColor];
+        }
+        
+        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf.collectionView reloadData];
+            
+            // 结束刷新
+            [weakSelf.collectionView.mj_footer endRefreshing];
+        });
+    }];
+    
+    // 默认先隐藏footer
+    self.collectionView.mj_footer.hidden = YES;
+    
+    // 由于prepare方法执行时还没进行设置scrollview所以手动状态调整，真正使用时把一个header或footer仅支持一种方向可省略，或自己内部处理
+    [(MJRefreshStateHeader*)self.collectionView.mj_header setTitle:[NSBundle mj_localizedStringForKey:MJRefreshHorizontalHeaderIdleText] forState:MJRefreshStateIdle];
+    [(MJRefreshBackStateFooter*)self.collectionView.mj_footer setTitle:[NSBundle mj_localizedStringForKey:MJRefreshHorizontalBackFooterIdleText] forState:MJRefreshStateIdle];
+    self.collectionView.mj_footer.state=MJRefreshStatePulling;
+    self.collectionView.mj_footer.state=MJRefreshStateIdle;
+}
+
+#pragma mark UICollectionView 左右拉刷新Gif带文字
+- (void)example23
+{
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    layout.scrollDirection=UICollectionViewScrollDirectionHorizontal;
+    layout.itemSize = CGSizeMake(80, 80);
+    layout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
+    layout.minimumInteritemSpacing = 20;
+    layout.minimumLineSpacing = 20;
+    self.collectionView.collectionViewLayout=layout;
+    
+    self.collectionView.mj_refreshDirection=MJRefreshDirectionHorizontal;
+    __weak __typeof(self) weakSelf = self;
+    
+    // 下拉刷新
+    self.collectionView.mj_header= [MJChiBaoZiHeader headerWithRefreshingBlock:^{
+        // 增加5条假数据
+        for (int i = 0; i<10; i++) {
+            [weakSelf.colors insertObject:MJRandomColor atIndex:0];
+        }
+        
+        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf.collectionView reloadData];
+            
+            // 结束刷新
+            [weakSelf.collectionView.mj_header endRefreshing];
+        });
+    }];
+    
+    [self.collectionView.mj_header beginRefreshing];
+    
+    
+    // 上拉刷新
+    self.collectionView.mj_footer = [MJChiBaoZiFooter2 footerWithRefreshingBlock:^{
+        // 增加5条假数据
+        for (int i = 0; i<5; i++) {
+            [weakSelf.colors addObject:MJRandomColor];
+        }
+        
+        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf.collectionView reloadData];
+            
+            // 结束刷新
+            [weakSelf.collectionView.mj_footer endRefreshing];
+        });
+    }];
+    
+    // 默认先隐藏footer
+    self.collectionView.mj_footer.hidden = YES;
+    
+    // 由于prepare方法执行时还没进行设置scrollview所以手动状态调整，真正使用时把一个header或footer仅支持一种方向可省略，或自己内部处理
+    [(MJRefreshStateHeader*)self.collectionView.mj_header setTitle:[NSBundle mj_localizedStringForKey:MJRefreshHorizontalHeaderIdleText] forState:MJRefreshStateIdle];
+    [(MJRefreshBackStateFooter*)self.collectionView.mj_footer setTitle:[NSBundle mj_localizedStringForKey:MJRefreshHorizontalBackFooterIdleText] forState:MJRefreshStateIdle];
+    self.collectionView.mj_footer.state=MJRefreshStatePulling;
+    self.collectionView.mj_footer.state=MJRefreshStateIdle;
+}
+
+#pragma mark UICollectionView 左右拉刷新Gif不带文字
+- (void)example24
+{
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    layout.scrollDirection=UICollectionViewScrollDirectionHorizontal;
+    layout.itemSize = CGSizeMake(80, 80);
+    layout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
+    layout.minimumInteritemSpacing = 20;
+    layout.minimumLineSpacing = 20;
+    self.collectionView.collectionViewLayout=layout;
+    
+    self.collectionView.mj_refreshDirection=MJRefreshDirectionHorizontal;
+    __weak __typeof(self) weakSelf = self;
+    
+    // 下拉刷新
+    self.collectionView.mj_header= [MJChiBaoZiHeader headerWithRefreshingBlock:^{
+        // 增加5条假数据
+        for (int i = 0; i<10; i++) {
+            [weakSelf.colors insertObject:MJRandomColor atIndex:0];
+        }
+        
+        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf.collectionView reloadData];
+            
+            // 结束刷新
+            [weakSelf.collectionView.mj_header endRefreshing];
+        });
+    }];
+    
+    [self.collectionView.mj_header beginRefreshing];
+    
+    
+    // 上拉刷新
+    self.collectionView.mj_footer = [MJChiBaoZiFooter footerWithRefreshingBlock:^{
+        // 增加5条假数据
+        for (int i = 0; i<5; i++) {
+            [weakSelf.colors addObject:MJRandomColor];
+        }
+        
+        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf.collectionView reloadData];
+            
+            // 结束刷新
+            [weakSelf.collectionView.mj_footer endRefreshing];
+        });
+    }];
+    
+    // 默认先隐藏footer
+    self.collectionView.mj_footer.hidden = YES;
+    
+    // 由于prepare方法执行时还没进行设置scrollview所以手动状态调整，真正使用时把一个header或footer仅支持一种方向可省略，或自己内部处理
+    [(MJChiBaoZiHeader*)self.collectionView.mj_header stateLabel].hidden=YES;
+    [(MJChiBaoZiHeader*)self.collectionView.mj_header lastUpdatedTimeLabel].hidden=YES;
+    ((MJChiBaoZiFooter*)self.collectionView.mj_footer).refreshingTitleHidden=YES;
+    self.collectionView.mj_footer.state=MJRefreshStatePulling;
+    self.collectionView.mj_footer.state=MJRefreshStateIdle;
 }
 
 #pragma mark - 数据相关
