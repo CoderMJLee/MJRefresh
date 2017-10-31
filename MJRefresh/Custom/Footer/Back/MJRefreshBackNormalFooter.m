@@ -64,7 +64,7 @@
             // 箭头的中心点
             CGFloat arrowCenterX = self.mj_w * 0.25;
 
-            CGFloat arrowCenterY = self.mj_h * 0.5;
+            CGFloat arrowCenterY = (self.mj_h -self.scrollView.mj_insetT) * 0.5;
             CGPoint arrowCenter = CGPointMake(arrowCenterX, arrowCenterY);
             
             // 箭头
@@ -73,6 +73,7 @@
                 self.arrowView.center = arrowCenter;
             }
             
+            self.stateLabel.center=arrowCenter;
             self.stateLabel.mj_x = self.arrowView.mj_w;
         }
             break;

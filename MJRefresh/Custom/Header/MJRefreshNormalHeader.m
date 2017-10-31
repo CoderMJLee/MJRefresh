@@ -71,7 +71,7 @@
                 self.arrowView.mj_size = self.arrowView.image.size;
                 self.arrowView.center = arrowCenter;
             }
-            self.stateLabel.center=CGPointMake(self.mj_w * 0.25, self.stateLabel.center.y-self.scrollView.mj_insetT/2.);
+            self.stateLabel.center=CGPointMake(self.mj_w * 0.25, arrowCenterY);
         }
             break;
         case MJRefreshDirectionVertical:

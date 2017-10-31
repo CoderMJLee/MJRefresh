@@ -86,6 +86,7 @@
             if (self.isRefreshingTitleHidden) {
                 //修正gif不居中
                 self.gifView.center=CGPointMake(self.gifView.center.x, (self.mj_h-self.scrollView.mj_insetT)/2.);
+                self.stateLabel.center=self.gifView.center;
 
                 self.gifView.contentMode = UIViewContentModeCenter;
             } else {

@@ -51,6 +51,16 @@
         loadingCenterX -= self.stateLabel.mj_textWith * 0.5 + self.labelLeftInset;
     }
     CGFloat loadingCenterY = self.mj_h * 0.5;
+
+    switch (self.scrollView.mj_refreshDirection) {
+        case MJRefreshDirectionHorizontal:
+            loadingCenterY = (self.mj_h -self.scrollView.mj_insetT) * 0.5;
+            self.stateLabel.center=CGPointMake(self.stateLabel.center.x, loadingCenterY);
+            break;
+        case MJRefreshDirectionVertical:
+        default:
+            break;
+    }
     self.loadingView.center = CGPointMake(loadingCenterX, loadingCenterY);
 }
 
