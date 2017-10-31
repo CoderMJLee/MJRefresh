@@ -60,6 +60,10 @@ UIKIT_EXTERN NSString *const MJRefreshHeaderLastTimeText;
 UIKIT_EXTERN NSString *const MJRefreshHeaderDateTodayText;
 UIKIT_EXTERN NSString *const MJRefreshHeaderNoneLastDateText;
 
+UIKIT_EXTERN NSString *const MJRefreshHorizontalHeaderIdleText;
+UIKIT_EXTERN NSString *const MJRefreshHorizontalAutoFooterIdleText;
+UIKIT_EXTERN NSString *const MJRefreshHorizontalBackFooterIdleText;
+
 // 状态检查
 #define MJRefreshCheckState \
 MJRefreshState oldState = self.state; \

@@ -31,3 +31,7 @@ NSString *const MJRefreshBackFooterNoMoreDataText = @"MJRefreshBackFooterNoMoreD
 NSString *const MJRefreshHeaderLastTimeText = @"MJRefreshHeaderLastTimeText";
 NSString *const MJRefreshHeaderDateTodayText = @"MJRefreshHeaderDateTodayText";
 NSString *const MJRefreshHeaderNoneLastDateText = @"MJRefreshHeaderNoneLastDateText";
+
+NSString *const MJRefreshHorizontalHeaderIdleText = @"MJRefreshHorizontalHeaderIdleText";
+NSString *const MJRefreshHorizontalAutoFooterIdleText = @"MJRefreshHorizontalAutoFooterIdleText";
+NSString *const MJRefreshHorizontalBackFooterIdleText = @"MJRefreshHorizontalBackFooterIdleText";

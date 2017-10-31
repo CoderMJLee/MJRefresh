@@ -14,3 +14,7 @@
 "MJRefreshHeaderLastTimeText" = "最後更新：";
 "MJRefreshHeaderDateTodayText" = "今天";
 "MJRefreshHeaderNoneLastDateText" = "無記錄";
+
+"MJRefreshHorizontalHeaderIdleText" = "右拉可以刷新";
+"MJRefreshHorizontalBackFooterIdleText" = "左拉可以加載更多";
+"MJRefreshHorizontalAutoFooterIdleText" = "點擊或左拉加載更多";
