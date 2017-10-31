@@ -31,6 +31,7 @@
 {
     if (!_stateLabel) {
         [self addSubview:_stateLabel = [UILabel mj_label]];
+        _stateLabel.numberOfLines=0;
     }
     return _stateLabel;
 }
@@ -41,6 +42,24 @@
     if (title == nil) return;
     self.stateTitles[@(state)] = title;
     self.stateLabel.text = self.stateTitles[@(self.state)];
+    switch (self.scrollView.mj_refreshDirection) {
+        case MJRefreshDirectionHorizontal:{
+            if (self.stateLabel.text&&self.stateLabel.text.length>0) {
+                NSMutableString * str = [[NSMutableString alloc] initWithString:self.stateLabel.text];
+                NSInteger count = str.length;
+                for (int i = 1; i < count; i ++) {
+                    [str insertString:@"\n" atIndex:i*2 - 1];
+                }
+                self.stateLabel.text=str;
+            }
+        }
+            break;
+        case MJRefreshDirectionVertical:
+            break;
+        default:
+            break;
+    }
+
 }
 
 #pragma mark - 私有方法
@@ -87,6 +106,24 @@
         self.stateLabel.text = nil;
     } else {
         self.stateLabel.text = self.stateTitles[@(state)];
+        switch (self.scrollView.mj_refreshDirection) {
+            case MJRefreshDirectionHorizontal:{
+                if (self.stateLabel.text&&self.stateLabel.text.length>0) {
+                    NSMutableString * str = [[NSMutableString alloc] initWithString:self.stateLabel.text];
+                    NSInteger count = str.length;
+                    for (int i = 1; i < count; i ++) {
+                        [str insertString:@"\n" atIndex:i*2 - 1];
+                    }
+                    self.stateLabel.text=str;
+                }
+            }
+                break;
+            case MJRefreshDirectionVertical:
+                break;
+            default:
+                break;
+        }
+
     }
 }
 @end

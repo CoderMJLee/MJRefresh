@@ -22,6 +22,7 @@
 {
     if (!_arrowView) {
         UIImageView *arrowView = [[UIImageView alloc] initWithImage:[NSBundle mj_arrowImage]];
+        arrowView.contentMode=UIViewContentModeCenter;
         [self addSubview:_arrowView = arrowView];
     }
     return _arrowView;
@@ -57,26 +58,50 @@
 {
     [super placeSubviews];
     
-    // 箭头的中心点
-    CGFloat arrowCenterX = self.mj_w * 0.5;
-    if (!self.stateLabel.hidden) {
-        arrowCenterX -= self.labelLeftInset + self.stateLabel.mj_textWith * 0.5;
+    switch (self.scrollView.mj_refreshDirection) {
+        case MJRefreshDirectionHorizontal:
+        {
+            // 箭头的中心点
+            CGFloat arrowCenterX = self.mj_w * 0.25;
+
+            CGFloat arrowCenterY = self.mj_h * 0.5;
+            CGPoint arrowCenter = CGPointMake(arrowCenterX, arrowCenterY);
+            
+            // 箭头
+            if (self.arrowView.constraints.count == 0) {
+                self.arrowView.mj_size = self.arrowView.image.size;
+                self.arrowView.center = arrowCenter;
+            }
+            
+            self.stateLabel.mj_x = self.arrowView.mj_w;
+        }
+            break;
+        case MJRefreshDirectionVertical:
+        default:
+        {
+            // 箭头的中心点
+            CGFloat arrowCenterX = self.mj_w * 0.5;
+            if (!self.stateLabel.hidden) {
+                arrowCenterX -= self.labelLeftInset + self.stateLabel.mj_textWith * 0.5;
+            }
+            CGFloat arrowCenterY = self.mj_h * 0.5;
+            CGPoint arrowCenter = CGPointMake(arrowCenterX, arrowCenterY);
+            
+            // 箭头
+            if (self.arrowView.constraints.count == 0) {
+                self.arrowView.mj_size = self.arrowView.image.size;
+                self.arrowView.center = arrowCenter;
+            }
+        }
+            break;
     }
-    CGFloat arrowCenterY = self.mj_h * 0.5;
-    CGPoint arrowCenter = CGPointMake(arrowCenterX, arrowCenterY);
-    
-    // 箭头
-    if (self.arrowView.constraints.count == 0) {
-        self.arrowView.mj_size = self.arrowView.image.size;
-        self.arrowView.center = arrowCenter;
-    }
-    
     // 圈圈
     if (self.loadingView.constraints.count == 0) {
-        self.loadingView.center = arrowCenter;
+        self.loadingView.center = self.arrowView.center;
     }
     
     self.arrowView.tintColor = self.stateLabel.textColor;
+
 }
 
 - (void)setState:(MJRefreshState)state
@@ -86,7 +111,15 @@
     // 根据状态做事情
     if (state == MJRefreshStateIdle) {
         if (oldState == MJRefreshStateRefreshing) {
-            self.arrowView.transform = CGAffineTransformMakeRotation(0.000001 - M_PI);
+            switch (self.scrollView.mj_refreshDirection) {
+                case MJRefreshDirectionHorizontal:
+                    self.arrowView.transform = CGAffineTransformMakeRotation(0.000001 + M_PI/2.);;
+                    break;
+                case MJRefreshDirectionVertical:
+                default:
+                    self.arrowView.transform = CGAffineTransformMakeRotation(0.000001 - M_PI);
+                    break;
+            }
             [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
                 self.loadingView.alpha = 0.0;
             } completion:^(BOOL finished) {
@@ -99,14 +132,30 @@
             self.arrowView.hidden = NO;
             [self.loadingView stopAnimating];
             [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
-                self.arrowView.transform = CGAffineTransformMakeRotation(0.000001 - M_PI);
+                switch (self.scrollView.mj_refreshDirection) {
+                    case MJRefreshDirectionHorizontal:
+                        self.arrowView.transform = CGAffineTransformMakeRotation(0.000001 + M_PI/2.);;
+                        break;
+                    case MJRefreshDirectionVertical:
+                    default:
+                        self.arrowView.transform = CGAffineTransformMakeRotation(0.000001 - M_PI);
+                        break;
+                }
             }];
         }
     } else if (state == MJRefreshStatePulling) {
         self.arrowView.hidden = NO;
         [self.loadingView stopAnimating];
         [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
-            self.arrowView.transform = CGAffineTransformIdentity;
+            switch (self.scrollView.mj_refreshDirection) {
+                case MJRefreshDirectionHorizontal:
+                    self.arrowView.transform = CGAffineTransformMakeRotation(0.000001 - M_PI/2.);;
+                    break;
+                case MJRefreshDirectionVertical:
+                default:
+                    self.arrowView.transform = CGAffineTransformIdentity;
+                    break;
+            }
         }];
     } else if (state == MJRefreshStateRefreshing) {
         self.arrowView.hidden = YES;

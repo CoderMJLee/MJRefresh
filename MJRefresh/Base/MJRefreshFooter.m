@@ -33,9 +33,18 @@
 {
     [super prepare];
     
-    // 设置自己的高度
-    self.mj_h = MJRefreshFooterHeight;
-    
+    switch (self.scrollView.mj_refreshDirection) {
+        case MJRefreshDirectionHorizontal:
+            // 设置宽度
+            self.mj_w = MJRefreshFooterHeight;
+            break;
+        case MJRefreshDirectionVertical:
+        default:
+            // 设置高度
+            self.mj_h = MJRefreshFooterHeight;
+            break;
+    }
+
     // 默认不会自动隐藏
     self.automaticallyHidden = NO;
 }

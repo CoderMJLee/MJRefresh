@@ -33,6 +33,7 @@
 {
     if (!_stateLabel) {
         [self addSubview:_stateLabel = [UILabel mj_label]];
+        _stateLabel.numberOfLines=0;
     }
     return _stateLabel;
 }
@@ -51,6 +52,25 @@
     if (title == nil) return;
     self.stateTitles[@(state)] = title;
     self.stateLabel.text = self.stateTitles[@(self.state)];
+    
+    switch (self.scrollView.mj_refreshDirection) {
+        case MJRefreshDirectionHorizontal:{
+            if (self.stateLabel.text&&self.stateLabel.text.length>0) {
+                NSMutableString * str = [[NSMutableString alloc] initWithString:self.stateLabel.text];
+                NSInteger count = str.length;
+                for (int i = 1; i < count; i ++) {
+                    [str insertString:@"\n" atIndex:i*2 - 1];
+                }
+                self.stateLabel.text=str;
+            }
+        }
+            break;
+        case MJRefreshDirectionVertical:
+            break;
+        default:
+            break;
+    }
+
 }
 
 #pragma mark - 日历获取在9.x之后的系统使用currentCalendar会出异常。在8.0之后使用系统新API。
@@ -102,11 +122,31 @@
                                           [NSBundle mj_localizedStringForKey:MJRefreshHeaderLastTimeText],
                                           isToday ? [NSBundle mj_localizedStringForKey:MJRefreshHeaderDateTodayText] : @"",
                                           time];
+        
     } else {
         self.lastUpdatedTimeLabel.text = [NSString stringWithFormat:@"%@%@",
                                           [NSBundle mj_localizedStringForKey:MJRefreshHeaderLastTimeText],
                                           [NSBundle mj_localizedStringForKey:MJRefreshHeaderNoneLastDateText]];
     }
+    
+    switch (self.scrollView.mj_refreshDirection) {
+        case MJRefreshDirectionHorizontal:{
+            if (self.lastUpdatedTimeLabel.text&&self.lastUpdatedTimeLabel.text.length>0) {
+                NSMutableString * str = [[NSMutableString alloc] initWithString:self.lastUpdatedTimeLabel.text];
+                NSInteger count = str.length;
+                for (int i = 1; i < count; i ++) {
+                    [str insertString:@"\n" atIndex:i*2 - 1];
+                }
+                self.lastUpdatedTimeLabel.text=str;
+            }
+        }
+            break;
+        case MJRefreshDirectionVertical:
+            break;
+        default:
+            break;
+    }
+
 }
 
 #pragma mark - 覆盖父类的方法
@@ -142,6 +182,16 @@
             self.stateLabel.mj_y = 0;
             self.stateLabel.mj_w = self.mj_w;
             self.stateLabel.mj_h = stateLabelH;
+            switch (self.scrollView.mj_refreshDirection) {
+                case MJRefreshDirectionHorizontal:
+                    self.lastUpdatedTimeLabel.hidden=YES;
+                    break;
+                case MJRefreshDirectionVertical:
+                    break;
+                default:
+                    break;
+            }
+
         }
         
         // 更新时间
@@ -160,7 +210,24 @@
     
     // 设置状态文字
     self.stateLabel.text = self.stateTitles[@(state)];
-    
+    switch (self.scrollView.mj_refreshDirection) {
+        case MJRefreshDirectionHorizontal:{
+            if (self.stateLabel.text&&self.stateLabel.text.length>0) {
+                NSMutableString * str = [[NSMutableString alloc] initWithString:self.stateLabel.text];
+                NSInteger count = str.length;
+                for (int i = 1; i < count; i ++) {
+                    [str insertString:@"\n" atIndex:i*2 - 1];
+                }
+                self.stateLabel.text=str;
+            }
+        }
+            break;
+        case MJRefreshDirectionVertical:
+            break;
+        default:
+            break;
+    }
+
     // 重新设置key（重新显示时间）
     self.lastUpdatedTimeKey = self.lastUpdatedTimeKey;
 }

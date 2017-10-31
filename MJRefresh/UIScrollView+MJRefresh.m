@@ -37,6 +37,9 @@ static const char MJRefreshHeaderKey = '\0';
         [self.mj_header removeFromSuperview];
         [self insertSubview:mj_header atIndex:0];
         
+        //初始化状态
+        mj_header.state=MJRefreshStateIdle;
+        
         // 存储新的
         [self willChangeValueForKey:@"mj_header"]; // KVO
         objc_setAssociatedObject(self, &MJRefreshHeaderKey,
@@ -59,6 +62,9 @@ static const char MJRefreshFooterKey = '\0';
         [self.mj_footer removeFromSuperview];
         [self insertSubview:mj_footer atIndex:0];
         
+        //初始化状态
+        mj_footer.state=MJRefreshStateIdle;
+
         // 存储新的
         [self willChangeValueForKey:@"mj_footer"]; // KVO
         objc_setAssociatedObject(self, &MJRefreshFooterKey,
@@ -70,6 +76,24 @@ static const char MJRefreshFooterKey = '\0';
 - (MJRefreshFooter *)mj_footer
 {
     return objc_getAssociatedObject(self, &MJRefreshFooterKey);
+}
+
+-(void)setMj_refreshDirection:(MJRefreshDirection)mj_refreshDirection{
+    objc_setAssociatedObject(self, @selector(mj_refreshDirection),
+                             @(mj_refreshDirection), OBJC_ASSOCIATION_ASSIGN);
+    if (self.mj_header) {
+        [self.mj_header removeFromSuperview];
+        [self insertSubview:self.mj_header atIndex:0];
+    }
+    if (self.mj_footer) {
+        [self.mj_footer removeFromSuperview];
+        [self insertSubview:self.mj_footer atIndex:0];
+    }
+
+}
+
+-(MJRefreshDirection)mj_refreshDirection{
+    return [objc_getAssociatedObject(self, @selector(mj_refreshDirection)) integerValue];
 }
 
 #pragma mark - 过期

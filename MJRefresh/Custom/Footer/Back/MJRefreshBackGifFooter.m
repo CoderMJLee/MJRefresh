@@ -91,12 +91,35 @@
     
     if (self.gifView.constraints.count) return;
     
-    self.gifView.frame = self.bounds;
-    if (self.stateLabel.hidden) {
-        self.gifView.contentMode = UIViewContentModeCenter;
-    } else {
-        self.gifView.contentMode = UIViewContentModeRight;
-        self.gifView.mj_w = self.mj_w * 0.5 - self.labelLeftInset - self.stateLabel.mj_textWith * 0.5;
+    switch (self.scrollView.mj_refreshDirection) {
+        case MJRefreshDirectionHorizontal:
+            self.gifView.frame = self.bounds;
+            if (self.stateLabel.hidden) {
+                //修正gif不居中
+                self.gifView.center=CGPointMake(self.gifView.center.x, (self.mj_h-self.scrollView.mj_insetT)/2.);
+
+                self.gifView.contentMode = UIViewContentModeCenter;
+            } else {
+                self.gifView.contentMode = UIViewContentModeBottom;
+                
+                CGSize textSize=[self.stateLabel.text
+                                 boundingRectWithSize:self.stateLabel.mj_size
+                                 options:NSStringDrawingUsesLineFragmentOrigin
+                                 attributes:@{NSFontAttributeName:self.stateLabel.font}
+                                 context:nil].size;
+                self.gifView.mj_h=(self.mj_h-textSize.height)/2.;
+            }
+            break;
+        case MJRefreshDirectionVertical:
+        default:
+            self.gifView.frame = self.bounds;
+            if (self.stateLabel.hidden) {
+                self.gifView.contentMode = UIViewContentModeCenter;
+            } else {
+                self.gifView.contentMode = UIViewContentModeRight;
+                self.gifView.mj_w = self.mj_w * 0.5 - self.labelLeftInset - self.stateLabel.mj_textWith * 0.5;
+            }
+            break;
     }
 }
 

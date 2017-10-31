@@ -22,4 +22,8 @@
 
 /** 忽略多少scrollView的contentInset的top */
 @property (assign, nonatomic) CGFloat ignoredScrollViewContentInsetTop;
+
+/** 忽略多少scrollView的contentInset的left */
+@property (assign, nonatomic) CGFloat ignoredScrollViewContentInsetLeft;
+
 @end

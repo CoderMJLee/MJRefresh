@@ -55,16 +55,35 @@
     [self removeObservers];
     
     if (newSuperview) { // 新的父控件
-        // 设置宽度
-        self.mj_w = newSuperview.mj_w;
-        // 设置位置
-        self.mj_x = -_scrollView.mj_insetL;
         
         // 记录UIScrollView
         _scrollView = (UIScrollView *)newSuperview;
-        // 设置永远支持垂直弹簧效果
-        _scrollView.alwaysBounceVertical = YES;
-        // 记录UIScrollView最开始的contentInset
+        
+        switch (_scrollView.mj_refreshDirection) {
+            case MJRefreshDirectionHorizontal:
+                // 设置宽度
+                self.mj_h = newSuperview.mj_h;
+                // 设置位置
+                self.mj_y = -_scrollView.mj_insetT;
+
+                self.mj_w = MJRefreshHeaderHeight;
+                // 设置永远支持横向弹簧效果
+                _scrollView.alwaysBounceHorizontal = YES;
+                _scrollView.alwaysBounceVertical = NO;
+                break;
+            case MJRefreshDirectionVertical:
+            default:
+                // 设置宽度
+                self.mj_w = newSuperview.mj_w;
+                // 设置位置
+                self.mj_x = -_scrollView.mj_insetL;
+
+                // 设置永远支持垂直弹簧效果
+                _scrollView.alwaysBounceVertical = YES;
+                _scrollView.alwaysBounceHorizontal = NO;
+                break;
+        }
+                // 记录UIScrollView最开始的contentInset
         _scrollViewOriginalInset = _scrollView.mj_inset;
         
         // 添加监听

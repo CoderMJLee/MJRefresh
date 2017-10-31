@@ -24,6 +24,8 @@
 
 /** 忽略多少scrollView的contentInset的bottom */
 @property (assign, nonatomic) CGFloat ignoredScrollViewContentInsetBottom;
+/** 忽略多少scrollView的contentInset的right */
+@property (assign, nonatomic) CGFloat ignoredScrollViewContentInsetRight;
 
 /** 自动根据有无数据来显示和隐藏（有数据就显示，没有数据隐藏。默认是NO） */
 @property (assign, nonatomic, getter=isAutomaticallyHidden) BOOL automaticallyHidden;

@@ -10,6 +10,11 @@
 #import <UIKit/UIKit.h>
 #import "MJRefreshConst.h"
 
+typedef enum MJRefreshDirection:NSInteger{
+    MJRefreshDirectionVertical=0,
+    MJRefreshDirectionHorizontal
+}MJRefreshDirection;
+
 @class MJRefreshHeader, MJRefreshFooter;
 
 @interface UIScrollView (MJRefresh)
@@ -19,7 +24,8 @@
 /** 上拉刷新控件 */
 @property (strong, nonatomic) MJRefreshFooter *mj_footer;
 @property (strong, nonatomic) MJRefreshFooter *footer MJRefreshDeprecated("使用mj_footer");
-
+/** 刷新控件方向（默认垂直方向） */
+@property (assign, nonatomic) MJRefreshDirection mj_refreshDirection;
 #pragma mark - other
 - (NSInteger)mj_totalDataCount;
 @property (copy, nonatomic) void (^mj_reloadDataBlock)(NSInteger totalDataCount);
