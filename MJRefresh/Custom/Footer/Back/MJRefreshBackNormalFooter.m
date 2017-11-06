@@ -90,9 +90,11 @@
             [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
                 self.loadingView.alpha = 0.0;
             } completion:^(BOOL finished) {
+                // 如果执行完动画发现不是idle状态，就直接返回
+                if (self.state != MJRefreshStateIdle) return;
+
                 self.loadingView.alpha = 1.0;
                 [self.loadingView stopAnimating];
-                
                 self.arrowView.hidden = NO;
             }];
         } else {
