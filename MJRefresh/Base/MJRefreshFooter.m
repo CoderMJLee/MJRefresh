@@ -8,6 +8,7 @@
 //
 
 #import "MJRefreshFooter.h"
+#import "UIScrollView+MJRefresh.h"
 
 @interface MJRefreshFooter()
 

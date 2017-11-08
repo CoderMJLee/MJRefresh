@@ -8,6 +8,7 @@
 //
 
 #import "MJRefreshHeader.h"
+#import "UIScrollView+MJRefresh.h"
 
 @interface MJRefreshHeader()
 @property (assign, nonatomic) CGFloat insetTDelta;

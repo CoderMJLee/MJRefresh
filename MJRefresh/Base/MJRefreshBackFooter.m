@@ -7,6 +7,7 @@
 //
 
 #import "MJRefreshBackFooter.h"
+#import "UIScrollView+MJRefresh.h"
 
 @interface MJRefreshBackFooter()
 @property (assign, nonatomic) NSInteger lastRefreshCount;
