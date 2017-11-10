@@ -12,4 +12,6 @@
 @property (weak, nonatomic, readonly) UIImageView *arrowView;
 /** 菊花的样式 */
 @property (assign, nonatomic) UIActivityIndicatorViewStyle activityIndicatorViewStyle;
+/// 菊花颜色 可控
+@property (nonatomic ,strong) UIColor *activityIndicatorViewColor;
 @end

@@ -33,6 +33,7 @@
     if (!_loadingView) {
         UIActivityIndicatorView *loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:self.activityIndicatorViewStyle];
         loadingView.hidesWhenStopped = YES;
+        loadingView.color = self.activityIndicatorViewColor;
         [self addSubview:_loadingView = loadingView];
     }
     return _loadingView;
@@ -42,6 +43,11 @@
 {
     _activityIndicatorViewStyle = activityIndicatorViewStyle;
     
+    self.loadingView = nil;
+    [self setNeedsLayout];
+}
+- (void)setActivityIndicatorViewColor:(UIColor *)activityIndicatorViewColor{
+    _activityIndicatorViewColor = activityIndicatorViewColor;
     self.loadingView = nil;
     [self setNeedsLayout];
 }
