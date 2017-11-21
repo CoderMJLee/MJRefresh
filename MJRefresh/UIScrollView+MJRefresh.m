@@ -134,11 +134,6 @@ static const char MJRefreshReloadDataBlockKey = '\0';
 
 @implementation UITableView (MJRefresh)
 
-+ (void)load
-{
-    [self exchangeInstanceMethod1:@selector(reloadData) method2:@selector(mj_reloadData)];
-}
-
 - (void)mj_reloadData
 {
     [self mj_reloadData];
@@ -148,11 +143,6 @@ static const char MJRefreshReloadDataBlockKey = '\0';
 @end
 
 @implementation UICollectionView (MJRefresh)
-
-+ (void)load
-{
-    [self exchangeInstanceMethod1:@selector(reloadData) method2:@selector(mj_reloadData)];
-}
 
 - (void)mj_reloadData
 {

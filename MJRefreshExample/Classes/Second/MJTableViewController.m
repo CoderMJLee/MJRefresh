@@ -185,7 +185,6 @@ static const CGFloat MJDuration = 2.0;
 - (void)reset
 {
     [self.tableView.mj_footer setRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
-//    [self.tableView.mj_footer beginRefreshing];
     [self.tableView.mj_footer resetNoMoreData];
 }
 
