@@ -71,13 +71,12 @@
 - (void)scrollViewContentOffsetDidChange:(NSDictionary *)change
 {
     [super scrollViewContentOffsetDidChange:change];
-    
-    
+        
     switch (self.scrollView.mj_refreshDirection) {
         case MJRefreshDirectionHorizontal:{
             // 在刷新的refreshing状态
             if (self.state == MJRefreshStateRefreshing) {
-                if (self.window == nil) return;
+//                if (self.window == nil) return;
                 
                 // sectionheader停留解决
                 CGFloat insetL = - self.scrollView.mj_offsetX > _scrollViewOriginalInset.left ? - self.scrollView.mj_offsetX : _scrollViewOriginalInset.left;
@@ -124,7 +123,7 @@
         default:{
             // 在刷新的refreshing状态
             if (self.state == MJRefreshStateRefreshing) {
-                if (self.window == nil) return;
+//                if (self.window == nil) return;
                 
                 // sectionheader停留解决
                 CGFloat insetT = - self.scrollView.mj_offsetY > _scrollViewOriginalInset.top ? - self.scrollView.mj_offsetY : _scrollViewOriginalInset.top;
