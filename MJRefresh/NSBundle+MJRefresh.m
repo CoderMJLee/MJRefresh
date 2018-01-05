@@ -45,7 +45,7 @@
      建议这里能够暴露出一个可共 应用内切换语言的接口
      目前这种处理方式是我临时改的
      谢谢.
-     by.李根
+     by.李根.
      */
     if ([language hasPrefix:@"en"]) {
         language = @"en";
