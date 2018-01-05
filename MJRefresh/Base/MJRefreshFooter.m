@@ -8,6 +8,7 @@
 //
 
 #import "MJRefreshFooter.h"
+#include "UIScrollView+MJRefresh.h"
 
 @interface MJRefreshFooter()
 
@@ -36,8 +37,8 @@
     // 设置自己的高度
     self.mj_h = MJRefreshFooterHeight;
     
-    // 默认是自动隐藏
-    self.automaticallyHidden = YES;
+    // 默认不会自动隐藏
+    self.automaticallyHidden = NO;
 }
 
 - (void)willMoveToSuperview:(UIView *)newSuperview
@@ -59,7 +60,9 @@
 #pragma mark - 公共方法
 - (void)endRefreshingWithNoMoreData
 {
-    self.state = MJRefreshStateNoMoreData;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.state = MJRefreshStateNoMoreData;
+    });
 }
 
 - (void)noticeNoMoreData
@@ -69,6 +72,24 @@
 
 - (void)resetNoMoreData
 {
-    self.state = MJRefreshStateIdle;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.state = MJRefreshStateIdle;
+    });
+}
+
+- (void)setAutomaticallyHidden:(BOOL)automaticallyHidden
+{
+    _automaticallyHidden = automaticallyHidden;
+    
+    if (automaticallyHidden) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            [UITableView exchangeInstanceMethod1:@selector(reloadData) method2:@selector(mj_reloadData)];
+            [UICollectionView exchangeInstanceMethod1:@selector(reloadData) method2:@selector(mj_reloadData)];
+        });
+#pragma clang diagnostic pop
+    }
 }
 @end

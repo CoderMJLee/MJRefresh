@@ -57,7 +57,7 @@ static const char MJRefreshFooterKey = '\0';
     if (mj_footer != self.mj_footer) {
         // 删除旧的，添加新的
         [self.mj_footer removeFromSuperview];
-        [self addSubview:mj_footer];
+        [self insertSubview:mj_footer atIndex:0];
         
         // 存储新的
         [self willChangeValueForKey:@"mj_footer"]; // KVO
@@ -134,11 +134,6 @@ static const char MJRefreshReloadDataBlockKey = '\0';
 
 @implementation UITableView (MJRefresh)
 
-+ (void)load
-{
-    [self exchangeInstanceMethod1:@selector(reloadData) method2:@selector(mj_reloadData)];
-}
-
 - (void)mj_reloadData
 {
     [self mj_reloadData];
@@ -148,11 +143,6 @@ static const char MJRefreshReloadDataBlockKey = '\0';
 @end
 
 @implementation UICollectionView (MJRefresh)
-
-+ (void)load
-{
-    [self exchangeInstanceMethod1:@selector(reloadData) method2:@selector(mj_reloadData)];
-}
 
 - (void)mj_reloadData
 {

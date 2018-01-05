@@ -21,7 +21,7 @@
         UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"dropdown_anim__000%zd", i]];
         [idleImages addObject:image];
     }
-    // [self setImages:idleImages forState:MJRefreshStateIdle];
+     [self setImages:idleImages forState:MJRefreshStateIdle];
     
     // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
     NSMutableArray *refreshingImages = [NSMutableArray array];
