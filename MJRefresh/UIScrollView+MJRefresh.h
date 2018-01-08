@@ -12,6 +12,11 @@
 
 @class MJRefreshHeader, MJRefreshFooter;
 
+@interface NSObject (MJRefresh)
++ (void)exchangeInstanceMethod1:(SEL)method1 method2:(SEL)method2;
++ (void)exchangeClassMethod1:(SEL)method1 method2:(SEL)method2;
+@end
+
 @interface UIScrollView (MJRefresh)
 /** 下拉刷新控件 */
 @property (strong, nonatomic) MJRefreshHeader *mj_header;
