@@ -141,6 +141,7 @@ static const CGFloat MJDuration = 2.0;
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         [weakSelf loadMoreData];
     }];
+//    ((MJRefreshAutoFooter *)self.tableView.mj_footer).onlyRefreshPerDrag = YES;
 }
 
 #pragma mark UITableView + 上拉刷新 动画图片

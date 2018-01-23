@@ -9,6 +9,8 @@
 #import "MJRefreshAutoFooter.h"
 
 @interface MJRefreshAutoFooter()
+/** 一个新的拖拽 */
+@property (assign, nonatomic, getter=isOneNewPan) BOOL oneNewPan;
 @end
 
 @implementation MJRefreshAutoFooter
@@ -53,6 +55,9 @@
     
     // 设置为默认状态
     self.automaticallyRefresh = YES;
+    
+    // 默认是当offset达到条件就发送请求（可连续）
+    self.onlyRefreshPerDrag = NO;
 }
 
 - (void)scrollViewContentSizeDidChange:(NSDictionary *)change
@@ -89,7 +94,8 @@
     
     if (self.state != MJRefreshStateIdle) return;
     
-    if (_scrollView.panGestureRecognizer.state == UIGestureRecognizerStateEnded) {// 手松开
+    UIGestureRecognizerState panState = _scrollView.panGestureRecognizer.state;
+    if (panState == UIGestureRecognizerStateEnded) {// 手松开
         if (_scrollView.mj_insetT + _scrollView.mj_contentH <= _scrollView.mj_h) {  // 不够一个屏幕
             if (_scrollView.mj_offsetY >= - _scrollView.mj_insetT) { // 向上拽
                 [self beginRefreshing];
@@ -99,7 +105,18 @@
                 [self beginRefreshing];
             }
         }
+    } else if (panState == UIGestureRecognizerStateBegan) {
+        self.oneNewPan = YES;
     }
+}
+
+- (void)beginRefreshing
+{
+    if (!self.isOneNewPan && self.isOnlyRefreshPerDrag) return;
+    
+    [super beginRefreshing];
+    
+    self.oneNewPan = NO;
 }
 
 - (void)setState:(MJRefreshState)state
@@ -107,9 +124,7 @@
     MJRefreshCheckState
     
     if (state == MJRefreshStateRefreshing) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self executeRefreshingCallback];
-        });
+        [self executeRefreshingCallback];
     } else if (state == MJRefreshStateNoMoreData || state == MJRefreshStateIdle) {
         if (MJRefreshStateRefreshing == oldState) {
             if (self.endRefreshingCompletionBlock) {
