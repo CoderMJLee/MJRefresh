@@ -146,4 +146,13 @@
 {
     return [[NSUserDefaults standardUserDefaults] objectForKey:self.lastUpdatedTimeKey];
 }
+
+#pragma mark - 私有方法
+
+- (void)setIgnoredScrollViewContentInsetTop:(CGFloat)ignoredScrollViewContentInsetTop {
+    _ignoredScrollViewContentInsetTop = ignoredScrollViewContentInsetTop;
+    
+    self.mj_y = - self.mj_h - _ignoredScrollViewContentInsetTop;
+}
+
 @end
