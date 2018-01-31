@@ -11,6 +11,7 @@
 @interface MJRefreshBackFooter()
 @property (assign, nonatomic) NSInteger lastRefreshCount;
 @property (assign, nonatomic) CGFloat lastBottomDelta;
+@property (assign, nonatomic) BOOL shouldTriggerHaptic;
 @end
 
 @implementation MJRefreshBackFooter
@@ -56,6 +57,11 @@
         if (self.state == MJRefreshStateIdle && currentOffsetY > normal2pullingOffsetY) {
             // 转为即将刷新状态
             self.state = MJRefreshStatePulling;
+            if (self.shouldTriggerHaptic) {
+                self.shouldTriggerHaptic = NO;
+                UIImpactFeedbackGenerator *generator = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleLight];
+                [generator impactOccurred];
+            }
         } else if (self.state == MJRefreshStatePulling && currentOffsetY <= normal2pullingOffsetY) {
             // 转为普通状态
             self.state = MJRefreshStateIdle;
@@ -63,8 +69,10 @@
     } else if (self.state == MJRefreshStatePulling) {// 即将刷新 && 手松开
         // 开始刷新
         [self beginRefreshing];
+        self.shouldTriggerHaptic = YES;
     } else if (pullingPercent < 1) {
         self.pullingPercent = pullingPercent;
+        self.shouldTriggerHaptic = YES;
     }
 }
 

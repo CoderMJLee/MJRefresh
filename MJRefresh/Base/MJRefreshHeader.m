@@ -11,6 +11,7 @@
 
 @interface MJRefreshHeader()
 @property (assign, nonatomic) CGFloat insetTDelta;
+@property (assign, nonatomic) BOOL shouldTriggerHaptic;
 @end
 
 @implementation MJRefreshHeader
@@ -87,6 +88,11 @@
         if (self.state == MJRefreshStateIdle && offsetY < normal2pullingOffsetY) {
             // 转为即将刷新状态
             self.state = MJRefreshStatePulling;
+            if (self.shouldTriggerHaptic) {
+                self.shouldTriggerHaptic = NO;
+                UIImpactFeedbackGenerator *generator = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleLight];
+                [generator impactOccurred];
+            }
         } else if (self.state == MJRefreshStatePulling && offsetY >= normal2pullingOffsetY) {
             // 转为普通状态
             self.state = MJRefreshStateIdle;
@@ -94,8 +100,10 @@
     } else if (self.state == MJRefreshStatePulling) {// 即将刷新 && 手松开
         // 开始刷新
         [self beginRefreshing];
+        self.shouldTriggerHaptic = YES;
     } else if (pullingPercent < 1) {
         self.pullingPercent = pullingPercent;
+        self.shouldTriggerHaptic = YES;
     }
 }
 
