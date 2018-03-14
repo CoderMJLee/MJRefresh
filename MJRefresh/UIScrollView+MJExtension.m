@@ -19,7 +19,7 @@ static BOOL gt_ios_11_;
 + (void)load
 {
     // 缓存判断值
-    gt_ios_11_ = [[[UIDevice currentDevice] systemVersion] compare:@"11.0" options:NSNumericSearch] != NSOrderedAscending;
+    gt_ios_11_ = ([[[UIDevice currentDevice] systemVersion] compare:@"11" options:NSNumericSearch] != NSOrderedAscending);
 }
 
 - (UIEdgeInsets)mj_inset
