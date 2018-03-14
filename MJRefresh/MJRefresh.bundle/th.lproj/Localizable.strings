@@ -1,0 +1,17 @@
+
+"MJRefreshHeaderIdleText" = "เลื่อนลงเพื่อฟื้นฟู";
+"MJRefreshHeaderPullingText" = "ที่วางจำหน่ายทันทีรีเฟรช";
+"MJRefreshHeaderRefreshingText" = "กำลังโหลด...";
+
+"MJRefreshAutoFooterIdleText" = "คลิกที่ LAC หรือ upload เพิ่ม";
+"MJRefreshAutoFooterRefreshingText" = "กำลังโหลด...";
+"MJRefreshAutoFooterNoMoreDataText" = "ไม่มีข้อมูลเพิ่มเติม";
+
+"MJRefreshBackFooterIdleText" = "ดึงขึ้นไปโหลดเพิ่มเติม";
+"MJRefreshBackFooterPullingText" = "ปล่อยโหลดมากขึ้นทันที.";
+"MJRefreshBackFooterRefreshingText" = "กำลังโหลด...";
+"MJRefreshBackFooterNoMoreDataText" = "ไม่มีข้อมูลเพิ่มเติม";
+
+"MJRefreshHeaderLastTimeText" = "อัพเดทล่าสุด:";
+"MJRefreshHeaderDateTodayText" = "ในวันนี้";
+"MJRefreshHeaderNoneLastDateText" = "ไม่มีการบันทึก";
