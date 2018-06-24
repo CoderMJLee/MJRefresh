@@ -29,11 +29,11 @@ typedef NS_ENUM(NSInteger, MJRefreshState) {
 };
 
 /** 进入刷新状态的回调 */
-typedef void (^MJRefreshComponentRefreshingBlock)();
+typedef void (^MJRefreshComponentRefreshingBlock)(void);
 /** 开始刷新后的回调(进入刷新状态后的回调) */
-typedef void (^MJRefreshComponentbeginRefreshingCompletionBlock)();
+typedef void (^MJRefreshComponentbeginRefreshingCompletionBlock)(void);
 /** 结束刷新后的回调 */
-typedef void (^MJRefreshComponentEndRefreshingCompletionBlock)();
+typedef void (^MJRefreshComponentEndRefreshingCompletionBlock)(void);
 
 /** 刷新控件的基类 */
 @interface MJRefreshComponent : UIView
@@ -59,16 +59,17 @@ typedef void (^MJRefreshComponentEndRefreshingCompletionBlock)();
 #pragma mark - 刷新状态控制
 /** 进入刷新状态 */
 - (void)beginRefreshing;
-- (void)beginRefreshingWithCompletionBlock:(void (^)())completionBlock;
+- (void)beginRefreshingWithCompletionBlock:(void (^)(void))completionBlock;
 /** 开始刷新后的回调(进入刷新状态后的回调) */
 @property (copy, nonatomic) MJRefreshComponentbeginRefreshingCompletionBlock beginRefreshingCompletionBlock;
 /** 结束刷新的回调 */
 @property (copy, nonatomic) MJRefreshComponentEndRefreshingCompletionBlock endRefreshingCompletionBlock;
 /** 结束刷新状态 */
 - (void)endRefreshing;
-- (void)endRefreshingWithCompletionBlock:(void (^)())completionBlock;
+- (void)endRefreshingWithCompletionBlock:(void (^)(void))completionBlock;
 /** 是否正在刷新 */
-- (BOOL)isRefreshing;
+@property (assign, nonatomic, readonly, getter=isRefreshing) BOOL refreshing;
+//- (BOOL)isRefreshing;
 /** 刷新状态 一般交给子类内部实现 */
 @property (assign, nonatomic) MJRefreshState state;
 
