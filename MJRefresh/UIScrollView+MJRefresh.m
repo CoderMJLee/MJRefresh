@@ -39,7 +39,7 @@ static const char MJRefreshHeaderKey = '\0';
         
         // 存储新的
         objc_setAssociatedObject(self, &MJRefreshHeaderKey,
-                                 mj_header, OBJC_ASSOCIATION_ASSIGN);
+                                 mj_header, OBJC_ASSOCIATION_RETAIN);
     }
 }
 
@@ -59,7 +59,7 @@ static const char MJRefreshFooterKey = '\0';
         
         // 存储新的
         objc_setAssociatedObject(self, &MJRefreshFooterKey,
-                                 mj_footer, OBJC_ASSOCIATION_ASSIGN);
+                                 mj_footer, OBJC_ASSOCIATION_RETAIN);
     }
 }
 
