@@ -10,17 +10,27 @@
 #import "UIScrollView+MJExtension.h"
 #import <objc/runtime.h>
 
-#define SYSTEM_VERSION_GREATER_NOT_LESS_THAN(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
-
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunguarded-availability-new"
 
 @implementation UIScrollView (MJExtension)
 
+static BOOL mj_respondsToAdjustedContentInset;
+
+- (BOOL)gt_respondsToAdjustedContentInset {
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        mj_respondsToAdjustedContentInset = [self respondsToSelector:@selector(adjustedContentInset)];
+    });
+    
+    return mj_respondsToAdjustedContentInset;
+}
+
 - (UIEdgeInsets)mj_inset
 {
 #ifdef __IPHONE_11_0
-    if (SYSTEM_VERSION_GREATER_NOT_LESS_THAN(@"11.0")) {
+    if ([self gt_respondsToAdjustedContentInset]) {
         return self.adjustedContentInset;
     }
 #endif
@@ -32,7 +42,7 @@
     UIEdgeInsets inset = self.contentInset;
     inset.top = mj_insetT;
 #ifdef __IPHONE_11_0
-    if (SYSTEM_VERSION_GREATER_NOT_LESS_THAN(@"11.0")) {
+    if ([self gt_respondsToAdjustedContentInset]) {
         inset.top -= (self.adjustedContentInset.top - self.contentInset.top);
     }
 #endif
@@ -49,7 +59,7 @@
     UIEdgeInsets inset = self.contentInset;
     inset.bottom = mj_insetB;
 #ifdef __IPHONE_11_0
-    if (SYSTEM_VERSION_GREATER_NOT_LESS_THAN(@"11.0")) {
+    if ([self gt_respondsToAdjustedContentInset]) {
         inset.bottom -= (self.adjustedContentInset.bottom - self.contentInset.bottom);
     }
 #endif
@@ -66,7 +76,7 @@
     UIEdgeInsets inset = self.contentInset;
     inset.left = mj_insetL;
 #ifdef __IPHONE_11_0
-    if (SYSTEM_VERSION_GREATER_NOT_LESS_THAN(@"11.0")) {
+    if ([self gt_respondsToAdjustedContentInset]) {
         inset.left -= (self.adjustedContentInset.left - self.contentInset.left);
     }
 #endif
@@ -83,7 +93,7 @@
     UIEdgeInsets inset = self.contentInset;
     inset.right = mj_insetR;
 #ifdef __IPHONE_11_0
-    if (SYSTEM_VERSION_GREATER_NOT_LESS_THAN(@"11.0")) {
+    if ([self gt_respondsToAdjustedContentInset]) {
         inset.right -= (self.adjustedContentInset.right - self.contentInset.right);
     }
 #endif

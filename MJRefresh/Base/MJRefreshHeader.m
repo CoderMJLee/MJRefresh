@@ -54,7 +54,8 @@
     
     // 在刷新的refreshing状态
     if (self.state == MJRefreshStateRefreshing) {
-//        if (self.window == nil) return;
+        // 暂时保留
+        if (self.window == nil) return;
         
         // sectionheader停留解决
         CGFloat insetT = - self.scrollView.mj_offsetY > _scrollViewOriginalInset.top ? - self.scrollView.mj_offsetY : _scrollViewOriginalInset.top;
@@ -145,4 +146,11 @@
 {
     return [[NSUserDefaults standardUserDefaults] objectForKey:self.lastUpdatedTimeKey];
 }
+
+- (void)setIgnoredScrollViewContentInsetTop:(CGFloat)ignoredScrollViewContentInsetTop {
+    _ignoredScrollViewContentInsetTop = ignoredScrollViewContentInsetTop;
+    
+    self.mj_y = - self.mj_h - _ignoredScrollViewContentInsetTop;
+}
+
 @end

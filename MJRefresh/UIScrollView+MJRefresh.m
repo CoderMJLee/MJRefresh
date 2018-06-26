@@ -38,10 +38,8 @@ static const char MJRefreshHeaderKey = '\0';
         [self insertSubview:mj_header atIndex:0];
         
         // 存储新的
-        [self willChangeValueForKey:@"mj_header"]; // KVO
         objc_setAssociatedObject(self, &MJRefreshHeaderKey,
-                                 mj_header, OBJC_ASSOCIATION_ASSIGN);
-        [self didChangeValueForKey:@"mj_header"]; // KVO
+                                 mj_header, OBJC_ASSOCIATION_RETAIN);
     }
 }
 
@@ -60,10 +58,8 @@ static const char MJRefreshFooterKey = '\0';
         [self insertSubview:mj_footer atIndex:0];
         
         // 存储新的
-        [self willChangeValueForKey:@"mj_footer"]; // KVO
         objc_setAssociatedObject(self, &MJRefreshFooterKey,
-                                 mj_footer, OBJC_ASSOCIATION_ASSIGN);
-        [self didChangeValueForKey:@"mj_footer"]; // KVO
+                                 mj_footer, OBJC_ASSOCIATION_RETAIN);
     }
 }
 
@@ -134,6 +130,11 @@ static const char MJRefreshReloadDataBlockKey = '\0';
 
 @implementation UITableView (MJRefresh)
 
++ (void)load
+{
+    [self exchangeInstanceMethod1:@selector(reloadData) method2:@selector(mj_reloadData)];
+}
+
 - (void)mj_reloadData
 {
     [self mj_reloadData];
@@ -143,6 +144,11 @@ static const char MJRefreshReloadDataBlockKey = '\0';
 @end
 
 @implementation UICollectionView (MJRefresh)
+
++ (void)load
+{
+    [self exchangeInstanceMethod1:@selector(reloadData) method2:@selector(mj_reloadData)];
+}
 
 - (void)mj_reloadData
 {
