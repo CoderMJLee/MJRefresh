@@ -152,5 +152,90 @@ static BOOL mj_respondsToAdjustedContentInset;
 {
     return self.contentSize.height;
 }
+
+/** Ma.).Mi ✎
+ *  每次 scrollview 滑动的方向
+ */
+- (NSString *)mj_scrollDirection {
+  NSInteger distance = self.mj_scrollDistance;
+  /** Ma.).Mi ✎
+   *  如果是 UITableView
+   */
+  if ([self.delegate respondsToSelector:@selector(tableView:numberOfRowsInSection:)] || [self.delegate respondsToSelector:@selector(numberOfSectionsInTableView:)]) {
+	return distance > 0 ? @"bottom" : (distance != 0 ? @"top" : @"stop");
+  } else {
+	if (self.mj_offsetX > self.mj_offsetY) {
+	  return distance > 0 ? @"right" : (distance != 0 ? @"left" : @"stop");
+	} else {
+	  return distance > 0 ? @"bottom" : (distance != 0 ? @"top" : @"stop");
+	}
+  }
+}
+
+/** Ma.).Mi ✎
+ *  每次 scrollview 滑动的距离
+ */
+- (NSInteger)mj_scrollDistance {
+  if (self.mj_offsetY > 0) {
+	/** Ma.).Mi ✎
+	 *  如果是 UITableView
+	 */
+	if ([self.delegate respondsToSelector:@selector(tableView:numberOfRowsInSection:)] || [self.delegate respondsToSelector:@selector(numberOfSectionsInTableView:)]) {
+	  return ABS(self.mj_offsetY) - ABS(self.mj_previousOffsetY)  + self._setPreviousOffsetY;
+	} else {
+	  if (self.mj_offsetX > self.mj_offsetY) {
+		return ABS(self.mj_offsetX) - ABS(self.mj_previousOffsetX) + self._setPreviousOffsetX;
+	  } else {
+		return ABS(self.mj_offsetY) - ABS(self.mj_previousOffsetY) + self._setPreviousOffsetY;
+	  }
+	}
+  } else if (self.mj_offsetY < 0) {
+	return self.mj_offsetY;
+  } else {
+	return 0;
+  }
+}
+
+/** Ma.).Mi ✎
+ *  previous contentOffset.y
+ */
+- (CGFloat)mj_previousOffsetY {
+  id value = objc_getAssociatedObject(self, _cmd);
+  if (value) {
+	CGFloat value_float = ((NSNumber *)value).floatValue;
+	return value_float;
+  } else {
+	objc_setAssociatedObject(self, _cmd, [NSNumber numberWithFloat:self.mj_offsetY], OBJC_ASSOCIATION_RETAIN);
+  }
+  
+  return 0;
+}
+
+/** Ma.).Mi ✎
+ *  previous contentOffset.x
+ */
+- (CGFloat)mj_previousOffsetX {
+  id value = objc_getAssociatedObject(self, _cmd);
+  if (value) {
+	CGFloat value_float = ((NSNumber *)value).floatValue;
+	return value_float;
+  } else {
+	objc_setAssociatedObject(self, _cmd, [NSNumber numberWithFloat:self.mj_offsetX], OBJC_ASSOCIATION_RETAIN);
+  }
+  
+  return 0;
+}
+
+#pragma mark #Ma.).Mi# - private method
+- (int)_setPreviousOffsetX {
+  objc_setAssociatedObject(self, @selector(mj_previousOffsetX), [NSNumber numberWithFloat:self.mj_offsetX], OBJC_ASSOCIATION_RETAIN);
+  return 0;
+}
+
+- (int)_setPreviousOffsetY {
+  objc_setAssociatedObject(self, @selector(mj_previousOffsetY), [NSNumber numberWithFloat:self.mj_offsetY], OBJC_ASSOCIATION_RETAIN);
+  return 0;
+}
+
 @end
 #pragma clang diagnostic pop
