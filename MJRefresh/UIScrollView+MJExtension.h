@@ -22,4 +22,14 @@
 
 @property (assign, nonatomic) CGFloat mj_contentW;
 @property (assign, nonatomic) CGFloat mj_contentH;
+
+/** Ma.).Mi ✎
+ * 	首页tabbar滚动隐藏新策略
+ *	@1. 根据滚动距离判断
+ *	@2. 根据滚动方向判断
+ *  ps: 希望能加入到扩展当中，不用在维护previousOffsetY临时变量。😊
+ */
+@property (nonatomic, assign, readonly) NSInteger mj_scrollDistance;
+@property (nonatomic, copy, readonly) 	NSString *mj_scrollDirection;
+
 @end
