@@ -156,18 +156,18 @@ static BOOL mj_respondsToAdjustedContentInset;
 /** Ma.).Mi ✎
  *  每次 scrollview 滑动的方向
  */
-- (NSString *)mj_scrollDirection {
+- (ScrollDirection)mj_scrollDirection {
   NSInteger distance = self.mj_scrollDistance;
   /** Ma.).Mi ✎
    *  如果是 UITableView
    */
   if ([self.delegate respondsToSelector:@selector(tableView:numberOfRowsInSection:)] || [self.delegate respondsToSelector:@selector(numberOfSectionsInTableView:)]) {
-	return distance > 0 ? @"bottom" : (distance != 0 ? @"top" : @"stop");
+	return distance > 0 ? Bottom : (distance != 0 ? Top : None);
   } else {
 	if (self.mj_offsetX > self.mj_offsetY) {
-	  return distance > 0 ? @"right" : (distance != 0 ? @"left" : @"stop");
+	  return distance > 0 ? Right : (distance != 0 ? Left : None);
 	} else {
-	  return distance > 0 ? @"bottom" : (distance != 0 ? @"top" : @"stop");
+	  return distance > 0 ? Bottom : (distance != 0 ? Top : None);
 	}
   }
 }
