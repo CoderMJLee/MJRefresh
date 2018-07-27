@@ -60,9 +60,7 @@
 #pragma mark - 公共方法
 - (void)endRefreshingWithNoMoreData
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.state = MJRefreshStateNoMoreData;
-    });
+    MJRefreshDispatchAsyncOnMainQueue(self.state = MJRefreshStateNoMoreData;)
 }
 
 - (void)noticeNoMoreData
@@ -72,9 +70,7 @@
 
 - (void)resetNoMoreData
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.state = MJRefreshStateIdle;
-    });
+    MJRefreshDispatchAsyncOnMainQueue(self.state = MJRefreshStateIdle;)
 }
 
 - (void)setAutomaticallyHidden:(BOOL)automaticallyHidden
