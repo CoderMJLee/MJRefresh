@@ -67,7 +67,7 @@
     }
     
     // 跳转到下一个控制器时，contentInset可能会变
-     _scrollViewOriginalInset = self.scrollView.mj_inset;
+    _scrollViewOriginalInset = self.scrollView.mj_inset;
     
     // 当前的contentOffset
     CGFloat offsetY = self.scrollView.mj_offsetY;
@@ -125,7 +125,7 @@
             }
         }];
     } else if (state == MJRefreshStateRefreshing) {
-         dispatch_async(dispatch_get_main_queue(), ^{
+        MJRefreshDispatchAsyncOnMainQueue({
             [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
                 CGFloat top = self.scrollViewOriginalInset.top + self.mj_h;
                 // 增加滚动区域top
@@ -137,7 +137,7 @@
             } completion:^(BOOL finished) {
                 [self executeRefreshingCallback];
             }];
-         });
+        })
     }
 }
 
