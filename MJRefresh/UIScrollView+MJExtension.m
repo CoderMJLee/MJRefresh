@@ -21,7 +21,7 @@ static BOOL respondsToAdjustedContentInset_;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        respondsToAdjustedContentInset_ = [self respondsToSelector:@selector(adjustedContentInset)];
+        respondsToAdjustedContentInset_ = [self instancesRespondToSelector:@selector(adjustedContentInset)];
     });
 }
 
