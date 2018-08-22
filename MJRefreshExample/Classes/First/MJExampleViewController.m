@@ -72,6 +72,7 @@ static NSString *const MJExample30 = @"UIWebView";
             [tableView.mj_header endRefreshing];
         });
     }];
+    tableView.mj_header.language = MJLanguageZhHant;
     
     // 设置自动切换透明度(在导航栏下面自动隐藏)
     tableView.mj_header.automaticallyChangeAlpha = YES;

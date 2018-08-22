@@ -99,6 +99,9 @@ typedef void (^MJRefreshComponentEndRefreshingCompletionBlock)(void);
 @property (assign, nonatomic, getter=isAutoChangeAlpha) BOOL autoChangeAlpha MJRefreshDeprecated("请使用automaticallyChangeAlpha属性");
 /** 根据拖拽比例自动切换透明度 */
 @property (assign, nonatomic, getter=isAutomaticallyChangeAlpha) BOOL automaticallyChangeAlpha;
+/** 自定义默认提示语语言（英文，简体中文，繁体中文），默认跟随系统语言 */
+@property (nonatomic, assign) MJLanguageCode language;
+
 @end
 
 @interface UILabel(MJRefresh)

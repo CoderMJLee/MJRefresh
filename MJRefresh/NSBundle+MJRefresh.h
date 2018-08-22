@@ -8,9 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NSBundle (MJRefresh)
-+ (instancetype)mj_refreshBundle;
-+ (UIImage *)mj_arrowImage;
-+ (NSString *)mj_localizedStringForKey:(NSString *)key value:(NSString *)value;
-+ (NSString *)mj_localizedStringForKey:(NSString *)key;
+typedef NS_ENUM (NSInteger, MJLanguageCode) {
+    MJLanguageDefault = 0,
+    MJLanguageEn = 1, // en
+    MJLanguageZhHans = 2, // zh-Hans
+    MJLanguageZhHant = 3 // zh-Hant
+};
+
+@interface NSBundle(MJRefresh)
+
+@property(nonatomic, assign) MJLanguageCode language;
+
++(instancetype)mj_refreshBundle;
++(UIImage *)mj_arrowImage;
++(NSString *)mj_localizedStringForKey: (NSString *)key value: (NSString *)value;
++(NSString *)mj_localizedStringForKey: (NSString *)key customCode: (MJLanguageCode)code;
++(NSString *)mj_localizedStringForKey: (NSString *)key value: (NSString *)value customCode: (MJLanguageCode)code;
+
 @end

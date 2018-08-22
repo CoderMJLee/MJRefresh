@@ -99,13 +99,13 @@
         
         // 3.显示日期
         self.lastUpdatedTimeLabel.text = [NSString stringWithFormat:@"%@%@%@",
-                                          [NSBundle mj_localizedStringForKey:MJRefreshHeaderLastTimeText],
-                                          isToday ? [NSBundle mj_localizedStringForKey:MJRefreshHeaderDateTodayText] : @"",
+                                          [NSBundle mj_localizedStringForKey:MJRefreshHeaderLastTimeText customCode:self.language],
+                                          isToday ? [NSBundle mj_localizedStringForKey:MJRefreshHeaderDateTodayText customCode:self.language] : @"",
                                           time];
     } else {
         self.lastUpdatedTimeLabel.text = [NSString stringWithFormat:@"%@%@",
-                                          [NSBundle mj_localizedStringForKey:MJRefreshHeaderLastTimeText],
-                                          [NSBundle mj_localizedStringForKey:MJRefreshHeaderNoneLastDateText]];
+                                          [NSBundle mj_localizedStringForKey:MJRefreshHeaderLastTimeText customCode:self.language],
+                                          [NSBundle mj_localizedStringForKey:MJRefreshHeaderNoneLastDateText customCode:self.language]];
     }
 }
 
@@ -118,9 +118,9 @@
     self.labelLeftInset = MJRefreshLabelLeftInset;
     
     // 初始化文字
-    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshHeaderIdleText] forState:MJRefreshStateIdle];
-    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshHeaderPullingText] forState:MJRefreshStatePulling];
-    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshHeaderRefreshingText] forState:MJRefreshStateRefreshing];
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshHeaderIdleText customCode:self.language] forState:MJRefreshStateIdle];
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshHeaderPullingText customCode:self.language] forState:MJRefreshStatePulling];
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshHeaderRefreshingText customCode:self.language] forState:MJRefreshStateRefreshing];
 }
 
 - (void)placeSubviews

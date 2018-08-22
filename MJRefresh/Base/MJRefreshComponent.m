@@ -35,6 +35,13 @@
     self.backgroundColor = [UIColor clearColor];
 }
 
+- (void)setLanguage:(MJLanguageCode)language
+{
+    _language = language;
+
+    [self prepare];
+}
+
 - (void)layoutSubviews
 {
     [self placeSubviews];
