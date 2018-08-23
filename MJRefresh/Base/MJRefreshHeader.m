@@ -57,15 +57,10 @@
         // 暂时保留
         if (self.window == nil) return;
         
-        //解决滑动手势中断带来的计算失误
-        if (self.scrollView.isDecelerating) {
-            // sectionheader停留解决
-            CGFloat insetT = - self.scrollView.mj_offsetY > _scrollViewOriginalInset.top ? - self.scrollView.mj_offsetY : _scrollViewOriginalInset.top;
-            insetT = insetT > self.mj_h + _scrollViewOriginalInset.top ? self.mj_h + _scrollViewOriginalInset.top : insetT;
-            self.scrollView.mj_insetT = insetT;
-            
-            self.insetTDelta = _scrollViewOriginalInset.top - insetT;
-        }
+        // sectionheader停留解决
+        CGFloat insetT = - self.scrollView.mj_offsetY > _scrollViewOriginalInset.top ? - self.scrollView.mj_offsetY : _scrollViewOriginalInset.top;
+        insetT = insetT > self.mj_h + _scrollViewOriginalInset.top ? self.mj_h + _scrollViewOriginalInset.top : insetT;
+        self.scrollView.mj_insetT = insetT;
         
         self.insetTDelta = _scrollViewOriginalInset.top - insetT;
         return;
@@ -132,13 +127,15 @@
     } else if (state == MJRefreshStateRefreshing) {
         MJRefreshDispatchAsyncOnMainQueue({
             [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
-                CGFloat top = self.scrollViewOriginalInset.top + self.mj_h;
-                // 增加滚动区域top
-                self.scrollView.mj_insetT = top;
-                // 设置滚动位置
-                CGPoint offset = self.scrollView.contentOffset;
-                offset.y = -top;
-                [self.scrollView setContentOffset:offset animated:NO];
+                if (self.scrollView.panGestureRecognizer.state != UIGestureRecognizerStateCancelled) {
+                    CGFloat top = self.scrollViewOriginalInset.top + self.mj_h;
+                    // 增加滚动区域top
+                    self.scrollView.mj_insetT = top;
+                    // 设置滚动位置
+                    CGPoint offset = self.scrollView.contentOffset;
+                    offset.y = -top;
+                    [self.scrollView setContentOffset:offset animated:NO];
+                }
             } completion:^(BOOL finished) {
                 [self executeRefreshingCallback];
             }];
