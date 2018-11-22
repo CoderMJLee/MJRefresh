@@ -21,6 +21,7 @@ static UIWindow *window_;
     //适配所有刘海屏
     if (UIApplication.sharedApplication.statusBarFrame.size.height == 44) {
         y = 33;
+        
     }
     window_.frame = CGRectMake(x, y, width, 25);
     window_.windowLevel = UIWindowLevelAlert;
