@@ -18,7 +18,8 @@ static UIWindow *window_;
     CGFloat width = 150;
     CGFloat x = [UIScreen mainScreen].bounds.size.width - width - 10;
     CGFloat y = 0;
-    if ([UIScreen mainScreen].bounds.size.height == 812) {
+    //适配所有刘海屏
+    if (UIApplication.sharedApplication.statusBarFrame.size.height == 44) {
         y = 33;
     }
     window_.frame = CGRectMake(x, y, width, 25);
