@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01A2CE0C21ACE01500BEE365 /* MJRefreshConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A2CE0B21ACE01500BEE365 /* MJRefreshConfig.m */; };
 		2D4698861D0EE6A400CB8025 /* NSBundle+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4698851D0EE6A400CB8025 /* NSBundle+MJRefresh.m */; };
 		2D9BEB091BB15F4A00AED473 /* UIViewController+Example.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9BEAE01BB15F4A00AED473 /* UIViewController+Example.m */; };
 		2D9BEB0A1BB15F4A00AED473 /* MJChiBaoZiFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9BEAE31BB15F4A00AED473 /* MJChiBaoZiFooter.m */; };
@@ -118,6 +119,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		01A2CE0A21ACE01500BEE365 /* MJRefreshConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MJRefreshConfig.h; sourceTree = "<group>"; };
+		01A2CE0B21ACE01500BEE365 /* MJRefreshConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConfig.m; sourceTree = "<group>"; };
 		2D4698841D0EE6A400CB8025 /* NSBundle+MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+MJRefresh.h"; sourceTree = "<group>"; };
 		2D4698851D0EE6A400CB8025 /* NSBundle+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+MJRefresh.m"; sourceTree = "<group>"; };
 		2D9BEADF1BB15F4A00AED473 /* UIViewController+Example.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Example.h"; sourceTree = "<group>"; };
@@ -405,6 +408,8 @@
 				2DB2EA161BECBE6700D58F6A /* UIView+MJExtension.m */,
 				2D4698841D0EE6A400CB8025 /* NSBundle+MJRefresh.h */,
 				2D4698851D0EE6A400CB8025 /* NSBundle+MJRefresh.m */,
+				01A2CE0A21ACE01500BEE365 /* MJRefreshConfig.h */,
+				01A2CE0B21ACE01500BEE365 /* MJRefreshConfig.m */,
 			);
 			path = MJRefresh;
 			sourceTree = SOURCE_ROOT;
@@ -710,6 +715,7 @@
 				2D9BEB191BB15F4A00AED473 /* MJTestViewController.m in Sources */,
 				2DB2EA211BECBE6700D58F6A /* MJRefreshBackStateFooter.m in Sources */,
 				2DB2EA281BECBE6700D58F6A /* UIScrollView+MJRefresh.m in Sources */,
+				01A2CE0C21ACE01500BEE365 /* MJRefreshConfig.m in Sources */,
 				2D9BEB151BB15F4A00AED473 /* MJTempViewController.m in Sources */,
 				2D9BEB171BB15F4A00AED473 /* MJCollectionViewController.m in Sources */,
 				2D9BEB0B1BB15F4A00AED473 /* MJChiBaoZiFooter2.m in Sources */,
