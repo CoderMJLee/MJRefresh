@@ -137,8 +137,8 @@
                     [self.scrollView setContentOffset:offset animated:NO];
                 }
             } completion:^(BOOL finished) {
-                [self executeRefreshingCallback];
             }];
+            [self executeRefreshingCallback];
         })
     }
 }
