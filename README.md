@@ -40,6 +40,7 @@
 
 ## <a id="How_to_use_MJRefresh"></a>How to use MJRefresh
 * Installation with CocoaPods：`pod 'MJRefresh'`
+* Installation with [Carthage](https://github.com/Carthage/Carthage)：`github "CoderMJLee/MJRefresh"`
 * Manual import：
     * Drag All files in the `MJRefresh` folder to project
     * Import the main file：`#import "MJRefresh.h"`
