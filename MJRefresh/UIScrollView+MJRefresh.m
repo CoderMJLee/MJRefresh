@@ -88,72 +88,71 @@ static const char MJRefreshFooterKey = '\0';
 {
     return self.mj_header;
 }
-
 #pragma mark - other
 - (NSInteger)mj_totalDataCount
 {
     NSInteger totalCount = 0;
     if ([self isKindOfClass:[UITableView class]]) {
         UITableView *tableView = (UITableView *)self;
-        
-        for (NSInteger section = 0; section<tableView.numberOfSections; section++) {
+
+        for (NSInteger section = 0; section < tableView.numberOfSections; section++) {
             totalCount += [tableView numberOfRowsInSection:section];
         }
     } else if ([self isKindOfClass:[UICollectionView class]]) {
         UICollectionView *collectionView = (UICollectionView *)self;
-        
-        for (NSInteger section = 0; section<collectionView.numberOfSections; section++) {
+
+        for (NSInteger section = 0; section < collectionView.numberOfSections; section++) {
             totalCount += [collectionView numberOfItemsInSection:section];
         }
     }
     return totalCount;
 }
-
-static const char MJRefreshReloadDataBlockKey = '\0';
-- (void)setMj_reloadDataBlock:(void (^)(NSInteger))mj_reloadDataBlock
-{
-    [self willChangeValueForKey:@"mj_reloadDataBlock"]; // KVO
-    objc_setAssociatedObject(self, &MJRefreshReloadDataBlockKey, mj_reloadDataBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    [self didChangeValueForKey:@"mj_reloadDataBlock"]; // KVO
-}
-
-- (void (^)(NSInteger))mj_reloadDataBlock
-{
-    return objc_getAssociatedObject(self, &MJRefreshReloadDataBlockKey);
-}
-
-- (void)executeReloadDataBlock
-{
-    !self.mj_reloadDataBlock ? : self.mj_reloadDataBlock(self.mj_totalDataCount);
-}
 @end
+//static const char MJRefreshReloadDataBlockKey = '\0';
+//- (void)setMj_reloadDataBlock:(void (^)(NSInteger))mj_reloadDataBlock
+//{
+//    [self willChangeValueForKey:@"mj_reloadDataBlock"]; // KVO
+//    objc_setAssociatedObject(self, &MJRefreshReloadDataBlockKey, mj_reloadDataBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+//    [self didChangeValueForKey:@"mj_reloadDataBlock"]; // KVO
+//}
+//
+//- (void (^)(NSInteger))mj_reloadDataBlock
+//{
+//    return objc_getAssociatedObject(self, &MJRefreshReloadDataBlockKey);
+//}
 
-@implementation UITableView (MJRefresh)
+//- (void)executeReloadDataBlock
+//{
+//    !self.mj_reloadDataBlock ? : self.mj_reloadDataBlock(self.mj_totalDataCount);
+//}
+//@end
+//
+//@implementation UITableView (MJRefresh)
+//
+//+ (void)load
+//{
+//    [self exchangeInstanceMethod1:@selector(reloadData) method2:@selector(mj_reloadData)];
+//}
+//
+//- (void)mj_reloadData
+//{
+//    [self mj_reloadData];
+//
+//    [self executeReloadDataBlock];
+//}
+//@end
 
-+ (void)load
-{
-    [self exchangeInstanceMethod1:@selector(reloadData) method2:@selector(mj_reloadData)];
-}
-
-- (void)mj_reloadData
-{
-    [self mj_reloadData];
-    
-    [self executeReloadDataBlock];
-}
-@end
-
-@implementation UICollectionView (MJRefresh)
-
-+ (void)load
-{
-    [self exchangeInstanceMethod1:@selector(reloadData) method2:@selector(mj_reloadData)];
-}
-
-- (void)mj_reloadData
-{
-    [self mj_reloadData];
-    
-    [self executeReloadDataBlock];
-}
-@end
+//@implementation UICollectionView (MJRefresh)
+//
+//+ (void)load
+//{
+//    [self exchangeInstanceMethod1:@selector(reloadData) method2:@selector(mj_reloadData)];
+//}
+//
+//- (void)mj_reloadData
+//{
+//    [self mj_reloadData];
+//
+//    [self executeReloadDataBlock];
+//}
+//@end
