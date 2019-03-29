@@ -85,6 +85,8 @@
     
     if (self.isRefreshingTitleHidden && state == MJRefreshStateRefreshing) {
         self.stateLabel.text = nil;
+    } else if (self.isNoDataTitleHidden && state == MJRefreshStateNoMoreData && self.scrollView.mj_totalDataCount == 0) {
+        self.stateLabel.text = nil;
     } else {
         self.stateLabel.text = self.stateTitles[@(state)];
     }

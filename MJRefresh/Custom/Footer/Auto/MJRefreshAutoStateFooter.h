@@ -17,6 +17,9 @@
 /** 设置state状态下的文字 */
 - (void)setTitle:(NSString *)title forState:(MJRefreshState)state;
 
+/** 第一次加载完成后，没有数据时是否隐藏状态文字 */
+@property (assign, nonatomic, getter=isNoDataTitleHidden) BOOL noDataTitleHidden;
+
 /** 隐藏刷新状态的文字 */
 @property (assign, nonatomic, getter=isRefreshingTitleHidden) BOOL refreshingTitleHidden;
 @end
