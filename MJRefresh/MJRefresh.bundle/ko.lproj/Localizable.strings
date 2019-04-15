@@ -11,6 +11,6 @@
 "MJRefreshBackFooterRefreshingText" = "로딩중...";
 "MJRefreshBackFooterNoMoreDataText" = "더이상 데이터 없음";
 
-"MJRefreshHeaderLastTimeText" = "마지막 업데이트:";
+"MJRefreshHeaderLastTimeText" = "마지막 업데이트: ";
 "MJRefreshHeaderDateTodayText" = "오늘";
 "MJRefreshHeaderNoneLastDateText" = "기록 없음";
