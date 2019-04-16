@@ -94,6 +94,14 @@
     } else if (self.state == MJRefreshStatePulling) {// 即将刷新 && 手松开
         // 开始刷新
         
+        /**
+         
+         已修复
+         Bug编号: #1262
+         Bug链接: https://github.com/CoderMJLee/MJRefresh/issues/1262
+        
+         */
+        
         if (self.window == nil) {
             
             [self beginRefreshing];
