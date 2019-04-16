@@ -93,7 +93,17 @@
         }
     } else if (self.state == MJRefreshStatePulling) {// 即将刷新 && 手松开
         // 开始刷新
-        [self beginRefreshing];
+        
+        if (self.window == nil) {
+            
+            [self beginRefreshing];
+            
+        } else {
+            
+            [self endRefreshing];
+            
+        }
+        
     } else if (pullingPercent < 1) {
         self.pullingPercent = pullingPercent;
     }
