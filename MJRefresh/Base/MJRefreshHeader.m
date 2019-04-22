@@ -154,17 +154,7 @@
     } else if (self.state == MJRefreshStatePulling) {// 即将刷新 && 手松开
         // 开始刷新
         
-        // fix https://github.com/CoderMJLee/MJRefresh/issues/1262
-        
-//        if (self.window == nil) {
-
-            [self beginRefreshing];
-//
-//        } else {
-//
-//            [self endRefreshing];
-//
-//        }
+        [self beginRefreshing];
     
     } else if (pullingPercent < 1) {
         self.pullingPercent = pullingPercent;
