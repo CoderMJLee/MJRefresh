@@ -93,6 +93,7 @@
 		2DB2EA271BECBE6700D58F6A /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB2EA121BECBE6700D58F6A /* UIScrollView+MJExtension.m */; };
 		2DB2EA281BECBE6700D58F6A /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB2EA141BECBE6700D58F6A /* UIScrollView+MJRefresh.m */; };
 		2DB2EA291BECBE6700D58F6A /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB2EA161BECBE6700D58F6A /* UIView+MJExtension.m */; };
+		4C1986F3226D9F6000371528 /* UIView+UIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1986F2226D9F6000371528 /* UIView+UIViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -211,6 +212,8 @@
 		2DB2EA141BECBE6700D58F6A /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		2DB2EA151BECBE6700D58F6A /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		2DB2EA161BECBE6700D58F6A /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
+		4C1986F1226D9F6000371528 /* UIView+UIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+UIViewController.h"; sourceTree = "<group>"; };
+		4C1986F2226D9F6000371528 /* UIView+UIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+UIViewController.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +244,8 @@
 		2D9BEADE1BB15F4A00AED473 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				4C1986F1226D9F6000371528 /* UIView+UIViewController.h */,
+				4C1986F2226D9F6000371528 /* UIView+UIViewController.m */,
 				2D9BEADF1BB15F4A00AED473 /* UIViewController+Example.h */,
 				2D9BEAE01BB15F4A00AED473 /* UIViewController+Example.m */,
 			);
@@ -591,6 +596,7 @@
 					};
 					2DA7F9241AA6B4C4005627AB = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 4AZP7YKZTS;
 					};
 					2DA7F93D1AA6B4C4005627AB = {
 						CreatedOnToolsVersion = 6.1;
@@ -603,6 +609,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -693,6 +700,7 @@
 				2DB2EA271BECBE6700D58F6A /* UIScrollView+MJExtension.m in Sources */,
 				2DB2EA1F1BECBE6700D58F6A /* MJRefreshBackGifFooter.m in Sources */,
 				2DB2EA1C1BECBE6700D58F6A /* MJRefreshAutoGifFooter.m in Sources */,
+				4C1986F3226D9F6000371528 /* UIView+UIViewController.m in Sources */,
 				2DB2EA231BECBE6700D58F6A /* MJRefreshNormalHeader.m in Sources */,
 				2DB2EA191BECBE6700D58F6A /* MJRefreshComponent.m in Sources */,
 				2D9BEB0E1BB15F4A00AED473 /* MJDIYBackFooter.m in Sources */,
@@ -925,7 +933,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 4AZP7YKZTS;
 				GCC_PREFIX_HEADER = MJRefreshExample/PrefixHeader.pch;
 				INFOPLIST_FILE = MJRefreshExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -940,7 +948,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 4AZP7YKZTS;
 				GCC_PREFIX_HEADER = MJRefreshExample/PrefixHeader.pch;
 				INFOPLIST_FILE = MJRefreshExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;

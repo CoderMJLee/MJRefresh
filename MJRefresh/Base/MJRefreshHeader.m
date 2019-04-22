@@ -8,12 +8,72 @@
 //
 
 #import "MJRefreshHeader.h"
+#import "UIView+UIViewController.h"
 
 @interface MJRefreshHeader()
 @property (assign, nonatomic) CGFloat insetTDelta;
 @end
 
 @implementation MJRefreshHeader
+// fix https://github.com/CoderMJLee/MJRefresh/issues/1267
+- (void)layoutSubviews{
+    
+    [super layoutSubviews];
+    
+    /// 父控件的控制器
+    if ([self.superview viewController] == nil) {
+        
+        return ;
+        
+    }
+    /// 父控件
+    UIScrollView *scrollView = (UIScrollView *)self.superview;
+    /// 状态栏的高度
+    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
+    /// 导航栏的高度
+    CGFloat navigationBarHeight = [self.superview viewController].navigationController.navigationBar.frame.size.height;
+    /// 竖直方向的偏移量
+    CGFloat scrollViewContentOffsetY = (rectStatus.size.height + navigationBarHeight);
+    
+    switch (self.state) {
+            // 默认状态
+        case MJRefreshStateIdle:
+        {
+            [UIView animateWithDuration: MJRefreshSlowAnimationDuration animations:^{
+                
+                [self setScrollView:scrollView AndContentInset: UIEdgeInsetsMake(0, 0, 0, 0) AndContentOffset: CGPointMake(0, -scrollViewContentOffsetY)];
+                
+            }];
+        }
+            break;
+            // 刷新中的状态
+        case MJRefreshStateRefreshing:
+        {
+            [self setScrollView:scrollView AndContentInset: UIEdgeInsetsMake(MJRefreshHeaderHeight, 0, 0, 0) AndContentOffset: CGPointMake(0, -(MJRefreshHeaderHeight + scrollViewContentOffsetY))];
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+}
+
+// MARK: - 设置父控件的contentInset和contentOffset
+/**
+ 设置父控件的contentInset和contentOffset
+ 
+ @param scrollView 父控件
+ @param contentInset contentInset
+ @param contentOffset contentOffset
+ */
+- (void)setScrollView: (UIScrollView *)scrollView AndContentInset: (UIEdgeInsets)contentInset AndContentOffset: (CGPoint) contentOffset{
+    
+    scrollView.contentInset = contentInset;
+    scrollView.contentOffset = contentOffset;
+    
+}
+
 #pragma mark - 构造方法
 + (instancetype)headerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock
 {
@@ -94,24 +154,18 @@
     } else if (self.state == MJRefreshStatePulling) {// 即将刷新 && 手松开
         // 开始刷新
         
-        /**
-         
-         已修复
-         Bug编号: #1262
-         Bug链接: https://github.com/CoderMJLee/MJRefresh/issues/1262
+        // fix https://github.com/CoderMJLee/MJRefresh/issues/1262
         
-         */
-        
-        if (self.window == nil) {
-            
+//        if (self.window == nil) {
+
             [self beginRefreshing];
-            
-        } else {
-            
-            [self endRefreshing];
-            
-        }
-        
+//
+//        } else {
+//
+//            [self endRefreshing];
+//
+//        }
+    
     } else if (pullingPercent < 1) {
         self.pullingPercent = pullingPercent;
     }
