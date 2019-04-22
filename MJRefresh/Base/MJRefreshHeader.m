@@ -16,15 +16,13 @@
 
 @implementation MJRefreshHeader
 // fix https://github.com/CoderMJLee/MJRefresh/issues/1267
-- (void)layoutSubviews{
+- (void)layoutSubviews {
     
     [super layoutSubviews];
     
     /// 父控件的控制器
     if ([self.superview viewController] == nil) {
-        
         return ;
-        
     }
     /// 父控件
     UIScrollView *scrollView = (UIScrollView *)self.superview;
@@ -36,27 +34,21 @@
     CGFloat scrollViewContentOffsetY = (rectStatus.size.height + navigationBarHeight);
     
     switch (self.state) {
-            // 默认状态
-        case MJRefreshStateIdle:
-        {
+        // 默认状态
+        case MJRefreshStateIdle: {
             [UIView animateWithDuration: MJRefreshSlowAnimationDuration animations:^{
-                
-                [self setScrollView:scrollView AndContentInset: UIEdgeInsetsMake(0, 0, 0, 0) AndContentOffset: CGPointMake(0, -scrollViewContentOffsetY)];
-                
+                [self setScrollView:scrollView contentInset: UIEdgeInsetsMake(0, 0, 0, 0) contentOffset: CGPointMake(0, -scrollViewContentOffsetY)];
             }];
         }
             break;
-            // 刷新中的状态
-        case MJRefreshStateRefreshing:
-        {
-            [self setScrollView:scrollView AndContentInset: UIEdgeInsetsMake(MJRefreshHeaderHeight, 0, 0, 0) AndContentOffset: CGPointMake(0, -(MJRefreshHeaderHeight + scrollViewContentOffsetY))];
+        // 刷新中的状态
+        case MJRefreshStateRefreshing: {
+            [self setScrollView:scrollView contentInset: UIEdgeInsetsMake(MJRefreshHeaderHeight, 0, 0, 0) contentOffset: CGPointMake(0, -(MJRefreshHeaderHeight + scrollViewContentOffsetY))];
         }
             break;
-            
         default:
             break;
     }
-    
 }
 
 // MARK: - 设置父控件的contentInset和contentOffset
@@ -67,11 +59,9 @@
  @param contentInset contentInset
  @param contentOffset contentOffset
  */
-- (void)setScrollView: (UIScrollView *)scrollView AndContentInset: (UIEdgeInsets)contentInset AndContentOffset: (CGPoint) contentOffset{
-    
+- (void)setScrollView:(UIScrollView *)scrollView contentInset:(UIEdgeInsets)contentInset contentOffset:(CGPoint) contentOffset{
     scrollView.contentInset = contentInset;
     scrollView.contentOffset = contentOffset;
-    
 }
 
 #pragma mark - 构造方法
