@@ -6,9 +6,9 @@
 //  Copyright © 2019 GongHe. All rights reserved.
 //
 
-#import "UIView+UIViewController.h"
+#import "UIView+GHUIViewController.h"
 
-@implementation UIView (UIViewController)
+@implementation UIView (GHUIViewController)
 
 // MARK: - 通过View获取View的Controller
 /**

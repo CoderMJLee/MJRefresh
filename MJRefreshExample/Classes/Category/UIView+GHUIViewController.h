@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIView (UIViewController)
+@interface UIView (GHUIViewController)
 
 // MAKR: - 通过View获取View的Controller
 - (UIViewController *)viewController;

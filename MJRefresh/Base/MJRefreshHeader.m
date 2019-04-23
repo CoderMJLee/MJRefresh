@@ -8,7 +8,7 @@
 //
 
 #import "MJRefreshHeader.h"
-#import "UIView+UIViewController.h"
+#import "UIView+GHUIViewController.h"
 
 @interface MJRefreshHeader()
 @property (assign, nonatomic) CGFloat insetTDelta;
@@ -21,33 +21,58 @@
     [super layoutSubviews];
     
     /// 父控件的控制器
-    if ([self.superview viewController] == nil) {
+    if ([self.scrollView viewController] == nil) {
         return ;
     }
-    /// 父控件
-    UIScrollView *scrollView = (UIScrollView *)self.superview;
-    /// 状态栏的高度
-    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
-    /// 导航栏的高度
-    CGFloat navigationBarHeight = [self.superview viewController].navigationController.navigationBar.frame.size.height;
-    /// 竖直方向的偏移量
-    CGFloat scrollViewContentOffsetY = (rectStatus.size.height + navigationBarHeight);
     
-    switch (self.state) {
-        // 默认状态
-        case MJRefreshStateIdle: {
-            [UIView animateWithDuration: MJRefreshSlowAnimationDuration animations:^{
-                [self setScrollView:scrollView contentInset: UIEdgeInsetsMake(0, 0, 0, 0) contentOffset: CGPointMake(0, -scrollViewContentOffsetY)];
-            }];
+    /// 状态栏的高度
+    CGFloat rectStatusHeight = 0;
+    if ([[UIApplication sharedApplication] isStatusBarHidden]) {
+        rectStatusHeight = 0;
+    } else {
+        rectStatusHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
+    }
+    
+    /// 导航栏的高度
+    CGFloat navigationBarHeight = 0;
+    if (self.scrollView.viewController.navigationController.navigationBar.hidden) {
+        navigationBarHeight = 0;
+    } else {
+        navigationBarHeight = [self.superview viewController].navigationController.navigationBar.frame.size.height;
+    }
+    
+    /// 竖直方向的偏移量
+    CGFloat scrollViewContentOffsetY = (rectStatusHeight + navigationBarHeight);
+    // 对应使用继承UITableViewController或者UICollectionViewController并且没有重写lauoutSubview修改默认的tableView或collectionView的Frame的情况
+    if (([[self.superview viewController] isKindOfClass: [UITableViewController class]] || [[self.superview viewController] isKindOfClass: [UICollectionViewController class]]) && self.scrollView.frame.origin.y == 0) {
+
+        switch (self.state) {
+            // 默认状态
+            case MJRefreshStateIdle: {
+                [UIView animateWithDuration: MJRefreshSlowAnimationDuration animations:^{
+                    [self setScrollView:self.scrollView contentInset: UIEdgeInsetsMake(0, 0, 0, 0) contentOffset: CGPointMake(0, -scrollViewContentOffsetY)];
+                }];
+            }
+                break;
+            // 刷新中的状态
+            case MJRefreshStateRefreshing: {
+                [self setScrollView:self.scrollView contentInset: UIEdgeInsetsMake(MJRefreshHeaderHeight, 0, 0, 0) contentOffset: CGPointMake(0, -(MJRefreshHeaderHeight + scrollViewContentOffsetY))];
+            }
+                break;
+            default:
+                break;
         }
-            break;
-        // 刷新中的状态
-        case MJRefreshStateRefreshing: {
-            [self setScrollView:scrollView contentInset: UIEdgeInsetsMake(MJRefreshHeaderHeight, 0, 0, 0) contentOffset: CGPointMake(0, -(MJRefreshHeaderHeight + scrollViewContentOffsetY))];
+    } else {
+        // 对应使用继承ViewController并且使用自定义的tableView并且使用Frame坐标
+        // 如果Y大于等于导航栏加状态栏, MJ坐标计算正常
+        if (!(self.scrollView.frame.origin.y < scrollViewContentOffsetY)) {
+            return ;
+        } else {
+            // 使用自定义TableView, 如果TableView的Y值小于scrollViewContentOffsetY,系统需要保证UI正常显示,所以会改变TableView的初始contentOffSet,然后导致MJ坐标计算错误.
+            // 当外界设置了错误的坐标,我们需要对Frame.origin.y的坐标进行修正(保证contentOffSet的正确),而不是使用contentOffSet修正
+            CGRect temRect = CGRectMake(self.scrollView.frame.origin.x, scrollViewContentOffsetY, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+            self.scrollView.frame = temRect;
         }
-            break;
-        default:
-            break;
     }
 }
 
