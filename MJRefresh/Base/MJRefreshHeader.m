@@ -120,11 +120,7 @@
         
         // 恢复inset和offset
         [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
-            if (!self.window) {
-                self.scrollView.mj_insetT = self.scrollViewOriginalInset.top;
-            } else {
-                self.scrollView.mj_insetT += self.insetTDelta;
-            }
+            self.scrollView.mj_insetT += self.insetTDelta;
             
             // 自动调整透明度
             if (self.isAutomaticallyChangeAlpha) self.alpha = 0.0;
