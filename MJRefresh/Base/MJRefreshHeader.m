@@ -48,12 +48,21 @@
     self.mj_y = - self.mj_h - self.ignoredScrollViewContentInsetTop;
 }
 
-- (void)willMoveToWindow:(UIWindow *)newWindow {
-    
-    if (!newWindow && self.isRefreshing) {
-        [self endRefreshing];
+- (void)resetInset {
+    if (@available(iOS 11.0, *)) {
+    } else {
+        // 如果 iOS 10 及以下系统在刷新时, push 新的 VC, 等待刷新完成后回来, 会导致顶部 Insets.top 异常, 不能 resetInset, 检查一下这种特殊情况
+        if (!self.window) { return; }
     }
+    
+    // sectionheader停留解决
+    CGFloat insetT = - self.scrollView.mj_offsetY > _scrollViewOriginalInset.top ? - self.scrollView.mj_offsetY : _scrollViewOriginalInset.top;
+    insetT = insetT > self.mj_h + _scrollViewOriginalInset.top ? self.mj_h + _scrollViewOriginalInset.top : insetT;
+    self.scrollView.mj_insetT = insetT;
+    
+    self.insetTDelta = _scrollViewOriginalInset.top - insetT;
 }
+
 
 - (void)scrollViewContentOffsetDidChange:(NSDictionary *)change
 {
@@ -61,15 +70,7 @@
     
     // 在刷新的refreshing状态
     if (self.state == MJRefreshStateRefreshing) {
-        // 暂时保留
-        if (self.window == nil) return;
-        
-        // sectionheader停留解决
-        CGFloat insetT = - self.scrollView.mj_offsetY > _scrollViewOriginalInset.top ? - self.scrollView.mj_offsetY : _scrollViewOriginalInset.top;
-        insetT = insetT > self.mj_h + _scrollViewOriginalInset.top ? self.mj_h + _scrollViewOriginalInset.top : insetT;
-        self.scrollView.mj_insetT = insetT;
-        
-        self.insetTDelta = _scrollViewOriginalInset.top - insetT;
+        [self resetInset];
         return;
     }
     
