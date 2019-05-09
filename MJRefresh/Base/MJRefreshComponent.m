@@ -250,7 +250,7 @@
     return label;
 }
 
-- (CGFloat)mj_textWith {
+- (CGFloat)mj_textWidth {
     CGFloat stringWidth = 0;
     CGSize size = CGSizeMake(MAXFLOAT, MAXFLOAT);
     if (self.text.length > 0) {
