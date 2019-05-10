@@ -62,6 +62,8 @@ typedef void (^MJRefreshComponentEndRefreshingCompletionBlock)(void);
 - (void)beginRefreshingWithCompletionBlock:(void (^)(void))completionBlock;
 /** 开始刷新后的回调(进入刷新状态后的回调) */
 @property (copy, nonatomic) MJRefreshComponentbeginRefreshingCompletionBlock beginRefreshingCompletionBlock;
+/** 带动画的结束刷新的回调 */
+@property (copy, nonatomic) MJRefreshComponentEndRefreshingCompletionBlock endRefreshingAnimateCompletionBlock;
 /** 结束刷新的回调 */
 @property (copy, nonatomic) MJRefreshComponentEndRefreshingCompletionBlock endRefreshingCompletionBlock;
 /** 结束刷新状态 */

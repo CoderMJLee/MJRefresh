@@ -91,6 +91,9 @@
             [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
                 self.scrollView.mj_insetB -= self.lastBottomDelta;
                 
+                if (self.endRefreshingAnimateCompletionBlock) {
+                    self.endRefreshingAnimateCompletionBlock();
+                }
                 // 自动调整透明度
                 if (self.isAutomaticallyChangeAlpha) self.alpha = 0.0;
             } completion:^(BOOL finished) {
