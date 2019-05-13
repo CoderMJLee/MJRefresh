@@ -65,7 +65,7 @@
     [super scrollViewContentSizeDidChange:change];
     
     // 设置位置
-    self.mj_y = self.scrollView.mj_contentH;
+    self.mj_y = self.scrollView.mj_contentH + self.ignoredScrollViewContentInsetBottom;
 }
 
 - (void)scrollViewContentOffsetDidChange:(NSDictionary *)change
