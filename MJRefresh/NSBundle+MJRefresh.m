@@ -56,6 +56,10 @@
             }
         } else if ([language hasPrefix:@"ko"]) {
             language = @"ko";
+        } else if ([language hasPrefix:@"ru"]) {
+            language = @"ru";
+        } else if ([language hasPrefix:@"uk"]) {
+            language = @"uk";
         } else {
             language = @"en";
         }
