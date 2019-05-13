@@ -41,22 +41,6 @@
 //    self.automaticallyHidden = NO;
 }
 
-//- (void)willMoveToSuperview:(UIView *)newSuperview
-//{
-//    [super willMoveToSuperview:newSuperview];
-//
-//    if (newSuperview) {
-//        // 监听scrollView数据的变化
-//        if ([self.scrollView isKindOfClass:[UITableView class]] || [self.scrollView isKindOfClass:[UICollectionView class]]) {
-//            [self.scrollView setMj_reloadDataBlock:^(NSInteger totalDataCount) {
-//                if (self.isAutomaticallyHidden) {
-//                    self.hidden = (totalDataCount == 0);
-//                }
-//            }];
-//        }
-//    }
-//}
-
 #pragma mark - 公共方法
 - (void)endRefreshingWithNoMoreData
 {

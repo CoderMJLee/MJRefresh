@@ -345,7 +345,7 @@ self.webView.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingB
 
 ## Remind
 * ARC
-* iOS>=6.0
+* iOS>=8.0
 * iPhone \ iPad screen anyway
 
 ## <a id="Hope"></a>Hope
