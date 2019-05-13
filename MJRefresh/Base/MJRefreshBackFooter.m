@@ -7,6 +7,7 @@
 //
 
 #import "MJRefreshBackFooter.h"
+#import "MJRefreshConfig.h"
 
 @interface MJRefreshBackFooter()
 @property (assign, nonatomic) NSInteger lastRefreshCount;
@@ -84,11 +85,15 @@
 {
     MJRefreshCheckState
     
+    MJRefreshConfig *config = MJRefreshConfig.defaultConfig;
+    NSTimeInterval slowDuration = config.slowAnimationDuration;
+    NSTimeInterval fastDuration = config.fastAnimationDuration;
+    
     // 根据状态来设置属性
     if (state == MJRefreshStateNoMoreData || state == MJRefreshStateIdle) {
         // 刷新完毕
         if (MJRefreshStateRefreshing == oldState) {
-            [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
+            [UIView animateWithDuration:slowDuration animations:^{
                 self.scrollView.mj_insetB -= self.lastBottomDelta;
                 
                 if (self.endRefreshingAnimateCompletionBlock) {
@@ -114,7 +119,7 @@
         // 记录刷新前的数量
         self.lastRefreshCount = self.scrollView.mj_totalDataCount;
         
-        [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
+        [UIView animateWithDuration:fastDuration animations:^{
             CGFloat bottom = self.mj_h + self.scrollViewOriginalInset.bottom;
             CGFloat deltaH = [self heightForContentBreakView];
             if (deltaH < 0) { // 如果内容高度小于view的高度

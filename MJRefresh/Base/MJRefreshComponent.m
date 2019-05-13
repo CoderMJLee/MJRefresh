@@ -9,6 +9,7 @@
 
 #import "MJRefreshComponent.h"
 #import "MJRefreshConst.h"
+#import "MJRefreshConfig.h"
 
 @interface MJRefreshComponent()
 @property (strong, nonatomic) UIPanGestureRecognizer *pan;
@@ -142,7 +143,8 @@
 #pragma mark 进入刷新状态
 - (void)beginRefreshing
 {
-    [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
+    NSTimeInterval fastDuration = MJRefreshConfig.defaultConfig.fastAnimationDuration;
+    [UIView animateWithDuration:fastDuration animations:^{
         self.alpha = 1.0;
     }];
     self.pullingPercent = 1.0;

@@ -8,6 +8,7 @@
 //
 
 #import "MJRefreshHeader.h"
+#import "MJRefreshConfig.h"
 
 @interface MJRefreshHeader()
 @property (assign, nonatomic) CGFloat insetTDelta;
@@ -37,7 +38,7 @@
     self.lastUpdatedTimeKey = MJRefreshHeaderLastUpdatedTimeKey;
     
     // 设置高度
-    self.mj_h = MJRefreshHeaderHeight;
+    self.mj_h = MJRefreshConfig.defaultConfig.headerHeight;
 }
 
 - (void)placeSubviews
@@ -111,6 +112,10 @@
 {
     MJRefreshCheckState
     
+    MJRefreshConfig *config = MJRefreshConfig.defaultConfig;
+    NSTimeInterval slowDuration = config.slowAnimationDuration;
+    NSTimeInterval fastDuration = config.fastAnimationDuration;
+    
     // 根据状态做事情
     if (state == MJRefreshStateIdle) {
         if (oldState != MJRefreshStateRefreshing) return;
@@ -120,7 +125,7 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         
         // 恢复inset和offset
-        [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
+        [UIView animateWithDuration:slowDuration animations:^{
             self.scrollView.mj_insetT += self.insetTDelta;
             
             if (self.endRefreshingAnimateCompletionBlock) {
@@ -137,7 +142,7 @@
         }];
     } else if (state == MJRefreshStateRefreshing) {
         MJRefreshDispatchAsyncOnMainQueue({
-            [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
+            [UIView animateWithDuration:fastDuration animations:^{
                 if (self.scrollView.panGestureRecognizer.state != UIGestureRecognizerStateCancelled) {
                     CGFloat top = self.scrollViewOriginalInset.top + self.mj_h;
                     // 增加滚动区域top

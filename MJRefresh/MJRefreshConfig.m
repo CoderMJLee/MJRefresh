@@ -19,6 +19,16 @@ static MJRefreshConfig *mj_RefreshConfig = nil;
     return mj_RefreshConfig;
 }
 
-
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _headerHeight = 54;
+        _footerHeight = 44;
+        _fastAnimationDuration = 0.25;
+        _slowAnimationDuration = 0.4;
+    }
+    
+    return self;
+}
 
 @end

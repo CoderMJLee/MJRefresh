@@ -9,6 +9,7 @@
 
 #import "MJRefreshFooter.h"
 #include "UIScrollView+MJRefresh.h"
+#import "MJRefreshConfig.h"
 
 @interface MJRefreshFooter()
 
@@ -35,7 +36,7 @@
     [super prepare];
     
     // 设置自己的高度
-    self.mj_h = MJRefreshFooterHeight;
+    self.mj_h = MJRefreshConfig.defaultConfig.footerHeight;
     
     // 默认不会自动隐藏
 //    self.automaticallyHidden = NO;
