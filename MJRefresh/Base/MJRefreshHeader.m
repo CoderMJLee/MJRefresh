@@ -14,6 +14,15 @@
 @end
 
 @implementation MJRefreshHeader
+
+bool MJSystemVersionIsIOS11OrNewer(void) {
+    if (@available(iOS 11.0, *)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 #pragma mark - 构造方法
 + (instancetype)headerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock
 {
@@ -21,6 +30,7 @@
     cmp.refreshingBlock = refreshingBlock;
     return cmp;
 }
+
 + (instancetype)headerWithRefreshingTarget:(id)target refreshingAction:(SEL)action
 {
     MJRefreshHeader *cmp = [[self alloc] init];
@@ -49,10 +59,9 @@
 }
 
 - (void)resetInset {
-    if (@available(iOS 11.0, *)) {
-    } else {
+    if (!MJSystemVersionIsIOS11OrNewer() && !self.window) {
         // 如果 iOS 10 及以下系统在刷新时, push 新的 VC, 等待刷新完成后回来, 会导致顶部 Insets.top 异常, 不能 resetInset, 检查一下这种特殊情况
-        if (!self.window) { return; }
+        return;
     }
     
     // sectionheader停留解决
@@ -62,7 +71,6 @@
     
     self.insetTDelta = _scrollViewOriginalInset.top - insetT;
 }
-
 
 - (void)scrollViewContentOffsetDidChange:(NSDictionary *)change
 {
