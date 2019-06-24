@@ -1,17 +1,16 @@
 ---
 name: Bug上报
 about: 提交Bug让框架更加健壮
-title: "[BUG]"
+title: ''
 labels: bug
-assignees: wolfcon, kinarob
+assignees: ''
 
 ---
 
 **描述bug**
 清晰简单地描述这个bug是啥
 
-**怎么样会重现这个bug**
-按照步骤就会重现这个bug:
+**怎么样重现这个bug**
 1. 显示哪个页面
 2. 点击哪个位置
 3. 滚动到哪个位置
