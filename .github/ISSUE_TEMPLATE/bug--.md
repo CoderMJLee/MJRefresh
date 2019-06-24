@@ -1,9 +1,9 @@
 ---
 name: Bug上报
 about: 提交Bug让框架更加健壮
-title: ''
-labels: ''
-assignees: ''
+title: "[BUG]"
+labels: bug
+assignees: wolfcon, kinarob
 
 ---
 

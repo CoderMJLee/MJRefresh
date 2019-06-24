@@ -1,9 +1,9 @@
 ---
 name: Feature建议
 about: 为框架提供新功能建议
-title: ''
-labels: ''
-assignees: ''
+title: "[功能建议]"
+labels: feature
+assignees: wolfcon, kinarob
 
 ---
 
