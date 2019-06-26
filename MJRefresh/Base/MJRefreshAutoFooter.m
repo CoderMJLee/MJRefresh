@@ -127,6 +127,23 @@
         [self executeRefreshingCallback];
     } else if (state == MJRefreshStateNoMoreData || state == MJRefreshStateIdle) {
         if (MJRefreshStateRefreshing == oldState) {
+            if (self.scrollView.pagingEnabled) {
+                CGPoint offset = self.scrollView.contentOffset;
+                offset.y -= self.scrollView.mj_insetB;
+                [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
+                    self.scrollView.contentOffset = offset;
+                    
+                    if (self.endRefreshingAnimateCompletionBlock) {
+                        self.endRefreshingAnimateCompletionBlock();
+                    }
+                } completion:^(BOOL finished) {
+                    if (self.endRefreshingCompletionBlock) {
+                        self.endRefreshingCompletionBlock();
+                    }
+                }];
+                return;
+            }
+            
             if (self.endRefreshingCompletionBlock) {
                 self.endRefreshingCompletionBlock();
             }
