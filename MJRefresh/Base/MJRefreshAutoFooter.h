@@ -20,4 +20,8 @@
 
 /** 是否每一次拖拽只发一次请求 */
 @property (assign, nonatomic, getter=isOnlyRefreshPerDrag) BOOL onlyRefreshPerDrag;
+
+/** 是否通过点击 footer 触发的刷新 */
+@property (assign, nonatomic, getter=isTriggeredByTapGesture) BOOL triggeredByTapGesture;
+
 @end
