@@ -11,7 +11,7 @@
 
 @interface MJRefreshHeader()
 @property (assign, nonatomic) CGFloat insetTDelta;
-@property (assign, nonatomic) BOOL isHapticTriggered;
+@property (assign, nonatomic, getter= isHapticTriggered) BOOL hapticTriggered;
 @end
 
 @implementation MJRefreshHeader
@@ -89,8 +89,8 @@
             // 转为即将刷新状态
             self.state = MJRefreshStatePulling;
             if (@available(iOS 10.0, *)) {
-                if (self.enableHapticFeedback && !self.isHapticTriggered) {
-                    self.isHapticTriggered = YES;
+                if (self.hapticFeedbackEnabled && !self.hapticTriggered) {
+                    self.hapticTriggered = YES;
                     UIImpactFeedbackGenerator *generator = [[UIImpactFeedbackGenerator alloc] initWithStyle: UIImpactFeedbackStyleLight];
                     [generator impactOccurred];
                 }
@@ -102,10 +102,10 @@
     } else if (self.state == MJRefreshStatePulling) {// 即将刷新 && 手松开
         // 开始刷新
         [self beginRefreshing];
-        self.isHapticTriggered = NO;
+        self.hapticTriggered = NO;
     } else if (pullingPercent < 1) {
         self.pullingPercent = pullingPercent;
-        self.isHapticTriggered = NO;
+        self.hapticTriggered = NO;
     }
 }
 

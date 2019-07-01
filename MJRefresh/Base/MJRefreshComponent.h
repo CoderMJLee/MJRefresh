@@ -100,7 +100,7 @@ typedef void (^MJRefreshComponentEndRefreshingCompletionBlock)(void);
 /** 根据拖拽比例自动切换透明度 */
 @property (assign, nonatomic, getter=isAutomaticallyChangeAlpha) BOOL automaticallyChangeAlpha;
 /** 是否開啟觸動回饋 */
-@property (assign, nonatomic) BOOL enableHapticFeedback;
+@property (assign, nonatomic, getter=isHapticFeedbackEnabled) BOOL hapticFeedbackEnabled;
 @end
 
 @interface UILabel(MJRefresh)

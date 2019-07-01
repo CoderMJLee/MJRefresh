@@ -25,7 +25,7 @@
         // 默认是普通状态
         self.state = MJRefreshStateIdle;
         // 默認開啟觸動回饋
-        self.enableHapticFeedback = YES;
+        self.hapticFeedbackEnabled = YES;
     }
     return self;
 }
