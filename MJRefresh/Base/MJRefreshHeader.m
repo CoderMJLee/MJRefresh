@@ -39,6 +39,9 @@
     
     // 设置高度
     self.mj_h = MJRefreshHeaderHeight;
+    
+    // 默認開啟觸動回饋
+    self.hapticFeedbackEnabled = NO;
 }
 
 - (void)placeSubviews

@@ -39,6 +39,9 @@
     
     // 默认不会自动隐藏
     self.automaticallyHidden = NO;
+    
+    // 默認開啟觸動回饋
+    self.hapticFeedbackEnabled = NO;
 }
 
 - (void)willMoveToSuperview:(UIView *)newSuperview

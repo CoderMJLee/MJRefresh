@@ -22,4 +22,7 @@
 
 /** 忽略多少scrollView的contentInset的top */
 @property (assign, nonatomic) CGFloat ignoredScrollViewContentInsetTop;
+
+/** 是否開啟觸動回饋 */
+@property (assign, nonatomic, getter=isHapticFeedbackEnabled) BOOL hapticFeedbackEnabled NS_AVAILABLE_IOS(10_0);
 @end
