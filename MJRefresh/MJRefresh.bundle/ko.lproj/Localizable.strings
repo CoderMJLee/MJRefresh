@@ -1,0 +1,16 @@
+"MJRefreshHeaderIdleText" = "아래로 당겨 새로고침";
+"MJRefreshHeaderPullingText" = "놓으면 새로고침";
+"MJRefreshHeaderRefreshingText" = "로딩중...";
+
+"MJRefreshAutoFooterIdleText" = "탭 또는 위로 당겨 로드함";
+"MJRefreshAutoFooterRefreshingText" = "로딩중...";
+"MJRefreshAutoFooterNoMoreDataText" = "더이상 데이터 없음";
+
+"MJRefreshBackFooterIdleText" = "위로 당겨 더 로드 가능";
+"MJRefreshBackFooterPullingText" = "놓으면 더 로드됨.";
+"MJRefreshBackFooterRefreshingText" = "로딩중...";
+"MJRefreshBackFooterNoMoreDataText" = "더이상 데이터 없음";
+
+"MJRefreshHeaderLastTimeText" = "마지막 업데이트: ";
+"MJRefreshHeaderDateTodayText" = "오늘";
+"MJRefreshHeaderNoneLastDateText" = "기록 없음";

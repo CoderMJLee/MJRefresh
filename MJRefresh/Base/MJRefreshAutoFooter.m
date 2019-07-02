@@ -57,7 +57,7 @@
     self.automaticallyRefresh = YES;
     
     // 默认是当offset达到条件就发送请求（可连续）
-    self.onlyRefreshPerDrag = NO;
+    self.onlyRefreshPerDrag = YES;
 }
 
 - (void)scrollViewContentSizeDidChange:(NSDictionary *)change
@@ -65,7 +65,7 @@
     [super scrollViewContentSizeDidChange:change];
     
     // 设置位置
-    self.mj_y = self.scrollView.mj_contentH;
+    self.mj_y = self.scrollView.mj_contentH + self.ignoredScrollViewContentInsetBottom;
 }
 
 - (void)scrollViewContentOffsetDidChange:(NSDictionary *)change

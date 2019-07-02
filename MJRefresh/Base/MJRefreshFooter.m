@@ -37,35 +37,17 @@
     // 设置自己的高度
     self.mj_h = MJRefreshFooterHeight;
     
-    // 默认不会自动隐藏
-    self.automaticallyHidden = NO;
-    
-    // 默認開啟觸動回饋
+    // 默認關閉觸動回饋
     self.hapticFeedbackEnabled = NO;
-}
 
-- (void)willMoveToSuperview:(UIView *)newSuperview
-{
-    [super willMoveToSuperview:newSuperview];
-    
-    if (newSuperview) {
-        // 监听scrollView数据的变化
-        if ([self.scrollView isKindOfClass:[UITableView class]] || [self.scrollView isKindOfClass:[UICollectionView class]]) {
-            [self.scrollView setMj_reloadDataBlock:^(NSInteger totalDataCount) {
-                if (self.isAutomaticallyHidden) {
-                    self.hidden = (totalDataCount == 0);
-                }
-            }];
-        }
-    }
+    // 默认不会自动隐藏
+//    self.automaticallyHidden = NO;
 }
 
 #pragma mark - 公共方法
 - (void)endRefreshingWithNoMoreData
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.state = MJRefreshStateNoMoreData;
-    });
+    MJRefreshDispatchAsyncOnMainQueue(self.state = MJRefreshStateNoMoreData;)
 }
 
 - (void)noticeNoMoreData
@@ -75,9 +57,7 @@
 
 - (void)resetNoMoreData
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.state = MJRefreshStateIdle;
-    });
+    MJRefreshDispatchAsyncOnMainQueue(self.state = MJRefreshStateIdle;)
 }
 
 - (void)setAutomaticallyHidden:(BOOL)automaticallyHidden

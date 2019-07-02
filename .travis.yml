@@ -1,0 +1,17 @@
+language: objective-c
+xcode_project: MJRefreshExample.xcodeproj
+xcode_scheme: MJRefresh
+
+env:
+  global:
+    - FRAMEWORK_NAME=MJRefresh
+before_install:
+  - gem install xcpretty
+  
+script:
+  - xcodebuild -project $xcode_project -scheme $FRAMEWORK_NAME build | xcpretty
+  - pod lib lint
+  - carthage build --no-skip-current
+
+notifications:
+  email: false

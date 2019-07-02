@@ -22,5 +22,5 @@
 
 #pragma mark - other
 - (NSInteger)mj_totalDataCount;
-@property (copy, nonatomic) void (^mj_reloadDataBlock)(NSInteger totalDataCount);
+
 @end

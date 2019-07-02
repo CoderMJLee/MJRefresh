@@ -8,6 +8,7 @@
 
 #import "NSBundle+MJRefresh.h"
 #import "MJRefreshComponent.h"
+#import "MJRefreshConfig.h"
 
 @implementation NSBundle (MJRefresh)
 + (instancetype)mj_refreshBundle
@@ -38,8 +39,13 @@
 {
     static NSBundle *bundle = nil;
     if (bundle == nil) {
-        // （iOS获取的语言字符串比较不稳定）目前框架只处理en、zh-Hans、zh-Hant三种情况，其他按照系统默认处理
-        NSString *language = [NSLocale preferredLanguages].firstObject;
+        NSString *language = MJRefreshConfig.defaultConfig.languageCode;
+        // 如果配置中没有配置语言
+        if (!language) {
+            // （iOS获取的语言字符串比较不稳定）目前框架只处理en、zh-Hans、zh-Hant三种情况，其他按照系统默认处理
+            language = [NSLocale preferredLanguages].firstObject;
+        }
+        
         if ([language hasPrefix:@"en"]) {
             language = @"en";
         } else if ([language hasPrefix:@"zh"]) {
@@ -48,6 +54,12 @@
             } else { // zh-Hant\zh-HK\zh-TW
                 language = @"zh-Hant"; // 繁體中文
             }
+        } else if ([language hasPrefix:@"ko"]) {
+            language = @"ko";
+        } else if ([language hasPrefix:@"ru"]) {
+            language = @"ru";
+        } else if ([language hasPrefix:@"uk"]) {
+            language = @"uk";
         } else {
             language = @"en";
         }

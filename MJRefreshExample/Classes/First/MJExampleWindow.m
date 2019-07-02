@@ -18,9 +18,12 @@ static UIWindow *window_;
     CGFloat width = 150;
     CGFloat x = [UIScreen mainScreen].bounds.size.width - width - 10;
     CGFloat y = 0;
-    if ([UIScreen mainScreen].bounds.size.height == 812) {
-        y = 33;
+    
+    if (@available(iOS 11.0, *)) {
+        UIEdgeInsets safeInsets = UIApplication.sharedApplication.windows.firstObject.safeAreaInsets;
+        y = safeInsets.top;
     }
+    
     window_.frame = CGRectMake(x, y, width, 25);
     window_.windowLevel = UIWindowLevelAlert;
     window_.hidden = NO;
