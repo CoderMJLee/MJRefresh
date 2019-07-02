@@ -76,7 +76,7 @@ static NSString *const MJExample30 = @"UIWebView";
     // 设置自动切换透明度(在导航栏下面自动隐藏)
     tableView.mj_header.automaticallyChangeAlpha = YES;
     
-    // 設置開啟下拉震動回饋
+    // 設置開啟下拉震動回饋（僅支援iOS 10以上&有Taptic Engine的機種）
     tableView.mj_header.hapticFeedbackEnabled = YES;
     
     // 上拉刷新

@@ -38,7 +38,9 @@
     self.mj_h = MJRefreshFooterHeight;
     
     // 默認關閉觸動回饋
-    self.hapticFeedbackEnabled = NO;
+    if (@available(iOS 10.0, *)) {
+        self.hapticFeedbackEnabled = NO;
+    }
 
     // 默认不会自动隐藏
 //    self.automaticallyHidden = NO;

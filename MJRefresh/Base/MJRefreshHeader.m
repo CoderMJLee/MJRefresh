@@ -40,8 +40,10 @@
     // 设置高度
     self.mj_h = MJRefreshHeaderHeight;
     
-    // 默認開啟觸動回饋
-    self.hapticFeedbackEnabled = NO;
+    // 默認關閉觸動回饋
+    if (@available(iOS 10.0, *)) {
+        self.hapticFeedbackEnabled = NO;
+    }
 }
 
 - (void)placeSubviews
