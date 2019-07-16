@@ -31,7 +31,7 @@ typedef NS_ENUM(NSInteger, MJRefreshState) {
 /** 进入刷新状态的回调 */
 typedef void (^MJRefreshComponentRefreshingBlock)(void);
 /** 开始刷新后的回调(进入刷新状态后的回调) */
-typedef void (^MJRefreshComponentbeginRefreshingCompletionBlock)(void);
+typedef void (^MJRefreshComponentBeginRefreshingCompletionBlock)(void);
 /** 结束刷新后的回调 */
 typedef void (^MJRefreshComponentEndRefreshingCompletionBlock)(void);
 
@@ -61,7 +61,7 @@ typedef void (^MJRefreshComponentEndRefreshingCompletionBlock)(void);
 - (void)beginRefreshing;
 - (void)beginRefreshingWithCompletionBlock:(void (^)(void))completionBlock;
 /** 开始刷新后的回调(进入刷新状态后的回调) */
-@property (copy, nonatomic) MJRefreshComponentbeginRefreshingCompletionBlock beginRefreshingCompletionBlock;
+@property (copy, nonatomic) MJRefreshComponentBeginRefreshingCompletionBlock beginRefreshingCompletionBlock;
 /** 带动画的结束刷新的回调 */
 @property (copy, nonatomic) MJRefreshComponentEndRefreshingCompletionBlock endRefreshingAnimateCompletionBlock;
 /** 结束刷新的回调 */
