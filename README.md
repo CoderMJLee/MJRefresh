@@ -1,7 +1,5 @@
-![(logo)](http://images.cnitblog.com/blog2015/497279/201505/051004492043385.png)
-
 ## MJRefresh
-
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 ![podversion](https://img.shields.io/cocoapods/v/MJRefresh.svg)
 
 * An easy way to use pull-to-refresh
