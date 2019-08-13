@@ -81,6 +81,7 @@
             CGPoint old = [change[@"old"] CGPointValue];
             CGPoint new = [change[@"new"] CGPointValue];
             if (new.y <= old.y) return;
+            if (new.y <= 0) return;
             
             // 当底部刷新控件完全出现时，才刷新
             [self beginRefreshing];
