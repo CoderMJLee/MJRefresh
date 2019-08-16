@@ -137,13 +137,13 @@
         }];
     } else if (state == MJRefreshStateRefreshing) {
         CGFloat top = self.scrollViewOriginalInset.top + self.mj_h;
-        // 增加滚动区域top
-        self.scrollView.mj_insetT = top;
-        // 设置滚动位置
         CGPoint offset = self.scrollView.contentOffset;
         offset.y = -top;
         [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
             if (self.scrollView.panGestureRecognizer.state != UIGestureRecognizerStateCancelled) {
+                // 增加滚动区域top
+                self.scrollView.mj_insetT = top;
+                // 设置滚动位置
                 [self.scrollView setContentOffset:offset animated:NO];
             }
         } completion:^(BOOL finished) {
