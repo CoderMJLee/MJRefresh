@@ -91,7 +91,7 @@
                 self.loadingView.alpha = 0.0;
             } completion:^(BOOL finished) {
                 // 防止动画结束后，状态已经不是MJRefreshStateIdle
-                if (state != MJRefreshStateIdle) return;
+                if (self.state != MJRefreshStateIdle) return;
                 
                 self.loadingView.alpha = 1.0;
                 [self.loadingView stopAnimating];
