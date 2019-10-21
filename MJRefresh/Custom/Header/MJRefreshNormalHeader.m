@@ -42,6 +42,7 @@
 {
     _activityIndicatorViewStyle = activityIndicatorViewStyle;
     
+    [self.loadingView removeFromSuperview];
     self.loadingView = nil;
     [self setNeedsLayout];
 }
@@ -51,7 +52,11 @@
 {
     [super prepare];
     
-    _activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    if (@available(iOS 13.0, *)) {
+        _activityIndicatorViewStyle = UIActivityIndicatorViewStyleMedium;
+    } else {
+        _activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    }
 }
 
 - (void)placeSubviews

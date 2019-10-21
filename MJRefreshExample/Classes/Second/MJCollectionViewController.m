@@ -100,7 +100,6 @@ static NSString *const MJCollectionViewCellIdentifier = @"color";
         [self performSelector:NSSelectorFromString(self.method) withObject:nil];
                                  );
     
-    self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:MJCollectionViewCellIdentifier];
 }
 
