@@ -112,14 +112,11 @@
 
 - (void)beginRefreshing
 {
-    if (!self.isOneNewPan && self.isOnlyRefreshPerDrag && !self.isTriggeredByTapGesture) {
-        return;
-    }
+    if (!self.isOneNewPan && self.isOnlyRefreshPerDrag) return;
     
     [super beginRefreshing];
     
     self.oneNewPan = NO;
-    self.triggeredByTapGesture = NO;
 }
 
 - (void)setState:(MJRefreshState)state
