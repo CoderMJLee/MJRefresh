@@ -53,6 +53,7 @@
     
     UILabel *warningLabel = [[UILabel alloc] initWithFrame:CGRectMake(size.width - 210, size.height - 120, 200, 50)];
     warningLabel.text = @"注意，这不是原生界面，是个网页：http://weibo.com/excepptions";
+    warningLabel.adjustsFontSizeToFitWidth = YES;
     warningLabel.textColor = UIColor.blackColor;
     warningLabel.backgroundColor = [UIColor.lightGrayColor colorWithAlphaComponent:0.3];
     warningLabel.numberOfLines = 0;
