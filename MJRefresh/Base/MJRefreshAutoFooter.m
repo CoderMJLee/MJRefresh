@@ -116,14 +116,8 @@
         }
             break;
             
-//        case UIGestureRecognizerStateCancelled:
-//        case UIGestureRecognizerStateFailed: {
-//            [self resetTriggerTimes];
-//        }
-//            break;
         case UIGestureRecognizerStateBegan: {
             [self resetTriggerTimes];
-            NSLog(@"1111");
         }
             break;
             
