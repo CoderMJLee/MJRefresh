@@ -20,11 +20,11 @@ NS_ASSUME_NONNULL_BEGIN
 /** 当底部控件出现多少时就自动刷新(默认为1.0，也就是底部控件完全出现时，才会自动刷新) */
 @property (assign, nonatomic) CGFloat triggerAutomaticallyRefreshPercent;
 
-/** 是否每一次拖拽只发一次请求 */
-@property (assign, nonatomic, getter=isOnlyRefreshPerDrag) BOOL onlyRefreshPerDrag;
-
-/** 在触发开始刷新前的刷新忽略逻辑, 默认由 isOnlyRefreshPerDrag 和 新手势决定, 用于特殊控制逻辑, 如果不清楚机制, 请勿使用 */
-- (BOOL)ignoreRefreshAction NS_REQUIRES_SUPER;
+/** 自动触发次数, 默认为 1, 仅在拖拽 ScrollView 时才生效,
+ 
+ 如果为 -1, 则为无限触发
+ */
+@property (nonatomic) NSInteger autoTriggerTimes;
 @end
 
 NS_ASSUME_NONNULL_END

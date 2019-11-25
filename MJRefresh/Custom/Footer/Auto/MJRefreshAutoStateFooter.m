@@ -15,8 +15,6 @@
 }
 /** 所有状态对应的文字 */
 @property (strong, nonatomic) NSMutableDictionary *stateTitles;
-/** 用于判断点击 Label 触发特殊的刷新逻辑 */
-@property (assign, nonatomic) BOOL labelIsTrigger;
 @end
 
 @implementation MJRefreshAutoStateFooter
@@ -45,17 +43,11 @@
     self.stateLabel.text = self.stateTitles[@(self.state)];
 }
 
-- (BOOL)ignoreRefreshAction {
-    return !self.labelIsTrigger && [super ignoreRefreshAction];
-}
-
 #pragma mark - 私有方法
 - (void)stateLabelClick
 {
     if (self.state == MJRefreshStateIdle) {
-        self.labelIsTrigger = YES;
         [self beginRefreshing];
-        self.labelIsTrigger = NO;
     }
 }
 

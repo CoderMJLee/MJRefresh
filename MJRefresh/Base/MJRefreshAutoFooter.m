@@ -10,7 +10,8 @@
 
 @interface MJRefreshAutoFooter()
 /** 一个新的拖拽 */
-@property (assign, nonatomic, getter=isOneNewPan) BOOL oneNewPan;
+@property (nonatomic) BOOL triggerByDrag;
+@property (nonatomic) NSInteger leftTriggerTimes;
 @end
 
 @implementation MJRefreshAutoFooter
@@ -56,8 +57,7 @@
     // 设置为默认状态
     self.automaticallyRefresh = YES;
     
-    // 默认是当offset达到条件就发送请求（可连续）
-    self.onlyRefreshPerDrag = YES;
+    self.autoTriggerTimes = 1;
 }
 
 - (void)scrollViewContentSizeDidChange:(NSDictionary *)change
@@ -82,6 +82,9 @@
             CGPoint new = [change[@"new"] CGPointValue];
             if (new.y <= old.y) return;
             
+            if (_scrollView.isDragging) {
+                self.triggerByDrag = YES;
+            }
             // 当底部刷新控件完全出现时，才刷新
             [self beginRefreshing];
         }
@@ -101,23 +104,20 @@
         case UIGestureRecognizerStateEnded: {
             if (_scrollView.mj_insetT + _scrollView.mj_contentH <= _scrollView.mj_h) {  // 不够一个屏幕
                 if (_scrollView.mj_offsetY >= - _scrollView.mj_insetT) { // 向上拽
+                    self.triggerByDrag = YES;
                     [self beginRefreshing];
                 }
             } else { // 超出一个屏幕
                 if (_scrollView.mj_offsetY >= _scrollView.mj_contentH + _scrollView.mj_insetB - _scrollView.mj_h) {
+                    self.triggerByDrag = YES;
                     [self beginRefreshing];
                 }
             }
-        }// ‼️注意: 这里没有 break; fallthrough 执行重置 oneNewPan 语句 (Ended & Canceled & Failed)
-            
-        case UIGestureRecognizerStateCancelled:
-        case UIGestureRecognizerStateFailed: {
-            self.oneNewPan = NO;
         }
             break;
             
         case UIGestureRecognizerStateBegan: {
-            self.oneNewPan = YES;
+            [self resetTriggerTimes];
         }
             break;
             
@@ -126,13 +126,15 @@
     }
 }
 
-- (BOOL)ignoreRefreshAction {
-    return !self.isOneNewPan && self.isOnlyRefreshPerDrag;
+- (BOOL)unlimitedTrigger {
+    return self.leftTriggerTimes == -1;
 }
 
 - (void)beginRefreshing
 {
-    if ([self ignoreRefreshAction]) return;
+    if (self.triggerByDrag && self.leftTriggerTimes <= 0 && !self.unlimitedTrigger) {
+        return;
+    }
     
     [super beginRefreshing];
 }
@@ -144,12 +146,23 @@
     if (state == MJRefreshStateRefreshing) {
         [self executeRefreshingCallback];
     } else if (state == MJRefreshStateNoMoreData || state == MJRefreshStateIdle) {
+        if (self.triggerByDrag) {
+            if (!self.unlimitedTrigger) {
+                self.leftTriggerTimes -= 1;
+            }
+            self.triggerByDrag = NO;
+        }
+        
         if (MJRefreshStateRefreshing == oldState) {
             if (self.endRefreshingCompletionBlock) {
                 self.endRefreshingCompletionBlock();
             }
         }
     }
+}
+
+- (void)resetTriggerTimes {
+    self.leftTriggerTimes = self.autoTriggerTimes;
 }
 
 - (void)setHidden:(BOOL)hidden
@@ -168,5 +181,10 @@
         // 设置位置
         self.mj_y = _scrollView.mj_contentH;
     }
+}
+
+- (void)setAutoTriggerTimes:(NSInteger)autoTriggerTimes {
+    _autoTriggerTimes = autoTriggerTimes;
+    self.leftTriggerTimes = autoTriggerTimes;
 }
 @end
