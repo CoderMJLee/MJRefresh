@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MJRefreshHeader : MJRefreshComponent
 /** 创建header */
-+ (instancetype)headerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock;
++ (instancetype)headerWithRefreshingBlock:(MJRefreshComponentAction)refreshingBlock;
 /** 创建header */
 + (instancetype)headerWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
 

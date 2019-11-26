@@ -31,11 +31,14 @@ typedef NS_ENUM(NSInteger, MJRefreshState) {
 };
 
 /** 进入刷新状态的回调 */
-typedef void (^MJRefreshComponentRefreshingBlock)(void);
+typedef void (^MJRefreshComponentRefreshingBlock)(void) MJRefreshDeprecated("first deprecated in 3.3.0 - Use `MJRefreshComponentAction` instead");
 /** 开始刷新后的回调(进入刷新状态后的回调) */
-typedef void (^MJRefreshComponentBeginRefreshingCompletionBlock)(void);
+typedef void (^MJRefreshComponentBeginRefreshingCompletionBlock)(void) MJRefreshDeprecated("first deprecated in 3.3.0 - Use `MJRefreshComponentAction` instead");
 /** 结束刷新后的回调 */
-typedef void (^MJRefreshComponentEndRefreshingCompletionBlock)(void);
+typedef void (^MJRefreshComponentEndRefreshingCompletionBlock)(void) MJRefreshDeprecated("first deprecated in 3.3.0 - Use `MJRefreshComponentAction` instead");
+
+/** 刷新用到的回调类型 */
+typedef void (^MJRefreshComponentAction)(void);
 
 /** 刷新控件的基类 */
 @interface MJRefreshComponent : UIView
@@ -47,7 +50,7 @@ typedef void (^MJRefreshComponentEndRefreshingCompletionBlock)(void);
 }
 #pragma mark - 刷新回调
 /** 正在刷新的回调 */
-@property (copy, nonatomic, nullable) MJRefreshComponentRefreshingBlock refreshingBlock;
+@property (copy, nonatomic, nullable) MJRefreshComponentAction refreshingBlock;
 /** 设置回调对象和回调方法 */
 - (void)setRefreshingTarget:(id)target refreshingAction:(SEL)action;
 
@@ -63,11 +66,12 @@ typedef void (^MJRefreshComponentEndRefreshingCompletionBlock)(void);
 - (void)beginRefreshing;
 - (void)beginRefreshingWithCompletionBlock:(void (^)(void))completionBlock;
 /** 开始刷新后的回调(进入刷新状态后的回调) */
-@property (copy, nonatomic, nullable) MJRefreshComponentBeginRefreshingCompletionBlock beginRefreshingCompletionBlock;
+@property (copy, nonatomic, nullable) MJRefreshComponentAction beginRefreshingCompletionBlock;
 /** 带动画的结束刷新的回调 */
-@property (copy, nonatomic, nullable) MJRefreshComponentEndRefreshingCompletionBlock endRefreshingAnimateCompletionBlock;
+@property (copy, nonatomic, nullable) MJRefreshComponentAction endRefreshingAnimateCompletionBlock MJRefreshDeprecated("first deprecated in 3.3.0 - Use `endRefreshingAnimationStartingBlock` instead");
+@property (copy, nonatomic, nullable) MJRefreshComponentAction endRefreshingAnimationBeginAction;
 /** 结束刷新的回调 */
-@property (copy, nonatomic, nullable) MJRefreshComponentEndRefreshingCompletionBlock endRefreshingCompletionBlock;
+@property (copy, nonatomic, nullable) MJRefreshComponentAction endRefreshingCompletionBlock;
 /** 结束刷新状态 */
 - (void)endRefreshing;
 - (void)endRefreshingWithCompletionBlock:(void (^)(void))completionBlock;
