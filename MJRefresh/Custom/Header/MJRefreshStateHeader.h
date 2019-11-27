@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MJRefreshStateHeader : MJRefreshHeader
 #pragma mark - 刷新时间相关
 /** 利用这个block来决定显示的更新时间文字 */
-@property (copy, nonatomic, nullable) NSString *(^lastUpdatedTimeText)(NSDate *lastUpdatedTime);
+@property (copy, nonatomic, nullable) NSString *(^lastUpdatedTimeText)(NSDate * _Nullable lastUpdatedTime);
 /** 显示上一次刷新时间的label */
 @property (weak, nonatomic, readonly) UILabel *lastUpdatedTimeLabel;
 
