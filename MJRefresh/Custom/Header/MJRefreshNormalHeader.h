@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /** 菊花的样式 */
-@property (assign, nonatomic) UIActivityIndicatorViewStyle activityIndicatorViewStyle __attribute__((deprecated("first deprecated in 3.2.2 - Use `loadingView` property")));
+@property (assign, nonatomic) UIActivityIndicatorViewStyle activityIndicatorViewStyle MJRefreshDeprecated("first deprecated in 3.2.2 - Use `loadingView` property");
 @end
 
 NS_ASSUME_NONNULL_END
