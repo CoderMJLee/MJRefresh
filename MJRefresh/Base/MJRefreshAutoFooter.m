@@ -160,8 +160,8 @@
                 [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
                     self.scrollView.contentOffset = offset;
                     
-                    if (self.endRefreshingAnimateCompletionBlock) {
-                        self.endRefreshingAnimateCompletionBlock();
+                    if (self.endRefreshingAnimationBeginAction) {
+                        self.endRefreshingAnimationBeginAction();
                     }
                 } completion:^(BOOL finished) {
                     if (self.endRefreshingCompletionBlock) {

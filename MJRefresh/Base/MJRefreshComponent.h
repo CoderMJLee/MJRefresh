@@ -68,7 +68,7 @@ typedef void (^MJRefreshComponentAction)(void);
 /** 开始刷新后的回调(进入刷新状态后的回调) */
 @property (copy, nonatomic, nullable) MJRefreshComponentAction beginRefreshingCompletionBlock;
 /** 带动画的结束刷新的回调 */
-@property (copy, nonatomic, nullable) MJRefreshComponentAction endRefreshingAnimateCompletionBlock MJRefreshDeprecated("first deprecated in 3.3.0 - Use `endRefreshingAnimationStartingBlock` instead");
+@property (copy, nonatomic, nullable) MJRefreshComponentAction endRefreshingAnimateCompletionBlock MJRefreshDeprecated("first deprecated in 3.3.0 - Use `endRefreshingAnimationBeginAction` instead");
 @property (copy, nonatomic, nullable) MJRefreshComponentAction endRefreshingAnimationBeginAction;
 /** 结束刷新的回调 */
 @property (copy, nonatomic, nullable) MJRefreshComponentAction endRefreshingCompletionBlock;
