@@ -4,6 +4,8 @@
 
 * An easy way to use pull-to-refresh
 
+[**Release Notes**: more details](https://github.com/CoderMJLee/MJRefresh/releases)
+
 ## Contents
 * Getting Started
     * [Features【Support what kinds of controls to refresh】](#Support_what_kinds_of_controls_to_refresh)
