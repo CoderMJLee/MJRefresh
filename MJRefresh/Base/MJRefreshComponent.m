@@ -237,6 +237,11 @@
         }
     })
 }
+
+#pragma mark - <<< Deprecation compatible function >>> -
+- (void)setEndRefreshingAnimateCompletionBlock:(MJRefreshComponentEndRefreshingCompletionBlock)endRefreshingAnimateCompletionBlock {
+    _endRefreshingAnimationBeginAction = endRefreshingAnimateCompletionBlock;
+}
 @end
 
 @implementation UILabel(MJRefresh)
