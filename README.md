@@ -4,7 +4,7 @@
 
 * An easy way to use pull-to-refresh
 
-[**Release Notes**: more details](https://github.com/CoderMJLee/MJRefresh/releases)
+[📜✍🏻**Release Notes**: more details](https://github.com/CoderMJLee/MJRefresh/releases)
 
 ## Contents
 * Getting Started
