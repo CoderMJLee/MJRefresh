@@ -143,7 +143,11 @@ NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshin
 
         //CAAnimation keyPath 不支持 contentInset 用Bounds的动画代替
         CABasicAnimation *boundsAnimation = [CABasicAnimation animationWithKeyPath:@"bounds"];
-        boundsAnimation.fromValue = [NSValue valueWithCGRect:CGRectOffset(self.scrollView.bounds, 0, self.insetTDelta)];
+        //self.scrollView.bounds已经scrollview的偏移量
+        boundsAnimation.fromValue = [NSValue valueWithCGRect:self.scrollView.bounds];
+        CGRect bounds = self.scrollView.bounds;
+        bounds.origin.y = 0;
+        boundsAnimation.toValue = [NSValue valueWithCGRect:bounds];
         boundsAnimation.duration = MJRefreshSlowAnimationDuration;
         //在delegate里移除
         boundsAnimation.removedOnCompletion = NO;
@@ -198,7 +202,8 @@ NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshin
     if ([anim isEqual:[self.scrollView.layer animationForKey:MJRefreshHeaderRefreshing2IdleBoundsKey]]) {
         [self.scrollView.layer removeAnimationForKey:MJRefreshHeaderRefreshing2IdleBoundsKey];
         self.pullingPercent = 0.0;
-
+        //需要重新设置offset，CABasicAnimation动画的值不是实际值
+        [self.scrollView setContentOffset:CGPointZero];
         self.scrollView.userInteractionEnabled = YES;
         if (self.endRefreshingCompletionBlock) {
             self.endRefreshingCompletionBlock();
