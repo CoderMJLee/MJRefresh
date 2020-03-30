@@ -45,6 +45,12 @@
     return _lastUpdatedTimeLabel;
 }
 
+- (void)setLastUpdatedTimeText:(NSString * _Nonnull (^)(NSDate * _Nullable))lastUpdatedTimeText{
+    _lastUpdatedTimeText = lastUpdatedTimeText;
+    // 重新设置key（重新显示时间）
+    self.lastUpdatedTimeKey = self.lastUpdatedTimeKey;
+}
+
 #pragma mark - 公共方法
 - (void)setTitle:(NSString *)title forState:(MJRefreshState)state
 {
