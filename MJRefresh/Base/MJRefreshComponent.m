@@ -255,9 +255,10 @@
     CGFloat stringWidth = 0;
     CGSize size = CGSizeMake(MAXFLOAT, MAXFLOAT);
     if (self.text.length > 0) {
+        NSDictionary *attributes = self.font ? @{NSFontAttributeName : self.font} : nil;
         stringWidth = [self.text boundingRectWithSize:size
                                               options:NSStringDrawingUsesLineFragmentOrigin
-                                           attributes:@{NSFontAttributeName:self.font}
+                                           attributes:attributes
                                               context:nil].size.width;
     }
     return stringWidth;
