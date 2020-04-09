@@ -266,7 +266,9 @@ static const CGFloat MJDuration = 2.0;
     [self example01];
     
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
-    self.tableView.mj_footer = [MJDIYAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    MJDIYAutoFooter *footer = [MJDIYAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    footer.autoTriggerTimes = 2;
+    self.tableView.mj_footer = footer;
 }
 
 #pragma mark UITableView + 上拉刷新 自定义刷新控件(自动回弹)
@@ -302,7 +304,7 @@ static const CGFloat MJDuration = 2.0;
 - (void)loadMoreData
 {
     // 1.添加假数据
-    for (int i = 0; i<5; i++) {
+    for (int i = 0; i<1; i++) {
         [self.data addObject:MJRandomData];
     }
     

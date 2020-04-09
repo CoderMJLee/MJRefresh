@@ -237,6 +237,11 @@
         }
     })
 }
+
+#pragma mark - <<< Deprecation compatible function >>> -
+- (void)setEndRefreshingAnimateCompletionBlock:(MJRefreshComponentEndRefreshingCompletionBlock)endRefreshingAnimateCompletionBlock {
+    _endRefreshingAnimationBeginAction = endRefreshingAnimateCompletionBlock;
+}
 @end
 
 @implementation UILabel(MJRefresh)
@@ -263,7 +268,6 @@
     } else {
         if (self.text.length == 0) { return 0; }
         NSAssert(self.font != nil, @"请检查 mj_label's `font` 是否设置正确");
-        NSDictionary *attributes = self.font ?  : nil;
         stringWidth = [self.text boundingRectWithSize:size
                                               options:NSStringDrawingUsesLineFragmentOrigin
                                            attributes:@{NSFontAttributeName:self.font}

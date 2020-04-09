@@ -8,6 +8,8 @@
 
 #import "MJRefreshBackFooter.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface MJRefreshBackStateFooter : MJRefreshBackFooter
 /** 文字距离圈圈、箭头的距离 */
 @property (assign, nonatomic) CGFloat labelLeftInset;
@@ -19,3 +21,5 @@
 /** 获取state状态下的title */
 - (NSString *)titleForState:(MJRefreshState)state;
 @end
+
+NS_ASSUME_NONNULL_END
