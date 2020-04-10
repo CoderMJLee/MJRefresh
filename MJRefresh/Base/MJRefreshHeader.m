@@ -253,12 +253,15 @@ NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshin
             self.endRefreshingCompletionBlock();
         }
     } else if ([identity isEqualToString:MJRefreshHeaderRefreshingBoundsKey]) {
-        CGFloat top = self.scrollViewOriginalInset.top + self.mj_h;
-        self.scrollView.mj_insetT = top;
-        // 设置最终滚动位置
-        CGPoint offset = self.scrollView.contentOffset;
-        offset.y = -top;
-        [self.scrollView setContentOffset:offset animated:NO];
+        // 避免出现 end 先于 Refreshing 状态
+        if (self.state != MJRefreshStateIdle) {
+            CGFloat top = self.scrollViewOriginalInset.top + self.mj_h;
+            self.scrollView.mj_insetT = top;
+            // 设置最终滚动位置
+            CGPoint offset = self.scrollView.contentOffset;
+            offset.y = -top;
+            [self.scrollView setContentOffset:offset animated:NO];
+         }
         self.scrollView.userInteractionEnabled = YES;
         [self executeRefreshingCallback];
     }
