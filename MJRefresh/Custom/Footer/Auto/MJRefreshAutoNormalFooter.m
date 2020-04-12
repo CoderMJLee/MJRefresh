@@ -37,7 +37,7 @@
 {
     [super prepare];
     
-#if __IPHONE_OS_VERSION_MAX_ALLOWED > 130000
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 130000
     if (@available(iOS 13.0, *)) {
         _activityIndicatorViewStyle = UIActivityIndicatorViewStyleMedium;
         return;
