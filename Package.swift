@@ -1,4 +1,4 @@
-// swift-tools-version5.0
+// swift-tools-version:5.0
 import PackageDescription
 
 let package = Package(
