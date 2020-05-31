@@ -132,16 +132,21 @@
     self.mj_x = MAX(contentWidth, scrollWidth);
 }
 
+- (void)placeSubviews {
+    [super placeSubviews];
+    
+    self.mj_h = _scrollView.mj_h;
+    // 设置自己的宽度
+    self.mj_w = MJRefreshTrailWidth;
+}
+
 - (void)willMoveToSuperview:(UIView *)newSuperview {
     [super willMoveToSuperview:newSuperview];
     
     if (newSuperview) {
-        self.mj_h = _scrollView.mj_h;
-        // 设置自己的宽度
-        self.mj_w = MJRefreshTrailWidth;
-        
         // 设置支持水平弹簧效果
         _scrollView.alwaysBounceHorizontal = YES;
+        _scrollView.alwaysBounceVertical = NO;
     }
 }
 
