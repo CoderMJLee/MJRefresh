@@ -6,7 +6,7 @@
 //  Copyright © 2020 小码哥. All rights reserved.
 //
 
-#import <MJRefresh/MJRefresh.h>
+#import "MJRefreshComponent.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
