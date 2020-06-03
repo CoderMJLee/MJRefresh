@@ -445,7 +445,7 @@
 				88E3200A24839ABA00069FA7 /* MJRefreshTrailer.h */,
 				88E3200924839ABA00069FA7 /* MJRefreshTrailer.m */,
 			);
-			path = Base;
+			name = Base;
 			sourceTree = "<group>";
 		};
 		2DB2E9F61BECBE6700D58F6A /* Custom */ = {
@@ -455,7 +455,7 @@
 				2DB2E9F71BECBE6700D58F6A /* Footer */,
 				2DB2EA061BECBE6700D58F6A /* Header */,
 			);
-			path = Custom;
+			name = Custom;
 			sourceTree = "<group>";
 		};
 		2DB2E9F71BECBE6700D58F6A /* Footer */ = {
@@ -464,7 +464,7 @@
 				2DB2E9F81BECBE6700D58F6A /* Auto */,
 				2DB2E9FF1BECBE6700D58F6A /* Back */,
 			);
-			path = Footer;
+			name = Footer;
 			sourceTree = "<group>";
 		};
 		2DB2E9F81BECBE6700D58F6A /* Auto */ = {
@@ -477,7 +477,7 @@
 				2DB2E9FD1BECBE6700D58F6A /* MJRefreshAutoStateFooter.h */,
 				2DB2E9FE1BECBE6700D58F6A /* MJRefreshAutoStateFooter.m */,
 			);
-			path = Auto;
+			name = Auto;
 			sourceTree = "<group>";
 		};
 		2DB2E9FF1BECBE6700D58F6A /* Back */ = {
@@ -490,7 +490,7 @@
 				2DB2EA041BECBE6700D58F6A /* MJRefreshBackStateFooter.h */,
 				2DB2EA051BECBE6700D58F6A /* MJRefreshBackStateFooter.m */,
 			);
-			path = Back;
+			name = Back;
 			sourceTree = "<group>";
 		};
 		2DB2EA061BECBE6700D58F6A /* Header */ = {
@@ -503,7 +503,7 @@
 				2DB2EA0B1BECBE6700D58F6A /* MJRefreshStateHeader.h */,
 				2DB2EA0C1BECBE6700D58F6A /* MJRefreshStateHeader.m */,
 			);
-			path = Header;
+			name = Header;
 			sourceTree = "<group>";
 		};
 		88E3200C24839B2300069FA7 /* Trailer */ = {
@@ -514,7 +514,7 @@
 				88E3201024839B2300069FA7 /* MJRefreshStateTrailer.h */,
 				88E3200E24839B2300069FA7 /* MJRefreshStateTrailer.m */,
 			);
-			path = Trailer;
+			name = Trailer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
