@@ -59,7 +59,7 @@ NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshin
     }
     
     // sectionheader停留解决
-    if (self.scrollView.isUserInteractionEnabled) {
+    if (self.scrollView.isUserInteractionEnabled && (self.scrollView.isTracking || self.scrollView.isDecelerating)) {
         CGFloat systemTop = self.scrollView.mj_insetT - self.insetTDelta;
         CGFloat delta = -systemTop - self.scrollView.mj_offsetY;
         delta = delta < 0.f ? 0 : MIN(delta, self.mj_h);
