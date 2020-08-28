@@ -98,6 +98,9 @@
 		88E3200B24839ABA00069FA7 /* MJRefreshTrailer.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E3200924839ABA00069FA7 /* MJRefreshTrailer.m */; };
 		88E3201124839B2300069FA7 /* MJRefreshStateTrailer.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E3200E24839B2300069FA7 /* MJRefreshStateTrailer.m */; };
 		88E3201224839B2300069FA7 /* MJRefreshNormalTrailer.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E3200F24839B2300069FA7 /* MJRefreshNormalTrailer.m */; };
+		D32060E124F89B8B00EF3333 /* MJRefreshTrailer.h in Headers */ = {isa = PBXBuildFile; fileRef = 88E3200A24839ABA00069FA7 /* MJRefreshTrailer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D32060E224F89B9200EF3333 /* MJRefreshNormalTrailer.h in Headers */ = {isa = PBXBuildFile; fileRef = 88E3200D24839B2300069FA7 /* MJRefreshNormalTrailer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D32060E324F89B9D00EF3333 /* MJRefreshStateTrailer.h in Headers */ = {isa = PBXBuildFile; fileRef = 88E3201024839B2300069FA7 /* MJRefreshStateTrailer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -529,6 +532,9 @@
 				2D9DF45C1F7CE2C20042D6DD /* MJRefreshComponent.h in Headers */,
 				2D9DF45D1F7CE2C20042D6DD /* MJRefreshFooter.h in Headers */,
 				2D9DF45E1F7CE2C20042D6DD /* MJRefreshHeader.h in Headers */,
+				D32060E324F89B9D00EF3333 /* MJRefreshStateTrailer.h in Headers */,
+				D32060E224F89B9200EF3333 /* MJRefreshNormalTrailer.h in Headers */,
+				D32060E124F89B8B00EF3333 /* MJRefreshTrailer.h in Headers */,
 				2D9DF45F1F7CE2C20042D6DD /* MJRefreshAutoGifFooter.h in Headers */,
 				2D9DF4601F7CE2C20042D6DD /* MJRefreshAutoNormalFooter.h in Headers */,
 				2D9DF4611F7CE2C20042D6DD /* MJRefreshAutoStateFooter.h in Headers */,
