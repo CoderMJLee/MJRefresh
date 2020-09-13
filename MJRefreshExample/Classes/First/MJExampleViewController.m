@@ -15,6 +15,7 @@
 #import "UIViewController+Example.h"
 #import "MJRefresh.h"
 #import "MJWKWebViewController.h"
+#import "MJHorizontalCollectionViewController.h"
 
 static NSString *const MJExample00 = @"UITableView + 下拉刷新";
 static NSString *const MJExample10 = @"UITableView + 上拉刷新";
@@ -61,8 +62,13 @@ static NSString *const MJExample40 = @"WKWebView";
         exam4.titles = @[@"下拉刷新"];
         exam4.methods = @[@"example41"];
         
+        MJExample *exam5 = [[MJExample alloc] init];
+        exam5.header = MJExample20;
+        exam5.vcClass = [MJHorizontalCollectionViewController class];
+        exam5.titles = @[@"左拉刷新"];
+        exam5.methods = @[@"example42"];
         
-        self.examples = @[exam0, exam1, exam2, exam3, exam4];
+        self.examples = @[exam0, exam1, exam2, exam3, exam4, exam5];
     }
     return _examples;
 }

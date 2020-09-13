@@ -21,7 +21,7 @@
 #import "MJDIYAutoFooter.h"
 #import "MJDIYBackFooter.h"
 
-static const CGFloat MJDuration = 2.0;
+static const CGFloat MJDuration = 0.5;
 /**
  * 随机数据
  */
