@@ -359,6 +359,7 @@ self.collectionView.mj_trailer = [MJRefreshNormalTrailer trailerWithRefreshingBl
 }];
 
 ```
+![(UICollectionView02-左拉刷新)](Gif/trailer_refresh.gif)
 
 ## <a id="WKWebView01-The_drop-down_refresh"></a>WKWebView01-The drop-down refresh
 ```objc
