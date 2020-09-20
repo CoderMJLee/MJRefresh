@@ -122,6 +122,12 @@ NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshin
         [self headerEndingAction];
     } else if (state == MJRefreshStateRefreshing) {
         [self headerRefreshingAction];
+    } else if (state == MJRefreshStatePulling && self.provideImpactFeedBack) {
+        if (@available(iOS 10, *)) {
+            UIImpactFeedbackGenerator *feedbackGenerator =
+                [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium];
+            [feedbackGenerator impactOccurred];
+        }
     }
 }
 

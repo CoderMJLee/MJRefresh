@@ -27,6 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 默认是关闭状态, 如果遇到 CollectionView 的动画异常问题可以尝试打开 */
 @property (nonatomic) BOOL isCollectionViewAnimationBug;
+
+/** 默认是关闭状态, 震动反馈 */
+@property (assign, nonatomic) BOOL provideImpactFeedBack API_AVAILABLE(ios(10.0));
+
 @end
 
 NS_ASSUME_NONNULL_END
