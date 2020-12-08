@@ -23,7 +23,7 @@ static const char MJRefreshHeaderKey = '\0';
         // 删除旧的，添加新的
         [self.mj_header removeFromSuperview];
         
-        if (mj_header != nil) {
+        if (mj_header) {
             [self insertSubview:mj_header atIndex:0];
         }
         // 存储新的
@@ -44,7 +44,7 @@ static const char MJRefreshFooterKey = '\0';
     if (mj_footer != self.mj_footer) {
         // 删除旧的，添加新的
         [self.mj_footer removeFromSuperview];
-        if (mj_header != nil) {
+        if (mj_header) {
             [self insertSubview:mj_footer atIndex:0];
         }
         // 存储新的
@@ -64,7 +64,7 @@ static const char MJRefreshTrailerKey = '\0';
     if (mj_trailer != self.mj_trailer) {
         // 删除旧的，添加新的
         [self.mj_trailer removeFromSuperview];
-        if (mj_header != nil) {
+        if (mj_trailer) {
             [self insertSubview:mj_trailer atIndex:0];
         }
         // 存储新的
