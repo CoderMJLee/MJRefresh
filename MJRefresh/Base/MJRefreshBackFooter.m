@@ -19,7 +19,6 @@
 - (void)willMoveToSuperview:(UIView *)newSuperview
 {
     [super willMoveToSuperview:newSuperview];
-    
     [self scrollViewContentSizeDidChange:nil];
 }
 

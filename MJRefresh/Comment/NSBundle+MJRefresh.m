@@ -15,8 +15,18 @@
 {
     static NSBundle *refreshBundle = nil;
     if (refreshBundle == nil) {
+        
         // 这里不使用mainBundle是为了适配pod 1.x和0.x
         refreshBundle = [NSBundle bundleWithPath:[[NSBundle bundleForClass:[MJRefreshComponent class]] pathForResource:@"MJRefresh" ofType:@"bundle"]];
+        
+        /// SPM 方式引入的MJRefresh
+        if (refreshBundle == nil) {
+            NSString * path = [[NSBundle mainBundle] pathForResource:@"MJRefresh_MJRefresh" ofType:@"bundle"];
+            NSBundle * bundleTemp = [NSBundle bundleWithPath:path];
+            NSString * bundlepath = [bundleTemp pathForResource:@"MJRefresh" ofType:@"bundle"];
+            refreshBundle = [NSBundle bundleWithPath:bundlepath];
+        }
+        
     }
     return refreshBundle;
 }
