@@ -15,18 +15,12 @@
 {
     static NSBundle *refreshBundle = nil;
     if (refreshBundle == nil) {
-        
-        // 这里不使用mainBundle是为了适配pod 1.x和0.x
-        refreshBundle = [NSBundle bundleWithPath:[[NSBundle bundleForClass:[MJRefreshComponent class]] pathForResource:@"MJRefresh" ofType:@"bundle"]];
-        
-        /// SPM 方式引入的MJRefresh
-        if (refreshBundle == nil) {
-            NSString * path = [[NSBundle mainBundle] pathForResource:@"MJRefresh_MJRefresh" ofType:@"bundle"];
-            NSBundle * bundleTemp = [NSBundle bundleWithPath:path];
-            NSString * bundlepath = [bundleTemp pathForResource:@"MJRefresh" ofType:@"bundle"];
-            refreshBundle = [NSBundle bundleWithPath:bundlepath];
-        }
-        
+#ifdef  IF_MJ_SPM
+        NSBundle *containnerBundle = SWIFTPM_MODULE_BUNDLE;
+#else
+        NSBundle *containnerBundle = [NSBundle bundleForClass:[MJRefreshComponent class]];
+#endif
+        refreshBundle = [NSBundle bundleWithPath:[containnerBundle pathForResource:@"MJRefresh" ofType:@"bundle"]];
     }
     return refreshBundle;
 }

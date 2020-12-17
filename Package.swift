@@ -23,7 +23,8 @@ let package = Package(
             dependencies: [],
             path: "MJRefresh",
             resources: [.process("MJRefresh.bundle")],
-            cSettings: [.headerSearchPath("Comment"),
+            cSettings: [.define("IF_MJ_SPM"),
+                        .headerSearchPath("."),
                         .headerSearchPath("Base"),
                         .headerSearchPath("Custom")]),
         .testTarget(

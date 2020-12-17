@@ -1,1 +1,1 @@
-../../Comment/MJRefreshConfig.h
+../../MJRefreshConfig.h
