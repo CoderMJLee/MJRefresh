@@ -44,6 +44,7 @@ static const CGFloat MJDuration = 2.0;
             [weakSelf.collectionView.mj_header endRefreshing];
         });
     }];
+    self.collectionView.mj_header.isCollectionViewAnimationBug = YES;
     [self.collectionView.mj_header beginRefreshing];
 
     // 上拉刷新
