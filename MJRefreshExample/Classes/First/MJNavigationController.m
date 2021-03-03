@@ -7,8 +7,6 @@
 //
 
 #import "MJNavigationController.h"
-// 判断是否为iOS7
-#define iOS7 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
 
 @implementation MJNavigationController
 
@@ -16,23 +14,12 @@
 + (void)initialize
 {
     // 1.取出设置主题的对象
-    UINavigationBar *navBar = [UINavigationBar appearanceWhenContainedIn:[MJNavigationController class], nil];
+    UINavigationBar *navBar = [UINavigationBar appearanceWhenContainedInInstancesOfClasses:@[MJNavigationController.class]];
     
     // 2.设置导航栏的背景图片
-    NSString *navBarBg = nil;
-    if (iOS7) { // iOS7
-        navBarBg = @"NavBar64";
-        navBar.tintColor = [UIColor whiteColor];
-    } else { // 非iOS7
-        navBarBg = @"NavBar";
-    }
-    [navBar setBackgroundImage:[UIImage imageNamed:navBarBg] forBarMetrics:UIBarMetricsDefault];
+    [navBar setBackgroundImage:[UIImage imageNamed:@"NavBar64"] forBarMetrics:UIBarMetricsDefault];
     
     // 3.标题
-#ifdef __IPHONE_7_0
     [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-#else
-    [navBar setTitleTextAttributes:@{UITextAttributeTextColor : [UIColor whiteColor]}];
-#endif
 }
 @end
