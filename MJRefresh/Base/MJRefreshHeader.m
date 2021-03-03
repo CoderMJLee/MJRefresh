@@ -242,6 +242,13 @@ NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshin
     }
 }
 
+#pragma mark . 链式语法部分 .
+
+- (instancetype)assignTo:(UIScrollView *)scrollView {
+    scrollView.mj_header = self;
+    return self;
+}
+
 #pragma mark - CAAnimationDelegate
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
     NSString *identity = [anim valueForKey:@"identity"];

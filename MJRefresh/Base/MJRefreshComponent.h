@@ -113,5 +113,23 @@ typedef void (^MJRefreshComponentAction)(void);
 - (CGFloat)mj_textWidth;
 @end
 
+@interface MJRefreshComponent (ChainingGrammar)
+
+#pragma mark - <<< 为 Swift 扩展链式语法 >>> -
+/// 自动变化透明度
+- (instancetype)autoChangeTransparency:(BOOL)isAutoChange;
+/// 刷新开始后立即调用的回调
+- (instancetype)afterBeginningAction:(MJRefreshComponentAction)action;
+/// 刷新动画开始后立即调用的回调
+- (instancetype)endingAnimationBeginningAction:(MJRefreshComponentAction)action;
+/// 刷新结束后立即调用的回调
+- (instancetype)afterEndingAction:(MJRefreshComponentAction)action;
+
+
+/// 需要子类必须实现
+/// @param scrollView 赋值给的 ScrollView 的 Header/Footer/Trailer
+- (instancetype)assignTo:(UIScrollView *)scrollView;
+
+@end
 
 NS_ASSUME_NONNULL_END

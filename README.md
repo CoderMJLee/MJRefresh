@@ -7,6 +7,10 @@
 [📜✍🏻**Release Notes**: more details](https://github.com/CoderMJLee/MJRefresh/releases)
 
 ## Contents
+
+- New Features
+  - [Swift Chaining Grammar Supported](#Swift Chaining Grammar Supported)
+
 * Getting Started
     * [Features【Support what kinds of controls to refresh】](#Support_what_kinds_of_controls_to_refresh)
     * [Installation【How to use MJRefresh】](#How_to_use_MJRefresh)
@@ -40,6 +44,19 @@
     * [UICollectionView02-The trailer refresh](#UICollectionView02-The_trailer_refresh)
     * [WKWebView01-The drop-down refresh](#WKWebView01-The_drop-down_refresh)
 * [Hope](#Hope)
+
+## New Features
+### Swift Chaining Grammar Supported
+
+  ```swift
+  // Example as MJRefreshNormalHeader
+  func addRefreshHeader() {
+      MJRefreshNormalHeader { [weak self] in
+  	      // do some Requst
+      }.autoChangeTransparency(true)
+      .assign(to: tableView)
+  }
+  ```
 
 ## <a id="Support_what_kinds_of_controls_to_refresh"></a>Support what kinds of controls to refresh
 * `UIScrollView`、`UITableView`、`UICollectionView`、`WKWebView`
@@ -77,9 +94,12 @@ UIView+MJExtension.h        UIView+MJExtension.m
         - Auto Back
             - Normal：`MJRefreshBackNormalFooter`
             - Gif：`MJRefreshBackGifFooter`
+    
 - `The class of non-red text` in the chart：For inheritance，to use DIY the control of refresh
+
 - About how to DIY the control of refresh，You can refer the Class in below Chart<br>
-<img src="http://images0.cnblogs.com/blog2015/497279/201506/141358159107893.png" width="30%" height="30%">
+
+  <img src="http://images0.cnblogs.com/blog2015/497279/201506/141358159107893.png" width="30%" height="30%">
 
 ## <a id="MJRefreshComponent.h"></a>MJRefreshComponent.h
 ```objc

@@ -40,6 +40,13 @@
 //    self.automaticallyHidden = NO;
 }
 
+#pragma mark . 链式语法部分 .
+
+- (instancetype)assignTo:(UIScrollView *)scrollView {
+    scrollView.mj_footer = self;
+    return self;
+}
+
 #pragma mark - 公共方法
 - (void)endRefreshingWithNoMoreData
 {
