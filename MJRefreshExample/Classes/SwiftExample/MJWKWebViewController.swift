@@ -16,10 +16,10 @@ class MJWKWebViewController: UIViewController {
     var webView: WKWebView!
     
     func example41() {
-    MJChiBaoZiHeader { [weak self] in
-        self?.webView.reload()
-    }.autoChangeTransparency(true)
-    .assign(to: webView.scrollView)
+        MJChiBaoZiHeader { [weak self] in
+            self?.webView.reload()
+        }.autoChangeTransparency(true)
+        .assign(to: webView.scrollView)
         
         webView.scrollView.mj_header?.beginRefreshing()
     }
