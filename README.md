@@ -9,7 +9,7 @@
 ## Contents
 
 - New Features
-  - [Swift Chaining Grammar Supported](#Swift Chaining Grammar Supported)
+  - [Swift Chaining Grammar Supported](#swift_chaining_grammar_supported)
 
 * Getting Started
     * [Features【Support what kinds of controls to refresh】](#Support_what_kinds_of_controls_to_refresh)
@@ -46,7 +46,7 @@
 * [Hope](#Hope)
 
 ## New Features
-### Swift Chaining Grammar Supported
+### <a id="swift_chaining_grammar_supported"></a>Swift Chaining Grammar Supported
 
   ```swift
   // Example as MJRefreshNormalHeader
