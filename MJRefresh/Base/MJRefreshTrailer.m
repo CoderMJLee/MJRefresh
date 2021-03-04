@@ -150,7 +150,14 @@
     }
 }
 
-#pragma mark 刚好看到上拉刷新控件时的contentOffset.x
+#pragma mark . 链式语法部分 .
+
+- (instancetype)assignTo:(UIScrollView *)scrollView {
+    scrollView.mj_trailer = self;
+    return self;
+}
+
+#pragma mark - 刚好看到上拉刷新控件时的contentOffset.x
 - (CGFloat)happenOffsetX {
     CGFloat deltaW = [self widthForContentBreakView];
     if (deltaW > 0) {

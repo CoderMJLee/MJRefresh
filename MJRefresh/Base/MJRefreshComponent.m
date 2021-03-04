@@ -275,3 +275,30 @@
     return stringWidth;
 }
 @end
+
+
+#pragma mark - <<< 为 Swift 扩展链式语法 >>> -
+@implementation MJRefreshComponent (ChainingGrammar)
+
+- (instancetype)autoChangeTransparency:(BOOL)isAutoChange {
+    self.automaticallyChangeAlpha = isAutoChange;
+    return self;
+}
+- (instancetype)afterBeginningAction:(MJRefreshComponentAction)action {
+    self.beginRefreshingCompletionBlock = action;
+    return self;
+}
+- (instancetype)endingAnimationBeginningAction:(MJRefreshComponentAction)action {
+    self.endRefreshingAnimationBeginAction = action;
+    return self;
+}
+- (instancetype)afterEndingAction:(MJRefreshComponentAction)action {
+    self.endRefreshingCompletionBlock = action;
+    return self;
+}
+
+- (instancetype)assignTo:(UIScrollView *)scrollView {
+    return self;
+}
+
+@end

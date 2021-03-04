@@ -13,8 +13,8 @@
 #import "MJExample.h"
 #import "UIViewController+Example.h"
 #import "MJRefresh.h"
-#import "MJWKWebViewController.h"
 #import "MJHorizontalCollectionViewController.h"
+#import "MJRefreshExample-Swift.h"
 
 static NSString *const MJExample00 = @"UITableView + 下拉刷新";
 static NSString *const MJExample10 = @"UITableView + 上拉刷新";

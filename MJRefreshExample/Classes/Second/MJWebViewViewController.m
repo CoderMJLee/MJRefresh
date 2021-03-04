@@ -25,9 +25,11 @@
     __weak UIScrollView *scrollView = self.webView.scrollView;
     
     // 添加下拉刷新控件
-    scrollView.mj_header= [MJChiBaoZiHeader headerWithRefreshingBlock:^{
-        [webView reload];
-    }];
+    [[[MJChiBaoZiHeader headerWithRefreshingBlock:^{
+            [webView reload];
+        }]
+         assignTo:scrollView]
+        autoChangeTransparency:YES];
     
     // 如果是上拉刷新，就以此类推
     [scrollView.mj_header beginRefreshing];
