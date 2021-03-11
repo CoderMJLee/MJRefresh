@@ -47,6 +47,15 @@ typedef void (^MJRefreshComponentAction)(void);
     /** 父控件 */
     __weak UIScrollView *_scrollView;
 }
+
+#pragma mark - 刷新动画时间控制
+/** 快速动画时间(一般用在刷新开始的回弹动画), 默认 0.25 */
+@property (nonatomic) NSTimeInterval fastAnimationDuration;
+/** 慢速动画时间(一般用在刷新结束后的回弹动画), 默认 0.4*/
+@property (nonatomic) NSTimeInterval slowAnimationDuration;
+/** 关闭全部默认动画效果, 可以简单粗暴地解决 CollectionView 的回弹动画 bug */
+- (instancetype)setAnimationDisabled;
+
 #pragma mark - 刷新回调
 /** 正在刷新的回调 */
 @property (copy, nonatomic, nullable) MJRefreshComponentAction refreshingBlock;

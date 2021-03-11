@@ -23,6 +23,8 @@
         
         // 默认是普通状态
         self.state = MJRefreshStateIdle;
+        self.fastAnimationDuration = 0.25;
+        self.slowAnimationDuration = 0.4;
     }
     return self;
 }
@@ -142,7 +144,7 @@
 #pragma mark 进入刷新状态
 - (void)beginRefreshing
 {
-    [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
+    [UIView animateWithDuration:self.fastAnimationDuration animations:^{
         self.alpha = 1.0;
     }];
     self.pullingPercent = 1.0;
@@ -235,6 +237,14 @@
             self.beginRefreshingCompletionBlock();
         }
     })
+}
+
+#pragma mark - 刷新动画时间控制
+- (instancetype)setAnimationDisabled {
+    self.fastAnimationDuration = 0;
+    self.slowAnimationDuration = 0;
+    
+    return self;
 }
 
 #pragma mark - <<< Deprecation compatible function >>> -

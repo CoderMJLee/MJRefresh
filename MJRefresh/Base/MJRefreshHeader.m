@@ -132,7 +132,7 @@ NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshin
     // 默认使用 UIViewAnimation 动画
     if (!self.isCollectionViewAnimationBug) {
         // 恢复inset和offset
-        [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
+        [UIView animateWithDuration:self.slowAnimationDuration animations:^{
             self.scrollView.mj_insetT += self.insetTDelta;
             
             if (self.endRefreshingAnimationBeginAction) {
@@ -170,7 +170,7 @@ NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshin
     //CAAnimation keyPath 不支持 contentInset 用Bounds的动画代替
     CABasicAnimation *boundsAnimation = [CABasicAnimation animationWithKeyPath:@"bounds"];
     boundsAnimation.fromValue = [NSValue valueWithCGRect:CGRectOffset(self.scrollView.bounds, 0, self.insetTDelta)];
-    boundsAnimation.duration = MJRefreshSlowAnimationDuration;
+    boundsAnimation.duration = self.slowAnimationDuration;
     //在delegate里移除
     boundsAnimation.removedOnCompletion = NO;
     boundsAnimation.fillMode = kCAFillModeBoth;
@@ -188,7 +188,7 @@ NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshin
         CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
         opacityAnimation.fromValue = @(viewAlpha);
         opacityAnimation.toValue = @(0.0);
-        opacityAnimation.duration = MJRefreshSlowAnimationDuration;
+        opacityAnimation.duration = self.slowAnimationDuration;
         opacityAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
         [self.layer addAnimation:opacityAnimation forKey:@"MJRefreshHeaderRefreshing2IdleOpacity"];
 
@@ -201,7 +201,7 @@ NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshin
     // 默认使用 UIViewAnimation 动画
     if (!self.isCollectionViewAnimationBug) {
         MJRefreshDispatchAsyncOnMainQueue({
-            [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
+            [UIView animateWithDuration:self.fastAnimationDuration animations:^{
                 if (self.scrollView.panGestureRecognizer.state != UIGestureRecognizerStateCancelled) {
                     CGFloat top = self.scrollViewOriginalInset.top + self.mj_h;
                     // 增加滚动区域top
@@ -229,7 +229,7 @@ NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshin
         bounds.origin.y = -top;
         boundsAnimation.fromValue = [NSValue valueWithCGRect:self.scrollView.bounds];
         boundsAnimation.toValue = [NSValue valueWithCGRect:bounds];
-        boundsAnimation.duration = MJRefreshFastAnimationDuration;
+        boundsAnimation.duration = self.fastAnimationDuration;
         //在delegate里移除
         boundsAnimation.removedOnCompletion = NO;
         boundsAnimation.fillMode = kCAFillModeBoth;
