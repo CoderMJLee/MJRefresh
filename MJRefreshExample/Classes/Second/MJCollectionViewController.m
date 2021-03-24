@@ -1,5 +1,4 @@
 //  代码地址: https://github.com/CoderMJLee/MJRefresh
-//  代码地址: http://code4app.com/ios/%E5%BF%AB%E9%80%9F%E9%9B%86%E6%88%90%E4%B8%8B%E6%8B%89%E4%B8%8A%E6%8B%89%E5%88%B7%E6%96%B0/52326ce26803fabc46000000
 //  MJCollectionViewController.m
 //  MJRefreshExample
 //
@@ -31,7 +30,7 @@ static const CGFloat MJDuration = 2.0;
     __weak __typeof(self) weakSelf = self;
     
     // 下拉刷新
-    self.collectionView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    [[MJRefreshNormalHeader headerWithRefreshingBlock:^{
         // 增加5条假数据
         for (int i = 0; i<10; i++) {
             [weakSelf.colors insertObject:MJRandomColor atIndex:0];
@@ -44,11 +43,13 @@ static const CGFloat MJDuration = 2.0;
             // 结束刷新
             [weakSelf.collectionView.mj_header endRefreshing];
         });
-    }];
-    [self.collectionView.mj_header beginRefreshing];
+    }] assignTo:self.collectionView];
+    self.collectionView.mj_header.isCollectionViewAnimationBug = YES;
+    // 简单粗暴版本
+//    [self.collectionView.mj_header setAnimationDisabled];
 
     // 上拉刷新
-    self.collectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    [[[[MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         // 增加5条假数据
         for (int i = 0; i<5; i++) {
             [weakSelf.colors addObject:MJRandomColor];
@@ -61,9 +62,9 @@ static const CGFloat MJDuration = 2.0;
             // 结束刷新
             [weakSelf.collectionView.mj_footer endRefreshing];
         });
-    }];
-    // 默认先隐藏footer
-    self.collectionView.mj_footer.hidden = YES;
+    }] setAnimationDisabled]
+      autoChangeTransparency:YES]
+     assignTo:self.collectionView];
 }
 
 #pragma mark - 数据相关

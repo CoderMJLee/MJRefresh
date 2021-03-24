@@ -1,5 +1,4 @@
 //  代码地址: https://github.com/CoderMJLee/MJRefresh
-//  代码地址: http://code4app.com/ios/%E5%BF%AB%E9%80%9F%E9%9B%86%E6%88%90%E4%B8%8B%E6%8B%89%E4%B8%8A%E6%8B%89%E5%88%B7%E6%96%B0/52326ce26803fabc46000000
 //  MJRefreshComponent.m
 //  MJRefreshExample
 //
@@ -24,6 +23,8 @@
         
         // 默认是普通状态
         self.state = MJRefreshStateIdle;
+        self.fastAnimationDuration = 0.25;
+        self.slowAnimationDuration = 0.4;
     }
     return self;
 }
@@ -143,7 +144,7 @@
 #pragma mark 进入刷新状态
 - (void)beginRefreshing
 {
-    [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
+    [UIView animateWithDuration:self.fastAnimationDuration animations:^{
         self.alpha = 1.0;
     }];
     self.pullingPercent = 1.0;
@@ -238,6 +239,14 @@
     })
 }
 
+#pragma mark - 刷新动画时间控制
+- (instancetype)setAnimationDisabled {
+    self.fastAnimationDuration = 0;
+    self.slowAnimationDuration = 0;
+    
+    return self;
+}
+
 #pragma mark - <<< Deprecation compatible function >>> -
 - (void)setEndRefreshingAnimateCompletionBlock:(MJRefreshComponentEndRefreshingCompletionBlock)endRefreshingAnimateCompletionBlock {
     _endRefreshingAnimationBeginAction = endRefreshingAnimateCompletionBlock;
@@ -275,4 +284,31 @@
     }
     return stringWidth;
 }
+@end
+
+
+#pragma mark - <<< 为 Swift 扩展链式语法 >>> -
+@implementation MJRefreshComponent (ChainingGrammar)
+
+- (instancetype)autoChangeTransparency:(BOOL)isAutoChange {
+    self.automaticallyChangeAlpha = isAutoChange;
+    return self;
+}
+- (instancetype)afterBeginningAction:(MJRefreshComponentAction)action {
+    self.beginRefreshingCompletionBlock = action;
+    return self;
+}
+- (instancetype)endingAnimationBeginningAction:(MJRefreshComponentAction)action {
+    self.endRefreshingAnimationBeginAction = action;
+    return self;
+}
+- (instancetype)afterEndingAction:(MJRefreshComponentAction)action {
+    self.endRefreshingCompletionBlock = action;
+    return self;
+}
+
+- (instancetype)assignTo:(UIScrollView *)scrollView {
+    return self;
+}
+
 @end

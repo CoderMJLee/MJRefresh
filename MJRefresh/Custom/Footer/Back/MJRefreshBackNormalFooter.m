@@ -95,7 +95,7 @@
     if (state == MJRefreshStateIdle) {
         if (oldState == MJRefreshStateRefreshing) {
             self.arrowView.transform = CGAffineTransformMakeRotation(0.000001 - M_PI);
-            [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
+            [UIView animateWithDuration:self.slowAnimationDuration animations:^{
                 self.loadingView.alpha = 0.0;
             } completion:^(BOOL finished) {
                 // 防止动画结束后，状态已经不是MJRefreshStateIdle
@@ -109,14 +109,14 @@
         } else {
             self.arrowView.hidden = NO;
             [self.loadingView stopAnimating];
-            [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
+            [UIView animateWithDuration:self.fastAnimationDuration animations:^{
                 self.arrowView.transform = CGAffineTransformMakeRotation(0.000001 - M_PI);
             }];
         }
     } else if (state == MJRefreshStatePulling) {
         self.arrowView.hidden = NO;
         [self.loadingView stopAnimating];
-        [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
+        [UIView animateWithDuration:self.fastAnimationDuration animations:^{
             self.arrowView.transform = CGAffineTransformIdentity;
         }];
     } else if (state == MJRefreshStateRefreshing) {
