@@ -35,9 +35,10 @@
 }
 
 #pragma mark - 公共方法
-- (void)setTitle:(NSString *)title forState:(MJRefreshState)state {
-    if (title == nil) return;
+- (instancetype)setTitle:(NSString *)title forState:(MJRefreshState)state {
+    if (title == nil) return self;
     self.stateTitles[@(state)] = title;
+    return self;
 }
 
 #pragma mark - 覆盖父类的方法

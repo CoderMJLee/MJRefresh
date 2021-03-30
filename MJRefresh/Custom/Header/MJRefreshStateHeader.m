@@ -46,11 +46,12 @@
 }
 
 #pragma mark - 公共方法
-- (void)setTitle:(NSString *)title forState:(MJRefreshState)state
+- (instancetype)setTitle:(NSString *)title forState:(MJRefreshState)state
 {
-    if (title == nil) return;
+    if (title == nil) return self;
     self.stateTitles[@(state)] = title;
     self.stateLabel.text = self.stateTitles[@(self.state)];
+    return self;
 }
 
 #pragma mark key的处理
@@ -156,4 +157,14 @@
     // 重新设置key（重新显示时间）
     self.lastUpdatedTimeKey = self.lastUpdatedTimeKey;
 }
+@end
+
+#pragma mark - <<< 为 Swift 扩展链式语法 >>> -
+@implementation MJRefreshStateHeader (ChainingGrammar)
+
+- (instancetype)modifyLastUpdatedTimeText:(NSString * _Nonnull (^)(NSDate * _Nullable))handler {
+    self.lastUpdatedTimeText = handler;
+    return self;
+}
+
 @end

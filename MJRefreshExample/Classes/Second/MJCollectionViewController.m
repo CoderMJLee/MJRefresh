@@ -43,7 +43,7 @@ static const CGFloat MJDuration = 2.0;
             // 结束刷新
             [weakSelf.collectionView.mj_header endRefreshing];
         });
-    }] assignTo:self.collectionView];
+    }] linkTo:self.collectionView];
     self.collectionView.mj_header.isCollectionViewAnimationBug = YES;
     // 简单粗暴版本
 //    [self.collectionView.mj_header setAnimationDisabled];
@@ -64,7 +64,7 @@ static const CGFloat MJDuration = 2.0;
         });
     }] setAnimationDisabled]
       autoChangeTransparency:YES]
-     assignTo:self.collectionView];
+     linkTo:self.collectionView];
 }
 
 #pragma mark - 数据相关

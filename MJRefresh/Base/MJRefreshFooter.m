@@ -42,7 +42,7 @@
 
 #pragma mark . 链式语法部分 .
 
-- (instancetype)assignTo:(UIScrollView *)scrollView {
+- (instancetype)linkTo:(UIScrollView *)scrollView {
     scrollView.mj_footer = self;
     return self;
 }

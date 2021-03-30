@@ -19,7 +19,7 @@ class MJWKWebViewController: UIViewController {
         MJChiBaoZiHeader { [weak self] in
             self?.webView.reload()
         }.autoChangeTransparency(true)
-        .assign(to: webView.scrollView)
+        .link(to: webView.scrollView)
         
         webView.scrollView.mj_header?.beginRefreshing()
     }
