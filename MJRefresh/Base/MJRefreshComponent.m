@@ -307,7 +307,7 @@
     return self;
 }
 
-- (instancetype)assignTo:(UIScrollView *)scrollView {
+- (instancetype)linkTo:(UIScrollView *)scrollView {
     return self;
 }
 

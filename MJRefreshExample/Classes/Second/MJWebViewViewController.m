@@ -28,7 +28,7 @@
     [[[MJChiBaoZiHeader headerWithRefreshingBlock:^{
             [webView reload];
         }]
-         assignTo:scrollView]
+         linkTo:scrollView]
         autoChangeTransparency:YES];
     
     // 如果是上拉刷新，就以此类推

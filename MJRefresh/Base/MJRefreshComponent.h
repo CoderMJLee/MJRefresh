@@ -137,7 +137,7 @@ typedef void (^MJRefreshComponentAction)(void);
 
 /// 需要子类必须实现
 /// @param scrollView 赋值给的 ScrollView 的 Header/Footer/Trailer
-- (instancetype)assignTo:(UIScrollView *)scrollView;
+- (instancetype)linkTo:(UIScrollView *)scrollView;
 
 @end
 

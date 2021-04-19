@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic, readonly) UILabel *stateLabel;
 
 /** 设置state状态下的文字 */
-- (void)setTitle:(NSString *)title forState:(MJRefreshState)state;
+- (instancetype)setTitle:(NSString *)title forState:(MJRefreshState)state;
 
 /** 隐藏刷新状态的文字 */
 @property (assign, nonatomic, getter=isRefreshingTitleHidden) BOOL refreshingTitleHidden;
