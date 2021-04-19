@@ -54,7 +54,7 @@
       MJRefreshNormalHeader { [weak self] in
   	      // do some Requst
       }.autoChangeTransparency(true)
-      .assign(to: tableView)
+      .link(to: tableView)
   }
   ```
 
