@@ -70,7 +70,7 @@
             language = @"uk";
         } else if ([language hasPrefix:@"ja"]) {
             language = @"ja";
-        }else {
+        } else {
             language = @"en";
         }
         
