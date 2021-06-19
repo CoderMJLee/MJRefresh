@@ -1,7 +1,7 @@
 //  代码地址: https://github.com/CoderMJLee/MJRefresh
 #import <UIKit/UIKit.h>
 
-const CGFloat MJRefreshLabelLeftInset = 25;
+const CGFloat MJRefreshLabelLeftInset = 0;
 const CGFloat MJRefreshHeaderHeight = 54.0;
 const CGFloat MJRefreshFooterHeight = 44.0;
 const CGFloat MJRefreshTrailWidth = 60.0;
@@ -23,8 +23,8 @@ NSString *const MJRefreshHeaderRefreshingText = @"MJRefreshHeaderRefreshingText"
 NSString *const MJRefreshTrailerIdleText = @"MJRefreshTrailerIdleText";
 NSString *const MJRefreshTrailerPullingText = @"MJRefreshTrailerPullingText";
 
-NSString *const MJRefreshAutoFooterIdleText = @"MJRefreshAutoFooterIdleText";
-NSString *const MJRefreshAutoFooterRefreshingText = @"MJRefreshAutoFooterRefreshingText";
+NSString *const MJRefreshAutoFooterIdleText = @"";
+NSString *const MJRefreshAutoFooterRefreshingText = @"";
 NSString *const MJRefreshAutoFooterNoMoreDataText = @"MJRefreshAutoFooterNoMoreDataText";
 
 NSString *const MJRefreshBackFooterIdleText = @"MJRefreshBackFooterIdleText";
