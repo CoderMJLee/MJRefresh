@@ -13,3 +13,4 @@
 #import "MJRefreshAutoGifFooter.h"
 
 #import "MJRefreshNormalTrailer.h"
+#import "MJRefreshConfig.h"

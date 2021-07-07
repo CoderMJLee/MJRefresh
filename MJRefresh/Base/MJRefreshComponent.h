@@ -107,6 +107,13 @@ typedef void (^MJRefreshComponentAction)(void);
 /** 当scrollView的拖拽状态发生改变的时候调用 */
 - (void)scrollViewPanStateDidChange:(nullable NSDictionary *)change NS_REQUIRES_SUPER;
 
+/** 多语言配置 language 发生变化时调用
+ 
+ `MJRefreshConfig.defaultConfig.language` 发生改变时调用.
+ 
+ ⚠️ 父类会调用 `placeSubviews` 方法, 请勿在 placeSubviews 中调用本方法, 造成死循环. 子类在需要重新布局时, 在配置完修改后, 最后再调用 super 方法, 否则可能导致配置修改后, 定位先于修改执行.
+ */
+- (void)i18nDidChange NS_REQUIRES_SUPER;
 
 #pragma mark - 其他
 /** 拉拽的百分比(交给子类重写) */

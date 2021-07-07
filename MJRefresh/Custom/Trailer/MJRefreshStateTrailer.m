@@ -41,14 +41,24 @@
     return self;
 }
 
-#pragma mark - 覆盖父类的方法
-- (void)prepare {
-    [super prepare];
-    
+- (void)textConfiguration {
     // 初始化文字
     [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshTrailerIdleText] forState:MJRefreshStateIdle];
     [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshTrailerPullingText] forState:MJRefreshStatePulling];
     [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshTrailerPullingText] forState:MJRefreshStateRefreshing];
+}
+
+#pragma mark - 覆盖父类的方法
+- (void)prepare {
+    [super prepare];
+    
+    [self textConfiguration];
+}
+
+- (void)i18nDidChange {
+    [self textConfiguration];
+    
+    [super i18nDidChange];
 }
 
 - (void)setState:(MJRefreshState)state {
