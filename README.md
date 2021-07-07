@@ -78,6 +78,11 @@ MJRefreshConfig.default.i18nBundle = "i18n Bundle"
 Just override `i18nDidChange` function and reset texts.
 
 ```swift
+// must use this localization methods
+Bundle.mj_localizedString(forKey: "")
+// or
+Bundle.mj_localizedString(forKey: "", value:"")
+
 override func i18nDidChange() {
     // Reset texts function
     setupTexts()
