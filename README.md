@@ -75,7 +75,7 @@ MJRefreshConfig.default.i18nBundle = "i18n Bundle"
 
 #### Adopting the feature in your DIY component
 
-Just override `i18nDidChange` function and reset texts.
+1. Just override `i18nDidChange` function and reset texts.
 
 ```swift
 // must use this localization methods
@@ -90,6 +90,8 @@ override func i18nDidChange() {
     super.i18nDidChange()
 }
 ```
+
+2. Receiving `MJRefreshDidChangeLanguageNotification` notification.
 
 ### <a id="swift_chaining_grammar_supported"></a>Swift Chaining Grammar Supported
 
