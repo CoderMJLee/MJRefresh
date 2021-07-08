@@ -53,7 +53,7 @@ static id instance_;
 
 - (void)contorlSelect:(UISegmentedControl *)control
 {
-    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+    UIWindow *keyWindow = [UIApplication sharedApplication].windows.firstObject;
     keyWindow.rootViewController = [keyWindow.rootViewController.storyboard instantiateViewControllerWithIdentifier:[NSString stringWithFormat:@"%zd", control.selectedSegmentIndex]];
     
     if (control.selectedSegmentIndex == 0) {

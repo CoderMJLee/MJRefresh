@@ -98,12 +98,12 @@
     if (state == MJRefreshStateNoMoreData || state == MJRefreshStateIdle) {
         // 刷新完毕
         if (MJRefreshStateRefreshing == oldState) {
-            [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
-                self.scrollView.mj_insetB -= self.lastBottomDelta;
-                
-                if (self.endRefreshingAnimateCompletionBlock) {
-                    self.endRefreshingAnimateCompletionBlock();
+            [UIView animateWithDuration:self.slowAnimationDuration animations:^{
+                if (self.endRefreshingAnimationBeginAction) {
+                    self.endRefreshingAnimationBeginAction();
                 }
+                
+                self.scrollView.mj_insetB -= self.lastBottomDelta;
                 // 自动调整透明度
                 if (self.isAutomaticallyChangeAlpha) self.alpha = 0.0;
             } completion:^(BOOL finished) {
@@ -124,7 +124,7 @@
         // 记录刷新前的数量
         self.lastRefreshCount = self.scrollView.mj_totalDataCount;
         
-        [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
+        [UIView animateWithDuration:self.fastAnimationDuration animations:^{
             CGFloat bottom = self.mj_h + self.scrollViewOriginalInset.bottom;
             CGFloat deltaH = [self heightForContentBreakView];
             if (deltaH < 0) { // 如果内容高度小于view的高度

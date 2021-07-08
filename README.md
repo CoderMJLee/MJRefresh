@@ -1,12 +1,16 @@
-![(logo)](http://images.cnitblog.com/blog2015/497279/201505/051004492043385.png)
-
 ## MJRefresh
-
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 ![podversion](https://img.shields.io/cocoapods/v/MJRefresh.svg)
 
 * An easy way to use pull-to-refresh
 
+[📜✍🏻**Release Notes**: more details](https://github.com/CoderMJLee/MJRefresh/releases)
+
 ## Contents
+
+- New Features
+  - [Swift Chaining Grammar Supported](#swift_chaining_grammar_supported)
+
 * Getting Started
     * [Features【Support what kinds of controls to refresh】](#Support_what_kinds_of_controls_to_refresh)
     * [Installation【How to use MJRefresh】](#How_to_use_MJRefresh)
@@ -17,6 +21,7 @@
 	* [MJRefreshHeader.h](#MJRefreshHeader.h)
 	* [MJRefreshFooter.h](#MJRefreshFooter.h)
 	* [MJRefreshAutoFooter.h](#MJRefreshAutoFooter.h)
+	* [MJRefreshTrailer.h](#MJRefreshTrailer.h)
 * Examples
     * [Reference](#Reference)
     * [The drop-down refresh 01-Default](#The_drop-down_refresh_01-Default)
@@ -36,11 +41,25 @@
     * [The pull to refresh 09-DIY the control of refresh(Automatic refresh)](#The_pull_to_refresh_09-DIY_the_control_of_refresh(Automatic_refresh))
     * [The pull to refresh 10-DIY the control of refresh(Automatic back)](#The_pull_to_refresh_10-DIY_the_control_of_refresh(Automatic_back))
     * [UICollectionView01-The pull and drop-down refresh](#UICollectionView01-The_pull_and_drop-down_refresh)
-    * [UIWebView01-The drop-down refresh](#UIWebView01-The_drop-down_refresh)
+    * [UICollectionView02-The trailer refresh](#UICollectionView02-The_trailer_refresh)
+    * [WKWebView01-The drop-down refresh](#WKWebView01-The_drop-down_refresh)
 * [Hope](#Hope)
 
+## New Features
+### <a id="swift_chaining_grammar_supported"></a>Swift Chaining Grammar Supported
+
+  ```swift
+  // Example as MJRefreshNormalHeader
+  func addRefreshHeader() {
+      MJRefreshNormalHeader { [weak self] in
+  	      // do some Requst
+      }.autoChangeTransparency(true)
+      .link(to: tableView)
+  }
+  ```
+
 ## <a id="Support_what_kinds_of_controls_to_refresh"></a>Support what kinds of controls to refresh
-* `UIScrollView`、`UITableView`、`UICollectionView`、`UIWebView`
+* `UIScrollView`、`UITableView`、`UICollectionView`、`WKWebView`
 
 ## <a id="How_to_use_MJRefresh"></a>How to use MJRefresh
 * Installation with CocoaPods：`pod 'MJRefresh'`
@@ -75,9 +94,12 @@ UIView+MJExtension.h        UIView+MJExtension.m
         - Auto Back
             - Normal：`MJRefreshBackNormalFooter`
             - Gif：`MJRefreshBackGifFooter`
+    
 - `The class of non-red text` in the chart：For inheritance，to use DIY the control of refresh
+
 - About how to DIY the control of refresh，You can refer the Class in below Chart<br>
-<img src="http://images0.cnblogs.com/blog2015/497279/201506/141358159107893.png" width="30%" height="30%">
+
+  <img src="http://images0.cnblogs.com/blog2015/497279/201506/141358159107893.png" width="30%" height="30%">
 
 ## <a id="MJRefreshComponent.h"></a>MJRefreshComponent.h
 ```objc
@@ -142,6 +164,21 @@ UIView+MJExtension.h        UIView+MJExtension.m
 
 /** When there is much at the bottom of the control is automatically refresh(Default is 1.0，Is at the bottom of the control appears in full, will refresh automatically) */
 @property (assign, nonatomic) CGFloat triggerAutomaticallyRefreshPercent;
+@end
+```
+
+## <a id="MJRefreshTrailer.h"></a> MJRefreshTrailer.h
+```objc
+@interface MJRefreshTrailer : MJRefreshComponent
+
+/** 创建trailer */
++ (instancetype)trailerWithRefreshingBlock:(MJRefreshComponentAction)refreshingBlock;
+/** 创建trailer */
++ (instancetype)trailerWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
+
+/** 忽略多少scrollView的contentInset的right */
+@property (assign, nonatomic) CGFloat ignoredScrollViewContentInsetRight;
+
 @end
 ```
 
@@ -334,7 +371,17 @@ self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingB
 ```
 ![(UICollectionView01-上下拉刷新)](http://images0.cnblogs.com/blog2015/497279/201506/141206021603758.gif)
 
-## <a id="UIWebView01-The_drop-down_refresh"></a>UIWebView01-The drop-down refresh
+## <a id="UICollectionView02-The_trailer_refresh"></a>UICollectionView02-The trailer refresh
+```objc
+// The trailer refresh
+self.collectionView.mj_trailer = [MJRefreshNormalTrailer trailerWithRefreshingBlock:^{
+   //Call this Block When enter the refresh status automatically 
+}];
+
+```
+![(UICollectionView02-左拉刷新)](Gif/trailer_refresh.gif)
+
+## <a id="WKWebView01-The_drop-down_refresh"></a>WKWebView01-The drop-down refresh
 ```objc
 //Add the control of The drop-down refresh
 self.webView.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -347,21 +394,6 @@ self.webView.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingB
 * ARC
 * iOS>=8.0
 * iPhone \ iPad screen anyway
-
-## <a id="Hope"></a>Hope
-* If you find bug when used，Hope you can Issues me，Thank you or try to download the latest code of this framework to see the BUG has been fixed or not）
-* If you find the function is not enough when used，Hope you can Issues me，I very much to add more useful function to this framework ，Thank you !
-* If you want to contribute code for MJRefresh，please Pull Requests me
-*  If you use MJRefresh in your develop app，Hope you can go to[CocoaControls](https://www.cocoacontrols.com/controls/mjrefresh)to add the iTunes path
- of you app，I Will install your app，and according to the usage of many app，to be a better design and improve to MJRefresh，Thank you !
-   * StepO1（WeChat is just an Example，Explore“Your app name itunes”）
-![(step01)](http://ww4.sinaimg.cn/mw1024/800cdf9ctw1eq0viiv5rsj20sm0ea41t.jpg)
-   * StepO2
-![(step02)](http://ww2.sinaimg.cn/mw1024/800cdf9ctw1eq0vilejxlj20tu0me7a0.jpg)
-   * StepO3
-![(step03)](http://ww1.sinaimg.cn/mw1024/800cdf9ctw1eq0viocpo5j20wc0dc0un.jpg)
-   * StepO4
-![(step04)](http://ww3.sinaimg.cn/mw1024/800cdf9ctw1eq0vir137xj20si0gewgu.jpg)
 
 ## 寻求志同道合的小伙伴
 

@@ -2,6 +2,9 @@
 "MJRefreshHeaderPullingText" = "鬆開立即刷新";
 "MJRefreshHeaderRefreshingText" = "正在刷新數據中...";
 
+"MJRefreshTrailerIdleText" = "滑動查看圖文詳情";
+"MJRefreshTrailerPullingText" = "釋放查看圖文詳情";
+
 "MJRefreshAutoFooterIdleText" = "點擊或上拉加載更多";
 "MJRefreshAutoFooterRefreshingText" = "正在加載更多的數據...";
 "MJRefreshAutoFooterNoMoreDataText" = "已經全部加載完畢";

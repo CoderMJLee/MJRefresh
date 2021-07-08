@@ -1,5 +1,4 @@
 //  代码地址: https://github.com/CoderMJLee/MJRefresh
-//  代码地址: http://code4app.com/ios/%E5%BF%AB%E9%80%9F%E9%9B%86%E6%88%90%E4%B8%8B%E6%8B%89%E4%B8%8A%E6%8B%89%E5%88%B7%E6%96%B0/52326ce26803fabc46000000
 //  MJExampleViewController.m
 //  MJRefreshExample
 //
@@ -14,11 +13,14 @@
 #import "MJExample.h"
 #import "UIViewController+Example.h"
 #import "MJRefresh.h"
+#import "MJHorizontalCollectionViewController.h"
+#import "MJRefreshExample-Swift.h"
 
 static NSString *const MJExample00 = @"UITableView + 下拉刷新";
 static NSString *const MJExample10 = @"UITableView + 上拉刷新";
 static NSString *const MJExample20 = @"UICollectionView";
 static NSString *const MJExample30 = @"UIWebView";
+static NSString *const MJExample40 = @"WKWebView";
 
 @interface MJExampleViewController()
 @property (strong, nonatomic) NSArray *examples;
@@ -53,7 +55,19 @@ static NSString *const MJExample30 = @"UIWebView";
         exam3.titles = @[@"下拉刷新"];
         exam3.methods = @[@"example31"];
         
-        self.examples = @[exam0, exam1, exam2, exam3];
+        MJExample *exam4 = [[MJExample alloc] init];
+        exam4.header = MJExample40;
+        exam4.vcClass = [MJWKWebViewController class];
+        exam4.titles = @[@"下拉刷新"];
+        exam4.methods = @[@"example41"];
+        
+        MJExample *exam5 = [[MJExample alloc] init];
+        exam5.header = MJExample20;
+        exam5.vcClass = [MJHorizontalCollectionViewController class];
+        exam5.titles = @[@"左拉刷新"];
+        exam5.methods = @[@"example42"];
+        
+        self.examples = @[exam0, exam1, exam2, exam3, exam4, exam5];
     }
     return _examples;
 }

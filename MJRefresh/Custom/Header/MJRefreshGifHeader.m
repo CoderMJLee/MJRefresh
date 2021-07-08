@@ -46,23 +46,23 @@
 }
 
 #pragma mark - 公共方法
-- (void)setImages:(NSArray *)images duration:(NSTimeInterval)duration forState:(MJRefreshState)state 
-{ 
-    if (images == nil) return; 
+- (instancetype)setImages:(NSArray *)images duration:(NSTimeInterval)duration forState:(MJRefreshState)state {
+    if (images == nil) return self;
     
-    self.stateImages[@(state)] = images; 
-    self.stateDurations[@(state)] = @(duration); 
+    self.stateImages[@(state)] = images;
+    self.stateDurations[@(state)] = @(duration);
     
     /* 根据图片设置控件的高度 */ 
-    UIImage *image = [images firstObject]; 
-    if (image.size.height > self.mj_h) { 
-        self.mj_h = image.size.height; 
-    } 
+    UIImage *image = [images firstObject];
+    if (image.size.height > self.mj_h) {
+        self.mj_h = image.size.height;
+    }
+    return self;
 }
 
-- (void)setImages:(NSArray *)images forState:(MJRefreshState)state 
+- (instancetype)setImages:(NSArray *)images forState:(MJRefreshState)state 
 { 
-    [self setImages:images duration:images.count * 0.1 forState:state]; 
+    return [self setImages:images duration:images.count * 0.1 forState:state];
 }
 
 #pragma mark - 实现父类的方法

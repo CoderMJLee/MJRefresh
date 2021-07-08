@@ -8,10 +8,12 @@
 
 #import "MJRefreshHeader.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface MJRefreshStateHeader : MJRefreshHeader
 #pragma mark - 刷新时间相关
 /** 利用这个block来决定显示的更新时间文字 */
-@property (copy, nonatomic) NSString *(^lastUpdatedTimeText)(NSDate *lastUpdatedTime);
+@property (copy, nonatomic, nullable) NSString *(^lastUpdatedTimeText)(NSDate * _Nullable lastUpdatedTime);
 /** 显示上一次刷新时间的label */
 @property (weak, nonatomic, readonly) UILabel *lastUpdatedTimeLabel;
 
@@ -21,5 +23,13 @@
 /** 显示刷新状态的label */
 @property (weak, nonatomic, readonly) UILabel *stateLabel;
 /** 设置state状态下的文字 */
-- (void)setTitle:(NSString *)title forState:(MJRefreshState)state;
+- (instancetype)setTitle:(NSString *)title forState:(MJRefreshState)state;
 @end
+
+@interface MJRefreshStateHeader (ChainingGrammar)
+
+- (instancetype)modifyLastUpdatedTimeText:(NSString * (^)(NSDate * _Nullable lastUpdatedTime))handler;
+
+@end
+
+NS_ASSUME_NONNULL_END

@@ -9,6 +9,7 @@
 #import "MJWebViewViewController.h"
 #import "UIViewController+Example.h"
 #import "MJRefresh.h"
+#import "MJChiBaoZiHeader.h"
 
 @interface MJWebViewViewController () <UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
@@ -24,11 +25,14 @@
     __weak UIScrollView *scrollView = self.webView.scrollView;
     
     // 添加下拉刷新控件
-    scrollView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [webView reload];
-    }];
+    [[[MJChiBaoZiHeader headerWithRefreshingBlock:^{
+            [webView reload];
+        }]
+         linkTo:scrollView]
+        autoChangeTransparency:YES];
     
     // 如果是上拉刷新，就以此类推
+    [scrollView.mj_header beginRefreshing];
 }
 
 #pragma mark - webViewDelegate

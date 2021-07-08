@@ -1,5 +1,4 @@
 //  代码地址: https://github.com/CoderMJLee/MJRefresh
-//  代码地址: http://code4app.com/ios/%E5%BF%AB%E9%80%9F%E9%9B%86%E6%88%90%E4%B8%8B%E6%8B%89%E4%B8%8A%E6%8B%89%E5%88%B7%E6%96%B0/52326ce26803fabc46000000
 //  MJRefreshComponent.h
 //  MJRefreshExample
 //
@@ -13,6 +12,8 @@
 #import "UIScrollView+MJExtension.h"
 #import "UIScrollView+MJRefresh.h"
 #import "NSBundle+MJRefresh.h"
+
+NS_ASSUME_NONNULL_BEGIN
 
 /** 刷新控件的状态 */
 typedef NS_ENUM(NSInteger, MJRefreshState) {
@@ -29,11 +30,14 @@ typedef NS_ENUM(NSInteger, MJRefreshState) {
 };
 
 /** 进入刷新状态的回调 */
-typedef void (^MJRefreshComponentRefreshingBlock)(void);
+typedef void (^MJRefreshComponentRefreshingBlock)(void) MJRefreshDeprecated("first deprecated in 3.3.0 - Use `MJRefreshComponentAction` instead");
 /** 开始刷新后的回调(进入刷新状态后的回调) */
-typedef void (^MJRefreshComponentbeginRefreshingCompletionBlock)(void);
+typedef void (^MJRefreshComponentBeginRefreshingCompletionBlock)(void) MJRefreshDeprecated("first deprecated in 3.3.0 - Use `MJRefreshComponentAction` instead");
 /** 结束刷新后的回调 */
-typedef void (^MJRefreshComponentEndRefreshingCompletionBlock)(void);
+typedef void (^MJRefreshComponentEndRefreshingCompletionBlock)(void) MJRefreshDeprecated("first deprecated in 3.3.0 - Use `MJRefreshComponentAction` instead");
+
+/** 刷新用到的回调类型 */
+typedef void (^MJRefreshComponentAction)(void);
 
 /** 刷新控件的基类 */
 @interface MJRefreshComponent : UIView
@@ -43,9 +47,18 @@ typedef void (^MJRefreshComponentEndRefreshingCompletionBlock)(void);
     /** 父控件 */
     __weak UIScrollView *_scrollView;
 }
+
+#pragma mark - 刷新动画时间控制
+/** 快速动画时间(一般用在刷新开始的回弹动画), 默认 0.25 */
+@property (nonatomic) NSTimeInterval fastAnimationDuration;
+/** 慢速动画时间(一般用在刷新结束后的回弹动画), 默认 0.4*/
+@property (nonatomic) NSTimeInterval slowAnimationDuration;
+/** 关闭全部默认动画效果, 可以简单粗暴地解决 CollectionView 的回弹动画 bug */
+- (instancetype)setAnimationDisabled;
+
 #pragma mark - 刷新回调
 /** 正在刷新的回调 */
-@property (copy, nonatomic) MJRefreshComponentRefreshingBlock refreshingBlock;
+@property (copy, nonatomic, nullable) MJRefreshComponentAction refreshingBlock;
 /** 设置回调对象和回调方法 */
 - (void)setRefreshingTarget:(id)target refreshingAction:(SEL)action;
 
@@ -61,17 +74,18 @@ typedef void (^MJRefreshComponentEndRefreshingCompletionBlock)(void);
 - (void)beginRefreshing;
 - (void)beginRefreshingWithCompletionBlock:(void (^)(void))completionBlock;
 /** 开始刷新后的回调(进入刷新状态后的回调) */
-@property (copy, nonatomic) MJRefreshComponentbeginRefreshingCompletionBlock beginRefreshingCompletionBlock;
+@property (copy, nonatomic, nullable) MJRefreshComponentAction beginRefreshingCompletionBlock;
 /** 带动画的结束刷新的回调 */
-@property (copy, nonatomic) MJRefreshComponentEndRefreshingCompletionBlock endRefreshingAnimateCompletionBlock;
+@property (copy, nonatomic, nullable) MJRefreshComponentAction endRefreshingAnimateCompletionBlock MJRefreshDeprecated("first deprecated in 3.3.0 - Use `endRefreshingAnimationBeginAction` instead");
+@property (copy, nonatomic, nullable) MJRefreshComponentAction endRefreshingAnimationBeginAction;
 /** 结束刷新的回调 */
-@property (copy, nonatomic) MJRefreshComponentEndRefreshingCompletionBlock endRefreshingCompletionBlock;
+@property (copy, nonatomic, nullable) MJRefreshComponentAction endRefreshingCompletionBlock;
 /** 结束刷新状态 */
 - (void)endRefreshing;
 - (void)endRefreshingWithCompletionBlock:(void (^)(void))completionBlock;
 /** 是否正在刷新 */
 @property (assign, nonatomic, readonly, getter=isRefreshing) BOOL refreshing;
-//- (BOOL)isRefreshing;
+
 /** 刷新状态 一般交给子类内部实现 */
 @property (assign, nonatomic) MJRefreshState state;
 
@@ -87,11 +101,11 @@ typedef void (^MJRefreshComponentEndRefreshingCompletionBlock)(void);
 /** 摆放子控件frame */
 - (void)placeSubviews NS_REQUIRES_SUPER;
 /** 当scrollView的contentOffset发生改变的时候调用 */
-- (void)scrollViewContentOffsetDidChange:(NSDictionary *)change NS_REQUIRES_SUPER;
+- (void)scrollViewContentOffsetDidChange:(nullable NSDictionary *)change NS_REQUIRES_SUPER;
 /** 当scrollView的contentSize发生改变的时候调用 */
-- (void)scrollViewContentSizeDidChange:(NSDictionary *)change NS_REQUIRES_SUPER;
+- (void)scrollViewContentSizeDidChange:(nullable NSDictionary *)change NS_REQUIRES_SUPER;
 /** 当scrollView的拖拽状态发生改变的时候调用 */
-- (void)scrollViewPanStateDidChange:(NSDictionary *)change NS_REQUIRES_SUPER;
+- (void)scrollViewPanStateDidChange:(nullable NSDictionary *)change NS_REQUIRES_SUPER;
 
 
 #pragma mark - 其他
@@ -107,3 +121,24 @@ typedef void (^MJRefreshComponentEndRefreshingCompletionBlock)(void);
 + (instancetype)mj_label;
 - (CGFloat)mj_textWidth;
 @end
+
+@interface MJRefreshComponent (ChainingGrammar)
+
+#pragma mark - <<< 为 Swift 扩展链式语法 >>> -
+/// 自动变化透明度
+- (instancetype)autoChangeTransparency:(BOOL)isAutoChange;
+/// 刷新开始后立即调用的回调
+- (instancetype)afterBeginningAction:(MJRefreshComponentAction)action;
+/// 刷新动画开始后立即调用的回调
+- (instancetype)endingAnimationBeginningAction:(MJRefreshComponentAction)action;
+/// 刷新结束后立即调用的回调
+- (instancetype)afterEndingAction:(MJRefreshComponentAction)action;
+
+
+/// 需要子类必须实现
+/// @param scrollView 赋值给的 ScrollView 的 Header/Footer/Trailer
+- (instancetype)linkTo:(UIScrollView *)scrollView;
+
+@end
+
+NS_ASSUME_NONNULL_END

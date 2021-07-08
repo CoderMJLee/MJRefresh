@@ -1,5 +1,4 @@
 //  代码地址: https://github.com/CoderMJLee/MJRefresh
-//  代码地址: http://code4app.com/ios/%E5%BF%AB%E9%80%9F%E9%9B%86%E6%88%90%E4%B8%8B%E6%8B%89%E4%B8%8A%E6%8B%89%E5%88%B7%E6%96%B0/52326ce26803fabc46000000
 //  MJRefreshHeader.h
 //  MJRefreshExample
 //
@@ -9,20 +8,28 @@
 
 #import "MJRefreshComponent.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface MJRefreshHeader : MJRefreshComponent
 /** 创建header */
-+ (instancetype)headerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock;
++ (instancetype)headerWithRefreshingBlock:(MJRefreshComponentAction)refreshingBlock;
 /** 创建header */
 + (instancetype)headerWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
 
 /** 这个key用来存储上一次下拉刷新成功的时间 */
 @property (copy, nonatomic) NSString *lastUpdatedTimeKey;
 /** 上一次下拉刷新成功的时间 */
-@property (strong, nonatomic, readonly) NSDate *lastUpdatedTime;
+@property (strong, nonatomic, readonly, nullable) NSDate *lastUpdatedTime;
 
 /** 忽略多少scrollView的contentInset的top */
 @property (assign, nonatomic) CGFloat ignoredScrollViewContentInsetTop;
 
 /** 是否開啟觸動回饋 */
 @property (assign, nonatomic, getter=isHapticFeedbackEnabled) BOOL hapticFeedbackEnabled NS_AVAILABLE_IOS(10_0);
+
+/** 默认是关闭状态, 如果遇到 CollectionView 的动画异常问题可以尝试打开 */
+@property (nonatomic) BOOL isCollectionViewAnimationBug;
+
 @end
+
+NS_ASSUME_NONNULL_END
