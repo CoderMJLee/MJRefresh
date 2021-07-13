@@ -10,6 +10,7 @@
 
 - New Features
     - [Dynamic i18n Switching](#dynamic_i18n_switching)
+    - [SPM Supported](#spm_supported)
     - [Swift Chaining Grammar Supported](#swift_chaining_grammar_supported)
 
 * Getting Started
@@ -92,6 +93,10 @@ override func i18nDidChange() {
 ```
 
 2. Receiving `MJRefreshDidChangeLanguageNotification` notification.
+
+### <a id="spm_supported"></a>SPM Supported
+
+Released from [`3.7.0`](https://github.com/CoderMJLee/MJRefresh/releases/tag/3.7.0)
 
 ### <a id="swift_chaining_grammar_supported"></a>Swift Chaining Grammar Supported
 
