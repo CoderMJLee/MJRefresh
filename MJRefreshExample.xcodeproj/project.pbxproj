@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0133FBBF2693FA8E00E98F66 /* CustomLanguages.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0133FBBE2693FA8E00E98F66 /* CustomLanguages.bundle */; };
+		013B0687269D6D9A00943978 /* MJRefreshNormalTrailer.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E3200F24839B2300069FA7 /* MJRefreshNormalTrailer.m */; };
+		013B0688269D6D9D00943978 /* MJRefreshTrailer.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E3200924839ABA00069FA7 /* MJRefreshTrailer.m */; };
+		013B0689269D6DA100943978 /* MJRefreshStateTrailer.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E3200E24839B2300069FA7 /* MJRefreshStateTrailer.m */; };
+		013B068A269D6DF800943978 /* MJRefreshConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 01A2CE0A21ACE01500BEE365 /* MJRefreshConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0193FF132692E99500B52B11 /* I18NExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0193FF122692E99500B52B11 /* I18NExampleViewController.swift */; };
 		0193FF162692F8EB00B52B11 /* MJRefresh_i18n.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0193FF182692F8EB00B52B11 /* MJRefresh_i18n.strings */; };
 		01A2CE0C21ACE01500BEE365 /* MJRefreshConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A2CE0B21ACE01500BEE365 /* MJRefreshConfig.m */; };
@@ -562,6 +566,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				013B068A269D6DF800943978 /* MJRefreshConfig.h in Headers */,
 				2D9DF45A1F7CE2C20042D6DD /* MJRefreshAutoFooter.h in Headers */,
 				2D9DF45B1F7CE2C20042D6DD /* MJRefreshBackFooter.h in Headers */,
 				2D9DF45C1F7CE2C20042D6DD /* MJRefreshComponent.h in Headers */,
@@ -732,6 +737,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				013B0689269D6DA100943978 /* MJRefreshStateTrailer.m in Sources */,
+				013B0688269D6D9D00943978 /* MJRefreshTrailer.m in Sources */,
+				013B0687269D6D9A00943978 /* MJRefreshNormalTrailer.m in Sources */,
 				84FC857E228037CE001C6728 /* MJRefreshConfig.m in Sources */,
 				2D9DF46F1F7CE2F90042D6DD /* MJRefreshAutoFooter.m in Sources */,
 				2D9DF4701F7CE2F90042D6DD /* MJRefreshBackFooter.m in Sources */,
