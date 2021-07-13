@@ -96,7 +96,7 @@ override func i18nDidChange() {
 
 ### <a id="spm_supported"></a>SPM Supported
 
-Released from [`3.7.0`](https://github.com/CoderMJLee/MJRefresh/releases/tag/3.7.0)
+Released from [`3.7.1`](https://github.com/CoderMJLee/MJRefresh/releases/tag/3.7.1)
 
 ### <a id="swift_chaining_grammar_supported"></a>Swift Chaining Grammar Supported
 

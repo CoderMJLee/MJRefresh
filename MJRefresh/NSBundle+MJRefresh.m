@@ -18,12 +18,11 @@ static NSBundle *mj_systemI18nBundle = nil;
 {
     static NSBundle *refreshBundle = nil;
     if (refreshBundle == nil) {
-#ifdef MJ_USEING_SPM
+#ifdef MJ_SPM
         NSBundle *containnerBundle = SWIFTPM_MODULE_BUNDLE;
 #else
         NSBundle *containnerBundle = [NSBundle bundleForClass:[MJRefreshComponent class]];
 #endif
-        // 这里不使用mainBundle是为了适配pod 1.x和0.x
         refreshBundle = [NSBundle bundleWithPath:[containnerBundle pathForResource:@"MJRefresh" ofType:@"bundle"]];
     }
     return refreshBundle;
