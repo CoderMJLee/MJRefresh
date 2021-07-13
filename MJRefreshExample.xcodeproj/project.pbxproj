@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0133FBBF2693FA8E00E98F66 /* CustomLanguages.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0133FBBE2693FA8E00E98F66 /* CustomLanguages.bundle */; };
+		0193FF132692E99500B52B11 /* I18NExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0193FF122692E99500B52B11 /* I18NExampleViewController.swift */; };
+		0193FF162692F8EB00B52B11 /* MJRefresh_i18n.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0193FF182692F8EB00B52B11 /* MJRefresh_i18n.strings */; };
 		01A2CE0C21ACE01500BEE365 /* MJRefreshConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A2CE0B21ACE01500BEE365 /* MJRefreshConfig.m */; };
-		01EB8272236846CE00813DAA /* MJWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EB8271236846CE00813DAA /* MJWKWebViewController.m */; };
+		01A5EB2B25EF62B80091554E /* MJWKWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A5EB2A25EF62B80091554E /* MJWKWebViewController.swift */; };
 		2D4698861D0EE6A400CB8025 /* NSBundle+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4698851D0EE6A400CB8025 /* NSBundle+MJRefresh.m */; };
 		2D9BEB091BB15F4A00AED473 /* UIViewController+Example.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9BEAE01BB15F4A00AED473 /* UIViewController+Example.m */; };
 		2D9BEB0A1BB15F4A00AED473 /* MJChiBaoZiFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9BEAE31BB15F4A00AED473 /* MJChiBaoZiFooter.m */; };
@@ -128,10 +131,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0133FBB82693F7E200E98F66 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MJRefresh_i18n.strings"; sourceTree = "<group>"; };
+		0133FBB92693F7EA00E98F66 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/MJRefresh_i18n.strings"; sourceTree = "<group>"; };
+		0133FBBB2693F80400E98F66 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/MJRefresh_i18n.strings; sourceTree = "<group>"; };
+		0133FBBC2693F81700E98F66 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/MJRefresh_i18n.strings; sourceTree = "<group>"; };
+		0133FBBD2693F81F00E98F66 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MJRefresh_i18n.strings; sourceTree = "<group>"; };
+		0133FBBE2693FA8E00E98F66 /* CustomLanguages.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CustomLanguages.bundle; sourceTree = "<group>"; };
+		0193FF122692E99500B52B11 /* I18NExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = I18NExampleViewController.swift; sourceTree = "<group>"; };
+		0193FF172692F8EB00B52B11 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MJRefresh_i18n.strings; sourceTree = "<group>"; };
 		01A2CE0A21ACE01500BEE365 /* MJRefreshConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MJRefreshConfig.h; sourceTree = "<group>"; };
 		01A2CE0B21ACE01500BEE365 /* MJRefreshConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConfig.m; sourceTree = "<group>"; };
-		01EB8270236846CE00813DAA /* MJWKWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MJWKWebViewController.h; sourceTree = "<group>"; };
-		01EB8271236846CE00813DAA /* MJWKWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MJWKWebViewController.m; sourceTree = "<group>"; };
+		01A5EB2925EF62B80091554E /* MJRefreshExample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MJRefreshExample-Bridging-Header.h"; sourceTree = "<group>"; };
+		01A5EB2A25EF62B80091554E /* MJWKWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MJWKWebViewController.swift; sourceTree = "<group>"; };
 		2D4698841D0EE6A400CB8025 /* NSBundle+MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+MJRefresh.h"; sourceTree = "<group>"; };
 		2D4698851D0EE6A400CB8025 /* NSBundle+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+MJRefresh.m"; sourceTree = "<group>"; };
 		2D9BEADF1BB15F4A00AED473 /* UIViewController+Example.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Example.h"; sourceTree = "<group>"; };
@@ -257,6 +268,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0193FF112692E86200B52B11 /* i18n */ = {
+			isa = PBXGroup;
+			children = (
+				0193FF122692E99500B52B11 /* I18NExampleViewController.swift */,
+				0193FF182692F8EB00B52B11 /* MJRefresh_i18n.strings */,
+				0133FBBE2693FA8E00E98F66 /* CustomLanguages.bundle */,
+			);
+			path = i18n;
+			sourceTree = "<group>";
+		};
+		01A5EB2825EF62930091554E /* SwiftExample */ = {
+			isa = PBXGroup;
+			children = (
+				01A5EB2A25EF62B80091554E /* MJWKWebViewController.swift */,
+				01A5EB2925EF62B80091554E /* MJRefreshExample-Bridging-Header.h */,
+			);
+			path = SwiftExample;
+			sourceTree = "<group>";
+		};
 		2D9BEADE1BB15F4A00AED473 /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,8 +358,6 @@
 				2D9BEB061BB15F4A00AED473 /* MJWebViewViewController.h */,
 				2D9BEB071BB15F4A00AED473 /* MJWebViewViewController.m */,
 				2D9BEB081BB15F4A00AED473 /* MJWebViewViewController.xib */,
-				01EB8270236846CE00813DAA /* MJWKWebViewController.h */,
-				01EB8271236846CE00813DAA /* MJWKWebViewController.m */,
 			);
 			path = Second;
 			sourceTree = "<group>";
@@ -410,6 +438,8 @@
 				2D9BEAE11BB15F4A00AED473 /* DIY */,
 				2D9BEAEE1BB15F4A00AED473 /* First */,
 				2D9BEAFE1BB15F4A00AED473 /* Second */,
+				0193FF112692E86200B52B11 /* i18n */,
+				01A5EB2825EF62930091554E /* SwiftExample */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -622,7 +652,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = MJ;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = "小码哥";
 				TargetAttributes = {
 					2D9DF4511F7CE29B0042D6DD = {
@@ -631,6 +661,7 @@
 					};
 					2DA7F9241AA6B4C4005627AB = {
 						CreatedOnToolsVersion = 6.1;
+						LastSwiftMigration = 1220;
 					};
 					2DA7F93D1AA6B4C4005627AB = {
 						CreatedOnToolsVersion = 6.1;
@@ -645,6 +676,11 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
+				"zh-Hant",
+				ru,
+				uk,
+				ko,
 			);
 			mainGroup = 2DA7F91C1AA6B4C4005627AB;
 			productRefGroup = 2DA7F9261AA6B4C4005627AB /* Products */;
@@ -671,10 +707,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0133FBBF2693FA8E00E98F66 /* CustomLanguages.bundle in Resources */,
 				2DA7F9341AA6B4C4005627AB /* Main.storyboard in Resources */,
 				2D9BEB1C1BB15F4A00AED473 /* MJWebViewViewController.xib in Resources */,
 				2DB2EA251BECBE6700D58F6A /* MJRefresh.bundle in Resources */,
 				2DA7F9391AA6B4C4005627AB /* LaunchScreen.xib in Resources */,
+				0193FF162692F8EB00B52B11 /* MJRefresh_i18n.strings in Resources */,
 				2D9BEB1A1BB15F4A00AED473 /* MJTestViewController.xib in Resources */,
 				2DA7F9361AA6B4C4005627AB /* Images.xcassets in Resources */,
 			);
@@ -733,6 +771,7 @@
 				2D9BEB131BB15F4A00AED473 /* MJNavigationController.m in Sources */,
 				2DB2EA271BECBE6700D58F6A /* UIScrollView+MJExtension.m in Sources */,
 				2DB2EA1F1BECBE6700D58F6A /* MJRefreshBackGifFooter.m in Sources */,
+				0193FF132692E99500B52B11 /* I18NExampleViewController.swift in Sources */,
 				2DB2EA1C1BECBE6700D58F6A /* MJRefreshAutoGifFooter.m in Sources */,
 				2DB2EA231BECBE6700D58F6A /* MJRefreshNormalHeader.m in Sources */,
 				2DB2EA191BECBE6700D58F6A /* MJRefreshComponent.m in Sources */,
@@ -744,6 +783,7 @@
 				2D9BEB1B1BB15F4A00AED473 /* MJWebViewViewController.m in Sources */,
 				2DB2EA171BECBE6700D58F6A /* MJRefreshAutoFooter.m in Sources */,
 				2D9BEB101BB15F4A00AED473 /* MJExample.m in Sources */,
+				01A5EB2B25EF62B80091554E /* MJWKWebViewController.swift in Sources */,
 				2DB2EA201BECBE6700D58F6A /* MJRefreshBackNormalFooter.m in Sources */,
 				2DA7F92B1AA6B4C4005627AB /* main.m in Sources */,
 				2DB2EA1E1BECBE6700D58F6A /* MJRefreshAutoStateFooter.m in Sources */,
@@ -757,7 +797,6 @@
 				2D9BEB0C1BB15F4A00AED473 /* MJChiBaoZiHeader.m in Sources */,
 				88E3201224839B2300069FA7 /* MJRefreshNormalTrailer.m in Sources */,
 				2DB2EA1B1BECBE6700D58F6A /* MJRefreshHeader.m in Sources */,
-				01EB8272236846CE00813DAA /* MJWKWebViewController.m in Sources */,
 				2D9BEB191BB15F4A00AED473 /* MJTestViewController.m in Sources */,
 				2DB2EA211BECBE6700D58F6A /* MJRefreshBackStateFooter.m in Sources */,
 				2DB2EA281BECBE6700D58F6A /* UIScrollView+MJRefresh.m in Sources */,
@@ -787,6 +826,19 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		0193FF182692F8EB00B52B11 /* MJRefresh_i18n.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0193FF172692F8EB00B52B11 /* en */,
+				0133FBB82693F7E200E98F66 /* zh-Hans */,
+				0133FBB92693F7EA00E98F66 /* zh-Hant */,
+				0133FBBB2693F80400E98F66 /* ru */,
+				0133FBBC2693F81700E98F66 /* uk */,
+				0133FBBD2693F81F00E98F66 /* ko */,
+			);
+			name = MJRefresh_i18n.strings;
+			sourceTree = "<group>";
+		};
 		2DA7F9321AA6B4C4005627AB /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -822,7 +874,7 @@
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -834,7 +886,6 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = MJRefreshFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -866,7 +917,7 @@
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
@@ -879,7 +930,6 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = MJRefreshFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -899,17 +949,29 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -918,6 +980,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -930,7 +993,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -942,17 +1005,29 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -960,13 +1035,14 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -978,17 +1054,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				GCC_PREFIX_HEADER = MJRefreshExample/PrefixHeader.pch;
 				INFOPLIST_FILE = MJRefreshExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mj.MJRefresh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MJRefreshExample/Classes/SwiftExample/MJRefreshExample-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -996,23 +1075,26 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				GCC_PREFIX_HEADER = MJRefreshExample/PrefixHeader.pch;
 				INFOPLIST_FILE = MJRefreshExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mj.MJRefresh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MJRefreshExample/Classes/SwiftExample/MJRefreshExample-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
 		2DA7F94C1AA6B4C4005627AB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/System/Library/Frameworks",
@@ -1037,6 +1119,7 @@
 		2DA7F94D1AA6B4C4005627AB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/System/Library/Frameworks",

@@ -8,6 +8,20 @@
 
 #import "MJRefreshAutoStateFooter.h"
 
+@interface MJRefreshAutoFooter (TapTriggerFix)
+
+- (void)beginRefreshingWithoutValidation;
+@end
+
+
+@implementation MJRefreshAutoFooter (TapTriggerFix)
+
+- (void)beginRefreshingWithoutValidation {
+    [super beginRefreshing];
+}
+
+@end
+
 @interface MJRefreshAutoStateFooter()
 {
     /** 显示刷新状态的label */
@@ -36,19 +50,27 @@
 }
 
 #pragma mark - 公共方法
-- (void)setTitle:(NSString *)title forState:(MJRefreshState)state
+- (instancetype)setTitle:(NSString *)title forState:(MJRefreshState)state
 {
-    if (title == nil) return;
+    if (title == nil) return self;
     self.stateTitles[@(state)] = title;
     self.stateLabel.text = self.stateTitles[@(self.state)];
+    return self;
 }
 
 #pragma mark - 私有方法
 - (void)stateLabelClick
 {
     if (self.state == MJRefreshStateIdle) {
-        [self beginRefreshing];
+        [super beginRefreshingWithoutValidation];
     }
+}
+
+- (void)textConfiguration {
+    // 初始化文字
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshAutoFooterIdleText] forState:MJRefreshStateIdle];
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshAutoFooterRefreshingText] forState:MJRefreshStateRefreshing];
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshAutoFooterNoMoreDataText] forState:MJRefreshStateNoMoreData];
 }
 
 #pragma mark - 重写父类的方法
@@ -59,15 +81,19 @@
     // 初始化间距
     self.labelLeftInset = MJRefreshLabelLeftInset;
     
-    // 初始化文字
-    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshAutoFooterIdleText] forState:MJRefreshStateIdle];
-    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshAutoFooterRefreshingText] forState:MJRefreshStateRefreshing];
-    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshAutoFooterNoMoreDataText] forState:MJRefreshStateNoMoreData];
+    [self textConfiguration];
     
     // 监听label
     self.stateLabel.userInteractionEnabled = YES;
     [self.stateLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(stateLabelClick)]];
 }
+
+- (void)i18nDidChange {
+    [self textConfiguration];
+    
+    [super i18nDidChange];
+}
+
 
 - (void)placeSubviews
 {

@@ -42,7 +42,7 @@ static id instance_;
     
     self.view.backgroundColor = [UIColor clearColor];
     
-    UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:@[@"示例1", @"示例2", @"示例3"]];
+    UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:@[@"示例1", @"i18n", @"示例3"]];
     control.tintColor = [UIColor orangeColor];
     control.frame = self.view.bounds;
     control.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -53,7 +53,7 @@ static id instance_;
 
 - (void)contorlSelect:(UISegmentedControl *)control
 {
-    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+    UIWindow *keyWindow = [UIApplication sharedApplication].windows.firstObject;
     keyWindow.rootViewController = [keyWindow.rootViewController.storyboard instantiateViewControllerWithIdentifier:[NSString stringWithFormat:@"%zd", control.selectedSegmentIndex]];
     
     if (control.selectedSegmentIndex == 0) {

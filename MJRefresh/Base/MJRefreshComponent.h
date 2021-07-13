@@ -1,5 +1,4 @@
 //  代码地址: https://github.com/CoderMJLee/MJRefresh
-//  代码地址: http://code4app.com/ios/%E5%BF%AB%E9%80%9F%E9%9B%86%E6%88%90%E4%B8%8B%E6%8B%89%E4%B8%8A%E6%8B%89%E5%88%B7%E6%96%B0/52326ce26803fabc46000000
 //  MJRefreshComponent.h
 //  MJRefreshExample
 //
@@ -48,6 +47,15 @@ typedef void (^MJRefreshComponentAction)(void);
     /** 父控件 */
     __weak UIScrollView *_scrollView;
 }
+
+#pragma mark - 刷新动画时间控制
+/** 快速动画时间(一般用在刷新开始的回弹动画), 默认 0.25 */
+@property (nonatomic) NSTimeInterval fastAnimationDuration;
+/** 慢速动画时间(一般用在刷新结束后的回弹动画), 默认 0.4*/
+@property (nonatomic) NSTimeInterval slowAnimationDuration;
+/** 关闭全部默认动画效果, 可以简单粗暴地解决 CollectionView 的回弹动画 bug */
+- (instancetype)setAnimationDisabled;
+
 #pragma mark - 刷新回调
 /** 正在刷新的回调 */
 @property (copy, nonatomic, nullable) MJRefreshComponentAction refreshingBlock;
@@ -99,6 +107,13 @@ typedef void (^MJRefreshComponentAction)(void);
 /** 当scrollView的拖拽状态发生改变的时候调用 */
 - (void)scrollViewPanStateDidChange:(nullable NSDictionary *)change NS_REQUIRES_SUPER;
 
+/** 多语言配置 language 发生变化时调用
+ 
+ `MJRefreshConfig.defaultConfig.language` 发生改变时调用.
+ 
+ ⚠️ 父类会调用 `placeSubviews` 方法, 请勿在 placeSubviews 中调用本方法, 造成死循环. 子类在需要重新布局时, 在配置完修改后, 最后再调用 super 方法, 否则可能导致配置修改后, 定位先于修改执行.
+ */
+- (void)i18nDidChange NS_REQUIRES_SUPER;
 
 #pragma mark - 其他
 /** 拉拽的百分比(交给子类重写) */
@@ -114,5 +129,23 @@ typedef void (^MJRefreshComponentAction)(void);
 - (CGFloat)mj_textWidth;
 @end
 
+@interface MJRefreshComponent (ChainingGrammar)
+
+#pragma mark - <<< 为 Swift 扩展链式语法 >>> -
+/// 自动变化透明度
+- (instancetype)autoChangeTransparency:(BOOL)isAutoChange;
+/// 刷新开始后立即调用的回调
+- (instancetype)afterBeginningAction:(MJRefreshComponentAction)action;
+/// 刷新动画开始后立即调用的回调
+- (instancetype)endingAnimationBeginningAction:(MJRefreshComponentAction)action;
+/// 刷新结束后立即调用的回调
+- (instancetype)afterEndingAction:(MJRefreshComponentAction)action;
+
+
+/// 需要子类必须实现
+/// @param scrollView 赋值给的 ScrollView 的 Header/Footer/Trailer
+- (instancetype)linkTo:(UIScrollView *)scrollView;
+
+@end
 
 NS_ASSUME_NONNULL_END

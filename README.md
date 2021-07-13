@@ -7,6 +7,11 @@
 [📜✍🏻**Release Notes**: more details](https://github.com/CoderMJLee/MJRefresh/releases)
 
 ## Contents
+
+- New Features
+    - [Dynamic i18n Switching](#dynamic_i18n_switching)
+    - [Swift Chaining Grammar Supported](#swift_chaining_grammar_supported)
+
 * Getting Started
     * [Features【Support what kinds of controls to refresh】](#Support_what_kinds_of_controls_to_refresh)
     * [Installation【How to use MJRefresh】](#How_to_use_MJRefresh)
@@ -41,7 +46,67 @@
     * [WKWebView01-The drop-down refresh](#WKWebView01-The_drop-down_refresh)
 * [Hope](#Hope)
 
+## New Features
+### <a id="dynamic_i18n_switching"></a>Dynamic i18n Switching
+
+Now `MJRefresh components` will be rerendered automatically with `MJRefreshConfig.default.language` setting.
+
+#### Example
+
+Go `i18n` folder and see lots of cases. Simulator example is behind `i18n tab` in right-top corner.
+
+#### Setting language
+
+```swift
+MJRefreshConfig.default.language = "zh-hans"
+```
+
+#### Setting i18n file name
+
+```swift
+MJRefreshConfig.default.i18nFilename = "i18n File Name(not include type<.strings>)"
+```
+
+#### Setting i18n language bundle
+
+```swift
+MJRefreshConfig.default.i18nBundle = <i18n Bundle>
+```
+
+#### Adopting the feature in your DIY component
+
+1. Just override `i18nDidChange` function and reset texts.
+
+```swift
+// must use this localization methods
+Bundle.mj_localizedString(forKey: "")
+// or
+Bundle.mj_localizedString(forKey: "", value:"")
+
+override func i18nDidChange() {
+    // Reset texts function
+    setupTexts()
+    // Make sure to call super after resetting texts. It will call placeSubViews for applying new layout.
+    super.i18nDidChange()
+}
+```
+
+2. Receiving `MJRefreshDidChangeLanguageNotification` notification.
+
+### <a id="swift_chaining_grammar_supported"></a>Swift Chaining Grammar Supported
+
+```swift
+  // Example as MJRefreshNormalHeader
+  func addRefreshHeader() {
+      MJRefreshNormalHeader { [weak self] in
+  	  // load some data
+      }.autoChangeTransparency(true)
+      .link(to: tableView)
+  }
+```
+
 ## <a id="Support_what_kinds_of_controls_to_refresh"></a>Support what kinds of controls to refresh
+
 * `UIScrollView`、`UITableView`、`UICollectionView`、`WKWebView`
 
 ## <a id="How_to_use_MJRefresh"></a>How to use MJRefresh
@@ -77,9 +142,12 @@ UIView+MJExtension.h        UIView+MJExtension.m
         - Auto Back
             - Normal：`MJRefreshBackNormalFooter`
             - Gif：`MJRefreshBackGifFooter`
+    
 - `The class of non-red text` in the chart：For inheritance，to use DIY the control of refresh
+
 - About how to DIY the control of refresh，You can refer the Class in below Chart<br>
-<img src="http://images0.cnblogs.com/blog2015/497279/201506/141358159107893.png" width="30%" height="30%">
+
+  <img src="http://images0.cnblogs.com/blog2015/497279/201506/141358159107893.png" width="30%" height="30%">
 
 ## <a id="MJRefreshComponent.h"></a>MJRefreshComponent.h
 ```objc
@@ -372,7 +440,7 @@ self.webView.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingB
 
 ## Remind
 * ARC
-* iOS>=8.0
+* iOS>=9.0
 * iPhone \ iPad screen anyway
 
 ## 寻求志同道合的小伙伴

@@ -76,7 +76,7 @@
     if (state == MJRefreshStateNoMoreData || state == MJRefreshStateIdle) {
         // 刷新完毕
         if (MJRefreshStateRefreshing == oldState) {
-            [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
+            [UIView animateWithDuration:self.slowAnimationDuration animations:^{
                 if (self.endRefreshingAnimationBeginAction) {
                     self.endRefreshingAnimationBeginAction();
                 }
@@ -102,7 +102,7 @@
         // 记录刷新前的数量
         self.lastRefreshCount = self.scrollView.mj_totalDataCount;
         
-        [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
+        [UIView animateWithDuration:self.fastAnimationDuration animations:^{
             CGFloat right = self.mj_w + self.scrollViewOriginalInset.right;
             CGFloat deltaW = [self widthForContentBreakView];
             if (deltaW < 0) { // 如果内容宽度小于view的宽度
@@ -150,7 +150,14 @@
     }
 }
 
-#pragma mark 刚好看到上拉刷新控件时的contentOffset.x
+#pragma mark . 链式语法部分 .
+
+- (instancetype)linkTo:(UIScrollView *)scrollView {
+    scrollView.mj_trailer = self;
+    return self;
+}
+
+#pragma mark - 刚好看到上拉刷新控件时的contentOffset.x
 - (CGFloat)happenOffsetX {
     CGFloat deltaW = [self widthForContentBreakView];
     if (deltaW > 0) {

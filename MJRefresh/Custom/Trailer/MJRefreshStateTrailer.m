@@ -35,19 +35,30 @@
 }
 
 #pragma mark - 公共方法
-- (void)setTitle:(NSString *)title forState:(MJRefreshState)state {
-    if (title == nil) return;
+- (instancetype)setTitle:(NSString *)title forState:(MJRefreshState)state {
+    if (title == nil) return self;
     self.stateTitles[@(state)] = title;
+    return self;
+}
+
+- (void)textConfiguration {
+    // 初始化文字
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshTrailerIdleText] forState:MJRefreshStateIdle];
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshTrailerPullingText] forState:MJRefreshStatePulling];
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshTrailerPullingText] forState:MJRefreshStateRefreshing];
 }
 
 #pragma mark - 覆盖父类的方法
 - (void)prepare {
     [super prepare];
     
-    // 初始化文字
-    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshTrailerIdleText] forState:MJRefreshStateIdle];
-    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshTrailerPullingText] forState:MJRefreshStatePulling];
-    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshTrailerPullingText] forState:MJRefreshStateRefreshing];
+    [self textConfiguration];
+}
+
+- (void)i18nDidChange {
+    [self textConfiguration];
+    
+    [super i18nDidChange];
 }
 
 - (void)setState:(MJRefreshState)state {

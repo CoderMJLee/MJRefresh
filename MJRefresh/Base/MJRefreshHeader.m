@@ -1,5 +1,4 @@
 //  代码地址: https://github.com/CoderMJLee/MJRefresh
-//  代码地址: http://code4app.com/ios/%E5%BF%AB%E9%80%9F%E9%9B%86%E6%88%90%E4%B8%8B%E6%8B%89%E4%B8%8A%E6%8B%89%E5%88%B7%E6%96%B0/52326ce26803fabc46000000
 //  MJRefreshHeader.m
 //  MJRefreshExample
 //
@@ -133,7 +132,7 @@ NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshin
     // 默认使用 UIViewAnimation 动画
     if (!self.isCollectionViewAnimationBug) {
         // 恢复inset和offset
-        [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
+        [UIView animateWithDuration:self.slowAnimationDuration animations:^{
             self.scrollView.mj_insetT += self.insetTDelta;
             
             if (self.endRefreshingAnimationBeginAction) {
@@ -171,7 +170,7 @@ NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshin
     //CAAnimation keyPath 不支持 contentInset 用Bounds的动画代替
     CABasicAnimation *boundsAnimation = [CABasicAnimation animationWithKeyPath:@"bounds"];
     boundsAnimation.fromValue = [NSValue valueWithCGRect:CGRectOffset(self.scrollView.bounds, 0, self.insetTDelta)];
-    boundsAnimation.duration = MJRefreshSlowAnimationDuration;
+    boundsAnimation.duration = self.slowAnimationDuration;
     //在delegate里移除
     boundsAnimation.removedOnCompletion = NO;
     boundsAnimation.fillMode = kCAFillModeBoth;
@@ -189,7 +188,7 @@ NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshin
         CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
         opacityAnimation.fromValue = @(viewAlpha);
         opacityAnimation.toValue = @(0.0);
-        opacityAnimation.duration = MJRefreshSlowAnimationDuration;
+        opacityAnimation.duration = self.slowAnimationDuration;
         opacityAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
         [self.layer addAnimation:opacityAnimation forKey:@"MJRefreshHeaderRefreshing2IdleOpacity"];
 
@@ -202,7 +201,7 @@ NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshin
     // 默认使用 UIViewAnimation 动画
     if (!self.isCollectionViewAnimationBug) {
         MJRefreshDispatchAsyncOnMainQueue({
-            [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
+            [UIView animateWithDuration:self.fastAnimationDuration animations:^{
                 if (self.scrollView.panGestureRecognizer.state != UIGestureRecognizerStateCancelled) {
                     CGFloat top = self.scrollViewOriginalInset.top + self.mj_h;
                     // 增加滚动区域top
@@ -230,7 +229,7 @@ NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshin
         bounds.origin.y = -top;
         boundsAnimation.fromValue = [NSValue valueWithCGRect:self.scrollView.bounds];
         boundsAnimation.toValue = [NSValue valueWithCGRect:bounds];
-        boundsAnimation.duration = MJRefreshFastAnimationDuration;
+        boundsAnimation.duration = self.fastAnimationDuration;
         //在delegate里移除
         boundsAnimation.removedOnCompletion = NO;
         boundsAnimation.fillMode = kCAFillModeBoth;
@@ -241,6 +240,13 @@ NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshin
     } else {
         [self executeRefreshingCallback];
     }
+}
+
+#pragma mark . 链式语法部分 .
+
+- (instancetype)linkTo:(UIScrollView *)scrollView {
+    scrollView.mj_header = self;
+    return self;
 }
 
 #pragma mark - CAAnimationDelegate
