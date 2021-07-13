@@ -8,6 +8,7 @@
 
 #import "MJRefreshComponent.h"
 #import "MJRefreshConst.h"
+#import "MJRefreshConfig.h"
 
 @interface MJRefreshComponent()
 @property (strong, nonatomic) UIPanGestureRecognizer *pan;
@@ -92,6 +93,8 @@
     [self.scrollView addObserver:self forKeyPath:MJRefreshKeyPathContentSize options:options context:nil];
     self.pan = self.scrollView.panGestureRecognizer;
     [self.pan addObserver:self forKeyPath:MJRefreshKeyPathPanState options:options context:nil];
+    
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(i18nDidChange) name:MJRefreshDidChangeLanguageNotification object:MJRefreshConfig.defaultConfig];
 }
 
 - (void)removeObservers
@@ -124,6 +127,10 @@
 - (void)scrollViewContentOffsetDidChange:(NSDictionary *)change{}
 - (void)scrollViewContentSizeDidChange:(NSDictionary *)change{}
 - (void)scrollViewPanStateDidChange:(NSDictionary *)change{}
+
+- (void)i18nDidChange {
+    [self placeSubviews];
+}
 
 #pragma mark - 公共方法
 #pragma mark 设置回调对象和回调方法

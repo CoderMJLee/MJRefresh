@@ -102,6 +102,15 @@
     }
 }
 
+
+- (void)textConfiguration {
+    // 初始化文字
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshHeaderIdleText] forState:MJRefreshStateIdle];
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshHeaderPullingText] forState:MJRefreshStatePulling];
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshHeaderRefreshingText] forState:MJRefreshStateRefreshing];
+    self.lastUpdatedTimeKey = MJRefreshHeaderLastUpdatedTimeKey;
+}
+
 #pragma mark - 覆盖父类的方法
 - (void)prepare
 {
@@ -109,11 +118,13 @@
     
     // 初始化间距
     self.labelLeftInset = MJRefreshLabelLeftInset;
+    [self textConfiguration];
+}
+
+- (void)i18nDidChange {
+    [self textConfiguration];
     
-    // 初始化文字
-    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshHeaderIdleText] forState:MJRefreshStateIdle];
-    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshHeaderPullingText] forState:MJRefreshStatePulling];
-    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshHeaderRefreshingText] forState:MJRefreshStateRefreshing];
+    [super i18nDidChange];
 }
 
 - (void)placeSubviews

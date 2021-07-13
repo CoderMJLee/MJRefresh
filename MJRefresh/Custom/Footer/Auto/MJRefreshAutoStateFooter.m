@@ -52,6 +52,13 @@
     }
 }
 
+- (void)textConfiguration {
+    // 初始化文字
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshAutoFooterIdleText] forState:MJRefreshStateIdle];
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshAutoFooterRefreshingText] forState:MJRefreshStateRefreshing];
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshAutoFooterNoMoreDataText] forState:MJRefreshStateNoMoreData];
+}
+
 #pragma mark - 重写父类的方法
 - (void)prepare
 {
@@ -60,15 +67,19 @@
     // 初始化间距
     self.labelLeftInset = MJRefreshLabelLeftInset;
     
-    // 初始化文字
-    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshAutoFooterIdleText] forState:MJRefreshStateIdle];
-    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshAutoFooterRefreshingText] forState:MJRefreshStateRefreshing];
-    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshAutoFooterNoMoreDataText] forState:MJRefreshStateNoMoreData];
+    [self textConfiguration];
     
     // 监听label
     self.stateLabel.userInteractionEnabled = YES;
     [self.stateLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(stateLabelClick)]];
 }
+
+- (void)i18nDidChange {
+    [self textConfiguration];
+    
+    [super i18nDidChange];
+}
+
 
 - (void)placeSubviews
 {
