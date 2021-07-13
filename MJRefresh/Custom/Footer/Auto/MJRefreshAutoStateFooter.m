@@ -8,6 +8,20 @@
 
 #import "MJRefreshAutoStateFooter.h"
 
+@interface MJRefreshAutoFooter (TapTriggerFix)
+
+- (void)beginRefreshingWithoutValidation;
+@end
+
+
+@implementation MJRefreshAutoFooter (TapTriggerFix)
+
+- (void)beginRefreshingWithoutValidation {
+    [super beginRefreshing];
+}
+
+@end
+
 @interface MJRefreshAutoStateFooter()
 {
     /** 显示刷新状态的label */
@@ -48,7 +62,7 @@
 - (void)stateLabelClick
 {
     if (self.state == MJRefreshStateIdle) {
-        [self beginRefreshing];
+        [super beginRefreshingWithoutValidation];
     }
 }
 
