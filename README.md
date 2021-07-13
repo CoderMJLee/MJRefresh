@@ -70,7 +70,7 @@ MJRefreshConfig.default.i18nFilename = "i18n File Name(not include type<.strings
 #### Setting i18n language bundle
 
 ```swift
-MJRefreshConfig.default.i18nBundle = "i18n Bundle"
+MJRefreshConfig.default.i18nBundle = <i18n Bundle>
 ```
 
 #### Adopting the feature in your DIY component
