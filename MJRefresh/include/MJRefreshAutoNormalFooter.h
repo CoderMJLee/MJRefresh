@@ -1,0 +1,1 @@
+../Custom/Footer/Auto/MJRefreshAutoNormalFooter.h
