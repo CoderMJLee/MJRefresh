@@ -99,7 +99,7 @@ override func i18nDidChange() {
   // Example as MJRefreshNormalHeader
   func addRefreshHeader() {
       MJRefreshNormalHeader { [weak self] in
-  	      // do some Requst
+  	  // load some data
       }.autoChangeTransparency(true)
       .link(to: tableView)
   }
