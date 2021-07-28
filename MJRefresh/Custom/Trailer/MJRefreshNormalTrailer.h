@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic, readonly) UIImageView *arrowView;
 
+@property (nonatomic, assign) CGPoint customArrowViewCenter;
+
 @end
 
 NS_ASSUME_NONNULL_END
