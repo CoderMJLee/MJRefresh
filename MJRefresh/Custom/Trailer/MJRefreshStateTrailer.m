@@ -38,6 +38,7 @@
 - (instancetype)setTitle:(NSString *)title forState:(MJRefreshState)state {
     if (title == nil) return self;
     self.stateTitles[@(state)] = title;
+    self.stateLabel.text = self.stateTitles[@(self.state)];
     return self;
 }
 
