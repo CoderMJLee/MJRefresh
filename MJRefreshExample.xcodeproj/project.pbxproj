@@ -27,7 +27,6 @@
 		2D9BEB101BB15F4A00AED473 /* MJExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9BEAF01BB15F4A00AED473 /* MJExample.m */; };
 		2D9BEB111BB15F4A00AED473 /* MJExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9BEAF21BB15F4A00AED473 /* MJExampleViewController.m */; };
 		2D9BEB121BB15F4A00AED473 /* MJExampleWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9BEAF41BB15F4A00AED473 /* MJExampleWindow.m */; };
-		2D9BEB131BB15F4A00AED473 /* MJNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9BEAF61BB15F4A00AED473 /* MJNavigationController.m */; };
 		2D9BEB141BB15F4A00AED473 /* MJSingleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9BEAF81BB15F4A00AED473 /* MJSingleViewController.m */; };
 		2D9BEB151BB15F4A00AED473 /* MJTempViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9BEAFA1BB15F4A00AED473 /* MJTempViewController.m */; };
 		2D9BEB161BB15F4A00AED473 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9BEAFD1BB15F4A00AED473 /* AppDelegate.m */; };
@@ -169,8 +168,6 @@
 		2D9BEAF21BB15F4A00AED473 /* MJExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJExampleViewController.m; sourceTree = "<group>"; };
 		2D9BEAF31BB15F4A00AED473 /* MJExampleWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJExampleWindow.h; sourceTree = "<group>"; };
 		2D9BEAF41BB15F4A00AED473 /* MJExampleWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJExampleWindow.m; sourceTree = "<group>"; };
-		2D9BEAF51BB15F4A00AED473 /* MJNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJNavigationController.h; sourceTree = "<group>"; };
-		2D9BEAF61BB15F4A00AED473 /* MJNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJNavigationController.m; sourceTree = "<group>"; };
 		2D9BEAF71BB15F4A00AED473 /* MJSingleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJSingleViewController.h; sourceTree = "<group>"; };
 		2D9BEAF81BB15F4A00AED473 /* MJSingleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJSingleViewController.m; sourceTree = "<group>"; };
 		2D9BEAF91BB15F4A00AED473 /* MJTempViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJTempViewController.h; sourceTree = "<group>"; };
@@ -328,8 +325,6 @@
 				2D9BEAF21BB15F4A00AED473 /* MJExampleViewController.m */,
 				2D9BEAF31BB15F4A00AED473 /* MJExampleWindow.h */,
 				2D9BEAF41BB15F4A00AED473 /* MJExampleWindow.m */,
-				2D9BEAF51BB15F4A00AED473 /* MJNavigationController.h */,
-				2D9BEAF61BB15F4A00AED473 /* MJNavigationController.m */,
 				2D9BEAF71BB15F4A00AED473 /* MJSingleViewController.h */,
 				2D9BEAF81BB15F4A00AED473 /* MJSingleViewController.m */,
 				2D9BEAF91BB15F4A00AED473 /* MJTempViewController.h */,
@@ -776,7 +771,6 @@
 				2D9BEB0A1BB15F4A00AED473 /* MJChiBaoZiFooter.m in Sources */,
 				2D9BEB121BB15F4A00AED473 /* MJExampleWindow.m in Sources */,
 				2DB2EA221BECBE6700D58F6A /* MJRefreshGifHeader.m in Sources */,
-				2D9BEB131BB15F4A00AED473 /* MJNavigationController.m in Sources */,
 				2DB2EA271BECBE6700D58F6A /* UIScrollView+MJExtension.m in Sources */,
 				2DB2EA1F1BECBE6700D58F6A /* MJRefreshBackGifFooter.m in Sources */,
 				0193FF132692E99500B52B11 /* I18NExampleViewController.swift in Sources */,
