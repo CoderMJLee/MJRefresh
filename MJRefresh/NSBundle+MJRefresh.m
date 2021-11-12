@@ -18,7 +18,7 @@ static NSBundle *mj_systemI18nBundle = nil;
 {
     static NSBundle *refreshBundle = nil;
     if (refreshBundle == nil) {
-#ifdef MJ_SPM
+#ifdef SWIFT_PACKAGE
         NSBundle *containnerBundle = SWIFTPM_MODULE_BUNDLE;
 #else
         NSBundle *containnerBundle = [NSBundle bundleForClass:[MJRefreshComponent class]];
