@@ -24,8 +24,12 @@ NS_ASSUME_NONNULL_BEGIN
 /** 忽略多少scrollView的contentInset的top */
 @property (assign, nonatomic) CGFloat ignoredScrollViewContentInsetTop;
 
+/** 是否開啟觸動回饋 */
+@property (assign, nonatomic, getter=isHapticFeedbackEnabled) BOOL hapticFeedbackEnabled NS_AVAILABLE_IOS(10_0);
+
 /** 默认是关闭状态, 如果遇到 CollectionView 的动画异常问题可以尝试打开 */
 @property (nonatomic) BOOL isCollectionViewAnimationBug;
+
 @end
 
 NS_ASSUME_NONNULL_END

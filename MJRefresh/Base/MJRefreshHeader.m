@@ -13,6 +13,7 @@ NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshin
 
 @interface MJRefreshHeader() <CAAnimationDelegate>
 @property (assign, nonatomic) CGFloat insetTDelta;
+@property (assign, nonatomic, getter= isHapticTriggered) BOOL hapticTriggered;
 @end
 
 @implementation MJRefreshHeader
@@ -40,6 +41,11 @@ NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshin
     
     // 设置高度
     self.mj_h = MJRefreshHeaderHeight;
+    
+    // 默認關閉觸動回饋
+    if (@available(iOS 10.0, *)) {
+        self.hapticFeedbackEnabled = NO;
+    }
 }
 
 - (void)placeSubviews
@@ -98,6 +104,13 @@ NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshin
         if (self.state == MJRefreshStateIdle && offsetY < normal2pullingOffsetY) {
             // 转为即将刷新状态
             self.state = MJRefreshStatePulling;
+            if (@available(iOS 10.0, *)) {
+                if (self.hapticFeedbackEnabled && !self.hapticTriggered) {
+                    self.hapticTriggered = YES;
+                    UIImpactFeedbackGenerator *generator = [[UIImpactFeedbackGenerator alloc] initWithStyle: UIImpactFeedbackStyleLight];
+                    [generator impactOccurred];
+                }
+            }
         } else if (self.state == MJRefreshStatePulling && offsetY >= normal2pullingOffsetY) {
             // 转为普通状态
             self.state = MJRefreshStateIdle;
@@ -105,8 +118,10 @@ NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshin
     } else if (self.state == MJRefreshStatePulling) {// 即将刷新 && 手松开
         // 开始刷新
         [self beginRefreshing];
+        self.hapticTriggered = NO;
     } else if (pullingPercent < 1) {
         self.pullingPercent = pullingPercent;
+        self.hapticTriggered = NO;
     }
 }
 

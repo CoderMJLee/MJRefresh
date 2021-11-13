@@ -90,6 +90,9 @@ static NSString *const MJExample40 = @"WKWebView";
     // 设置自动切换透明度(在导航栏下面自动隐藏)
     tableView.mj_header.automaticallyChangeAlpha = YES;
     
+    // 設置開啟下拉震動回饋（僅支援iOS 10以上&有Taptic Engine的機種）
+    tableView.mj_header.hapticFeedbackEnabled = YES;
+    
     // 上拉刷新
     tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
