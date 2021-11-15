@@ -71,9 +71,16 @@
 - (void)scrollViewContentSizeDidChange:(NSDictionary *)change
 {
     [super scrollViewContentSizeDidChange:change];
-    
+    CGFloat contentHeight = 0;
+    NSValue *value = [change objectForKey:NSKeyValueChangeNewKey];
+    if ([value isKindOfClass:NSValue.class]) {
+        contentHeight = [value CGSizeValue].height;
+    }
+    if (contentHeight == 0) {
+        contentHeight = self.scrollView.mj_contentH;
+    }
     // 内容的高度
-    CGFloat contentHeight = self.scrollView.mj_contentH + self.ignoredScrollViewContentInsetBottom;
+    contentHeight = contentHeight + self.ignoredScrollViewContentInsetBottom;
     // 表格的高度
     CGFloat scrollHeight = self.scrollView.mj_h - self.scrollViewOriginalInset.top - self.scrollViewOriginalInset.bottom + self.ignoredScrollViewContentInsetBottom;
     // 设置位置和尺寸

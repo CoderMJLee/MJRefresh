@@ -57,11 +57,19 @@ static const CGFloat MJDuration = 2.0;
         
         // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [weakSelf.collectionView reloadData];
+//            [weakSelf.collectionView reloadData];
+//            [weakSelf.collectionView.mj_footer endRefreshing];
             
-            // 结束刷新
-            [weakSelf.collectionView.mj_footer endRefreshing];
+            /// https://github.com/CoderMJLee/MJRefresh/issues/1552
+            [weakSelf.collectionView performBatchUpdates:^{
+                [weakSelf.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
+            } completion:^(BOOL finished) {
+                // 结束刷新
+                [weakSelf.collectionView.mj_footer endRefreshing];
+            }];
+            
         });
+        
     }] setAnimationDisabled]
       autoChangeTransparency:YES]
      linkTo:self.collectionView];
