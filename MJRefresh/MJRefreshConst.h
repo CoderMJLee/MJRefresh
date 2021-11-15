@@ -34,6 +34,9 @@ UIKIT_EXTERN const CGFloat MJRefreshLabelLeftInset;
 UIKIT_EXTERN const CGFloat MJRefreshHeaderHeight;
 UIKIT_EXTERN const CGFloat MJRefreshFooterHeight;
 UIKIT_EXTERN const CGFloat MJRefreshTrailWidth;
+UIKIT_EXTERN const CGFloat MJRefreshFastAnimationDuration;
+UIKIT_EXTERN const CGFloat MJRefreshSlowAnimationDuration;
+
 
 UIKIT_EXTERN NSString *const MJRefreshKeyPathContentOffset;
 UIKIT_EXTERN NSString *const MJRefreshKeyPathContentSize;
@@ -61,6 +64,8 @@ UIKIT_EXTERN NSString *const MJRefreshBackFooterNoMoreDataText;
 UIKIT_EXTERN NSString *const MJRefreshHeaderLastTimeText;
 UIKIT_EXTERN NSString *const MJRefreshHeaderDateTodayText;
 UIKIT_EXTERN NSString *const MJRefreshHeaderNoneLastDateText;
+
+UIKIT_EXTERN NSString *const MJRefreshDidChangeLanguageNotification;
 
 // 状态检查
 #define MJRefreshCheckState \

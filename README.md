@@ -1,4 +1,5 @@
 ## MJRefresh
+[![SPM supported](https://img.shields.io/badge/SPM-supported-4BC51D.svg?style=flat)](https://github.com/apple/swift-package-manager)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 ![podversion](https://img.shields.io/cocoapods/v/MJRefresh.svg)
 
@@ -9,7 +10,9 @@
 ## Contents
 
 - New Features
-  - [Swift Chaining Grammar Supported](#swift_chaining_grammar_supported)
+    - [Dynamic i18n Switching](#dynamic_i18n_switching)
+    - [SPM Supported](#spm_supported)
+    - [Swift Chaining Grammar Supported](#swift_chaining_grammar_supported)
 
 * Getting Started
     * [Features【Support what kinds of controls to refresh】](#Support_what_kinds_of_controls_to_refresh)
@@ -46,19 +49,70 @@
 * [Hope](#Hope)
 
 ## New Features
+### <a id="dynamic_i18n_switching"></a>Dynamic i18n Switching
+
+Now `MJRefresh components` will be rerendered automatically with `MJRefreshConfig.default.language` setting.
+
+#### Example
+
+Go `i18n` folder and see lots of cases. Simulator example is behind `i18n tab` in right-top corner.
+
+#### Setting language
+
+```swift
+MJRefreshConfig.default.language = "zh-hans"
+```
+
+#### Setting i18n file name
+
+```swift
+MJRefreshConfig.default.i18nFilename = "i18n File Name(not include type<.strings>)"
+```
+
+#### Setting i18n language bundle
+
+```swift
+MJRefreshConfig.default.i18nBundle = <i18n Bundle>
+```
+
+#### Adopting the feature in your DIY component
+
+1. Just override `i18nDidChange` function and reset texts.
+
+```swift
+// must use this localization methods
+Bundle.mj_localizedString(forKey: "")
+// or
+Bundle.mj_localizedString(forKey: "", value:"")
+
+override func i18nDidChange() {
+    // Reset texts function
+    setupTexts()
+    // Make sure to call super after resetting texts. It will call placeSubViews for applying new layout.
+    super.i18nDidChange()
+}
+```
+
+2. Receiving `MJRefreshDidChangeLanguageNotification` notification.
+
+### <a id="spm_supported"></a>SPM Supported
+
+Released from [`3.7.1`](https://github.com/CoderMJLee/MJRefresh/releases/tag/3.7.1)
+
 ### <a id="swift_chaining_grammar_supported"></a>Swift Chaining Grammar Supported
 
-  ```swift
+```swift
   // Example as MJRefreshNormalHeader
   func addRefreshHeader() {
       MJRefreshNormalHeader { [weak self] in
-  	      // do some Requst
+  	  // load some data
       }.autoChangeTransparency(true)
       .link(to: tableView)
   }
-  ```
+```
 
 ## <a id="Support_what_kinds_of_controls_to_refresh"></a>Support what kinds of controls to refresh
+
 * `UIScrollView`、`UITableView`、`UICollectionView`、`WKWebView`
 
 ## <a id="How_to_use_MJRefresh"></a>How to use MJRefresh
@@ -392,7 +446,7 @@ self.webView.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingB
 
 ## Remind
 * ARC
-* iOS>=8.0
+* iOS>=9.0
 * iPhone \ iPad screen anyway
 
 ## 寻求志同道合的小伙伴

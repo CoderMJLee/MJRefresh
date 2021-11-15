@@ -5,6 +5,9 @@ const CGFloat MJRefreshLabelLeftInset = 25;
 const CGFloat MJRefreshHeaderHeight = 54.0;
 const CGFloat MJRefreshFooterHeight = 44.0;
 const CGFloat MJRefreshTrailWidth = 60.0;
+const CGFloat MJRefreshFastAnimationDuration = 0.25;
+const CGFloat MJRefreshSlowAnimationDuration = 0.4;
+
 
 NSString *const MJRefreshKeyPathContentOffset = @"contentOffset";
 NSString *const MJRefreshKeyPathContentInset = @"contentInset";
@@ -32,3 +35,5 @@ NSString *const MJRefreshBackFooterNoMoreDataText = @"MJRefreshBackFooterNoMoreD
 NSString *const MJRefreshHeaderLastTimeText = @"MJRefreshHeaderLastTimeText";
 NSString *const MJRefreshHeaderDateTodayText = @"MJRefreshHeaderDateTodayText";
 NSString *const MJRefreshHeaderNoneLastDateText = @"MJRefreshHeaderNoneLastDateText";
+
+NSString *const MJRefreshDidChangeLanguageNotification = @"MJRefreshDidChangeLanguageNotification";

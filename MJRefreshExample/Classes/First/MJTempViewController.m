@@ -42,7 +42,7 @@ static id instance_;
     
     self.view.backgroundColor = [UIColor clearColor];
     
-    UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:@[@"示例1", @"示例2", @"示例3"]];
+    UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:@[@"示例1", @"i18n", @"示例3"]];
     control.tintColor = [UIColor orangeColor];
     control.frame = self.view.bounds;
     control.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
