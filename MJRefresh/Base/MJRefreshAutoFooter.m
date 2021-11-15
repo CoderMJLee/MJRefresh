@@ -72,7 +72,10 @@
         contentHeight = self.scrollView.mj_contentH;
     }
     // 设置位置
-    self.mj_y = contentHeight + self.ignoredScrollViewContentInsetBottom;
+    CGFloat y = contentHeight + self.ignoredScrollViewContentInsetBottom;
+    if (self.mj_y != y) {
+        self.mj_y = y;
+    }
 }
 
 - (void)scrollViewContentOffsetDidChange:(NSDictionary *)change
