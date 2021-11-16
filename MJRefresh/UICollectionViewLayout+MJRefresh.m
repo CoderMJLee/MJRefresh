@@ -20,11 +20,15 @@
 }
 
 - (void)mj_finalizeCollectionViewUpdates {
+    [self mj_finalizeCollectionViewUpdates];
+    
     __kindof MJRefreshFooter *footer = self.collectionView.mj_footer;
-    if (footer != nil && footer.isRefreshing) {
+    CGSize newSize = self.collectionViewContentSize;
+    CGSize oldSize = self.collectionView.contentSize;
+    if (footer != nil && footer.isRefreshing && !CGSizeEqualToSize(newSize, oldSize)) {
         NSDictionary *changed = @{
-            NSKeyValueChangeNewKey: [NSValue valueWithCGSize:self.collectionViewContentSize],
-            NSKeyValueChangeOldKey: [NSValue valueWithCGSize:self.collectionView.contentSize],
+            NSKeyValueChangeNewKey: [NSValue valueWithCGSize:newSize],
+            NSKeyValueChangeOldKey: [NSValue valueWithCGSize:oldSize],
         };
         [CATransaction begin];
         [CATransaction setDisableActions:YES];

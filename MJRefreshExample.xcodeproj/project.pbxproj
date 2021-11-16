@@ -103,7 +103,6 @@
 		6B8FB1A9250E610D00AF64B7 /* MJHorizontalCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8FB1A8250E610D00AF64B7 /* MJHorizontalCollectionViewController.m */; };
 		7A698CD2274232A00028A4DD /* UICollectionViewLayout+MJRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A698CD0274232A00028A4DD /* UICollectionViewLayout+MJRefresh.h */; };
 		7A698CD3274232A00028A4DD /* UICollectionViewLayout+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A698CD1274232A00028A4DD /* UICollectionViewLayout+MJRefresh.m */; };
-		7A698CD4274232A00028A4DD /* UICollectionViewLayout+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A698CD1274232A00028A4DD /* UICollectionViewLayout+MJRefresh.m */; };
 		7A698CD5274232A00028A4DD /* UICollectionViewLayout+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A698CD1274232A00028A4DD /* UICollectionViewLayout+MJRefresh.m */; };
 		84FC857E228037CE001C6728 /* MJRefreshConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A2CE0B21ACE01500BEE365 /* MJRefreshConfig.m */; };
 		88E3200B24839ABA00069FA7 /* MJRefreshTrailer.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E3200924839ABA00069FA7 /* MJRefreshTrailer.m */; };
@@ -825,7 +824,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DA7F9451AA6B4C4005627AB /* MJRefreshExampleTests.m in Sources */,
-				7A698CD4274232A00028A4DD /* UICollectionViewLayout+MJRefresh.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
