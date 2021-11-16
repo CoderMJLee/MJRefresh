@@ -25,7 +25,7 @@
     __kindof MJRefreshFooter *footer = self.collectionView.mj_footer;
     CGSize newSize = self.collectionViewContentSize;
     CGSize oldSize = self.collectionView.contentSize;
-    if (footer != nil && footer.isRefreshing && !CGSizeEqualToSize(newSize, oldSize)) {
+    if (footer != nil && !CGSizeEqualToSize(newSize, oldSize)) {
         NSDictionary *changed = @{
             NSKeyValueChangeNewKey: [NSValue valueWithCGSize:newSize],
             NSKeyValueChangeOldKey: [NSValue valueWithCGSize:oldSize],
