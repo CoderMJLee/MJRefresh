@@ -60,7 +60,6 @@ static const CGFloat MJDuration = 2.0;
 //            [weakSelf.collectionView reloadData];
 //            [weakSelf.collectionView.mj_footer endRefreshing];
             
-            /// https://github.com/CoderMJLee/MJRefresh/issues/1552
             [weakSelf.collectionView performBatchUpdates:^{
                 [weakSelf.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
             } completion:^(BOOL finished) {
@@ -73,6 +72,8 @@ static const CGFloat MJDuration = 2.0;
     }] setAnimationDisabled]
       autoChangeTransparency:YES]
      linkTo:self.collectionView];
+    
+    [self.collectionView.mj_header beginRefreshing];
 }
 
 #pragma mark - 数据相关

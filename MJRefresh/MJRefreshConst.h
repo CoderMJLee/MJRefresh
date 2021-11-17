@@ -81,9 +81,12 @@ typeof(weakSelf) self = weakSelf; \
 {x} \
 });
 
-// runtime
-CG_INLINE BOOL
-MJRefreshExchangeImplementationsInTwoClasses(Class _fromClass, SEL _originSelector, Class _toClass, SEL _newSelector) {
+/// 替换方法实现
+/// @param _fromClass 源类
+/// @param _originSelector 源类的 Selector
+/// @param _toClass  目标类
+/// @param _newSelector 目标类的 Selector
+CG_INLINE BOOL MJRefreshExchangeImplementations(Class _fromClass, SEL _originSelector, Class _toClass, SEL _newSelector) {
     if (!_fromClass || !_toClass) {
         return NO;
     }
