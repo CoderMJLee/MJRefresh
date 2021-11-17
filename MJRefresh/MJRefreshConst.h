@@ -86,7 +86,9 @@ typeof(weakSelf) self = weakSelf; \
 /// @param _originSelector 源类的 Selector
 /// @param _toClass  目标类
 /// @param _newSelector 目标类的 Selector
-CG_INLINE BOOL MJRefreshExchangeImplementations(Class _fromClass, SEL _originSelector, Class _toClass, SEL _newSelector) {
+CG_INLINE BOOL MJRefreshExchangeImplementations(
+                                                Class _fromClass, SEL _originSelector,
+                                                Class _toClass, SEL _newSelector) {
     if (!_fromClass || !_toClass) {
         return NO;
     }
@@ -97,10 +99,13 @@ CG_INLINE BOOL MJRefreshExchangeImplementations(Class _fromClass, SEL _originSel
         return NO;
     }
     
-    BOOL isAddedMethod = class_addMethod(_fromClass, _originSelector, method_getImplementation(newMethod), method_getTypeEncoding(newMethod));
+    BOOL isAddedMethod = class_addMethod(_fromClass, _originSelector,
+                                         method_getImplementation(newMethod),
+                                         method_getTypeEncoding(newMethod));
     if (isAddedMethod) {
         // 如果 class_addMethod 成功了，说明之前 fromClass 里并不存在 originSelector，所以要用一个空的方法代替它，以避免 class_replaceMethod 后，后续 toClass 的这个方法被调用时可能会 crash
-        IMP oriMethodIMP = method_getImplementation(oriMethod) ?: imp_implementationWithBlock(^(id selfObject) {});
+        IMP emptyIMP = imp_implementationWithBlock(^(id selfObject) {});
+        IMP oriMethodIMP = method_getImplementation(oriMethod) ?: emptyIMP;
         const char *oriMethodTypeEncoding = method_getTypeEncoding(oriMethod) ?: "v@:";
         class_replaceMethod(_toClass, _newSelector, oriMethodIMP, oriMethodTypeEncoding);
     } else {
