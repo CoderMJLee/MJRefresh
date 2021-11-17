@@ -63,14 +63,9 @@
 - (void)scrollViewContentSizeDidChange:(NSDictionary *)change
 {
     [super scrollViewContentSizeDidChange:change];
-    CGFloat contentHeight = 0;
-    NSValue *value = [change objectForKey:NSKeyValueChangeNewKey];
-    if ([value isKindOfClass:NSValue.class]) {
-        contentHeight = [value CGSizeValue].height;
-    }
-    if (contentHeight == 0) {
-        contentHeight = self.scrollView.mj_contentH;
-    }
+    
+    CGSize size = [change[NSKeyValueChangeNewKey] CGSizeValue];
+    CGFloat contentHeight = size.height == 0 ? self.scrollView.mj_contentH : size.height;
     // 设置位置
     CGFloat y = contentHeight + self.ignoredScrollViewContentInsetBottom;
     if (self.mj_y != y) {
