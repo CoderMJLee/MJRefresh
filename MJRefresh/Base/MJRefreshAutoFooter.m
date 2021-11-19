@@ -64,8 +64,13 @@
 {
     [super scrollViewContentSizeDidChange:change];
     
+    CGSize size = [change[NSKeyValueChangeNewKey] CGSizeValue];
+    CGFloat contentHeight = size.height == 0 ? self.scrollView.mj_contentH : size.height;
     // 设置位置
-    self.mj_y = self.scrollView.mj_contentH + self.ignoredScrollViewContentInsetBottom;
+    CGFloat y = contentHeight + self.ignoredScrollViewContentInsetBottom;
+    if (self.mj_y != y) {
+        self.mj_y = y;
+    }
 }
 
 - (void)scrollViewContentOffsetDidChange:(NSDictionary *)change

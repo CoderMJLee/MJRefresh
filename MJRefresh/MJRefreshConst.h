@@ -1,6 +1,7 @@
 //  代码地址: https://github.com/CoderMJLee/MJRefresh
 #import <UIKit/UIKit.h>
 #import <objc/message.h>
+#import <objc/runtime.h>
 
 // 弱引用
 #define MJWeakSelf __weak typeof(self) weakSelf = self;
@@ -79,3 +80,36 @@ dispatch_async(dispatch_get_main_queue(), ^{ \
 typeof(weakSelf) self = weakSelf; \
 {x} \
 });
+
+/// 替换方法实现
+/// @param _fromClass 源类
+/// @param _originSelector 源类的 Selector
+/// @param _toClass  目标类
+/// @param _newSelector 目标类的 Selector
+CG_INLINE BOOL MJRefreshExchangeImplementations(
+                                                Class _fromClass, SEL _originSelector,
+                                                Class _toClass, SEL _newSelector) {
+    if (!_fromClass || !_toClass) {
+        return NO;
+    }
+    
+    Method oriMethod = class_getInstanceMethod(_fromClass, _originSelector);
+    Method newMethod = class_getInstanceMethod(_toClass, _newSelector);
+    if (!newMethod) {
+        return NO;
+    }
+    
+    BOOL isAddedMethod = class_addMethod(_fromClass, _originSelector,
+                                         method_getImplementation(newMethod),
+                                         method_getTypeEncoding(newMethod));
+    if (isAddedMethod) {
+        // 如果 class_addMethod 成功了，说明之前 fromClass 里并不存在 originSelector，所以要用一个空的方法代替它，以避免 class_replaceMethod 后，后续 toClass 的这个方法被调用时可能会 crash
+        IMP emptyIMP = imp_implementationWithBlock(^(id selfObject) {});
+        IMP oriMethodIMP = method_getImplementation(oriMethod) ?: emptyIMP;
+        const char *oriMethodTypeEncoding = method_getTypeEncoding(oriMethod) ?: "v@:";
+        class_replaceMethod(_toClass, _newSelector, oriMethodIMP, oriMethodTypeEncoding);
+    } else {
+        method_exchangeImplementations(oriMethod, newMethod);
+    }
+    return YES;
+}

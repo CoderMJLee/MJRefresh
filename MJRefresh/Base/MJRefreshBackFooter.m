@@ -72,12 +72,17 @@
 {
     [super scrollViewContentSizeDidChange:change];
     
+    CGSize size = [change[NSKeyValueChangeNewKey] CGSizeValue];
+    CGFloat contentHeight = size.height == 0 ? self.scrollView.mj_contentH : size.height;
     // 内容的高度
-    CGFloat contentHeight = self.scrollView.mj_contentH + self.ignoredScrollViewContentInsetBottom;
+    contentHeight += self.ignoredScrollViewContentInsetBottom;
     // 表格的高度
     CGFloat scrollHeight = self.scrollView.mj_h - self.scrollViewOriginalInset.top - self.scrollViewOriginalInset.bottom + self.ignoredScrollViewContentInsetBottom;
-    // 设置位置和尺寸
-    self.mj_y = MAX(contentHeight, scrollHeight);
+    // 设置位置
+    CGFloat y = MAX(contentHeight, scrollHeight);
+    if (self.mj_y != y) {
+        self.mj_y = y;
+    }
 }
 
 - (void)setState:(MJRefreshState)state
