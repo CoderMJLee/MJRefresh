@@ -7,6 +7,9 @@
 //
 
 #import "MJRefreshTrailer.h"
+#import "UIView+MJExtension.h"
+#import "UIScrollView+MJRefresh.h"
+#import "UIScrollView+MJExtension.h"
 
 @interface MJRefreshTrailer()
 @property (assign, nonatomic) NSInteger lastRefreshCount;

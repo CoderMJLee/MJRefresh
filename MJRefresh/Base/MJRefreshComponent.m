@@ -1,6 +1,6 @@
 //  代码地址: https://github.com/CoderMJLee/MJRefresh
 //  MJRefreshComponent.m
-//  MJRefreshExample
+//  MJRefresh
 //
 //  Created by MJ Lee on 15/3/4.
 //  Copyright (c) 2015年 小码哥. All rights reserved.
@@ -9,6 +9,10 @@
 #import "MJRefreshComponent.h"
 #import "MJRefreshConst.h"
 #import "MJRefreshConfig.h"
+#import "UIView+MJExtension.h"
+#import "UIScrollView+MJExtension.h"
+#import "UIScrollView+MJRefresh.h"
+#import "NSBundle+MJRefresh.h"
 
 @interface MJRefreshComponent()
 @property (strong, nonatomic) UIPanGestureRecognizer *pan;

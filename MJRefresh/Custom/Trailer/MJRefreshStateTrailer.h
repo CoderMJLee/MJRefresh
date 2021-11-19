@@ -1,12 +1,16 @@
 //
 //  MJRefreshStateTrailer.h
-//  MJRefreshExample
+//  MJRefresh
 //
 //  Created by kinarobin on 2020/5/3.
 //  Copyright © 2020 小码哥. All rights reserved.
 //
 
+#if __has_include(<MJRefresh/MJRefreshTrailer.h>)
+#import <MJRefresh/MJRefreshTrailer.h>
+#else
 #import "MJRefreshTrailer.h"
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -1,17 +1,17 @@
 //  代码地址: https://github.com/CoderMJLee/MJRefresh
 //  MJRefreshComponent.h
-//  MJRefreshExample
+//  MJRefresh
 //
 //  Created by MJ Lee on 15/3/4.
 //  Copyright (c) 2015年 小码哥. All rights reserved.
 //  刷新控件的基类
 
 #import <UIKit/UIKit.h>
+#if __has_include(<MJRefresh/MJRefreshConst.h>)
+#import <MJRefresh/MJRefreshConst.h>
+#else
 #import "MJRefreshConst.h"
-#import "UIView+MJExtension.h"
-#import "UIScrollView+MJExtension.h"
-#import "UIScrollView+MJRefresh.h"
-#import "NSBundle+MJRefresh.h"
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 

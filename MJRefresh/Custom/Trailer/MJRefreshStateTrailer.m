@@ -1,12 +1,14 @@
 //
 //  MJRefreshStateTrailer.m
-//  MJRefreshExample
+//  MJRefresh
 //
 //  Created by kinarobin on 2020/5/3.
 //  Copyright © 2020 小码哥. All rights reserved.
 //
 
 #import "MJRefreshStateTrailer.h"
+#import "NSBundle+MJRefresh.h"
+#import "UIView+MJExtension.h"
 
 @interface MJRefreshStateTrailer() {
     /** 显示刷新状态的label */

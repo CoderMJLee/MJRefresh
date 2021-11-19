@@ -12,6 +12,7 @@
 #import "UICollectionViewLayout+MJRefresh.h"
 #import "MJRefreshConst.h"
 #import "MJRefreshFooter.h"
+#import "UIScrollView+MJRefresh.h"
 
 @implementation UICollectionViewLayout (MJRefresh)
 

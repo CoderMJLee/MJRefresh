@@ -6,7 +6,11 @@
 //  Copyright © 2020 小码哥. All rights reserved.
 //
 
+#if __has_include(<MJRefresh/MJRefreshComponent.h>)
+#import <MJRefresh/MJRefreshComponent.h>
+#else
 #import "MJRefreshComponent.h"
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 

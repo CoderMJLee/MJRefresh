@@ -1,12 +1,16 @@
 //  代码地址: https://github.com/CoderMJLee/MJRefresh
 //  MJRefreshFooter.h
-//  MJRefreshExample
+//  MJRefresh
 //
 //  Created by MJ Lee on 15/3/5.
 //  Copyright (c) 2015年 小码哥. All rights reserved.
 //  上拉刷新控件
 
+#if __has_include(<MJRefresh/MJRefreshComponent.h>)
+#import <MJRefresh/MJRefreshComponent.h>
+#else
 #import "MJRefreshComponent.h"
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 
