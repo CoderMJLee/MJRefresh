@@ -1,13 +1,14 @@
 //  代码地址: https://github.com/CoderMJLee/MJRefresh
 //  MJRefreshFooter.m
-//  MJRefreshExample
+//  MJRefresh
 //
 //  Created by MJ Lee on 15/3/5.
 //  Copyright (c) 2015年 小码哥. All rights reserved.
 //
 
 #import "MJRefreshFooter.h"
-#include "UIScrollView+MJRefresh.h"
+#import "UIScrollView+MJRefresh.h"
+#import "UIView+MJExtension.h"
 
 @interface MJRefreshFooter()
 

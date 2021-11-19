@@ -1,6 +1,6 @@
 //
 //  MJRefreshNormalTrailer.m
-//  MJRefreshExample
+//  MJRefresh
 //
 //  Created by kinarobin on 2020/5/3.
 //  Copyright © 2020 小码哥. All rights reserved.
@@ -8,6 +8,7 @@
 
 #import "MJRefreshNormalTrailer.h"
 #import "NSBundle+MJRefresh.h"
+#import "UIView+MJExtension.h"
 
 @interface MJRefreshNormalTrailer() {
     __unsafe_unretained UIImageView *_arrowView;

@@ -1,12 +1,16 @@
 //
 //  MJRefreshAutoNormalFooter.m
-//  MJRefreshExample
+//  MJRefresh
 //
 //  Created by MJ Lee on 15/4/24.
 //  Copyright (c) 2015年 小码哥. All rights reserved.
 //
 
 #import "MJRefreshAutoNormalFooter.h"
+#import "NSBundle+MJRefresh.h"
+#import "UIView+MJExtension.h"
+#import "UIScrollView+MJExtension.h"
+#import "UIScrollView+MJRefresh.h"
 
 @interface MJRefreshAutoNormalFooter()
 @property (weak, nonatomic) UIActivityIndicatorView *loadingView;

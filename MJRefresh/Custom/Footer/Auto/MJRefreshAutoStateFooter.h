@@ -1,12 +1,16 @@
 //
 //  MJRefreshAutoStateFooter.h
-//  MJRefreshExample
+//  MJRefresh
 //
 //  Created by MJ Lee on 15/6/13.
 //  Copyright © 2015年 小码哥. All rights reserved.
 //
 
+#if __has_include(<MJRefresh/MJRefreshAutoFooter.h>)
+#import <MJRefresh/MJRefreshAutoFooter.h>
+#else
 #import "MJRefreshAutoFooter.h"
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 

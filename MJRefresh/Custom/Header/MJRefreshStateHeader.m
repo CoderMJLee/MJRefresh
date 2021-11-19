@@ -1,12 +1,16 @@
 //
 //  MJRefreshStateHeader.m
-//  MJRefreshExample
+//  MJRefresh
 //
 //  Created by MJ Lee on 15/4/24.
 //  Copyright (c) 2015年 小码哥. All rights reserved.
 //
 
 #import "MJRefreshStateHeader.h"
+#import "MJRefreshConst.h"
+#import "NSBundle+MJRefresh.h"
+#import "UIView+MJExtension.h"
+#import "UIScrollView+MJExtension.h"
 
 @interface MJRefreshStateHeader()
 {

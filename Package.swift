@@ -14,6 +14,7 @@ let package = Package(
             name: "MJRefresh",
             dependencies: [],
             path: "MJRefresh",
+            exclude: ["Info.plist"],
             resources: [.process("MJRefresh.bundle")],
             publicHeadersPath: "include",
             cSettings: [

@@ -1,12 +1,15 @@
 //  代码地址: https://github.com/CoderMJLee/MJRefresh
 //  MJRefreshHeader.m
-//  MJRefreshExample
+//  MJRefresh
 //
 //  Created by MJ Lee on 15/3/4.
 //  Copyright (c) 2015年 小码哥. All rights reserved.
 //
 
 #import "MJRefreshHeader.h"
+#import "UIView+MJExtension.h"
+#import "UIScrollView+MJExtension.h"
+#import "UIScrollView+MJRefresh.h"
 
 NSString * const MJRefreshHeaderRefreshing2IdleBoundsKey = @"MJRefreshHeaderRefreshing2IdleBounds";
 NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshingBounds";
