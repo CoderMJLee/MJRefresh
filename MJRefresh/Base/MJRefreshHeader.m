@@ -61,12 +61,15 @@ NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshin
     }
     
     // sectionheader停留解决
-    CGFloat insetT = - self.scrollView.mj_offsetY > _scrollViewOriginalInset.top ? - self.scrollView.mj_offsetY : _scrollViewOriginalInset.top;
-    insetT = insetT > self.mj_h + _scrollViewOriginalInset.top ? self.mj_h + _scrollViewOriginalInset.top : insetT;
-    self.insetTDelta = _scrollViewOriginalInset.top - insetT;
-    // 避免 CollectionView 在使用根据 Autolayout 和 内容自动伸缩 Cell, 刷新时导致的 Layout 异常渲染问题
-    if (self.scrollView.mj_insetT != insetT) {
-        self.scrollView.mj_insetT = insetT;
+    if (self.scrollView.isUserInteractionEnabled && (self.scrollView.isTracking || self.scrollView.isDecelerating)) {
+        CGFloat systemTop = self.scrollView.mj_insetT - self.insetTDelta;
+        CGFloat delta = -systemTop - self.scrollView.mj_offsetY;
+        delta = delta < 0.f ? 0 : MIN(delta, self.mj_h);
+        if (delta >= 0 && delta != self.insetTDelta) {
+            CGFloat adjust = delta - self.insetTDelta;
+            self.insetTDelta = delta;
+            self.scrollView.mj_insetT += adjust;
+        }
     }
 }
 
@@ -74,14 +77,14 @@ NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshin
 {
     [super scrollViewContentOffsetDidChange:change];
     
+    // 跳转到下一个控制器时，contentInset可能会变
+    _scrollViewOriginalInset = self.scrollView.mj_inset;
+    
     // 在刷新的refreshing状态
     if (self.state == MJRefreshStateRefreshing) {
         [self resetInset];
         return;
     }
-    
-    // 跳转到下一个控制器时，contentInset可能会变
-    _scrollViewOriginalInset = self.scrollView.mj_inset;
     
     // 当前的contentOffset
     CGFloat offsetY = self.scrollView.mj_offsetY;
@@ -136,8 +139,8 @@ NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshin
     if (!self.isCollectionViewAnimationBug) {
         // 恢复inset和offset
         [UIView animateWithDuration:self.slowAnimationDuration animations:^{
-            self.scrollView.mj_insetT += self.insetTDelta;
-            
+            self.scrollView.mj_insetT -= self.insetTDelta;
+            self.insetTDelta = 0.f;
             if (self.endRefreshingAnimationBeginAction) {
                 self.endRefreshingAnimationBeginAction();
             }
@@ -166,13 +169,13 @@ NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshin
     // 由于修改 Inset 会导致 self.pullingPercent 联动设置 self.alpha, 故提前获取 alpha 值, 后续用于还原 alpha 动画
     CGFloat viewAlpha = self.alpha;
     
-    self.scrollView.mj_insetT += self.insetTDelta;
+    self.scrollView.mj_insetT -= self.insetTDelta;
     // 禁用交互, 如果不禁用可能会引起渲染问题.
     self.scrollView.userInteractionEnabled = NO;
 
     //CAAnimation keyPath 不支持 contentInset 用Bounds的动画代替
     CABasicAnimation *boundsAnimation = [CABasicAnimation animationWithKeyPath:@"bounds"];
-    boundsAnimation.fromValue = [NSValue valueWithCGRect:CGRectOffset(self.scrollView.bounds, 0, self.insetTDelta)];
+    boundsAnimation.fromValue = [NSValue valueWithCGRect:CGRectOffset(self.scrollView.bounds, 0, -self.insetTDelta)];
     boundsAnimation.duration = self.slowAnimationDuration;
     //在delegate里移除
     boundsAnimation.removedOnCompletion = NO;
@@ -209,6 +212,7 @@ NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshin
                     CGFloat top = self.scrollViewOriginalInset.top + self.mj_h;
                     // 增加滚动区域top
                     self.scrollView.mj_insetT = top;
+                    self.insetTDelta = self.mj_h;
                     // 设置滚动位置
                     CGPoint offset = self.scrollView.contentOffset;
                     offset.y = -top;
@@ -257,6 +261,7 @@ NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshin
     NSString *identity = [anim valueForKey:@"identity"];
     if ([identity isEqualToString:MJRefreshHeaderRefreshing2IdleBoundsKey]) {
         self.pullingPercent = 0.0;
+        self.insetTDelta = 0.f;
         self.scrollView.userInteractionEnabled = YES;
         if (self.endRefreshingCompletionBlock) {
             self.endRefreshingCompletionBlock();
@@ -265,6 +270,7 @@ NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshin
         // 避免出现 end 先于 Refreshing 状态
         if (self.state != MJRefreshStateIdle) {
             CGFloat top = self.scrollViewOriginalInset.top + self.mj_h;
+            self.insetTDelta = self.mj_h;
             self.scrollView.mj_insetT = top;
             // 设置最终滚动位置
             CGPoint offset = self.scrollView.contentOffset;
