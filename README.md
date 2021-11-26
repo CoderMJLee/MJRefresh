@@ -1,7 +1,7 @@
 ## MJRefresh
 [![SPM supported](https://img.shields.io/badge/SPM-supported-4BC51D.svg?style=flat)](https://github.com/apple/swift-package-manager)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-![podversion](https://img.shields.io/cocoapods/v/MJRefresh.svg)
+[![podversion](https://img.shields.io/cocoapods/v/MJRefresh.svg)](https://cocoapods.org/pods/MJRefresh)
 
 * An easy way to use pull-to-refresh
 
