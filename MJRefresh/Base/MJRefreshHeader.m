@@ -203,21 +203,19 @@ NSString * const MJRefreshHeaderRefreshingBoundsKey = @"MJRefreshHeaderRefreshin
 - (void)headerRefreshingAction {
     // 默认使用 UIViewAnimation 动画
     if (!self.isCollectionViewAnimationBug) {
-        MJRefreshDispatchAsyncOnMainQueue({
-            [UIView animateWithDuration:self.fastAnimationDuration animations:^{
-                if (self.scrollView.panGestureRecognizer.state != UIGestureRecognizerStateCancelled) {
-                    CGFloat top = self.scrollViewOriginalInset.top + self.mj_h;
-                    // 增加滚动区域top
-                    self.scrollView.mj_insetT = top;
-                    // 设置滚动位置
-                    CGPoint offset = self.scrollView.contentOffset;
-                    offset.y = -top;
-                    [self.scrollView setContentOffset:offset animated:NO];
-                }
-            } completion:^(BOOL finished) {
-                [self executeRefreshingCallback];
-            }];
-        })
+        [UIView animateWithDuration:self.fastAnimationDuration animations:^{
+            if (self.scrollView.panGestureRecognizer.state != UIGestureRecognizerStateCancelled) {
+                CGFloat top = self.scrollViewOriginalInset.top + self.mj_h;
+                // 增加滚动区域top
+                self.scrollView.mj_insetT = top;
+                // 设置滚动位置
+                CGPoint offset = self.scrollView.contentOffset;
+                offset.y = -top;
+                [self.scrollView setContentOffset:offset animated:NO];
+            }
+        } completion:^(BOOL finished) {
+            [self executeRefreshingCallback];
+        }];
         return;
     }
     
