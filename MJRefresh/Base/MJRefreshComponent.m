@@ -237,17 +237,15 @@
 #pragma mark - 内部方法
 - (void)executeRefreshingCallback
 {
-    MJRefreshDispatchAsyncOnMainQueue({
-        if (self.refreshingBlock) {
-            self.refreshingBlock();
-        }
-        if ([self.refreshingTarget respondsToSelector:self.refreshingAction]) {
-            MJRefreshMsgSend(MJRefreshMsgTarget(self.refreshingTarget), self.refreshingAction, self);
-        }
-        if (self.beginRefreshingCompletionBlock) {
-            self.beginRefreshingCompletionBlock();
-        }
-    })
+    if (self.refreshingBlock) {
+        self.refreshingBlock();
+    }
+    if ([self.refreshingTarget respondsToSelector:self.refreshingAction]) {
+        MJRefreshMsgSend(MJRefreshMsgTarget(self.refreshingTarget), self.refreshingAction, self);
+    }
+    if (self.beginRefreshingCompletionBlock) {
+        self.beginRefreshingCompletionBlock();
+    }
 }
 
 #pragma mark - 刷新动画时间控制
