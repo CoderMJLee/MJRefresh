@@ -16,9 +16,11 @@
 
 @interface MJRefreshComponent()
 @property (strong, nonatomic) UIPanGestureRecognizer *pan;
+@property (assign, nonatomic) UIEdgeInsets originalInsets;
 @end
 
 @implementation MJRefreshComponent
+
 #pragma mark - 初始化
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -30,6 +32,7 @@
         self.state = MJRefreshStateIdle;
         self.fastAnimationDuration = 0.25;
         self.slowAnimationDuration = 0.4;
+        self.originalInsets = UIEdgeInsetsZero;
     }
     return self;
 }
@@ -73,6 +76,8 @@
         _scrollView.alwaysBounceVertical = YES;
         // 记录UIScrollView最开始的contentInset
         _scrollViewOriginalInset = _scrollView.mj_inset;
+        // 记录原始 contentInset
+        _originalInsets = _scrollView.mj_inset;
         
         // 添加监听
         [self addObservers];
@@ -182,7 +187,12 @@
 #pragma mark 结束刷新状态
 - (void)endRefreshing
 {
-    MJRefreshDispatchAsyncOnMainQueue(self.state = MJRefreshStateIdle;)
+    MJRefreshDispatchAsyncOnMainQueue({
+        // 更新状态
+        self.state = MJRefreshStateIdle;
+        // 恢复contentInsets
+        self.scrollView.contentInset = self.originalInsets;
+    })
 }
 
 - (void)endRefreshingWithCompletionBlock:(void (^)(void))completionBlock
