@@ -77,7 +77,7 @@
         // 记录UIScrollView最开始的contentInset
         _scrollViewOriginalInset = _scrollView.mj_inset;
         // 记录原始 contentInset
-        _originalInsets = _scrollView.mj_inset;
+        _originalInsets = [_scrollView contentInset];
         
         // 添加监听
         [self addObservers];
