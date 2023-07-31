@@ -40,12 +40,12 @@
 }
 
 #pragma mark - 过期方法
-- (void)setAppearencePercentTriggerAutoRefresh:(CGFloat)appearencePercentTriggerAutoRefresh
+- (void)setAppearancePercentTriggerAutoRefresh:(CGFloat)appearancePercentTriggerAutoRefresh
 {
-    self.triggerAutomaticallyRefreshPercent = appearencePercentTriggerAutoRefresh;
+    self.triggerAutomaticallyRefreshPercent = appearancePercentTriggerAutoRefresh;
 }
 
-- (CGFloat)appearencePercentTriggerAutoRefresh
+- (CGFloat)appearancePercentTriggerAutoRefresh
 {
     return self.triggerAutomaticallyRefreshPercent;
 }
