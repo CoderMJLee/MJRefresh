@@ -3,3 +3,4 @@
 //
 
 #import "MJChiBaoZiHeader.h"
+#import "MJCollectionViewController.h"

@@ -18,7 +18,7 @@
 
 @implementation MJWebViewViewController
 #pragma mark - 示例
-- (void)example31
+- (void)example40
 {
     __weak UIWebView *webView = self.webView;
     webView.delegate = self;
