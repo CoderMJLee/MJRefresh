@@ -31,7 +31,7 @@
         }
         
         // 设置位置
-        self.mj_y = _scrollView.mj_contentH;
+        self.mj_y = _scrollView.mj_contentH + self.ignoredScrollViewContentInsetBottom;
     } else { // 被移除了
         if (self.hidden == NO) {
             self.scrollView.mj_insetB -= self.mj_h;
@@ -205,7 +205,7 @@
         self.scrollView.mj_insetB += self.mj_h;
         
         // 设置位置
-        self.mj_y = _scrollView.mj_contentH;
+        self.mj_y = _scrollView.mj_contentH + self.ignoredScrollViewContentInsetBottom;
     }
 }
 
