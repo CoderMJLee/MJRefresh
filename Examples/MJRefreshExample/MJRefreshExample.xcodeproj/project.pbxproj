@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0133FBBF2693FA8E00E98F66 /* CustomLanguages.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0133FBBE2693FA8E00E98F66 /* CustomLanguages.bundle */; };
+		013557022AB7F252001BB573 /* MJPinHeaderCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013557012AB7F252001BB573 /* MJPinHeaderCollectionViewController.swift */; };
 		018C0838274787B6002D968E /* MJRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 018C083427478732002D968E /* MJRefresh.framework */; };
 		018C0839274787B6002D968E /* MJRefresh.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 018C083427478732002D968E /* MJRefresh.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0193FF132692E99500B52B11 /* I18NExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0193FF122692E99500B52B11 /* I18NExampleViewController.swift */; };
@@ -78,6 +79,7 @@
 		0133FBBC2693F81700E98F66 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/MJRefresh_i18n.strings; sourceTree = "<group>"; };
 		0133FBBD2693F81F00E98F66 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MJRefresh_i18n.strings; sourceTree = "<group>"; };
 		0133FBBE2693FA8E00E98F66 /* CustomLanguages.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CustomLanguages.bundle; sourceTree = "<group>"; };
+		013557012AB7F252001BB573 /* MJPinHeaderCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MJPinHeaderCollectionViewController.swift; sourceTree = "<group>"; };
 		018C082F27478732002D968E /* MJRefresh.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MJRefresh.xcodeproj; path = ../../MJRefresh.xcodeproj; sourceTree = "<group>"; };
 		0193FF122692E99500B52B11 /* I18NExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = I18NExampleViewController.swift; sourceTree = "<group>"; };
 		0193FF172692F8EB00B52B11 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MJRefresh_i18n.strings; sourceTree = "<group>"; };
@@ -181,7 +183,6 @@
 			isa = PBXGroup;
 			children = (
 				01A5EB2A25EF62B80091554E /* MJWKWebViewController.swift */,
-				01A5EB2925EF62B80091554E /* MJRefreshExample-Bridging-Header.h */,
 			);
 			path = SwiftExample;
 			sourceTree = "<group>";
@@ -245,6 +246,7 @@
 			children = (
 				2D9BEAFF1BB15F4A00AED473 /* MJCollectionViewController.h */,
 				2D9BEB001BB15F4A00AED473 /* MJCollectionViewController.m */,
+				013557012AB7F252001BB573 /* MJPinHeaderCollectionViewController.swift */,
 				6B8FB1A7250E610D00AF64B7 /* MJHorizontalCollectionViewController.h */,
 				6B8FB1A8250E610D00AF64B7 /* MJHorizontalCollectionViewController.m */,
 				2D9BEB011BB15F4A00AED473 /* MJTableViewController.h */,
@@ -283,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				2DA7F94E1AA6B51C005627AB /* Classes */,
+				01A5EB2925EF62B80091554E /* MJRefreshExample-Bridging-Header.h */,
 				2DA7F9281AA6B4C4005627AB /* Supporting Files */,
 			);
 			path = MJRefreshExample;
@@ -476,6 +479,7 @@
 				2D9BEB091BB15F4A00AED473 /* UIViewController+Example.m in Sources */,
 				6B8FB1A9250E610D00AF64B7 /* MJHorizontalCollectionViewController.m in Sources */,
 				2D9BEB111BB15F4A00AED473 /* MJExampleViewController.m in Sources */,
+				013557022AB7F252001BB573 /* MJPinHeaderCollectionViewController.swift in Sources */,
 				2D9BEB0C1BB15F4A00AED473 /* MJChiBaoZiHeader.m in Sources */,
 				2D9BEB191BB15F4A00AED473 /* MJTestViewController.m in Sources */,
 				2D9BEB151BB15F4A00AED473 /* MJTempViewController.m in Sources */,
@@ -655,7 +659,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mj.MJRefresh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "MJRefreshExample/Classes/SwiftExample/MJRefreshExample-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "MJRefreshExample/MJRefreshExample-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -676,7 +680,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mj.MJRefresh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "MJRefreshExample/Classes/SwiftExample/MJRefreshExample-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "MJRefreshExample/MJRefreshExample-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

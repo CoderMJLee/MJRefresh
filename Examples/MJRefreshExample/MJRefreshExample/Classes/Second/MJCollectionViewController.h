@@ -10,4 +10,6 @@
 
 @interface MJCollectionViewController : UICollectionViewController
 
+- (void)example31;
+
 @end
