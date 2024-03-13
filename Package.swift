@@ -15,7 +15,7 @@ let package = Package(
             dependencies: [],
             path: "MJRefresh",
             exclude: ["Info.plist"],
-            resources: [.process("MJRefresh.bundle")],
+            resources: [.process("MJRefresh.bundle"), .copy("PrivacyInfo.xcprivacy")],
             publicHeadersPath: "include",
             cSettings: [
                 //Config header path

@@ -60,6 +60,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		012254B32BA144D6007BD496 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		01A2CE0A21ACE01500BEE365 /* MJRefreshConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MJRefreshConfig.h; sourceTree = "<group>"; };
 		01A2CE0B21ACE01500BEE365 /* MJRefreshConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConfig.m; sourceTree = "<group>"; };
 		2D4698841D0EE6A400CB8025 /* NSBundle+MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+MJRefresh.h"; sourceTree = "<group>"; };
@@ -128,6 +129,7 @@
 		2DA7F91C1AA6B4C4005627AB = {
 			isa = PBXGroup;
 			children = (
+				012254B32BA144D6007BD496 /* PrivacyInfo.xcprivacy */,
 				2DB2E9EA1BECBE6700D58F6A /* MJRefresh */,
 				2DA7F9261AA6B4C4005627AB /* Products */,
 			);
