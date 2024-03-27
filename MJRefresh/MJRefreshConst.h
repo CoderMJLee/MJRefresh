@@ -75,11 +75,15 @@ if (state == oldState) return; \
 
 // 异步主线程执行，不强持有Self
 #define MJRefreshDispatchAsyncOnMainQueue(x) \
+if (NSThread.isMainThread) { \
+{x} \
+} else { \
 __weak typeof(self) weakSelf = self; \
 dispatch_async(dispatch_get_main_queue(), ^{ \
 typeof(weakSelf) self = weakSelf; \
 {x} \
-});
+}); \
+}
 
 /// 替换方法实现
 /// @param _fromClass 源类
