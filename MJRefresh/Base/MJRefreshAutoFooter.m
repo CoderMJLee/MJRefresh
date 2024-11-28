@@ -79,6 +79,7 @@
             CGPoint old = [change[@"old"] CGPointValue];
             CGPoint new = [change[@"new"] CGPointValue];
             if (new.y <= old.y) return;
+            if (new.y <= 0) return;
             
             if (_scrollView.isDragging) {
                 self.triggerByDrag = YES;
