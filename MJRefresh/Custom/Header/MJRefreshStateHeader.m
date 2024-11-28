@@ -178,6 +178,12 @@
     // 重新设置key（重新显示时间）
     self.lastUpdatedTimeKey = self.lastUpdatedTimeKey;
 }
+
+- (NSArray<UIView *> *)flipsHorizontallyInOppositeLayoutDirectionViews {
+    return @[
+        self.stateLabel, self.lastUpdatedTimeLabel
+    ];
+}
 @end
 
 #pragma mark - <<< 为 Swift 扩展链式语法 >>> -

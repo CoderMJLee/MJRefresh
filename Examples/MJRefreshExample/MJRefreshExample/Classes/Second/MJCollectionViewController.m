@@ -9,6 +9,7 @@
 #import "MJCollectionViewController.h"
 #import "MJTestViewController.h"
 #import "UIViewController+Example.h"
+#import "MJChiBaoziHeader.h"
 
 @import MJRefresh;
 

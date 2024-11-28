@@ -116,4 +116,10 @@
         self.stateLabel.text = self.stateTitles[@(state)];
     }
 }
+
+- (NSArray<UIView *> *)flipsHorizontallyInOppositeLayoutDirectionViews {
+    return @[
+        self.stateLabel
+    ];
+}
 @end

@@ -84,4 +84,10 @@
     }
 }
 
+- (NSArray<UIView *> *)flipsHorizontallyInOppositeLayoutDirectionViews {
+    return @[
+        self.stateLabel
+    ];
+}
+
 @end

@@ -73,6 +73,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		012CECBB2CF80CF8002C71E3 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/MJRefresh_i18n.strings; sourceTree = "<group>"; };
 		0133FBB82693F7E200E98F66 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MJRefresh_i18n.strings"; sourceTree = "<group>"; };
 		0133FBB92693F7EA00E98F66 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/MJRefresh_i18n.strings"; sourceTree = "<group>"; };
 		0133FBBB2693F80400E98F66 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/MJRefresh_i18n.strings; sourceTree = "<group>"; };
@@ -406,6 +407,7 @@
 				ru,
 				uk,
 				ko,
+				ar,
 			);
 			mainGroup = 2DA7F91C1AA6B4C4005627AB;
 			productRefGroup = 2DA7F9261AA6B4C4005627AB /* Products */;
@@ -516,6 +518,7 @@
 				0133FBBB2693F80400E98F66 /* ru */,
 				0133FBBC2693F81700E98F66 /* uk */,
 				0133FBBD2693F81F00E98F66 /* ko */,
+				012CECBB2CF80CF8002C71E3 /* ar */,
 			);
 			name = MJRefresh_i18n.strings;
 			sourceTree = "<group>";

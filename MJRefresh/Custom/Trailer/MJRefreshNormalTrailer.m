@@ -75,6 +75,10 @@
     }
 }
 
-
+- (NSArray<UIView *> *)flipsHorizontallyInOppositeLayoutDirectionViews {
+    return [super.flipsHorizontallyInOppositeLayoutDirectionViews arrayByAddingObjectsFromArray:@[
+        self.arrowView
+    ]];
+}
 
 @end

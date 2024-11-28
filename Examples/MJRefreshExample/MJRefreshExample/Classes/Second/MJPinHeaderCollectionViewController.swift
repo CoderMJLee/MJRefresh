@@ -29,6 +29,10 @@ class MJPinHeaderCollectionViewController: MJCollectionViewController {
 
 @objcMembers
 class PinHeaderFlowLayout: UICollectionViewFlowLayout {
+    override var flipsHorizontallyInOppositeLayoutDirection: Bool {
+        true
+    }
+    
     override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: indexPath)
         // TODO: Implementation of PinHeader

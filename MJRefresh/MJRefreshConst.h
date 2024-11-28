@@ -13,6 +13,10 @@
 #define MJRefreshLog(...)
 #endif
 
+#ifndef mj_cguard
+#define mj_cguard(X) if (X);
+#endif
+
 // 过期提醒
 #define MJRefreshDeprecated(DESCRIPTION) __attribute__((deprecated(DESCRIPTION)))
 

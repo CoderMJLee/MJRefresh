@@ -95,6 +95,13 @@ typedef void (^MJRefreshComponentAction)(void);
 /** 父控件 */
 @property (weak, nonatomic, readonly) UIScrollView *scrollView;
 
+/// 当在 CollectionView 中使用 CollectionViewLayout 中的 flipsHorizontallyInOppositeLayoutDirection 时, 会反向 View 内容. 这里列出的 view 会被自动反向回来.
+@property (nonatomic, readonly) NSArray<UIView *> *flipsHorizontallyInOppositeLayoutDirectionViews;
+
+/// 当在 CollectionView 中使用 CollectionViewLayout 中的 flipsHorizontallyInOppositeLayoutDirection 时, 会反向 View 内容. 这里列出的 view 会被自动反向回来. 默认为空
+/// - Attention: 增量内容, 不会覆盖 MJRefresh 中的 flipsHorizontallyInOppositeLayoutDirectionViews
+@property (nonatomic, readonly) NSArray<UIView *> *additionalFlipsViews;
+
 #pragma mark - 交给子类们去实现
 /** 初始化 */
 - (void)prepare NS_REQUIRES_SUPER;

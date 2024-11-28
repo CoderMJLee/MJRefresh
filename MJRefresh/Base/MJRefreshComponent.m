@@ -46,6 +46,19 @@
     [self placeSubviews];
     
     [super layoutSubviews];
+    
+    mj_cguard([self.scrollView isKindOfClass:UICollectionView.class]) else { return; }
+        
+    UICollectionView *collectionView = (UICollectionView *)self.scrollView;
+    mj_cguard(collectionView.collectionViewLayout.flipsHorizontallyInOppositeLayoutDirection) else { return; }
+    
+    CGAffineTransform flipTransform = CGAffineTransformMakeScale(-1, 1);
+    for (UIView *view in self.flipsHorizontallyInOppositeLayoutDirectionViews) {
+        view.transform = flipTransform;
+    }
+    for (UIView *view in self.additionalFlipsViews) {
+        view.transform = flipTransform;
+    }
 }
 
 - (void)placeSubviews{}

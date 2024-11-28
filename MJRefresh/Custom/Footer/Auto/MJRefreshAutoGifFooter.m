@@ -117,5 +117,12 @@
         self.gifView.hidden = YES;
     }
 }
+
+- (NSArray<UIView *> *)flipsHorizontallyInOppositeLayoutDirectionViews {
+    return [super.flipsHorizontallyInOppositeLayoutDirectionViews arrayByAddingObjectsFromArray:@[
+        self.gifView
+    ]];
+}
+
 @end
 
