@@ -10,7 +10,7 @@
 ## Contents
 
 - New Features
-    - [Support Flips in CollectionViewLayout](#Support_Flips_In_CollectionViewLayout)
+    - [Support Flips in CollectionViewLayout](#SupportFlipsInCollectionViewLayout)
     - [Dynamic i18n Switching](#dynamic_i18n_switching)
     - [SPM Supported](#spm_supported)
     - [Swift Chaining Grammar Supported](#swift_chaining_grammar_supported)
@@ -55,7 +55,7 @@
 
 > Refer to [issue #1616](https://github.com/CoderMJLee/MJRefresh/issues/1616).
 - Use `additionalFlipsViews` to append views that need to flip when collectionViewLayout flipsHorizontallyInOppositeLayoutDirection is `true`.
-- Use `flipsHorizontallyInOppositeLayoutDirectionViews` to modify views as the same way above. **⚠️ BUT parent class may be affect. Use `additionalFlipsViews` instead.**
+- Use `flipsHorizontallyInOppositeLayoutDirectionViews` to modify views as the same way above. **⚠️ BUT parent class may be affected. Use `additionalFlipsViews` instead.**
 
 ### <a id="dynamic_i18n_switching"></a>Dynamic i18n Switching
 
