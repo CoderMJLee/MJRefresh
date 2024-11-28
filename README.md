@@ -177,9 +177,9 @@ UIView+MJExtension.h        UIView+MJExtension.m
 ## <a id="MJRefreshHeader.h"></a>MJRefreshHeader.h
 ```objc
 @interface MJRefreshHeader : MJRefreshComponent
-/** Creat header */
+/** create header */
 + (instancetype)headerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock;
-/** Creat header */
+/** create header */
 + (instancetype)headerWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
 
 /** This key is used to storage the time that the last time of drown-down successfully */
@@ -195,9 +195,9 @@ UIView+MJExtension.h        UIView+MJExtension.m
 ## <a id="MJRefreshFooter.h"></a>MJRefreshFooter.h
 ```objc
 @interface MJRefreshFooter : MJRefreshComponent
-/** Creat footer */
+/** create footer */
 + (instancetype)footerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock;
-/** Creat footer */
+/** create footer */
 + (instancetype)footerWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
 
 /** NoticeNoMoreData */
