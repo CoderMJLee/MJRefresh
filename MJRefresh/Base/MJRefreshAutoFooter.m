@@ -39,17 +39,6 @@
     }
 }
 
-#pragma mark - 过期方法
-- (void)setAppearencePercentTriggerAutoRefresh:(CGFloat)appearencePercentTriggerAutoRefresh
-{
-    self.triggerAutomaticallyRefreshPercent = appearencePercentTriggerAutoRefresh;
-}
-
-- (CGFloat)appearencePercentTriggerAutoRefresh
-{
-    return self.triggerAutomaticallyRefreshPercent;
-}
-
 #pragma mark - 实现父类的方法
 - (void)prepare
 {
