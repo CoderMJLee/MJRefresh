@@ -56,6 +56,7 @@ static NSBundle *mj_systemI18nBundle = nil;
     
     // 如果没有缓存, 则走初始化逻辑
     if (mj_defaultI18nBundle == nil) {
+        mj_defaultI18nBundle = NSBundle.mainBundle;
         NSString *language = MJRefreshConfig.defaultConfig.languageCode;
         // 如果配置中没有配置语言
         if (!language) {
@@ -66,9 +67,13 @@ static NSBundle *mj_systemI18nBundle = nil;
         bundle = bundle ? bundle : NSBundle.mainBundle;
         // 按语言选取语言包
         NSString *i18nFolderPath = [bundle pathForResource:language ofType:@"lproj"];
-        mj_defaultI18nBundle = [NSBundle bundleWithPath:i18nFolderPath];
-        // 检查语言包, 如果没有查找到, 则默认使用 mainBundle
-        mj_defaultI18nBundle = mj_defaultI18nBundle ? mj_defaultI18nBundle : NSBundle.mainBundle;
+        if (i18nFolderPath) {
+            NSBundle *i18nFolderBundle = [NSBundle bundleWithPath:i18nFolderPath];
+            // 检查语言包
+            if (i18nFolderBundle) {
+                mj_defaultI18nBundle = i18nFolderBundle;
+            }
+        }
         
         // 获取 MJRefresh 自有的语言包
         if (mj_systemI18nBundle == nil) {
